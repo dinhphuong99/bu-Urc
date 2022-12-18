@@ -1,0 +1,77 @@
+﻿<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title " id="modal-title"> {{'EDMSR_LBL_ADD_SERVER' | translate}}</span>
+</div>
+<div class="modal-body pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addformRepository" class="form-horizontal" method="post" ng-validate="validationOptionsRepository">
+            <div class="form-body">
+                <div class="form-group">
+                    <div class="col-md-4 pr-0">
+                        <label class="control-label require"><i class="fas fa-info-circle" aria-hidden="true"></i>&nbsp;Tên máy chủ</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input ng-model="model.ReposName" name="ReposName" class="form-control" type="text" placeholder="Tên máy chủ..." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 pr-0">
+                        <label class="control-label require"><i class="fas fa-link" aria-hidden="true"></i>&nbsp;Server</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="model.Server" name="Server" placeholder="Server..." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 pr-0">
+                        <label class="control-label require"><i class="fas fa-user" aria-hidden="true"></i>&nbsp;Tài khoản</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="model.Account" name="Account" placeholder="Tài khoản..." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 pr-0">
+                        <label class="control-label require"><i class="fas fa-unlock" aria-hidden="true"></i>&nbsp;Mật khẩu</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input  class="form-control" ng-model="model.PassWord" name="PassWord" placeholder="Mật khẩu..." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 pr-0">
+                        <label class="control-label"><i class="fas fa-sort-numeric-up" aria-hidden="true"></i>&nbsp;Token</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="model.Token" name="Token" placeholder="Token..." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 pr-0">
+                        <label class="control-label"><i class="far fa-comment" aria-hidden="true"></i>&nbsp;Mô tả</label>
+                    </div>
+                    <div class="col-md-8">
+                        <textarea rows="4" class="form-control" ng-model="model.Desc" name="Desc" placeholder="Mô tả..." />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer pt-0">
+    <div class="btn-group pull-right actions d-flex pr25">
+        <div class="text-center pr10">
+            <a data-dismiss="modal" ng-click="cancel()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                <span><i class="glyphicon glyphicon-remove"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+        </div>
+        <div class="text-center">
+            <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="submit()">
+                <span><i class="fa fa-save"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+        </div>
+    </div>
+</div>

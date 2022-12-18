@@ -1,0 +1,98 @@
+﻿<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'Urenco' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/CarMaintenance">{{'UM_LBL_MAINTENANCE' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group pt5 pb-1 pull-right actions d-flex">
+                <div class="pr-2">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'UM_LBL_SEARCH_FROM_DATE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.FromDate" class="form-control" type="text" placeholder="{{'UM_TXT_SEARCH_FROM_DATE' | translate}}..." autocomplete="off" ng-keydown="($event.keyCode == 13) && reload()" id='datefrom' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.FromDate=''" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'UM_LBL_SEARCH_TO_DATE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.ToDate" class="form-control" type="text" autocomplete="off" placeholder="{{'UM_TXT_SEARCH_TO_DATE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" id='dateto' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ToDate=''" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'UM_CURD_LBL_CODE' | translate}}/{{'UM_CURD_LBL_TITLE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.MtnCode" class="form-control" type="text" placeholder="{{'UM_CURD_TXT_CODE' | translate}}/{{'UM_CURD_TXT_TITLE' | translate}}.." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.MtnCode=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'UM_CURD_LBL_CAR_PLATE' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.CarPlate" theme="bootstrap">
+                            <ui-select-match placeholder="{{'UM_CURD_CB_CAR_PLATE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in ListCar | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.CarPlate=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="btn-group pt10 actions d-flex">
+                        <div class="text-center pr10">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="search()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12"> <label style="color:red">{{'UM_LBL_GUIDE' | translate}}</label></div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblDataContractPO"></table>

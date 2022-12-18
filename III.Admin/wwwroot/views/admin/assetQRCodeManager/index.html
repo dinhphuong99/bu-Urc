@@ -1,0 +1,256 @@
+﻿<style>
+    .app-content{
+        width: 100%;
+    }
+</style>
+<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home  " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_BREAD_CRUMB_COMMON_CATE' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/AssetQRCodeManager">{{'ASSET_QRCODE_MANAGER_TITLE' | translate}}</a>
+                </li>
+            </ul>
+            <div class="pr-0 pull-right" ng-show="!isSearch" ng-click="showSearch()">
+                <button class="btn gold-custom br4">
+                    <i class="fa fa-search"></i>
+                    {{'COM_BTN_SEARCH'| translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="input-search mt5" ng-show="isSearch">
+        <style>
+            @media (min-width: 992px) {
+                .col-cmd-2 {
+                    width: 20%;
+                    float: left;
+                    padding-right: 14px;
+                    padding-left: 14px;
+                }
+            }
+        </style>
+        <div class="row pb10">
+            <div class="col-cmd-2">
+                <label class="fw600 text-underline">{{'Tên tài sản'|translate}}</label>
+                <div class="bootstrap-multiple-checkboxes">
+                    <select id="asset-multiple-checkboxes" multiple ng-multiple="true" class="form-control" ng-model="model.ListAssetCode" ng-change="selectAsset(model.ListAssetCode)">
+                        <option ng-repeat="item in QRlistAsset"
+                                value="{{item.Code}}">
+                            {{item.Name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-cmd-2">
+                <label class="fw600 text-underline">{{'Địa điểm' | translate}}</label>
+                <div class="input-group">
+                    <ui-select tagging ng-model="searchBoxModel.Position" theme="bootstrap" on-select="changleSelect()">
+                        <ui-select-match placeholder="{{'Địa điểm' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                        <ui-select-choices repeat="x.Position as x in listPosition | filter: $select.search">
+                            {{x.Position}}
+                        </ui-select-choices>
+                    </ui-select>
+                    <span class="input-group-btn">
+                        <button type="button" ng-click="searchBoxModel.Position=''" class="btn btn-default no-shadow">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-cmd-2">
+                <label class="fw600 text-underline">{{'ASSET_QRCODE_MANAGER_LBL_FROM_DATE' | translate}}</label>
+                <div class="input-group">
+                    <input ng-model="searchBoxModel.FromDate" id="FromTo" class="form-control" type="text" placeholder="{{'ASSET_QRCODE_MANAGER_TXT_FROM_DATE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                    <span class="input-group-btn">
+                        <button type="button" ng-click="searchBoxModel.FromDate=''" class="btn btn-default no-shadow start-date">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-cmd-2">
+                <label class="fw600 text-underline">{{'ASSET_QRCODE_MANAGER_LBL_TO_DATE' | translate}}</label>
+                <div class="input-group">
+                    <input ng-model="searchBoxModel.ToDate" id="DateTo" class="form-control" type="text" placeholder="{{'ASSET_QRCODE_MANAGER_TXT_TO_DATE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                    <span class="input-group-btn">
+                        <button type="button" ng-click="searchBoxModel.ToDate=''" class="btn btn-default no-shadow end-date">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-cmd-2" style="width: 14%;">
+                <div class="btn-group pt20 actions d-flex">
+                    <div class="text-center pr10">
+                        <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="searchAsset()">
+                            <span><i class="fa fa-search"></i></span>
+                        </a>
+                        <p class="text-underline fs9 mb5 pt3">{{'Tìm kiếm tài sản' | translate}}</p>
+                    </div>
+                </div>
+            </div>
+            <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm" style="margin-right: 20px !important;"></i>
+        </div>
+    </div>
+</div>
+<div class="row guide">
+    <div class="col-md-6 pt10">
+        <span class="text-danger">{{'ASSET_QRCODE_MANAGER_INSTRUCTIONS' | translate}} ({{listObjPrint.length}})</span>
+    </div>
+    <div class="col-md-6">
+        <div class="btn-group pull-right d-flex">
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline pink-custom" ng-click="deleteObjPrint()">
+                    <span><i class="fas fa-trash-alt"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_DELETE' | translate}}</p>
+            </div>
+            <div class="text-center">
+                <a class="btn btn-icon-only btn-circle btn-outline blue-custom" ng-click="printObjPrint()">
+                    <span><i class="fas fa-print"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">{{'ASSET_QRCODE_MANAGER_PRINTING' | translate}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-bordered" style="margin-bottom: 0;" ng-show="listObjPrint.length!=0">
+        <thead>
+            <tr>
+                <th class="text-center col-md-1">
+                    <label class="mt-checkbox mt-checkbox-outline" style="padding-left:18px">
+                        <input type="checkbox" ng-click="selectAllObjPrint(IsCheckAll)" ng-init="IsCheckAll=false" ng-model="IsCheckAll">
+                        <span class="h-20 w20"></span>
+                    </label>
+                </th>
+                <th class="text-center col-md-2">{{'ASSET_QRCODE_MANAGER_COL_QR_CODE' | translate}}</th>
+                <th class="text-center col-md-2">{{'ASSET_QRCODE_MANAGER_COL_OBJ_TYPE' | translate}}</th>
+                <th class="text-center col-md-3">{{'ASSET_QRCODE_MANAGER_COL_OBJ_NAME' | translate}}</th>
+                <th class="text-center col-md-2">{{'ASSET_QRCODE_MANAGER_COL_GIVEN_NAME' | translate}}</th>
+                <th class="text-center col-md-2">{{'ASSET_QRCODE_MANAGER_COL_DATE_CREATED' | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="x in listObjPrint" role="button" ng-click="selectObjPrint(x)" ng-class="{'selected-item':x.IsCheck}">
+                <td class="text-center bs-checkbox">
+                    <label class="mt-checkbox mt-checkbox-outline" style="padding-left:18px">
+                        <input type="checkbox" ng-init="x.IsCheck=false" ng-model="x.IsCheck">
+                        <span class="h-20 w20"></span>
+                    </label>
+                </td>
+                <td class="text-center">
+                    <qrcode style="pointer-events:none" id="{{x.Code}}" role="button" data="{{x.Code}}" size="90" download></qrcode>
+                </td>
+                <td class="text-center">
+                    <span class="bold">{{x.TypeName}}</span>
+                </td>
+                <td class="text-center">
+                    <span>{{x.Name}}</span><br />
+                    <span>{{x.Code}}</span>
+                </td>
+                <td class="text-center">
+                    {{x.CreatedBy}}
+                </td>
+                <td class="text-center">
+                    {{x.CreatedTime | date:'dd/MM/yyyy'}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="table-responsive" ng-if="listObjPrint.length==0">
+        <table class="table table-bordered" style="margin-bottom: 0;">
+            <thead>
+                <tr>
+                    <th class="text-center col-md-1">
+                        <label class="mt-checkbox mt-checkbox-outline" style="padding-left:18px">
+                            <input type="checkbox">
+                            <span></span>
+                        </label>
+                    </th>
+                    <th class="text-center col-md-2">{{'ASSET_QRCODE_MANAGER_COL_QR_CODE' | translate}}</th>
+                    <th class="text-center col-md-2">{{'ASSET_QRCODE_MANAGER_LBL_OBJ_TYPE' | translate}}</th>
+                    <th class="text-center col-md-3">{{'ASSET_QRCODE_MANAGER_COL_OBJ_NAME' | translate}}</th>
+                    <th class="text-center col-md-2">{{'ASSET_QRCODE_MANAGER_COL_GIVEN_NAME' | translate}}</th>
+                    <th class="text-center col-md-2">{{'ASSET_QRCODE_MANAGER_COL_CREATD_TIME' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="h-40">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="h-40">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="h-40">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="h-40">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="h-40">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="h-40">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="h-40">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="h-40">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+

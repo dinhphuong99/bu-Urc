@@ -1,0 +1,154 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_BREAD_CRUMB_STATISTICAL' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <div class=" bold text-underline" style="color:black;" href="/Admin/FreeStorage">{{'FREE_STORAGE_LINK_FREE_STORAGE' | translate}}</div>
+                </li>
+            </ul>
+            <div class="pr-0 pull-right" ng-show="!isSearch" ng-click="showSearch()">
+                <button class="btn gold-custom br4">
+                    <i class="fa fa-search"></i>
+                    {{'Xếp sản phẩm'| translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="table-toolbar">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group" ng-class="{ 'has-error': errorInheritance}">
+                            <label class="control-label">{{'FREE_STORAGE_LBL_ID' | translate}}</label>
+                            <div class="input-group">
+                                <ui-select tagging ng-model="model.Id" theme="bootstrap" on-select="changleSelect('Id')" ng-change="getFloorInStore()">
+                                    <ui-select-match placeholder="{{'FREE_STORAGE_TXT_ID' | translate}}...">{{$select.selected.ProductQrCode}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Id as x in products | filter: $select.search">
+                                        {{x.ProductQrCode}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.Id=''; reset()" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <span ng-show="errorId" class="label-color validation-message">
+                                {{'FREE_STORAGE_VALIDATE_ID' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label require">{{'FREE_STORAGE_LBL_FLOOR' | translate}}</label>
+                            <div class="input-group  ">
+                                <ui-select tagging ng-model="model.Floor" theme="bootstrap" on-select="changleSelect('Floor')" ng-change="getLineByFloor()">
+                                    <ui-select-match placeholder="{{'FREE_STORAGE_TXT_FLOOR' | translate}}...">{{$select.selected.FloorName}}</ui-select-match>
+                                    <ui-select-choices repeat="x.FloorCode as x in floors | filter: $select.search">
+                                        {{x.FloorName}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.Floor=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <span ng-show="errorFloor" class="label-color validation-message">
+                                {{'FREE_STORAGE_VALIDATE_FLOOR' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label require">{{'FREE_STORAGE_LBL_LINE' | translate}}</label>
+                            <div class="input-group  ">
+                                <ui-select tagging ng-model="model.Line" theme="bootstrap" on-select="changleSelect('Line')" ng-change="getRackByLine()">
+                                    <ui-select-match placeholder="{{'FREE_STORAGE_TXT_LINE' | translate}}...">{{$select.selected.L_Text}}</ui-select-match>
+                                    <ui-select-choices repeat="x.LineCode as x in lines | filter: $select.search">
+                                        {{x.L_Text}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.Line=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <span ng-show="errorLine" class="label-color validation-message">
+                                {{'FREE_STORAGE_VALIDATE_LINE' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label require">{{'FREE_STORAGE_LBL_RACK' | translate}}</label>
+                            <div class="input-group  ">
+                                <ui-select tagging ng-model="model.Rack" theme="bootstrap" on-select="changleSelect('Rack')">
+                                    <ui-select-match placeholder="{{'FREE_STORAGE_TXT_RACK' | translate}}...">{{$select.selected.RackName}}</ui-select-match>
+                                    <ui-select-choices repeat="x.RackCode as x in racks | filter: $select.search">
+                                        {{x.RackName}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.Rack=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <span ng-show="errorRack" class="label-color validation-message">
+                                {{'FREE_STORAGE_VALIDATE_RACK' | translate}}
+                            </span>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2" style="width: 14%;">
+                        <div class="btn-group pull-left pt20 d-flex">
+                            <!--ng-if="PERMISSION_FREE_STROEAGE.Update"-->
+                            <div class="text-center" ng-click="submit()">
+                                <a class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                    <span><i class="fa fa-save"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3">{{'FREE_STORAGE_BTN_SORT' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn xếp sản phẩm" style="margin-right: 20px !important;"></i>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="col-md-6" ng-show="model.Id!=''">
+                            <label class="control-label bold">{{'FREE_STORAGE_LBL_WHS_NAME' | translate}}:</label> {{modelView.WHS_Name}}<br />
+                            <label class="control-label bold">{{'FREE_STORAGE_LBL_L_TEXT' | translate}}:</label> {{modelView.L_Text}}<br />
+                            <label class="control-label bold">{{'FREE_STORAGE_LBL_QUANTITY' | translate}}:</label> {{modelView.Quantity}}<br />
+                        </div>
+                        <div class="col-md-6" ng-show="model.Id!=''">
+                            <label class="control-label bold">{{'FREE_STORAGE_LBL_FLOOR_NAME' | translate}}:</label> {{modelView.FloorName}} <br />
+                            <label class="control-label bold">{{'FREE_STORAGE_LBL_RACK_NAME' | translate}}:</label> {{modelView.RackName}}<br />
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2" ng-show="model.Rack!=''">
+                        <label class="control-label bold">{{'FREE_STORAGE_LBL_QUANTITY_EMPTY' | translate}}</label> {{QuantityEmpty}}<br />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table dataTable table-hover table-striped"
+           datatable
+           dt-options="dtOptions"
+           dt-columns="dtColumns"
+           dt-instance="dtInstance"
+           id="tblData"></table>
+</div>

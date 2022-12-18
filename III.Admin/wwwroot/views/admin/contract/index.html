@@ -1,0 +1,193 @@
+﻿<style>
+    .table-scrollable > .table > tbody > tr > th, .table-scrollable > .table > tfoot > tr > td, .table-scrollable > .table > tfoot > tr > th, .table-scrollable > .table > thead > tr > th {
+        white-space: normal;
+    }
+</style>
+<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-md-6 ">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_MENU_CONTRACT' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/contract">{{'CONTRACT_LINK_CONTRACT' | translate}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <div class="btn-group pull-right pt5 pb-1 actions d-flex">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="pr-2">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn red-custom br4" ng-click="addCardJob()">
+                        <i class="fa fa-trello"></i>
+                        {{'COM_BTN_ADD_CAR'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'CONTRACT_CURD_LBL_FROM_DATE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.FromDate" class="form-control" type="text" placeholder="{{'CONTRACT_CURD_TXT_FROM_DATE' | translate}}..." autocomplete="off" ng-keydown="($event.keyCode == 13) && reload()" id='datefrom' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.FromDate=''" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'CONTRACT_LBL_SEARCH_TO_DATE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.ToDate" class="form-control" type="text" autocomplete="off" placeholder="{{'CONTRACT_TXT_SEARCH_TO_DATE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" id='dateto' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ToDate=''" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'CONTRACT_CURD_LBL_CONTRACT_CODE' | translate}}/{{'CONTRACT_CURD_LBL_CONTRACT_NAME' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.ContractCode" class="form-control" type="text" placeholder="{{'CONTRACT_CURD_TXT_CONTRACT_CODE' | translate}}/{{'CONTRACT_CURD_LBL_CONTRACT_NAME' | translate}}.." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ContractCode=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'CONTRACT_CURD_LBL_STATUS' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select ng-model="model.Status" theme="bootstrap">
+                            <ui-select-match placeholder="{{'CONTRACT_CURD_COMBO_STATUS' | translate}}"><p><i class="{{$select.selected.Icon}}"></i>{{$select.selected.Name}}</p></ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in ListCommon | filter:{Group:'CONTRACT_STATUS_PO_CUS'} | filter: $select.search">
+                                <i class="{{x.Icon}}"></i>{{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Status=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'CONTRACT_LBL_ORGANIZATION' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.BranchId" theme="bootstrap">
+                            <ui-select-match placeholder="{{'CONTRACT_TXT_ORGANIZATION' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in listBranch | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.BranchId='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2" style="width: 14%;">
+                    <label class="fw600 text-underline">{{'CONTRACT_LBL_SEARCH_BUDGET_F' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.BudgetF" class="form-control" type="text" placeholder="{{'CONTRACT_TXT_SEARCH_BUDGET_F' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" num-thousand='true' awnum num-int='21' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.BudgetF=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm"></i>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'CONTRACT_LBL_SEARCH_BUDGET_T' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.BudgetT" class="form-control" type="text" placeholder="{{'CONTRACT_TXT_SEARCH_BUDGET_T' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" num-thousand='true' awnum num-int='21' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.BudgetT=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'CONTRACT_CURD_LBL_CURRENCY' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select ng-model="model.Currency" theme="bootstrap">
+                            <ui-select-match placeholder="{{'CONTRACT_CURD_LBL_CURRENCY' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in ListCommon | filter:{Group:'CURRENCY_TYPE'}  | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Currency=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'CONTRACT_CURD_LBL_CUSTOMER_CODE' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.CusCode" theme="bootstrap" on-select="changleSelect('CusCode')" ng-change="changeCustomer()">
+                            <ui-select-match placeholder="{{'CONTRACT_CURD_COMBO_CUSTOMER_CODE' | translate}}...">{{$select.selected.Code}} - {{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x  in Customers | filter: $select.search">
+                                {{x.Code}} - {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.CusCode=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="btn-group pt10 actions d-flex">
+                        <div class="pr10 text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="search()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12"> <label style="color:red">{{'CONTRACT_TITLE_INSTRUCTIONS' | translate}}</label></div>
+</div>
+<style>
+    #tblDataContract_wrapper > .dataTable > tbody > tr {
+        height: fit-content;
+    }
+</style>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblDataContract"></table>

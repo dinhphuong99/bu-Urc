@@ -1,0 +1,719 @@
+﻿<style>
+    /*.modal-header {
+        background: #f1f1f1;
+        color: black;
+    }*/
+    .width_90 {
+        width: 90px;
+    }
+    .tab-content {
+        width: 100%;
+        min-height: 280px;
+        /*overflow-y: scroll;
+        overflow-x: hidden;*/
+    }
+
+    .boxGreen {
+        width: 20px;
+        height: 20px;
+        background: #2ecc71;
+        margin-right: 5px;
+    }
+
+    .boxRed {
+        width: 20px;
+        height: 20px;
+        background: #e74c3c;
+        margin-right: 5px;
+    }
+
+    .boxYellow {
+        width: 20px;
+        height: 20px;
+        background: #f1c40f;
+    }
+
+    .h-60 {
+        height: 60px;
+    }
+
+    .pl0 {
+        padding-left: 0px;
+    }
+
+    .pt5 {
+        padding-top: 5px;
+    }
+
+    .pr15 {
+        padding-right: 15px;
+    }
+
+    .mt15 {
+        margin-top: 15px;
+    }
+
+    .mt23 {
+        margin-top: 23px;
+    }
+
+    .w-100-percent {
+        width: 100%;
+    }
+
+    .w-30-percent {
+        width: 30%;
+    }
+
+    .bgWhite {
+        background: #fff;
+    }
+
+    .labelbodergroup {
+        margin-left: 24px;
+        margin-top: -12px;
+        position: absolute;
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border: 1px solid #e9dada;
+        border-radius: 4px;
+        font-size: 11px;
+        padding: 3px 10px !important;
+    }
+
+    .table_body {
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border-radius: 4px !important;
+        border: 1px solid #e9dada;
+        padding-top: 15px;
+        box-shadow: 0px 5px 10px 2px rgba(127, 143, 166,0.2) !important;
+        padding-bottom: 15px;
+    }
+
+    .dataTables_wrapper .table-scrollable {
+        border: 1px solid #e7ecf1 !important;
+    }
+
+    .labelbodergroup {
+        margin-left: 24px;
+        margin-top: -12px;
+        position: absolute;
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border: 1px solid #e9dada;
+        border-radius: 4px;
+        font-size: 11px;
+        padding: 3px 10px !important;
+    }
+
+    .table_body {
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border-radius: 4px !important;
+        border: 1px solid #e9dada;
+        padding-top: 15px;
+        box-shadow: 0px 5px 10px 2px rgba(127, 143, 166,0.2) !important;
+        padding-bottom: 15px;
+    }
+
+    .border-qrcode .img-thumbnail {
+        border: none;
+    }
+
+    .border-qrcode .file-header {
+        z-index: 1;
+        margin-left: 10%;
+        margin-top: 2px;
+        position: absolute;
+        /* background: linear-gradient(to bottom,#f1f1f1,#FBFCFC ); */
+        /* border: 1px solid #cccccc; */
+        border-radius: 4px;
+        font-size: 11px;
+        padding: 3px 10px !important;
+    }
+
+    .border-qrcode .file-body {
+        overflow: auto;
+        max-height: 120px;
+        height: 120px;
+        border-radius: 4px !important;
+        border: 1px solid #e9dada;
+        padding-top: 25px;
+        background: #fffdfd;
+    }
+
+    #box .file-body {
+        overflow: auto;
+        height: 150px;
+        border-radius: 4px !important;
+        border: 1px solid #e9dada;
+        padding-top: 15px;
+        background: #fffdfd;
+    }
+
+    #box .file-header {
+        z-index: 1;
+        margin-left: 15px;
+        margin-top: -12px;
+        position: absolute;
+        background: linear-gradient(to bottom,#f1f1f1,#FBFCFC );
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        font-size: 11px;
+        padding: 3px 10px !important;
+    }
+
+    #tblFileRequest {
+        max-height: 60px;
+    }
+
+        #tblFileRequest tbody tr td {
+            max-width: 115px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+    #tblFileBox tbody tr td {
+        max-width: 115px;
+        white-space: nowrap;
+        overflow: auto;
+        text-overflow: ellipsis;
+    }
+
+    @media(max-width:992px) {
+        .modal-60 {
+            width: 75% !important;
+        }
+    }
+
+    @media(min-width:992px) and (max-width:1200px) {
+        .modal-60 {
+            width: 70% !important;
+        }
+    }
+
+    @media(min-width:1201px) and (max-width:1500px) {
+        .modal-60 {
+            width: 60% !important;
+        }
+    }
+
+    .h-60 {
+        height: 60px;
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title text-limit" id="modal-title"> {{'ASSET_ALLO_TT_EDIT' | translate}} </span>
+</div>
+<div class="modal-body userFormAreaHeader" id="modal-body" style="padding-bottom: 0px;">
+    <div class="portlet-body form">
+        <form name="addForm" class="form-horizontal" method="post" ng-validate="validationOptions">
+            <div class="form-body pt10 pl-0 pr-0">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <i class="fa fa-barcode"></i>
+                            <label class="control-label require custom-title-code-bold">{{'ASSET_ALLO_LBL_TICKET_CODE' | translate}}</label>
+                        </div>
+                        <div class="col-md-8 pl-0">
+                            <input data-ng-model="model.TicketCode" class="form-control text-box-asset" name="TicketCode" placeholder=" {{'ASSET_ALLO_LBL_TICKET_CODE' | translate}}..." ng-readonly="true" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <i class="fa fa-user"></i>
+                            <label class="control-label require custom-title-code-bold">{{'ASSET_ALLO_LBL_TITLE' | translate}} </label>
+                        </div>
+                        <div class="col-md-8 pl-0">
+                            <input ng-model="model.Title" class="form-control text-box-asset" name="Title" placeholder=" {{'ASSET_ALLO_LBL_TITLE' | translate}} ..." />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': errorDepartmentSend}">
+                        <div class="col-md-4">
+                            <i class="fa fa-th-list"></i>
+                            <label class="control-label require">{{'ASSET_ALLO_LBL_DEPART_SEND' | translate}}</label>
+                        </div>
+                        <div class="col-md-8 pl-0">
+                            <div class="input-group">
+                                <ui-select ng-model="model.DepartmentSend" theme="bootstrap" ng-change="changeSelect('DepartmentSend',model.DepartmentSend)" ng-disabled="false">
+                                    <ui-select-match placeholder="{{'ASSET_ALLO_LBL_DEPART_SEND' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in listDepartment  | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.DepartmentSend=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <span ng-show="errorDepartmentSend" class="label-color validation-message">
+                                {{'ASSET_ALLO_VALIDATE_DEPART_SEND' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': errorUserAllocate}">
+                        <div class="col-md-4">
+                            <i class="fa fa-group"></i>
+                            <label class="control-label require">{{'ASSET_ALLO_LBL_USER_SEND' | translate}}</label>
+                        </div>
+                        <div class="col-md-8 pl-0">
+                            <div class="input-group">
+                                <ui-select ng-model="model.UserAllocate" theme="bootstrap" ng-change="changeSelect('UserAllocate',model.UserAllocate)" ng-disabled="false">
+                                    <ui-select-match placeholder="{{'ASSET_ALLO_LBL_USER_SEND' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in listUserSend | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.UserAllocate=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <span ng-show="errorUserAllocate" class="label-color validation-message">
+                                {{'ASSET_ALLO_VALIDATE_USER_SEND' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': errorDepartmentReceive}">
+                        <div class="col-md-4">
+                            <i class="fa fa-th-list"></i>
+                            <label class="control-label require">{{'ASSET_ALLO_LBL_DEPART_RECIEV' | translate}}</label>
+                        </div>
+                        <div class="col-md-8 pl-0">
+                            <div class="input-group">
+                                <ui-select ng-model="model.DepartmentReceive" theme="bootstrap" ng-change="changeSelect('DepartmentReceive',model.DepartmentReceive)" ng-disabled="false">
+                                    <ui-select-match placeholder="{{'ASSET_ALLO_LBL_DEPART_RECIEV' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in listDepartment  | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.DepartmentReceive=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <span ng-show="errorDepartmentReceive" class="label-color validation-message">
+                                {{'ASSET_ALLO_VALIDATE_DEPART_RECIEV' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': errorUserReceiver}">
+                        <div class="col-md-4">
+                            <i class="fa fa-group"></i>
+                            <label class="control-label require">{{'ASSET_ALLO_LBL_USER_RECIEV' | translate}}</label>
+                        </div>
+                        <div class="col-md-8 pl-0">
+                            <div class="input-group">
+                                <ui-select ng-model="model.UserReceiver" theme="bootstrap" ng-change="changeSelect('UserReceiver',model.UserReceiver)" ng-disabled="false">
+                                    <ui-select-match placeholder="{{'ASSET_ALLO_LBL_USER_RECIEV' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in listUserReceive  | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.UserReceiver=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <span ng-show="errorUserReceiver" class="label-color validation-message">
+                                {{'ASSET_ALLO_VALIDATE_USER_RECIEV' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <i class="fa fa-calendar"></i>
+                            <label class="control-label">{{'ASSET_ALLO_LBL_TIME' | translate}}</label>
+                        </div>
+                        <div class="col-md-8 pl-0">
+                            <div class='input-group date' id='dateAllocate'>
+                                <input type='text' class="form-control input-date" name="AllocateTime" ng-model="model.AllocateTime" placeholder="{{'ASSET_ALLO_LBL_TIME' | translate}}..." />
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="col-lg-12" style="margin-top: -10px;">
+                        <div class="row mt-1 table-toolbar table_body p10" style="background: #ddefff;">
+                            <div class="form-group" ng-class="{ 'has-error': errorObjActCode}">
+                                <div class="col-md-4 pr-0">
+                                    <i class="fa fa-flag"></i>
+                                    <label class="control-label require">&ensp; {{'COM_CURD_LBL_CAT_ACT' | translate}}</label>
+                                </div>
+                                <div class="col-md-8 pl-0">
+                                    <div class="input-group">
+                                        <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.ObjActCode" theme="bootstrap" ng-change="changeSelect('ObjActCode',model.ObjActCode)">
+                                            <ui-select-match placeholder=" {{'COM_CURD_LBL_CAT_ACT' | translate}}...">{{$select.selected.CatName}}</ui-select-match>
+                                            <ui-select-choices repeat="x.Code as x in model.listCatObjActivity | filter: $select.search">
+                                                {{x.CatName}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <span ng-show="errorObjActCode" class="label-color validation-message">
+                                        {{'ASSET_BUY_CURD_VALIDATE_CATACT_REQ' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error': errorActCode}">
+                                <div class="col-md-4 pr0">
+                                    <i class="fa fa-flag"></i>
+                                    <label class="control-label require"> &ensp;{{'COM_ACTIVITY' | translate}}</label>
+                                </div>
+                                <div class="col-md-8 pl-0">
+                                    <div class="input-group">
+                                        <ui-select ng-model="model.ActCode" theme="bootstrap" ng-change="changeSelect('ActCode',model.ActCode)" ng-click="checkRole()" ng-disabled="isDisabled">
+                                            <ui-select-match placeholder=" {{'COM_ACTIVITY' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                            <ui-select-choices repeat="x.Code as x in listCatActivity | filter: $select.search">
+                                                {{x.Name}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <span ng-show="errorActCode" class="label-color validation-message">
+                                        {{'ASSET_BUY_CURD_VALIDATE_ACT_REQ' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 pr-0">
+                                <div class="btn-group actions d-flex pull-right">
+                                    <div class="btn-group pull-right actions d-flex">
+                                        <div class="text-center pr10">
+                                            <p class="text-underline fs9 mb5 pt3" style="font-size: 12px !important;color: #1219ea;" ng-click="statusObjAct()"> {{'ASSET_ALLO_FORLOW_STATUS' | translate}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group pull-right actions d-flex">
+                                        <div class="text-center pr10">
+                                            <p class="text-underline fs9 mb5 pt3" style="font-size: 12px !important;color: #1219ea;" ng-click="resultActivity()"> {{'COM_CURD_BTN_ADD_DATA' | translate}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group pull-right actions d-flex">
+                                        <div class="text-center">
+                                            <p class="text-underline fs9 mb5 pt3" style="font-size: 12px !important;color: #1219ea;" ng-click="tableActivity()"> {{'COM_CURD_BTN_HISTORY' | translate}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <i class="fa fa-flag"></i>
+                            <label class="control-label">&ensp;{{'ASSET_ALLO_LBL_STT' | translate}}</label>
+                        </div>
+                        <div class="col-md-8 pl-0">
+                            <div class='input-group'>
+                                <ui-select tagging ng-model="model.Status" theme="bootstrap" ng-change="changeSelect(model.Status)" ng-disabled="true">
+                                    <ui-select-match placeholder="{{'ASSET_ALLO_LBL_STT' | translate}} ..."><i class="{{$select.selected.Icon}}"></i>{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in listStatus| filter: $select.search">
+                                        <i class="{{x.Icon}}"></i>{{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="viewActivityStatus()" class="btn btn-default no-shadow" style="padding:3px 7px;" ng-disabled="true">
+                                        <span><img src="https://img.icons8.com/material/24/000000/log.png"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <i class="fa fa-map-marker"></i>
+                            <label class="control-label">&ensp;{{'ASSET_ALLO_LBL_LOCAL_SEND' | translate}}</label>
+                        </div>
+                        <div class="col-md-8 pl-0">
+                            <input ng-model="model.LocationSend" class="form-control" name="LocationAllocate" placeholder=" {{'ASSET_ALLO_LBL_LOCAL_SEND' | translate}}..." />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <i class="fa fa-comment"></i>
+                            <label class="control-label"> &ensp;{{'ASSET_ALLO_NOTE' | translate}}</label>
+                        </div>
+                        <div class="col-md-8 pl-0">
+                            <textarea name="Note" rows="3" class="form-control" ng-model="model.Note" type="text" placeholder=" {{'ASSET_ALLO_NOTE' | translate}}..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-lg-12 ">
+                <uib-tabset active="active">
+                    <uib-tab class="mt5" index="0" heading="{{'ASSET_ALLO_LBL_ASSET' | translate}}">
+                        <div disable="tests" ng-include="'../views/admin/assetAllocation/assetDetail.html'"></div>
+                    </uib-tab>
+                    <uib-tab class="mt5" index="1" heading="{{'COM_FILE' | translate}}">
+                        <div disable="tests" ng-include="'../views/admin/assetAllocation/file.html'"></div>
+                    </uib-tab>
+                    <div class="btn-group actions d-flex pull-right">
+                        <div class="text-center pr10">
+                            <a data-dismiss="modal" ng-click="refresh()" class="btn btn-icon-only btn-circle btn-outline red-custom" style="border-radius: 30px !important;background: #e7505a;">
+                                <span><i class="glyphicon glyphicon-remove"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_DELETE' | translate}}</p>
+                        </div>
+                        <div class="btn-group pull-right actions d-flex">
+                            <div class="text-center pr20">
+                                <a ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom" style="border-radius: 30px !important;background: #009432;">
+                                    <span><i class="fa fa-save"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_SAVE' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tabset>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div id="modal-body">
+    <div class="portlet-body form">
+        <form name="addForm" method="post" ng-validate="validationOptions">
+            <div class="form-body">
+                <div class="row pb20">
+                    <div class="col-lg-9 col-md-8">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="require custom-title-code-bold">{{'ASSET_ALLO_LBL_TICKET_CODE' | translate}} </label>
+                                    <input data-ng-model="model.TicketCode" class="form-control text-box-asset" name="TicketCode" placeholder=" {{'ASSET_ALLO_LBL_TICKET_CODE' | translate}}..." ng-readonly="true" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="require custom-title-code-bold">{{'ASSET_ALLO_LBL_TITLE' | translate}} </label>
+                                    <input ng-model="model.Title" class="form-control text-box-asset" name="Title" placeholder=" {{'ASSET_ALLO_LBL_TITLE' | translate}} ..." />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="">{{'ASSET_ALLO_LBL_STT' | translate}}</label>
+                                    <div class='input-group'>
+                                        <ui-select tagging ng-model="model.Status" theme="bootstrap" ng-change="changeSelect(model.Status)" ng-disabled="true">
+                                            <ui-select-match placeholder="{{'ASSET_ALLO_LBL_STT' | translate}} ..."><i class="{{$select.selected.Icon}}"></i>{{$select.selected.Name}}</ui-select-match>
+                                            <ui-select-choices repeat="x.Code as x in listStatus| filter: $select.search">
+                                                <i class="{{x.Icon}}"></i>{{x.Name}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="viewActivityStatus()" class="btn btn-default no-shadow" style="padding:3px 7px;">
+                                                <span><img src="https://img.icons8.com/material/24/000000/log.png"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{ 'has-error': errorDepartmentSend}">
+                                    <label class="require">{{'ASSET_ALLO_LBL_DEPART_SEND' | translate}}</label>
+                                    <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.DepartmentSend" theme="bootstrap" ng-change="changeSelect('DepartmentSend')" ng-disabled="false">
+                                        <ui-select-match placeholder="{{'ASSET_ALLO_LBL_DEPART_SEND' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listDepartment  | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorDepartmentSend" class="label-color validation-message">
+                                    {{'ASSET_ALLO_VALIDATE_DEPART_SEND' | translate}}
+                                </span>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{ 'has-error': errorUserAllocate}">
+                                    <label class="require">{{'ASSET_ALLO_LBL_USER_SEND' | translate}}</label>
+                                    <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.UserAllocate" theme="bootstrap" ng-change="changeSelect('UserAllocate')" ng-disabled="false">
+                                        <ui-select-match placeholder="{{'ASSET_ALLO_LBL_USER_SEND' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listUserSend | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorUserAllocate" class="label-color validation-message">
+                                    {{'ASSET_ALLO_VALIDATE_USER_SEND' | translate}}
+                                </span>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="require">{{'ASSET_ALLO_LBL_TIME_ALLO_SEND' | translate}}</label>
+                                    <div class='input-group date' id='dateAllocate'>
+                                        <input type="text" class="form-control input-date" ng-model="model.sAllocateTime" name="AllocateTime" placeholder="{{'ASSET_ALLO_LBL_TIME_ALLO_SEND' | translate}}..." />
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{ 'has-error': errorDepartmentReceive}">
+                                    <label class="require bold">{{'ASSET_ALLO_LBL_DEPART_RECIEV' | translate}}</label>
+                                    <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.DepartmentReceive" theme="bootstrap" ng-change="changeSelect('DepartmentReceive')" ng-disabled="false">
+                                        <ui-select-match placeholder="{{'ASSET_ALLO_LBL_DEPART_RECIEV' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listDepartment  | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorDepartmentReceive" class="label-color validation-message">
+                                    {{'ASSET_ALLO_VALIDATE_DEPART_RECIEV' | translate}}
+                                </span>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{ 'has-error': errorUserReceiver}">
+                                    <label class="require">    {{'ASSET_ALLO_LBL_USER_RECIEV' | translate}}</label>
+                                    <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.UserReceiver" theme="bootstrap" ng-change="changeSelect('UserReceiver')" ng-disabled="false">
+                                        <ui-select-match placeholder="    {{'ASSET_ALLO_LBL_USER_RECIEV' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listUserReceive  | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorUserReceiver" class="label-color validation-message">
+                                    {{'ASSET_ALLO_VALIDATE_USER_RECIEV' | translate}}
+                                </span>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="require">{{'ASSET_ALLO_LBL_LOCAL_SEND' | translate}}</label>
+                                    <input ng-model="model.LocationSend" class="form-control" name="LocationAllocate" placeholder=" {{'ASSET_ALLO_LBL_LOCAL_SEND' | translate}}..." />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label class="">{{'ASSET_ALLO_NOTE' | translate}}</label>
+                                        <textarea ng-model="model.Note" placeholder="{{'ASSET_ALLO_NOTE' | translate}}" rows="3" style="height:90px;" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 pt-3">
+                                <div class="row">
+                                    <div class="btn-group d-flex pull-right pt-2">
+                                        <div class="text-center pr10" style="margin-right:0">
+                                            <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="addFile()">
+                                                <span><i class="fa fa-upload"></i></span>
+                                            </a>
+                                            <p class="text-underline fs9 mb5 pt3">{{'COM_UPLOAD' | translate}}</p>
+                                        </div>
+
+                                        <div class="text-center pr10">
+                                            <a data-dismiss="modal" ng-click="refresh()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                                                <span><i class="glyphicon glyphicon-remove"></i></span>
+                                            </a>
+                                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+                                        </div>
+
+                                        <div class="text-center pr10" style="margin-left:0">
+                                            <a data-dismiss="modal" ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                                <span><i class="fa fa-save"></i></span>
+                                            </a>
+                                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-toolbar box-file">
+                                    <div class="header">
+                                        <label><span>{{'ASSET_ALLO_LBL_LIST_FILE' | translate}}</span></label>
+                                    </div>
+
+                                    <div class="col-md-12 boder-box h-100-srcoll">
+                                        <table class="table table-bordered" id="tblFileRequest">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-md-5 text-center fw600 text-underline">{{'ASSET_ALLO_LBL_NAME_FILE' | translate}}</th>
+                                                    <th class="col-md-1 text-center fw600 text-underline">{{'COM_BTN_DELETE' | translate}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="x in model.listFile">
+                                                    <td class="text-center"><a>{{x.Name}}</a></td>
+                                                    <td class="text-center">
+                                                        <i role="button" class="fa fa-minus-circle" ng-click="deleteFile(x.Id)" title="ASSET_ALLO_DELETE_FILE" style="color:red !important;font-size: 25px;padding-top:5px"></i>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="table-toolbar table_body" style="background:#00ffb80d;">
+                            <div class="row">
+                                <div class="col-md-12 pl-3 pr-3">
+                                    <div class="form-group" ng-class="{ 'has-error': errorObjActCode}">
+                                        <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.ObjActCode" theme="bootstrap" ng-change="changeSelect('ObjActCode',model.ObjActCode)" ng-disabled="false">
+                                            <ui-select-match placeholder="{{'ASSET_ALLO_LBL_CAT_ACT' | translate}}...">{{$select.selected.CatName}}</ui-select-match>
+                                            <ui-select-choices repeat="x.Code as x in model.listCatObjActivity  | filter: $select.search">
+                                                {{x.CatName}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <span ng-show="errorObjActCode" class="label-color validation-message">
+                                        {{'ASSET_ALLO_VALIDATE_CAT_ACT' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pr-3 pl-3">
+                                    <div class="form-group" ng-class="{ 'has-error': errorActCode}">
+                                        <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.ActCode" theme="bootstrap" ng-change="changeSelect('ActCode',model.ActCode)" ng-click="checkRole()" ng-disabled="isDisabled">
+                                            <ui-select-match placeholder="{{'ASSET_ALLO_LBL_ACT' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                            <ui-select-choices repeat="x.Code as x in listCatActivity  | filter: $select.search">
+                                                {{x.Name}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <span ng-show="errorActCode" class="label-color validation-message">
+                                        {{'ASSET_ALLO_VALIDATE_ACT' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="btn-group d-flex pt-1 pull-right">
+                                    <div class="text-center pr5" style="margin-right:0">
+                                        <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="resultActivity()">
+                                            <span><i class="fas fa-window-maximize"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3">{{'ASSET_ALLO_BTN_RESULT' | translate}}</p>
+                                    </div>
+                                    <div class="text-center pl-1" style="margin-right:0">
+                                        <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="tableActivity()">
+                                            <span><i class="fas fa-book"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3">{{'ASSET_ALLO_BTN_ACT' | translate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div ng-include="'../views/admin/assetAllocation/assetDetail.html'"></div>
+    </div>
+</div>-->
+
+
+
+
+

@@ -1,0 +1,95 @@
+﻿<style>
+    @media(max-width:1200px) {
+        .modal-30 {
+            width: 50% !important;
+        }
+    }
+
+    @media (min-width:1201px) and (max-width:1500px) {
+        .modal-30 {
+            width: 40% !important;
+        }
+    }
+
+    @media (min-width:1501px) {
+        .modal-30 {
+            width: 30% !important;
+        }
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title">{{'SCG_TITLE_EDIT' | translate}}</span>
+</div>
+<div class="modal-body pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptions">
+            <div class="form-body pt5">
+                <!--<div class="form-group">
+                    <div class="col-md-4 pr-0">
+                        <i class="fa fa-barcode" aria-hidden="true"></i>
+                        <label class="control-label ">{{'MPG_CURD_LBL_MPG_FATHER_GROUP' | translate}}</label>
+                    </div>
+                    <div class="col-md-8">
+                        <ui-select tagging ng-model="model.ParentID" theme="bootstrap">
+                            <ui-select-match placeholder="{{'MPG_CURD_COMBO_MPG_FATHER_GROUP' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Id as x in treedataedit | filter:$select.Id| filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <div class="col-md-4 pr-0">
+                        <i class="fa fa-barcode" aria-hidden="true"></i>
+                        <label class="control-label require">{{'SCG_CURD_LBL_CODE' | translate}}</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="model.Code" name="ProductCode" id="ProductCode" placeholder="{{'SCG_CURD_TXT_CODE' | translate}}" readonly disabled/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 pr-0">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        <label class="control-label require">{{'SCG_CURD_LBL_NAME' | translate}}</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" ng-model="model.Name" name="ProductName" placeholder="{{'SCG_CURD_TXT_NAME' | translate}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 pr-0">
+                        <i class="fa fa-comment" aria-hidden="true"></i>
+                        <label class="control-label ">{{'SCG_CURD_LBL_MPG_DESCRIPTION' | translate}}</label>
+                    </div>
+                    <div class="col-md-8">
+                        <textarea type="text" class="form-control" ng-model="model.Description" rows="3" placeholder="{{'SCG_CURD_TXT_MPG_DESCRIPTION' | translate}}" name="Note"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <!--<a data-dismiss="modal" class="btn btn-red" href="javascript:;" ng-click="cancel()">
+        {{'COM_BTN_CANCEL' | translate}}
+    </a>
+    <button ng-click="submit()" class="btn btn-green mr5" href="javascript:;">
+        {{'COM_BTN_EDIT' | translate}}
+    </button>-->
+    <div class="btn-group pull-right actions d-flex">
+        <div class="pr10">
+            <a data-dismiss="modal" ng-click="cancel()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                <span><i class="glyphicon glyphicon-remove"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+        </div>
+        <div class="text-center pr10">
+            <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="submit()">
+                <span><i class="fa fa-save"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+        </div>
+    </div>
+</div>

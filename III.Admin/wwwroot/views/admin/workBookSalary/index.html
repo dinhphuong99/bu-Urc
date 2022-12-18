@@ -1,0 +1,79 @@
+﻿<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text-underline" style="color:black;" href="#">{{'WBS_LBL_HR_EMPLOYEE' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/StaffLate">{{'WBS_LBL_CAL_SALARY' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group pt5 pb-1 pull-right actions d-flex">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn red-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="pr-2">
+                    <button class="btn gold-custom br4" ng-click="calSalary()">
+                        <i class="fa fa-calculator"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+                <div class="pr-2">
+                    <button class="btn green-custom br4" onclick="save()">
+                        <i class="fa fa-save"></i>
+                        {{'COM_BTN_SAVE'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn blue-custom br4" ng-click="exportExcel()">
+                        <i class="fa fa-file-excel-o"></i>
+                        {{'COM_BTN_EXCEL'| translate}}
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body pb-2">
+            <div class="row pt5">
+                <div class="col-md-12" style="height:20px">
+                    <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-in-line" role="button" title="Ẩn tìm kiếm"></i>
+                </div>
+                <div class="col-lg-2">
+                    <label class="fw600 text-underline">{{'WBS_LBL_MONTH' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.Month" class="form-control" type="text" placeholder="{{'WBS_TXT_MONTH' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" autocomplete="off" id="monthSalary" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Month='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <label class="fw600 text-underline">{{'WBS_LBL_STAFF' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select ng-model="model.Employee" theme="bootstrap">
+                            <ui-select-match placeholder="{{'WBS_TXT_STAFF' | translate}}"><p>{{$select.selected.Name}}</p></ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in listEmployee | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Employee=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

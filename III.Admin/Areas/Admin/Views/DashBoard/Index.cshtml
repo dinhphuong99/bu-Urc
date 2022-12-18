@@ -1,0 +1,100 @@
+﻿@using ESEIM.Utils
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Builder
+@inject IHttpContextAccessor HttpContextAccessor
+@inject ILanguageService LanguageService
+@inject IParameterService ParameterService
+@{
+    ViewData["Title"] = "Trang chủ";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+
+    var session = HttpContextAccessor.HttpContext.GetSessionUser();
+    int countWork = ParameterService.GetCountNotifiCardJob(session.UserId, session.UserName);
+    int countAsset = ParameterService.GetNotificationAssetAllocate(session.RoleCode, session.BranchId, session.ListDepartment);
+    int countCMSItem = ParameterService.GetCMSItemToday();
+    var userName = session.UserName;
+    var pictureUser = session.Picture;
+    var fullName = session.FullName;
+    var userId = session.UserId;
+}
+@section plugin_script {
+    <script src="~/lib/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/lib/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/lib/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/lib/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+
+    <script src="~/lib/assets/global/plugins/highcharts/js/highcharts.js" type="text/javascript"></script>
+    <script src="~/lib/assets/global/plugins/highcharts/js/highcharts-3d.js" type="text/javascript"></script>
+    <script src="~/lib/assets/global/plugins/highcharts/js/highcharts-more.js" type="text/javascript"></script>
+
+    <script src="~/lib/assets/global/scripts/app.min.js" type="text/javascript"></script>
+
+    <script src="~/lib/assets/pages/scripts/charts-highcharts.min.js" type="text/javascript"></script>
+
+    <script src="~/lib/assets/layouts/layout2/scripts/layout.min.js"></script>
+    <script src="~/lib/assets/layouts/layout2/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="~/lib/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="~/lib/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+    <script src="//www.amcharts.com/lib/4/core.js"></script>
+    <script src="//www.amcharts.com/lib/4/charts.js"></script>
+    <script src="//www.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <script src="~/lib/assets/global/plugins/tinymce/tinymce.min.js"></script>
+    <script src="~/lib/assets/global/plugins/tinymce/config.tinymce.js"></script>
+    <script src="~/lib/assets/global/plugins/angulerjs-taginput/ng-tags-input.min.js"></script>
+    <script src="~/js/admin/cardjob/popover.js" type="text/javascript"></script>
+    <script src="~/lib/assets/global/plugins/tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script src="~/lib/assets/global/plugins/tagsinput/bootstrap-tagsinput-angular.min.js"></script>
+    <script src="~/lib/assets/global/plugins/angulerjs-scroll/angular-scroll.js"></script>
+    <script src="~/js/admin/cardjob/sortable.js" type="text/javascript"></script>
+}
+<div id="contentMain" ng-app="App_ESEIM" ng-controller="Ctrl_ESEIM">
+    <div ng-controller="Ctrl_ESEIM_CARDJOB"></div>
+    <div ng-controller="Ctrl_ESEIM_ALLOCATION"></div>
+    <div ng-controller="Ctrl_ESEIM_BUY"></div>
+    <div ng-controller="Ctrl_ESEIM_CANCLE"></div>
+    <div ng-controller="Ctrl_ESEIM_IMPROVEMENT"></div>
+    <div ng-controller="Ctrl_ESEIM_INVENTORY"></div>
+    <div ng-controller="Ctrl_ESEIM_MAINTENANCE"></div>
+    <div ng-controller="Ctrl_ESEIM_RECALLED"></div>
+    <div ng-controller="Ctrl_ESEIM_RPT"></div>
+    <div ng-controller="Ctrl_ESEIM_RQMAIN"></div>
+    <div ng-controller="Ctrl_ESEIM_TRANSFER"></div>
+    <div ng-controller="Ctrl_ESEIM_LIQUIDATION"></div>
+    <div ng-view></div>
+</div>
+<script>
+    var countWork = @countWork;
+    var countAsset = @countAsset;
+    var countCMSItem = @countCMSItem;
+    var userName = "@(userName)";
+    var pictureUser = "@(pictureUser)";
+    var fullName = "@(fullName)";
+    var userId = "@(userId)";
+    history.pushState(null, document.title, location.href);
+    window.addEventListener('popstate', function (event) {
+        history.pushState(null, document.title, location.href);
+    });
+</script>
+<script src="~/views/admin/dashBoard/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/cardJob/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/project/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/customer/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/supplier/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/contract/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/contractPo/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/sendRequestWorkPrice/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/serviceCategory/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/assetAllocation/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/assetLiquidation/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/assetBuy/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/assetCancel/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/assetImprovement/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/assetInventory/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/assetMaintenance/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/assetRecalled/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/assetRPTBroken/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/assetRqMaintenanceRepair/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/attributeManager/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/assetTransfer/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/materialProduct/controller.js" type="text/javascript"></script>

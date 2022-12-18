@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="UC_CONFIRM_ADD_MSG" xml:space="preserve">
+    <value>Bạn có muốn thêm phiếu chi phí không?</value>
+    <comment>Bạn có muốn thêm phiếu chi phí không?</comment>
+  </data>
+  <data name="UC_CURD_CB_CAR_PLATE" xml:space="preserve">
+    <value>Biển số xe</value>
+    <comment>Biển số xe</comment>
+  </data>
+  <data name="UC_CURD_CB_MATERIAL_CODE" xml:space="preserve">
+    <value>Chọn danh mục chi phí</value>
+    <comment>Chọn danh mục chi phí</comment>
+  </data>
+  <data name="UC_CURD_CB_MATERIAL_UNIT" xml:space="preserve">
+    <value>Đơn vị</value>
+    <comment>Đơn vị</comment>
+  </data>
+  <data name="UC_CURD_CB_SERVICE_CODE" xml:space="preserve">
+    <value>Chọn dịch vụ</value>
+    <comment>Chọn dịch vụ</comment>
+  </data>
+  <data name="UC_CURD_CB_SERVICE_UNIT" xml:space="preserve">
+    <value>Đơn vị</value>
+    <comment>Đơn vị</comment>
+  </data>
+  <data name="UC_CURD_LBL_APPROVED_BY" xml:space="preserve">
+    <value>Người duyệt</value>
+    <comment>Người duyệt</comment>
+  </data>
+  <data name="UC_CURD_LBL_APPROVED_TIME" xml:space="preserve">
+    <value>Ngày duyệt</value>
+    <comment>Ngày duyệt</comment>
+  </data>
+  <data name="UC_CURD_LBL_CAR_INFO" xml:space="preserve">
+    <value>Thông tin xe</value>
+    <comment>Thông tin xe</comment>
+  </data>
+  <data name="UC_CURD_LBL_CAR_PLATE" xml:space="preserve">
+    <value>Biển số xe</value>
+    <comment>Biển số xe</comment>
+  </data>
+  <data name="UC_CURD_LBL_CODE" xml:space="preserve">
+    <value>Mã phiếu</value>
+    <comment>Mã phiếu</comment>
+  </data>
+  <data name="UC_CURD_LBL_CREATED_BY" xml:space="preserve">
+    <value>Người tạo</value>
+    <comment>Người tạo</comment>
+  </data>
+  <data name="UC_CURD_LBL_CREATED_TIME" xml:space="preserve">
+    <value>Ngày tạo</value>
+    <comment>Ngày tạo</comment>
+  </data>
+  <data name="UC_CURD_LBL_END_DATE" xml:space="preserve">
+    <value>Ngày kết thúc</value>
+    <comment>Ngày kết thúc</comment>
+  </data>
+  <data name="UC_CURD_LBL_GARA" xml:space="preserve">
+    <value>Gara</value>
+    <comment>Gara</comment>
+  </data>
+  <data name="UC_CURD_LBL_MATERIAL_CODE" xml:space="preserve">
+    <value>Danh mục chi phí</value>
+    <comment>Danh mục chi phí</comment>
+  </data>
+  <data name="UC_CURD_LBL_MATERIAL_COST" xml:space="preserve">
+    <value>Giá</value>
+    <comment>Giá</comment>
+  </data>
+  <data name="UC_CURD_LBL_MATERIAL_NOTE" xml:space="preserve">
+    <value>Ghi chú</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UC_CURD_LBL_MATERIAL_QUANTITY" xml:space="preserve">
+    <value>Số lượng</value>
+    <comment>Số lượng</comment>
+  </data>
+  <data name="UC_CURD_LBL_MATERIAL_TYPE" xml:space="preserve">
+    <value>Loại danh mục chi phí</value>
+    <comment>Loại danh mục chi phí</comment>
+  </data>
+  <data name="UC_CURD_LBL_MATERIAL_UNIT" xml:space="preserve">
+    <value>Đơn vị</value>
+    <comment>Đơn vị</comment>
+  </data>
+  <data name="UC_CURD_LBL_NOTE" xml:space="preserve">
+    <value>Ghi chú</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UC_CURD_LBL_REQ_TYPE" xml:space="preserve">
+    <value>Loại chi phí</value>
+    <comment>Loại chi phí</comment>
+  </data>
+  <data name="UC_CURD_LBL_SERVICE_CODE" xml:space="preserve">
+    <value>Dịch vụ</value>
+    <comment>Dịch vụ</comment>
+  </data>
+  <data name="UC_CURD_LBL_SERVICE_COST" xml:space="preserve">
+    <value>Giá</value>
+    <comment>Giá</comment>
+  </data>
+  <data name="UC_CURD_LBL_SERVICE_NOTE" xml:space="preserve">
+    <value>Ghi chú</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UC_CURD_LBL_SERVICE_QUANTITY" xml:space="preserve">
+    <value>Số lượng</value>
+    <comment>Số lượng</comment>
+  </data>
+  <data name="UC_CURD_LBL_SERVICE_TYPE" xml:space="preserve">
+    <value>Loại dịch vụ</value>
+    <comment>Loại dịch vụ</comment>
+  </data>
+  <data name="UC_CURD_LBL_SERVICE_UNIT" xml:space="preserve">
+    <value>Đơn vị</value>
+    <comment>Đơn vị</comment>
+  </data>
+  <data name="UC_CURD_LBL_START_DATE" xml:space="preserve">
+    <value>Ngày bắt đầu</value>
+    <comment>Ngày bắt đầu</comment>
+  </data>
+  <data name="UC_CURD_LBL_TITLE" xml:space="preserve">
+    <value>Tiêu đề phiếu</value>
+    <comment>Tiêu đề phiếu</comment>
+  </data>
+  <data name="UC_CURD_TAB_MAINTENANCE" xml:space="preserve">
+    <value>Chi phí</value>
+    <comment>Chi phí</comment>
+  </data>
+  <data name="UC_CURD_TAB_SERVICE" xml:space="preserve">
+    <value>Dịch vụ</value>
+    <comment>Dịch vụ</comment>
+  </data>
+  <data name="UC_CURD_TXT_APPROVED_BY" xml:space="preserve">
+    <value>Người duyệt</value>
+    <comment>Người duyệt</comment>
+  </data>
+  <data name="UC_CURD_TXT_APPROVED_TIME" xml:space="preserve">
+    <value>Ngày duyệt</value>
+    <comment>Ngày duyệt</comment>
+  </data>
+  <data name="UC_CURD_TXT_CAR_INFO_DETAIL" xml:space="preserve">
+    <value>Thông tin chi tiết</value>
+    <comment>Thông tin chi tiết</comment>
+  </data>
+  <data name="UC_CURD_TXT_CODE" xml:space="preserve">
+    <value>Mã phiếu</value>
+    <comment>Mã phiếu</comment>
+  </data>
+  <data name="UC_CURD_TXT_CREATED_BY" xml:space="preserve">
+    <value>Người tạo</value>
+    <comment>Người tạo</comment>
+  </data>
+  <data name="UC_CURD_TXT_CREATED_TIME" xml:space="preserve">
+    <value>Ngày tạo</value>
+    <comment>Ngày tạo</comment>
+  </data>
+  <data name="UC_CURD_TXT_END_DATE" xml:space="preserve">
+    <value>Ngày kết thúc</value>
+    <comment>Ngày kết thúc</comment>
+  </data>
+  <data name="UC_CURD_TXT_GARA" xml:space="preserve">
+    <value>Gara</value>
+    <comment>Gara</comment>
+  </data>
+  <data name="UC_CURD_TXT_MATERIAL_COST" xml:space="preserve">
+    <value>Giá</value>
+    <comment>Giá</comment>
+  </data>
+  <data name="UC_CURD_TXT_MATERIAL_NOTE" xml:space="preserve">
+    <value>Ghi chú</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UC_CURD_TXT_MATERIAL_QUANTITY" xml:space="preserve">
+    <value>Số lượng</value>
+    <comment>Số lượng</comment>
+  </data>
+  <data name="UC_CURD_TXT_MATERIAL_TYPE" xml:space="preserve">
+    <value>Loại danh mục chi phí</value>
+    <comment>Loại danh mục chi phí</comment>
+  </data>
+  <data name="UC_CURD_TXT_NOTE" xml:space="preserve">
+    <value>Ghi chú</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UC_CURD_TXT_REQ_TYPE" xml:space="preserve">
+    <value>Chi phí</value>
+    <comment>Chi phí</comment>
+  </data>
+  <data name="UC_CURD_TXT_SERVICE_COST" xml:space="preserve">
+    <value>Giá</value>
+    <comment>Giá</comment>
+  </data>
+  <data name="UC_CURD_TXT_SERVICE_NOTE" xml:space="preserve">
+    <value>Ghi chú</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UC_CURD_TXT_SERVICE_QUANTITY" xml:space="preserve">
+    <value>Số lượng</value>
+    <comment>Số lượng</comment>
+  </data>
+  <data name="UC_CURD_TXT_SERVICE_TYPE" xml:space="preserve">
+    <value>Loại dịch vụ</value>
+    <comment>Loại dịch vụ</comment>
+  </data>
+  <data name="UC_CURD_TXT_START_DATE" xml:space="preserve">
+    <value>Ngày bắt đầu</value>
+    <comment>Ngày bắt đầu</comment>
+  </data>
+  <data name="UC_CURD_TXT_TITLE" xml:space="preserve">
+    <value>Tiêu đề phiếu</value>
+    <comment>Tiêu đề phiếu</comment>
+  </data>
+  <data name="UC_ERR_APPROVED_BY_REQUIRED" xml:space="preserve">
+    <value>Người duyệt yêu cầu bắt buộc</value>
+    <comment>Người duyệt yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UC_ERR_CAR_PLATE_REQUIRED" xml:space="preserve">
+    <value>Biển số xe yêu cầu bắt buộc</value>
+    <comment>Biển số xe yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UC_ERR_CODE_REQUIRED" xml:space="preserve">
+    <value>Mã phiếu yêu cầu bắt buộc</value>
+    <comment>Mã phiếu yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UC_ERR_COST_REQUIRED" xml:space="preserve">
+    <value>Giá yêu cầu bắt buộc</value>
+    <comment>Giá yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UC_ERR_COST_THAN_ZERO_REQUIRED" xml:space="preserve">
+    <value>Giá phải lớn hơn 0</value>
+    <comment>Giá phải lớn hơn 0</comment>
+  </data>
+  <data name="UC_ERR_CREATED_BY_REQUIRED" xml:space="preserve">
+    <value>Người tạo yêu cầu bắt buộc</value>
+    <comment>Người tạo yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UC_ERR_MAINTANANCE_EXITS" xml:space="preserve">
+    <value>Bảo dưỡng sửa chữa đã tồn tại</value>
+    <comment>Bảo dưỡng sửa chữa đã tồn tại</comment>
+  </data>
+  <data name="UC_ERR_MAINTANANCE_NOT_EXITS" xml:space="preserve">
+    <value>Bảo dưỡng sửa chữa không tồn tại</value>
+    <comment>Bảo dưỡng sửa chữa không tồn tại</comment>
+  </data>
+  <data name="UC_ERR_MATERIAL_CODE_REQUIRED" xml:space="preserve">
+    <value>Danh mục chi phí yêu cầu bắt buộc</value>
+    <comment>Danh mục chi phí yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UC_ERR_MATERIAL_EXITS" xml:space="preserve">
+    <value>Danh mục chi phí đã tồn tại</value>
+    <comment>Danh mục chi phí đã tồn tại</comment>
+  </data>
+  <data name="UC_ERR_MATERIAL_NOT_EXITS" xml:space="preserve">
+    <value>Danh mục chi phí không tồn tại</value>
+    <comment>Danh mục chi phí không tồn tại</comment>
+  </data>
+  <data name="UC_ERR_QUANTITY_REQUIRED" xml:space="preserve">
+    <value>Số lượng yêu cầu bắt buộc</value>
+    <comment>Số lượng yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UC_ERR_QUANTITY_THAN_ZERO_REQUIRED" xml:space="preserve">
+    <value>Số lượng phải lớn hơn 0</value>
+    <comment>Số lượng phải lớn hơn 0</comment>
+  </data>
+  <data name="UC_ERR_REQ_TYPE_REQUIRED" xml:space="preserve">
+    <value>Chi phí yêu cầu bắt buộc</value>
+    <comment>Chi phí yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UC_ERR_SERVICE_CODE_REQUIRED" xml:space="preserve">
+    <value>Dịch vụ yêu cầu bắt buộc</value>
+    <comment>Dịch vụ yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UC_ERR_SERVICE_EXITS" xml:space="preserve">
+    <value>Dịch vụ đã tồn tại</value>
+    <comment>Dịch vụ đã tồn tại</comment>
+  </data>
+  <data name="UC_ERR_SERVICE_NOT_EXITS" xml:space="preserve">
+    <value>Dịch vụ không tồn tại</value>
+    <comment>Dịch vụ không tồn tại</comment>
+  </data>
+  <data name="UC_ERR_TITLE_REQUIRED" xml:space="preserve">
+    <value>Tiêu đề phiếu yêu cầu bắt buộc</value>
+    <comment>Tiêu đề phiếu yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UC_ERR_UNIT_REQUIRED" xml:space="preserve">
+    <value>Đơn vị yêu cầu bắt buộc</value>
+    <comment>Đơn vị yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UC_LBL_ADD_REQUEST_MAINTENANCE" xml:space="preserve">
+    <value>Thêm mới phiếu chi phí</value>
+    <comment>Thêm mới phiếu chi phí</comment>
+  </data>
+  <data name="UC_LBL_EDIT_REQUEST_MAINTENANCE" xml:space="preserve">
+    <value>Chỉnh sửa phiếu chi phí</value>
+    <comment>Chỉnh sửa phiếu chi phí</comment>
+  </data>
+  <data name="UC_LBL_GUIDE" xml:space="preserve">
+    <value>Hướng dẫn: Nhấn đúp chuột vào bản ghi để chỉnh sửa phiếu</value>
+    <comment>Hướng dẫn: Nhấn đúp chuột vào bản ghi để chỉnh sửa phiếu</comment>
+  </data>
+  <data name="UC_LBL_INFO_REQUEST_MAINTENANCE" xml:space="preserve">
+    <value>Thông tin phiếu chi phí</value>
+    <comment>Thông tin phiếu chi phí</comment>
+  </data>
+  <data name="UC_LBL_MAINTENANCE" xml:space="preserve">
+    <value>Chi phí</value>
+    <comment>Chi phí</comment>
+  </data>
+  <data name="UC_LBL_SEARCH_FROM_DATE" xml:space="preserve">
+    <value>Từ ngày</value>
+    <comment>Từ ngày</comment>
+  </data>
+  <data name="UC_LBL_SEARCH_TO_DATE" xml:space="preserve">
+    <value>Đến ngày</value>
+    <comment>Đến ngày</comment>
+  </data>
+  <data name="UC_LIST_COL_MATERIAL_CODE" xml:space="preserve">
+    <value>Mã danh mục chi phí</value>
+    <comment>Mã danh mục chi phí</comment>
+  </data>
+  <data name="UC_LIST_COL_MATERIAL_COST" xml:space="preserve">
+    <value>Giá</value>
+    <comment>Giá</comment>
+  </data>
+  <data name="UC_LIST_COL_MATERIAL_NAME" xml:space="preserve">
+    <value>Tên danh mục chi phí</value>
+    <comment>Tên danh mục chi phí</comment>
+  </data>
+  <data name="UC_LIST_COL_MATERIAL_NOTE" xml:space="preserve">
+    <value>Ghi chú</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UC_LIST_COL_MATERIAL_QUANTITY" xml:space="preserve">
+    <value>Số lượng</value>
+    <comment>Số lượng</comment>
+  </data>
+  <data name="UC_LIST_COL_MATERIAL_TOTAL" xml:space="preserve">
+    <value>Tổng giá</value>
+    <comment>Tổng giá</comment>
+  </data>
+  <data name="UC_LIST_COL_MATERIAL_UNIT" xml:space="preserve">
+    <value>Đơn vị</value>
+    <comment>Đơn vị</comment>
+  </data>
+  <data name="UC_LIST_COL_SERVICE_CODE" xml:space="preserve">
+    <value>Mã dịch vụ</value>
+    <comment>Mã dịch vụ</comment>
+  </data>
+  <data name="UC_LIST_COL_SERVICE_COST" xml:space="preserve">
+    <value>Giá</value>
+    <comment>Giá</comment>
+  </data>
+  <data name="UC_LIST_COL_SERVICE_NAME" xml:space="preserve">
+    <value>Tên dịch vụ</value>
+    <comment>Tên dịch vụ</comment>
+  </data>
+  <data name="UC_LIST_COL_SERVICE_NOTE" xml:space="preserve">
+    <value>Ghi chú</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UC_LIST_COL_SERVICE_QUANTITY" xml:space="preserve">
+    <value>Số lượng</value>
+    <comment>Số lượng</comment>
+  </data>
+  <data name="UC_LIST_COL_SERVICE_TOTAL" xml:space="preserve">
+    <value>Tổng giá</value>
+    <comment>Tổng giá</comment>
+  </data>
+  <data name="UC_LIST_COL_SERVICE_UNIT" xml:space="preserve">
+    <value>Đơn vị</value>
+    <comment>Đơn vị</comment>
+  </data>
+  <data name="UC_TXT_SEARCH_FROM_DATE" xml:space="preserve">
+    <value>Từ ngày</value>
+    <comment>Từ ngày</comment>
+  </data>
+  <data name="UC_TXT_SEARCH_TO_DATE" xml:space="preserve">
+    <value>Đến ngày</value>
+    <comment>Đến ngày</comment>
+  </data>
+</root>

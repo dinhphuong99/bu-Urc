@@ -1,0 +1,22 @@
+﻿@using ESEIM.Utils
+
+@{
+    ViewData["Title"] = "Sửa chữa bảo dưỡng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+@section plugin_script {
+    <script src="~/lib/assets/global/plugins/tinymce/tinymce.min.js"></script>
+    <script src="~/lib/assets/global/plugins/tinymce/config.tinymce.js"></script>
+    <script src="~/js/admin/cardjob/popover.js" type="text/javascript"></script>
+    <script src="~/lib/assets/global/plugins/angulerjs-scroll/angular-scroll.js"></script>
+    <link href="~/lib/assets/global/plugins/angulerjs-taginput/ng-tags-input.min.css" rel="stylesheet" />
+}
+
+@section plugin_style{
+    <link href="~/css/admin/cardJob/board.css" rel="stylesheet" />
+    <script src="~/lib/assets/global/plugins/angulerjs-taginput/ng-tags-input.min.js"></script>
+}
+<div id="contentMain" ng-app="App_ESEIM_URENCO_MAINTENANCE" ng-controller="Ctrl_ESEIM_URENCO_MAINTENANCE">
+    <div ng-view></div>
+</div>
+<script src="~/views/admin/urencoMaintenance/controller.js" type="text/javascript"></script>

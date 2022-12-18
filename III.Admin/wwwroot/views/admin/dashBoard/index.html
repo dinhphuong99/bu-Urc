@@ -1,0 +1,698 @@
+﻿<style>
+    .dashboard-stat2 {
+        box-shadow: 10px 10px 5px #666;
+    }
+
+    .highcharts-title {
+        font-size: 13px !important;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    .sytem-log {
+    }
+
+    .sytem-log-image {
+    }
+
+    .sytem-log-info {
+        color: #060606;
+        font-weight: 600;
+        font-size: 12px;
+    }
+
+    .text-create {
+        color: #3498db;
+    }
+
+    .text-edit {
+        color: #e67e22;
+    }
+
+    .text-delete {
+        color: #e74c3c;
+    }
+
+    .font-green {
+        color: #27ae60 !important;
+    }
+
+    .text-number {
+        font-weight: 600;
+        font-size: 10px;
+        color: red;
+        position: absolute;
+        padding-left: 15px;
+        padding-top: 3px;
+    }
+
+    .input-group-addon {
+        border-radius: 0 4px 4px 0px !important;
+    }
+
+    .custom-icon-chart {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        border-radius: 30px;
+        padding-top: 8px;
+        background: #f77c55;
+    }
+
+    .margin-top-10 {
+        margin-top: 10px;
+    }
+
+    .pb-35 {
+        padding-bottom: 35px !important;
+    }
+
+    .padding-right-dashboard {
+        padding-right: 0px !important;
+    }
+
+    .padding-left-dashboard {
+        padding-left: 0px !important;
+    }
+
+    .padding-left-dashboard-15 {
+        padding-left: 15px !important;
+    }
+
+    .padding-left-dashboard-10 {
+        padding-right: 15px !important;
+    }
+
+    .box-info-dashboard {
+        opacity: 0.2;
+        font-size: 65px;
+        position: absolute;
+        z-index: -1;
+        color: #fff;
+        margin-top: 25px
+    }
+</style>
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid" ng-show="IsTranslate">
+    <div class="clearfix"></div>
+    <div class="page-container" style="margin-left:-15px">
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <div class="row" style="margin-top:-15px;">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="width: 22%">
+                        <div class="dashboard-stat2" style="background-color:darkblue; height:100px; opacity:0.6">
+                            <div class="fas fa-project-diagram box-info-dashboard">
+                            </div>
+                            <div class="display" style="margin-bottom: 0px !important;">
+                                <div class="number">
+                                    <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder"><i class="fas fa-sun" style="color: #f1c40f; font-size:9px;"></i> {{'DB_LBL_TOTAL_PRO' | translate}}:</small>
+                                    <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{countProject}}</small>
+                                    <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{'DB_LBL_PROJECT_LOWER' | translate}}</small>
+                                    <p>
+                                        <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder"><i class="fas fa-sun" style="color: #f1c40f;font-size:9px;"></i> {{'DB_LBL_PRO_PENDING' | translate}}:</small>
+                                        <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{projectPending}}</small>
+                                        <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{'DB_LBL_PROJECT_LOWER' | translate}}</small>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="progress-info">
+                                <div class="progress" style="height:8px;">
+                                    <span style="width: {{progressPro}}%" class="progress-bar progress-bar-success green-sharp">
+                                        <span class="sr-only" style="color:#fff; font-family:Calibri;font-size:50px;">{{progressPro}}% {{'DB_LBL_PROGRESS' | translate}}</span>
+                                    </span>
+                                </div>
+                                <div class="status">
+                                    <div class="status-title fs12" style="color:#fff; font-family:Calibri; font-size:medium"> {{'DB_LBL_PROGRESS' | translate}} </div>
+                                    <div class="status-number fs12" style="color:#fff; font-family:Calibri; font-size:medium"> {{progressPro}}% </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="width: 22%">
+                        <div class="dashboard-stat2 " style="background-color:darkred; height:100px;opacity:0.6">
+                            <div class="fas fa-file-contract box-info-dashboard">
+                            </div>
+                            <div class="display" style="margin-bottom: 0px !important;">
+                                <div class="number">
+                                    <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder"><i class="fas fa-sun" style="color: #f1c40f;font-size:9px;"></i> {{'DB_LBL_TOTAL_CONTRACT' | translate}}:</small>
+                                    <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{countContractPO}}</small>
+                                    <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{'DB_LBL_CONTRACT' | translate}}</small>
+                                    <p>
+                                        <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder"><i class="fas fa-sun" style="color: #f1c40f;font-size:9px;"></i> {{'DB_LBL_CONTRACT_PENDING' | translate}}:</small>
+                                        <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{contractPending}}</small>
+                                        <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{'DB_LBL_CONTRACT' | translate}}</small>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div class="progress-info">
+                                <div class="progress" style="height:8px;">
+                                    <span style="width: {{progressContract}}%;" class="progress-bar progress-bar-success red-haze">
+                                        <span class="sr-only" style="color:#fff; font-family:Calibri">{{progressContract}}% {{'DB_LBL_CHANGE' | translate}}</span>
+                                    </span>
+                                </div>
+                                <div class="status">
+                                    <div class="status-title fs12" style="color:#fff ; font-family:Calibri; font-size:medium"> {{'DB_LBL_PROGRESS' | translate}} </div>
+                                    <div class="status-number fs12" style="color:#fff; font-family:Calibri; font-size:medium"> {{progressContract}}% </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 col-xs-12" style="width: 56%;">
+                        <div class="dashboard-stat2 " style="background-color:seagreen; height:100px;opacity:0.6">
+                            <div class="fa fa-code-branch box-info-dashboard">
+
+                            </div>
+                            <div class="display">
+                                <div class="number">
+                                    <h3 class="font-blue-sharp">
+                                        <span data-counter="counterup" data-value="567"></span>
+                                    </h3>
+                                    <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder"><i class="fas fa-sun" style="color: #f1c40f;font-size:9px;"></i> {{'DB_LBL_TOTAL_JOB' | translate}}:</small>
+                                    <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{AllCardJob}}</small>
+                                    <small style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{'DB_LBL_JOB' | translate}}</small>
+                                    <span style="color:#fff; font-family:Calibri; font-size:small; font-weight:bolder; padding-left: 1px;">
+                                        <i class="fas fa-sun" style="color: #f1c40f;font-size:9px;margin-left:11px;"></i> {{'DB_LBL_JOB_PENDING' | translate}}:
+                                    </span>
+                                    <span style="color:#fff; font-family:Calibri; font-size:small; font-weight:bolder">{{cardPending}}</span>
+                                    <span style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{'DB_LBL_JOB' | translate}}</span>
+                                    <p style="line-height:-5px;">
+                                        <span class="" style="color:#fff; font-family:Calibri; font-size:small; font-weight:bolder;"><i class="fas fa-sun" style="color: #f1c40f;font-size:9px;margin-left:11px;"></i> {{'DB_LBL_JOB_SUCCESS' | translate}}:</span>
+                                        <span style="color:#fff; font-family:Calibri; font-size:small; font-weight:bolder">{{cardDone}}</span>
+                                        <span style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{'DB_LBL_JOB' | translate}}</span>
+                                        <span style="color:#fff; font-family:Calibri; font-size:small; font-weight:bolder;"><i class="fas fa-sun" style="color: #f1c40f;font-size:9px;margin-left:11px;"></i> {{'DB_LBL_JOB_NO_SUCCESS' | translate}}:</span>
+                                        <span style="color:#fff; font-family:Calibri; font-size:small; font-weight:bolder">{{cardCancled}}</span>
+                                        <span style="color:#fff; font-family:Calibri; font-size:small;font-weight:bolder">{{'DB_LBL_JOB' | translate}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="progress-info" style="margin-top:-130px;">
+                                <div class="progress" style="height:8px;">
+                                    <span style="width: {{progressCard}}%;" class="progress-bar progress-bar-success green-sharp">
+                                        <span class="sr-only" style="color:#fff">{{progressCard}}% {{'DB_LBL_GROW' | translate}}</span>
+                                    </span>
+                                </div>
+                                <div class="status">
+                                    <div class="status-title fs12" style="color:#fff; font-family:Calibri; font-size:medium"> {{'DB_LBL_PROGRESS_UP' | translate}} </div>
+                                    <div class="status-number fs12" style="color:#fff; font-family:Calibri; font-size:medium"> {{progressCard}}% </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                        <div class="pl-0" ng-show="countJob > 0" ng-class="{'col-lg-7' : countAsset > 0, 'col-lg-12' : countAsset == 0}">
+                            <img src="/images/default/bell-orange.gif" style="height:20px; width:20px; border-radius:50%;" />
+                            <label class="caption-subject font-green text-underline fs12 pb-1">{{'DB_LBL_JOB_OF_DAY' | translate}} ({{countWork}})</label>
+                            <div class="portlet-body" ng-controller="card-notifi">
+                                <table class="table dataTable table-hover table-striped"
+                                       datatable
+                                       dt-options="job.dtOptions"
+                                       dt-columns="job.dtColumns"
+                                       dt-instance="job.dtInstance"
+                                       id="tblDataJob"></table>
+                            </div>
+                        </div>
+                        <div class="pr-0" ng-show="countAsset > 0" ng-class="{'col-lg-5' : countJob > 0, 'col-lg-12' : countJob == 0}">
+                            <img src="/images/default/bell-pink.gif" style="height:20px; width:20px; border-radius:50%;" />
+                            <label class="caption-subject font-green text-underline fs12 pb-1">{{'DB_LBL_ACT_MANAGE_ASSET' | translate}} ({{countAsset}})</label>
+                            <div class="portlet-body" ng-controller="asset-manager">
+                                <table class="table dataTable table-hover table-striped"
+                                       datatable
+                                       dt-options="asset.dtOptions"
+                                       dt-columns="asset.dtColumns"
+                                       dt-instance="asset.dtInstance"
+                                       id="tblDataAset"></table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-xs-12 col-sm-12" ng-show="countInfo > 0">
+                        <img src="/images/default/bell-green.gif" style="height:20px; width:20px; border-radius:50%;" />
+                        <label class="caption-subject font-green text-underline fs12 pb-1">{{'DB_LBL_CMS_INTERNAL' | translate}} ({{countCMSItem}})</label>
+                        <div class="portlet-body">
+                            <table class="table dataTable table-hover table-striped"
+                                   datatable
+                                   dt-options="info.dtOptions"
+                                   dt-columns="info.dtColumns"
+                                   dt-instance="info.dtInstance"
+                                   id="tblDataInfo"></table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-lg-12 col-xs-12 col-sm-12">
+                        <div class="portlet light bordered">
+                            <div class="portlet-title tabbable-line">
+                                <div class="caption col-md-3 col-xs-5 col-sm-5">
+                                    <i class=" icon-layers font-white custom-icon-chart"></i>
+                                    <p class="caption-subject font-green bold uppercase margin-top-10">{{'DB_LBL_CHART_PROGRESS' | translate}}</p>
+                                </div>
+                                <div class="col-md-2 col-xs-3 col-sm-3 margin-top-10">
+                                    <ui-select class="ui-select-bootstrap-right-radius" ng-model="setting.ObjTypeCode" on-select="objTypeChange(setting.ObjTypeCode)" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'DB_TXT_TYPE_OBJ' | translate}}..."><p class="bold">{{$select.selected.Name}}</p></ui-select-match>
+                                        <ui-select-choices style="height: auto" repeat="x.Code as x in objTypeJC | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-md-3 col-xs-4 col-sm-4 margin-top-10">
+                                    <ui-select class="ui-select-bootstrap-right-radius" ng-model="setting.ObjCode" on-select="objCodeChange(setting.ObjCode)" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'DB_LBL_OBJ' | translate}}..."><p class="bold">{{$select.selected.Name}}</p></ui-select-match>
+                                        <ui-select-choices style="height: auto" repeat="x.Code as x in listObjWithType | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div id="highchart_100" style="height:300px;"></div>
+                            </div>
+                        </div>
+                        <!-- END CHART PORTLET-->
+                        <div ng-repeat="board in listWorkFlow">
+                            <div class="col-md-4 col-sm-12 col-xs-12" ng-repeat="x in board.ListBoard">
+                                <div class="col-md-12">
+                                    <div class="progress-info">
+                                        <label class="text-underline"> {{x.BoardName}} ({{x.Completed}}%)</label>
+                                        <div class="progress" style="height:8px; background-color:#bfd2cf;">
+                                            <span style="width: {{x.Completed}}%" class="progress-bar progress-bar-success green-sharp">
+                                                <span class="sr-only" style="color:#fff; font-family:Calibri;font-size:50px;">{{x.Completed}}%</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-xs-12 col-sm-12">
+                        <div class="portlet light">
+                            <div class="portlet-title tabbable-line">
+                                <div class="caption d-flex">
+                                    <i class="fa fa-map font-white custom-icon-chart"></i>
+                                    <p class="caption-subject font-green bold uppercase margin-top-10">{{'DB_LBL_MAP_ONL' | translate}}</p><span class="text-success fs12 mt10">&nbsp;{{'DB_LBL_USER_ONLINE' | translate}} ({{user.UserOnline}} {{'DB_LBL_ABOVE' | translate}} {{user.UserActive}})&nbsp;</span><span class="text-danger fs14 mt10"> - {{'DB_LBL_RATE' | translate}} ({{(user.UserOnline!=0)?percentOnline:0}} %)</span>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div ng-include="'../views/admin/dashBoard/maponline.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xs-12 col-sm-12">
+                        <!-- BEGIN CHART PORTLET-->
+                        <div class="portlet light bordered">
+                            <div class="portlet-title">
+                                <div class="caption col-md-12">
+                                    <i class="icon-bar-chart font-white custom-icon-chart"></i>
+                                    <p class="caption-subject bold uppercase font-green margin-top-10">{{'DB_LBL_HR_EMPLOYEE' | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div id="amchart_CountEmployees" class="chart h-400"></div>
+                            </div>
+                        </div>
+                        <!-- END CHART PORTLET-->
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px; height:300px;">
+                    <div class="col-xs-12 col-sm-12 col-xs-12">
+                        <div class="portlet light bordered">
+                            <div class="portlet-title tabbable-line">
+                                <div class="caption col-md-3">
+                                    <i class=" icon-layers font-white custom-icon-chart"></i>
+                                    <p class="caption-subject font-green bold uppercase margin-top-10">{{'DB_LBL_CONTRACT_PO_SALE' | translate}}</p>
+                                </div>
+                                <div class="col-md-2 margin-top-10">
+                                    <div class="input-group date" id="TimeBuy">
+                                        <input ng-model="TimePieBuy" class="form-control " placeholder="{{'DB_TXT_TIME_BUY' | translate}}..." ng-change="ChangeTimePieBuy(TimePieBuy)" />
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-md-offset-3 margin-top-10">
+                                    <div class="input-group date" id="TimeSale">
+                                        <input ng-model="TimePieSale" class="form-control " placeholder="{{'DB_TXT_TIME_SALE' | translate}}..." ng-change="ChangeTimePieSale(TimePieSale)" />
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-body" style="height: 340px;border-bottom: 1px solid #d2d2d2;">
+                                <div style="width: 50%;float: left;">
+                                    <div id="amchart_CountBuy" class="chart"></div>
+                                </div>
+                                <div style="width: 50%;float: left;">
+                                    <div id="amchart_CountSale" class="chart"></div>
+                                </div>
+                            </div>
+                            <div class="portlet-body" style="height: 340px;">
+                                <div style="width: 50%;float: left;">
+                                    <div id="amchart_PieBuy" class="chart"></div>
+                                </div>
+                                <div style="width: 50%;float: left;">
+                                    <div id="amchart_PieSale" class="chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <div class="col-xs-12 col-sm-12 col-xs-12">
+                        <div class="portlet light bordered">
+                            <div class="portlet-title">
+                                <div class="caption col-md-12">
+                                    <i class="icon-bar-chart font-white custom-icon-chart"></i>
+                                    <p class="caption-subject bold uppercase font-green margin-top-10">{{'DB_LBL_CUS_SUP' | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="portlet-body" style="height: 300px;border-bottom: 1px solid #d2d2d2;">
+                                <div style="width: 50%;float: left;">
+                                    <div id="amchart_CountCustomers" class="chart"></div>
+                                </div>
+                                <div style="width: 50%;float: left;">
+                                    <div id="amchart_CountSupplier" class="chart"></div>
+                                </div>
+                            </div>
+                            <div class="portlet-body" style="height: 340px;">
+                                <div style="width: 50%;float: left;">
+                                    <div id="amchart_PieCustomers" class="chart"></div>
+                                    <div style="width: 30%; margin-left: 35%">
+                                        <div class="input-group date" id="TimeCustomer">
+                                            <input ng-model="TimePieCustomer" class="form-control " placeholder="{{'DB_TXT_TIME' | translate}}..." ng-change="ChangeTimePieCustomer(TimePieCustomer)" />
+                                            <span class="input-group-addon">
+                                                <span class="fa fa-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="width: 50%;float: left;">
+                                    <div id="amchart_PieSupplie" class="chart"></div>
+                                    <div style="width: 30%; margin-left: 35%">
+                                        <div class="input-group date" id="TimeSupplier">
+                                            <input ng-model="TimePieSupplier" class="form-control " placeholder="{{'DB_TXT_TIME' | translate}}..." ng-change="ChangeTimePieSupplier(TimePieSupplier)" />
+                                            <span class="input-group-addon">
+                                                <span class="fa fa-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="portlet light bordered">
+                            <div class="portlet-title">
+                                <div class="caption col-md-12">
+                                    <i class="icon-bar-chart font-white custom-icon-chart"></i>
+                                    <p class="caption-subject bold uppercase font-green margin-top-10">{{'DB_LB_PROJECT' | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="portlet-body" style="height: 340px;border-bottom: 1px solid #d2d2d2;">
+                                <div style="width: 50%;float: left;">
+                                    <div id="amchart_CountProject" class="chart"></div>
+                                </div>
+                                <div style="width: 50%;float: left;">
+                                    <div id="amchart_PieProject" class="chart"></div>
+                                    <div style="width: 30%; margin-left: 35%">
+                                        <div class="input-group date" id="TimeProject">
+                                            <input ng-model="TimePieProject" class="form-control " placeholder="{{'DB_TXT_TIME' | translate}}..." ng-change="ChangeTimePieProject(TimePieProject)" />
+                                            <span class="input-group-addon">
+                                                <span class="fa fa-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px; height:300px;">
+                    <div class="col-lg-6 col-xs-12 col-sm-12">
+                        <!-- BEGIN CHART PORTLET-->
+                        <div class="portlet light bordered">
+                            <div class="portlet-title">
+                                <div class="caption col-md-12">
+                                    <i class="icon-bar-chart font-white custom-icon-chart"></i>
+                                    <p class="caption-subject bold uppercase font-green margin-top-10">{{'DB_LBL_STORE' | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div id="chart_prod" class="chart h-300"></div>
+                            </div>
+                        </div>
+                        <!-- END CHART PORTLET-->
+                    </div>
+                    <div class="col-lg-6 col-xs-12 col-sm-12">
+                        <!-- BEGIN CHART PORTLET-->
+                        <div class="portlet light bordered">
+                            <div class="portlet-title">
+                                <div class="caption col-md-12">
+                                    <i class="icon-bar-chart font-white custom-icon-chart"></i>
+                                    <p class="caption-subject bold uppercase font-green margin-top-10">{{'DB_LBL_FUND' | translate}}</p>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div id="chart_fund" class="chart h-300"></div>
+                            </div>
+                        </div>
+                        <!-- END CHART PORTLET-->
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <div class="col-lg-12 col-xs-12 col-sm-12">
+                        <!-- BEGIN CHART PORTLET-->
+                        <div class="portlet light bordered">
+                            <div class="portlet-title">
+                                <div class="caption col-md-2">
+                                    <i class="icon-bar-chart font-white custom-icon-chart"></i>
+                                    <p class="caption-subject bold uppercase font-green margin-top-10">{{'DB_LBL_ASSET' | translate}}</p>
+                                </div>
+                                <div class="col-md-2 margin-top-10">
+                                    <ui-select class="ui-select-bootstrap-right-radius" ng-model="asset.Type" on-select="changeAssetType(asset.Type)" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'DB_LBL_TYPE_ASSET' | translate}}..."><p class="bold">{{$select.selected.Title}}</p></ui-select-match>
+                                        <ui-select-choices style="height: auto" repeat="x.Code as x in listAssetType | filter: $select.search">
+                                            {{x.Title}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-md-2 margin-top-10">
+                                    <ui-select class="ui-select-bootstrap-right-radius" ng-model="asset.Department" on-select="changeAssetDepartment(asset.Department)" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'DB_LBL_OBJ_OWNER' | translate}}..."><p class="bold">{{$select.selected.Name}}</p></ui-select-match>
+                                        <ui-select-choices style="height: auto" repeat="x.Code as x in listAssetDepartment | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <div class="col-md-2 input-group date margin-top-10" id="assetYear">
+                                    <input ng-model="asset.Year" class="form-control" placeholder="{{'DB_TXT_YEAR' | translate}}..." ng-change="changeAssetYear(asset.Year)" />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div>
+                                    <div id="hightchart_Asset" class="chart"></div>
+                                </div>
+                                <div>
+                                    <div id="hightchart_PieAsset" class="chart" style="height:300px;"></div>
+                                    <div class="margin-top-20">
+                                        <div class="col-md-offset-5 col-md-2 input-group date" id="assetPieYear">
+                                            <input ng-model="asset.PieYear" class="form-control " placeholder="{{'DB_TXT_YEAR' | translate}}..." ng-change="changeAssetPieYear(asset.PieYear)" />
+                                            <span class="input-group-addon">
+                                                <span class="fa fa-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END CHART PORTLET-->
+                    </div>
+                    <div class="col-lg-4 col-xs-12 col-sm-12">
+                        <div class="portlet light bordered pb-35">
+                            <div class="portlet-title tabbable-line">
+                                <div class="caption col-md-6">
+                                    <i class="fa fa-cog font-white custom-icon-chart"></i>
+                                    <p class="caption-subject font-green bold uppercase margin-top-10">{{'DB_LBL_SYSTEM_LOG' | translate}}<span>{{type}}</span></p>
+                                </div>
+                                <ul class="nav nav-tabs pt15">
+                                    <li class="pr10">
+                                        <span role="button" ng-click="getSystemLog('DATE_NOW');type='(Hôm nay)'"> {{'DB_LBL_TO_DAY' | translate}} </span>
+                                    </li>
+                                    <li class="pr10">
+                                        <span role="button" ng-click="getSystemLog('WEEK_NOW');type='(Tuần)'"> {{'DB_LBL_WEEK' | translate}} </span>
+                                    </li>
+                                    <li class="pr10">
+                                        <span role="button" ng-click="getSystemLog('MONTH_NOW');type='(Tháng)'"> {{'DB_LBL_MONTH' | translate}} </span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="sytem-log row">
+                                    <div class="sytem-log-image col-md-1">
+                                        <span class="text-number">1</span><img src="../../../images/dashboad/down.png" height="50" />
+                                    </div>
+                                    <div class="sytem-log-info col-md-11">
+                                        <span>{{'DB_LBL_PROJECT_LOG' | translate}} [<span class="text-create">{{'DB_LBL_CREATE' | translate}}: {{projectInsert}}</span>, <span class="text-edit">{{'DB_LBL_EDIT' | translate}}: {{projectUpdate}}</span>, <span class="text-delete">{{'DB_LBL_DEL' | translate}}: {{projectDelete}}</span>]</span>
+                                        <br /><span class="bold fs10">{{'DB_LBL_NUM_USER_INTERACT' | translate}}: {{projectPeople}}</span>
+                                    </div>
+                                </div>
+                                <div class="sytem-log row">
+                                    <div class="sytem-log-image col-md-1">
+                                        <span class="text-number">2</span><img src="../../../images/dashboad/down.png" height="50" />
+                                    </div>
+                                    <div class="sytem-log-info col-md-11">
+                                        <span>{{'DB_LBL_CONTRACT_LOG' | translate}} [<span class="text-create">{{'DB_LBL_CREATE' | translate}}: {{poInsert}}</span>, <span class="text-edit">{{'DB_LBL_EDIT' | translate}}: {{poUpdate}}</span>, <span class="text-delete">{{'DB_LBL_DEL' | translate}}: {{poDelete}}</span>]</span>
+                                        <br /><span class="bold fs10">{{'DB_LBL_NUM_USER_INTERACT' | translate}}: {{poPeople}}</span>
+                                    </div>
+                                </div>
+                                <div class="sytem-log row">
+                                    <div class="sytem-log-image col-md-1">
+                                        <span class="text-number">3</span><img src="../../../images/dashboad/down.png" height="50" />
+                                    </div>
+                                    <div class="sytem-log-info col-md-11">
+                                        <span>{{'DB_LBL_EMP_LOG' | translate}} [<span class="text-create">{{'DB_LBL_CREATE' | translate}}: {{employeeInsert}}</span>, <span class="text-edit">{{'DB_LBL_EDIT' | translate}}: {{employeeUpdate}}</span>, <span class="text-delete">{{'DB_LBL_DEL' | translate}}: {{employeeDelete}}</span>]</span>
+                                        <br /><span class="bold fs10">{{'DB_LBL_NUM_USER_INTERACT' | translate}}: {{employeePeople}}</span>
+                                    </div>
+                                </div>
+                                <div class="sytem-log row">
+                                    <div class="sytem-log-image col-md-1">
+                                        <span class="text-number">4</span><img src="../../../images/dashboad/down.png" height="50" />
+                                    </div>
+                                    <div class="sytem-log-info col-md-11">
+                                        <span>{{'DB_LBL_FUND_LOG' | translate}} [<span class="text-create">{{'DB_LBL_CREATE' | translate}}: {{fundInsert}}</span>, <span class="text-edit">{{'DB_LBL_EDIT' | translate}}: {{fundUpdate}}</span>, <span class="text-delete">{{'DB_LBL_DEL' | translate}}: {{fundDelete}}</span>]</span>
+                                        <br /><span class="bold fs10">{{'DB_LBL_NUM_USER_INTERACT' | translate}}: {{fundPeople}}</span>
+                                    </div>
+                                </div>
+                                <div class="sytem-log row">
+                                    <div class="sytem-log-image col-md-1">
+                                        <span class="text-number">5</span><img src="../../../images/dashboad/down.png" height="50" />
+                                    </div>
+                                    <div class="sytem-log-info col-md-11">
+                                        <span>{{'DB_LBL_CUS_LOG' | translate}} [<span class="text-create">{{'DB_LBL_CREATE' | translate}}: {{custommerInsert}}</span>, <span class="text-edit">{{'DB_LBL_EDIT' | translate}}: {{custommerUpdate}}</span>, <span class="text-delete">{{'DB_LBL_DEL' | translate}}: {{custommerDelete}}</span>]</span>
+                                        <br /><span class="bold fs10">{{'DB_LBL_NUM_USER_INTERACT' | translate}}: {{custommerPeople}}</span>
+                                    </div>
+                                </div>
+                                <div class="sytem-log row">
+                                    <div class="sytem-log-image col-md-1">
+                                        <span class="text-number">6</span><img src="../../../images/dashboad/down.png" height="50" />
+                                    </div>
+                                    <div class="sytem-log-info col-md-11">
+                                        <span>{{'DB_LBL_SUP_LOG' | translate}} [<span class="text-create">{{'DB_LBL_CREATE' | translate}}: {{supplierInsert}}</span>, <span class="text-edit">{{'DB_LBL_EDIT' | translate}}: {{supplierUpdate}}</span>, <span class="text-delete">{{'DB_LBL_DEL' | translate}}: {{supplierDelete}}</span>]</span>
+                                        <br /><span class="bold fs10">{{'DB_LBL_NUM_USER_INTERACT' | translate}}: {{supplierPeople}}</span>
+                                    </div>
+                                </div>
+                                <div class="sytem-log row">
+                                    <div class="sytem-log-image col-md-1">
+                                        <span class="text-number">7</span><img src="../../../images/dashboad/down.png" height="50" />
+                                    </div>
+                                    <div class="sytem-log-info col-md-11">
+                                        <span>{{'DB_LBL_STORE_LOG' | translate}}  [<span class="text-create">{{'DB_LBL_CREATE' | translate}}: {{productInsert}}</span>, <span class="text-edit">{{'DB_LBL_EDIT' | translate}}: {{productUpdate}}</span>, <span class="text-delete">{{'DB_LBL_DEL' | translate}}: {{productDelete}}</span>]</span>
+                                        <br /><span class="bold fs10">{{'DB_LBL_NUM_USER_INTERACT' | translate}}: {{productPeople}}</span>
+                                    </div>
+                                </div>
+                                <div class="sytem-log row">
+                                    <div class="sytem-log-image col-md-1">
+                                        <span class="text-number">8</span><img src="../../../images/dashboad/up.png" height="50" />
+                                    </div>
+                                    <div class="sytem-log-info col-md-11">
+                                        <span>{{'DB_LBL_CARD' | translate}}  [<span class="text-create">{{'DB_LBL_CREATE' | translate}}: {{cardJobInsert}}</span>, <span class="text-edit">{{'DB_LBL_EDIT' | translate}}: {{cardJobUpdate}}</span>, <span class="text-delete">{{'DB_LBL_DEL' | translate}}: {{cardJobDelete}}</span>]</span>
+                                        <br /><span class="bold fs10">{{'DB_LBL_NUM_USER_INTERACT' | translate}}: {{cardJobPeople}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-xs-12 col-sm-12" ng-controller="systemLog" ng-show="IsTranslate">
+                        <!-- BEGIN CHART PORTLET-->
+                        <div class="portlet light bordered">
+                            <div class="portlet-title pb15">
+                                <!--<div class="caption col-md-2">
+                                    <i class="fa fa-cog font-white custom-icon-chart"></i>
+                                    <p class="caption-subject bold uppercase font-green margin-top-10">{{'SYSTEM LOG' | translate}}</p>
+                                </div>-->
+                                <div class="col-md-2 margin-top-10 pl-0">
+                                    <div class="input-group date">
+                                        <input id="sysFromDate" ng-model="system.FromDate" class="form-control " placeholder="{{'DB_SEARCH_FROM_DATE' | translate}}..." ng-change="search()" />
+                                        <span class="input-group-addon" ng-click="system.FromDate='';search()">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 margin-top-10 pl-0">
+                                    <div class="input-group date">
+                                        <input id="sysToDate" ng-model="system.ToDate" class="form-control " placeholder="{{'DB_SEARCH_TO_DATE' | translate}}..." ng-change="search()" />
+                                        <span class="input-group-addon" ng-click="system.ToDate='';search()">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 margin-top-10 pl-0">
+                                    <div class="input-group">
+                                        <ui-select class="ui-select-bootstrap-right-radius" ng-model="system.DepartmentCode" on-select="search()" theme="bootstrap">
+                                            <ui-select-match placeholder="{{'DB_SEARCH_DEPARTMENT' | translate}}..."><p class="bold">{{$select.selected.Name}}</p></ui-select-match>
+                                            <ui-select-choices style="height: auto" repeat="x.Code as x in listDepartment | filter: $select.search">
+                                                {{x.Name}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="system.DepartmentCode='';search()" class="btn btn-default no-shadow" style="">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 margin-top-10 pl-0">
+                                    <div class="input-group">
+                                        <ui-select class="ui-select-bootstrap-right-radius" ng-model="system.GroupUserCode" on-select="search()" theme="bootstrap">
+                                            <ui-select-match placeholder="{{'DB_SEARCH_GROUP_USER' | translate}}..."><p class="bold">{{$select.selected.Name}}</p></ui-select-match>
+                                            <ui-select-choices style="height: auto" repeat="x.Code as x in listGroupUser | filter: $select.search">
+                                                {{x.Name}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="system.GroupUserCode='';search()" class="btn btn-default no-shadow" style="">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 margin-top-10 pl-0 pr-0">
+                                    <div class="input-group">
+                                        <ui-select class="ui-select-bootstrap-right-radius" ng-model="system.UserName" on-select="search()" theme="bootstrap">
+                                            <ui-select-match placeholder="{{'DB_SEARCH_USER' | translate}}..."><p class="bold">{{$select.selected.GivenName}}</p></ui-select-match>
+                                            <ui-select-choices style="height: auto" repeat="x.UserName as x in listUser | filter: $select.search">
+                                                {{x.GivenName}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="system.UserName='';search()" class="btn btn-default no-shadow" style="">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <table class="table dataTable table-hover table-striped"
+                                       datatable
+                                       dt-options="dtOptions"
+                                       dt-columns="dtColumns"
+                                       dt-instance="dtInstance"
+                                       id="tblDataSystemLog"></table>
+                            </div>
+                        </div>
+                        <!-- END CHART PORTLET-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

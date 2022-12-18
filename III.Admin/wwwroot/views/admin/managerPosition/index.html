@@ -1,0 +1,117 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12">
+            <!--<h1 class="bold mb-0">{{'MP_TXT_MP'|translate}}</h1>-->
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_MENU_CUSTOMER' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <div class=" bold text-underline" style="color:black;" href="/Admin/managerPosition#">{{'MP_LINK_MP'|translate}}</div>
+                </li>
+            </ul>
+            <div class="pr-0 pull-right" ng-show="!isSearch" ng-click="showSearch()">
+                <button class="btn gold-custom br4">
+                    <i class="fa fa-search"></i>
+                    {{'COM_BTN_SEARCH'| translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'MP_LBL_SEACH_CUSTOMERNAME'|translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.CustomerName" theme="bootstrap" ng-change="reload()">
+                            <ui-select-match placeholder="{{'MP_TXT_SEACH_CUSTOMERNAME'|translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in listCustomer | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.CustomerName=''" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'MP_LBL_SEACH_TITLE'|translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.Title" class="form-control" type="text" placeholder="{{'MP_TXT_SEACH_TITLE'|translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Title='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'MP_LBL_SEACH_CREATBY'|translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.CreatedBy" theme="bootstrap">
+                            <ui-select-match placeholder="{{'MP_TXT_SEACH_CREATBY'|translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in Staffs | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.CreatedBy='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'MP_LBL_SEACH_CREATTIME'|translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.CreatedDate" class="form-control" type="text" placeholder="{{'MP_TXT_SEACH_CREATTIME'|translate}}..." ng-keydown="($event.keyCode == 13) && reload()" id="CreatedDate" autocomplete="off" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.CreatedDate='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2" style="width: 14%;">
+                    <label class="fw600 text-underline">{{'MP_LBL_SEACH_ISACTIVE'|translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.IsActive" theme="bootstrap">
+                            <ui-select-match placeholder="{{'MP_TXT_SEACH_ISACTIVE'|translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in StatusData | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.IsActive='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="btn-group actions d-flex pt20">
+                        <div class="text-center">
+                            <a ng-click="search()" class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+                <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm" style="margin-right: 20px !important;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblDataIndex"></table>

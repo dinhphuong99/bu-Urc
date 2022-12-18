@@ -1,0 +1,61 @@
+﻿<style>
+    #tblDataNote_wrapper {
+        top: 5px;
+    }
+</style>
+<div ng-controller="projectTabNote">
+    <div class="row">
+        <form name="addformprojectnote" method="post">
+            <div class="col">
+                <div class="col-lg-4 form-group mr5">
+                    <div class="form-group mb5">
+                        <label class="control-label fs11 " style="font-size:11px !important ;padding-top:0px;">{{'PROJECT_CURD_TAB_NOTE_TITLE' | translate}}</label>
+                        <div class="input-group">
+                            <input ng-model="model.Title" class="form-control" type="text" placeholder="{{'PROJECT_CURD_TAB_NOTE_TXT_TITLE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="model.Title=''" class="btn btn-default no-shadow">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="btn-group pt20 actions d-flex">
+                        <div class="mr10 pr-0">
+                            <button class="btn gold-custom custom-width-button" ng-click="search()" style="border-radius: 0px !important">
+                                <i class="fa fa-search"></i>
+                                {{'COM_BTN_SEARCH' | translate}}
+                            </button>
+                        </div>
+                        <div class="mr10 pr-0">
+                            <button class="btn green-custom custom-width-button" ng-click="add()" style="border-radius: 0px !important">
+                                <i class="fa fa-plus"></i>
+                                {{'COM_BTN_ADD' | translate}}
+                            </button>
+                        </div>
+
+                        <!--<div class="text-center pr10">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="search()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                        <div class="text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="add()">
+                                <span><i class="fa fa-plus"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <table class="table dataTable table-hover table-striped"
+           datatable
+           dt-options="dtOptions"
+           dt-columns="dtColumns"
+           dt-instance="dtInstance"
+           id="tblDataNoteProject"></table>
+</div>

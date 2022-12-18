@@ -1,0 +1,280 @@
+﻿<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 27px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #009432;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+        width: 60px;
+        height: 27px;
+        margin-top: 7px;
+        background-color: #5d5c58;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+    .dataTables_wrapper .table-scrollable {
+        border: 1px solid #e7ecf1 !important;
+    }
+
+    .headerTab {
+        margin-top: -10px;
+        background: #cccccc;
+        padding-left: -8px;
+        margin-left: -21px;
+        margin-right: -21px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        padding-top: 5px;
+        padding-bottom: 2px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .openlog {
+        cursor: pointer
+    }
+
+    .btnSwitch {
+        width: 35px;
+        float: left;
+        padding-top: 2px !important;
+    }
+</style>
+<div class="modal-header" style="position:relative">
+    <img class="icon-remove pull-right" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title">{{'SRWP_TITLE_EDIT'|translate}}</span>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="position-absolute zindex-3 position-right-0 d-flex">
+        <div class="col-md-12" style="right:50px;">
+            <div class="btnSwitch">
+                <label class="switch">
+                    <input type="checkbox" ng-model="isTex" ng-change="ShowHeader()">
+                    <span class="slider round"></span>
+                </label>
+                <!--<span class="fs9 nowrap text-underline pl10">Chuyển tab</span>-->
+            </div>
+        </div>
+    </div>
+    <div class="portlet-body form mt5" ng-show="isShowHeader==true">
+        <form class="form-horizontal userFormAreaHeader" name="forms.editform" method="post" ng-validate="validationOptions">
+            <div class="form-body pt-0">
+                <div class="row headerTab">
+                    <div class="col-md-12">
+                        <label class="bold pt5 pb5">{{'SRWP_LBL_INFO_REQ'|translate}}&nbsp;{{model.Title}}</label>
+                        <!--<div class="text-center pull-right" style="right:80px;position:relative" ng-show="isShowHeader==true">
+                            <a ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                <span><i class="fa fa-save"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="form-body pt-0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-4 d-flex pr-0">
+                                <i class="fa fa-barcode pt10 pr5" aria-hidden="true"></i>
+                                <label class="control-label text-left require custom-title-code-bold">{{'SRWP_LBL_REQCODE'|translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control custom-title-code-bold" ng-model="model.ReqCode" type="text" name="ReqCode" placeholder="{{'SRWP_LBL_REQCODE'|translate}}..." readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 d-flex pr-0">
+                                <i class="fa fa-info-circle pt10 pr5" aria-hidden="true"></i>
+                                <label class="control-label text-left require custom-title-code-bold">{{'SRWP_LBL_TITLE'|translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control custom-title-code-bold" ng-model="model.Title" type="text" name="Title" placeholder="{{'SRWP_LBL_TITLE'|translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-flag"></i>
+                                <label class="control-label"> {{'SRWP_LBL_STATUS' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group mBorder">
+                                    <ui-select tagging ng-model="model.Status" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'SRWP_LBL_STATUS' | translate}}...">
+                                            <i class="{{$select.selected.Icon}}"></i>{{$select.selected.Name}}
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in Status  | filter: $select.search">
+                                            <i class="{{x.Icon}}"></i>{{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingWHStatus()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="viewActivityStatus()" class="btn btn-default no-shadow">
+                                            <span class="fas fa-history"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 d-flex pr-0">
+                                <i class="fa fa-info-circle pt10 pr5" aria-hidden="true"></i>
+                                <label class="control-label text-left require">{{'SRWP_LBL_DATE_WONDER'|translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class='input-group date' id='ExpectedDate'>
+                                    <input type='text' class="form-control input-date" autocomplete="off" name="ExpectedDate" ng-model="model.sExpectedDate" placeholder="{{'SRWP_LBL_DATE_WONDER'|translate}}..." />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 d-flex pr-0">
+                                <i class="fa fa-info-circle pt10 pr5" aria-hidden="true"></i>
+                                <label class="control-label text-left require">{{'SRWP_LBL_SCREATED_TIME'|translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class='input-group date' id='CreatedTime'>
+                                    <input type='text' class="form-control input-date" autocomplete="off" name="CreatedTime" ng-model="model.sCreatedTime" placeholder="{{'SRWP_LBL_SCREATED_TIME'|translate}}..." readonly />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!--<div class="col-md-4 d-flex pr-0">
+                                <i class="fa fa-info-circle pt10 pr5" aria-hidden="true"></i>
+                                <label class="control-label text-left">{{'COM_FILE'|translate}}</label>
+                            </div>-->
+                            <!--<div class="col-md-8">
+                                <div class='input-group mt5'>
+                                    <a title="{{model.File.FileName}}" ng-click="download(model.File.FileCode)">{{(model.File.FileName!=''&&model.File.FileName!=null)?model.File.FileName:''}}</a>
+                                </div>
+                            </div>-->
+                            <div class="row">
+                                <div class="btn-group pr20 pull-right actions d-flex">
+                                    <!--<div class="text-center pr10">
+                                        <div class="actions repository">
+                                            <div class="btn btn-icon-only btn-circle btn-outline green-custom text-center">
+                                                <i class="fas fa-upload"></i>
+                                                <input type="file" class="btn-upload" custom-on-change="loadFile" id="btn-upload-file" />
+                                            </div>
+                                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_UP_FILE' | translate}}</p>
+                                        </div>
+                                    </div>-->
+                                    <div class="text-center pull-right pr10">
+                                        <a ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                            <span><i class="fa fa-save"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                                    </div>
+                                    <div class="text-center pull-right">
+                                        <a class="btn btn-icon-only btn-circle btn-outline red-custom" ng-click="addCardJob()">
+                                            <span class="fa fa-trello"></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD_CAR' | translate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-12">
+                <scrollable-tabset>
+                    <uib-tabset active="active">
+                        <uib-tab class="mt5" index="1" heading="{{'COM_FILE' | translate}}">
+                            <div ng-include="'../views/admin/sendRequestWorkPrice/tabFile.html'"></div>
+                        </uib-tab>
+                    </uib-tabset>
+                </scrollable-tabset>
+            </div>
+        </div>
+    </div>
+    <div ng-controller="addProduct">
+        <div class="portlet-body form mt5" ng-show="isShowDetail==true">
+            <form class="form-horizontal userFormAreaHeader" ng-validate="validationOptions">
+                <div class="form-body pt-0">
+                    <div class="row headerTab">
+                        <div class="col-md-12">
+                            <label class="bold pt5 pb5">{{'SRWP_LBL_INFO_CT'|translate}} {{model.Title}}</label>
+                            >
+
+                            <!--<div class="text-center pull-right" style="right:80px;position:relative">
+                                <a ng-click="save()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                    <span><i class="fa fa-save"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row mt10" ng-show="isShowDetail==true">
+            <div ng-include="'../views/admin/sendRequestWorkPrice/addProduct.html'"></div>
+        </div>
+    </div>
+</div>
+

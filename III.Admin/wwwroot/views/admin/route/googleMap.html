@@ -1,0 +1,336 @@
+﻿<style>
+    #parking .table-toolbar {
+        width: 100px;
+    }
+
+    .tab-content {
+        margin-top: 0px !important;
+    }
+
+    .btnRadio {
+        float: left;
+        width: 50%;
+        font-weight: bold;
+        color: black;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .btnSavePoint {
+        float: right;
+        width: 50%;
+        text-align: center;
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-map-marker icon-insert"></i>
+    <span class="modal-title" id="modal-title"> {{'ROUTE_LBL_GG_MAP' | translate}}</span>
+</div>
+<div class="modal-body p-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal" method="post" ng-validate="validationOptions">
+            <div class="form-body pt-0">
+                <div class="row">
+                    <div class="col-md-5 pl-0">
+                        <div class="col-md-10 p1">
+                            <input type="text" placeholder="{{'ROUTE_TXT_SEARCH' | translate}}..." id="autocomplete" class="form-control" autocapitalize="off" autocomplete="off">
+                        </div>
+                        <div class="col-md-2 p2">
+
+                            <div class="text-center">
+                                <button class="btn btn-icon-only btn-circle btn-outline purple-custom" id="TimKiem">
+                                    <span><i class="fa fa-search"></i></span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="rightPanel" id="pnSearch" style="z-index:999">
+                            <div class="col-md-12" style="padding:0; top:-30px;">
+                                <ul class="nav nav-tabs pull-right">
+                                    <li class="mini-submenu pull-right">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content-map">
+                                <style>
+                                    #parking .table-toolbar {
+                                        width: 100px;
+                                    }
+                                </style>
+                                <div class="tab-pane active" id="parking">
+                                    <div class="table-toolbar">
+                                        <div id="divstyle">
+                                            <div class="form-bordered p-0">
+                                                <div class="form-group">
+                                                    <div class="col-md-12 pt10">
+                                                        <div class="col-md-12 p-0 pt15 text-center">
+                                                            <a><img src="../../../images/map/drawing.png" class="mw35 h-35" id="draw" /></a>
+                                                            <p class="text-underline fs9 mb5 pt3">{{'ROUTE_CURD_TAB_PARKING_LBL_START_PAINT' | translate}}</p>
+                                                        </div>
+                                                        <!--<div class="col-md-12 p-0 pt15 text-center">
+                                                            <a><img src="../../../images/map/drawing.png" class="mw35 h-35" id="drawPoint" /></a>
+                                                            <p class="text-underline fs9 mb5 pt3">Vẽ điểm</p>
+                                                        </div>-->
+                                                        <div class="col-md-12 p-0 pt15 text-center">
+                                                            <a><img src="../../../images/map/Eraser.png" id="refresh" class="mw35 h-35" /></a>
+                                                            <p class="text-underline fs9 mb5 pt3">{{'ROUTE_CURD_TAB_PARKING_LBL_DELETE_PAINT' | translate}}</p>
+                                                        </div>
+                                                        <div class="text-center col-md-12 pt15 p-0">
+                                                            <button class="btn btn-icon-only btn-circle btn-outline green-custom" ng-class="save()" id="save">
+                                                                <span><i class="fa fa-save"></i></span>
+                                                            </button>
+                                                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--------------------------------------------------------------------------->
+                                <!--<div class="table-toolbar" style="margin-top: 0% !important">
+                                    <form class="form-inline" style="    padding-left: 15px;    padding-top: 10px;" hidden>
+                                        <label style="font-weight:bold;color:black">Chọn kiểu vẽ &nbsp;</label>
+                                        <select id="type" style="border-radius:7px !important; width:22%;height:37px;top:1px;left:0px;font-size:15px;padding-right:1px">
+                                            <option id="o2" value="Polygon">Đa giác</option>
+                                            <option id="o1" value="None">Không chọn</option>
+                                        </select>
+                                    </form>
+                                    <br />
+                                    <div id="divstyle">
+
+                                        <div class="row">
+                                            <div class="col-md-6" style="padding-left: 0px; padding-bottom: 15px;">
+                                                <label class="col-md-8 text-left" style="font-weight:bold;color:black">Màu nền &nbsp; </label>
+                                                <div class="col-md-4" style="padding-left: 10px;">
+                                                    <input type="color" name="favcolor" value="#64C936" id="cl1" style="height:37px;width:100px">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" style="padding-bottom: 5px;">
+                                                <label class="col-md-6 text-left" style="font-weight:bold;color:black">Font Size &nbsp;</label>
+                                                <div class="col-md-6" style="padding-left: 0px;padding-right:0px">
+                                                    <input type="number" name="points" step="1" min="8" max="20" value="12" style="width:130px; height:35px; color:black; border-radius: 7px !important;font-size:15px;" id="nb4">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="    padding-bottom: 15px;">
+                                            <label class="col-md-4 text-left" style="font-weight:bold;color:black">Khách hàng</label>
+                                            <div class=" col-md-8" style="padding-left: 0px;">
+                                                <input placeholder="Khách hàng" style="height:37px;font-size:15px;" list="listCustomer" type="text" class="form-control" name="browser" id="idListCustomer">
+                                                <datalist id="listCustomer"></datalist>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="    padding-bottom: 15px;">
+
+                                            <label class="col-md-4 text-left" style="font-weight:bold;color:black">Ảnh (Avatar)</label>
+                                            <div class="col-md-8 btn-group" style="padding-left: 0px;">
+                                                <button id="btn_select_image" style="width:100%" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Chọn ảnh
+                                                    <span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                                                </button>
+
+                                                <ul id="chooseImage" class="hidden dropdown" style="position:absolute ; z-index:99999 !important; width: 98%;margin-top: 35px;margin-left: -377px !important;">
+                                                    <li id="pagoda" style="list-style: none;">
+                                                        <a href="#" title="Select this card"><img src="/images/icon_chua.jpg" style="width:30px; height:30px;"> Chùa </a>
+                                                    </li>
+                                                    <li id="company" style="list-style: none;">
+                                                        <a href="#" title="Select this card"><img src="/images/company.png" style="width:30px; height:30px;"> Công ty </a>
+
+                                                    </li>
+                                                    <li id="shop" style="list-style: none;">
+                                                        <a href="#" title="Select this card"><img src="/images/icon_cuahang.jpg" style="width:30px; height:30px;"> Cửa hàng </a>
+
+                                                    </li>
+
+                                                    <li id="park" style="list-style: none;">
+                                                        <a href="#" title="Select this card"><img src="/images/icon_parking.jpg" style="width:30px; height:30px;"> Bãi xe </a>
+
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="    padding-bottom: 15px;">
+                                            <form>
+                                                <div class="col-md-4 text-left">
+                                                    <label class="col-md-12" style="font-weight:bold;color:black; margin-left:-10px">Hình ảnh</label>
+                                                    <div class="col-md-12 mt10" title="Vẽ bãi xe" ng-if="isDraw==false">
+                                                        <a><img src="~/images/drawing.png" id="draw" style="width:55px; height:55px" /></a>
+                                                    </div>
+                                                    @*<div class="col-md-12 mt10" title="Xóa dữ liệu vừa vẽ" ng-if="isDraw==true">
+                                                        <a><img src="~/images/Eraser.png" id="refresh" style="width:35px; height:35px" /></a>
+                                                    </div>*@
+                                                </div>
+                                                <div class="col-md-8 form-col-control " style="padding-left: 0px; border-left:none">
+                                                    <div class="fileupload-new thumbnail mb5">
+                                                        <img id="Profile_picture" alt="holder" style="height:150px; width:150px" />
+                                                    </div>
+                                                    <input type="file" id="file" class="filestyle" accept=".png, .jpg, .jpeg, .gif, .bmp" files-input name="Profile_picture" onchange="readURL1(this);">
+                                                    <script>
+                                        $(":file").filestyle({ buttonName: "btn btn-primary" });
+                                                    </script>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="row" style="padding-bottom: 10px;">
+                                            <label class="col-md-4 text-left" style="font-weight:bold;color:black">Tên bãi &nbsp;</label>
+                                            <div class="col-md-8" style="padding-left: 0px;">
+                                                <input type="text" class="form-control" placeholder="Bãi xe" style=" color:black;height:37px;font-size:15px; border-radius: 7px !important;" id="tx1">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="padding-bottom: 10px;">
+                                            <label class="col-md-4 text-left" style="font-weight:bold;color:black">Mô tả &nbsp;</label>
+                                            <div class="col-md-8" style="padding-left: 0px;">
+                                                <input type="text" class="form-control" placeholder="Thông tin bãi xe" style=" color:black;height:37px;font-size:15px; border-radius: 7px !important;" id="tx2">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="padding-bottom: 10px;">
+                                            <label class="col-md-4 text-left" style="font-weight:bold;color:black"></label>
+                                            <div class="col-md-8" style="padding-left: 0px;">
+                                                <div id="divsave">
+                                                    <button class="btn btn-lg btn-info" id="save"> Thêm bãi</button>
+                                                    <button class="btn  btn-default" style="zoom: 1.2;height: 37px; width: 70px; text-align: center;" id="styleform"> Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <br />
+                                    <hr />
+                                </div>-->
+
+                                <!---------------------------------------------------------------------------------->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layer-map">
+                        <i class="fas fa-layer-group fa-2x pl10 pt15"></i>
+                        <div class="sub-layer-map">
+
+                            <div id="style-selector-control" class="map-control">
+                                <div class="col-md-12 p-0 pl5">
+                                    <input type="radio" name="show-hide" id="hide-poi"
+                                           class="selector-control">
+                                    <label for="hide-poi">Hide</label>
+                                </div>
+                                <div class="col-md-12 p-0 pl5">
+                                    <input type="radio" name="show-hide" id="show-poi"
+                                           class="selector-control" checked="checked">
+                                    <label for="show-poi">Show</label>
+                                </div>
+                                <div class="col-md-12 p-0 pl5">
+                                    <input type="radio" name="show-Map" id="show-OSM"
+                                           class="selector-control">
+                                    <label for="show-poi">OSM</label>
+                                </div>
+                                <div class="col-md-12 p-0 pl5">
+                                    <input type="radio" name="show-Map" id="show-gg"
+                                           class="selector-control" checked="checked">
+                                    <label for="show-poi">GoogleMap</label>
+                                </div>
+                                <div class="col-md-12 p-0 pl5">
+                                    <input type="radio" name="draw-Map" id="view-map"
+                                           class="selector-control" checked="checked">
+                                    <label for="show-poi">View</label>
+                                </div>
+                                <div class="col-md-12 p-0 pl5">
+                                    <input type="radio" name="draw-Map" id="draw-map"
+                                           class="selector-control">
+                                    <label for="show-poi">Draw</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="map" class="col-md-12 pl-0 pr-0"></div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<style>
+    #map {
+        height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    /*html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .map-control {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+        font-family: 'Roboto','sans-serif';
+        margin: 10px;
+        padding-right: 5px;
+        /* Hide the control initially, to prevent it from appearing
+     before the map loads. */
+    display: none;
+    }
+    /* Display the control once it is inside the map. */
+    #map .map-control {
+        display: block;
+    }
+
+    .selector-control {
+        font-size: 14px;
+        line-height: 30px;
+        vertical-align: baseline;
+    }
+
+    .layer-map {
+        width: 45px;
+        height: 45px;
+        z-index: 1000;
+        background: #E8E8E8;
+        border: 1px solid gray;
+        border-radius: 3px;
+        position: absolute;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    .sub-layer-map {
+        visibility: hidden;
+        width: 100px;
+        height: 160px;
+        margin-top: -38px;
+        margin-left: -10px;
+        background: white;
+        padding-top: 0;
+        border: 1px solid gray;
+        border-radius: 5px;
+        z-index: 1000;
+    }
+
+    .layer-map:hover .sub-layer-map {
+        visibility: visible;
+    }
+
+    .layer-map:hover i {
+        visibility: hidden;
+    }
+
+    .rightPanel-hide {
+        position: absolute;
+        right: 0;
+        top: 10px;
+        z-index: 999;
+        display: none;
+        width: 5px;
+        height: 150px;
+    }
+</style>

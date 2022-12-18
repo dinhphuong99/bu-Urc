@@ -1,0 +1,44 @@
+﻿<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-dismiss="modal" />
+    <i class="fa fa-plus icon-insert"></i>
+    <span class="modal-title" id="modal-title">Thêm mới meeting</span>
+</div>
+<div class="modal-body pb-0" id="modal-body">
+    <div class="portlet-body">
+        <div class="col-md-12 pt5 mb5 p-0">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <i class="fa fa-info"></i>
+                    <label class="fw600 require">Tiêu đề cuộc họp</label>
+                    <div class="input-group">
+                        <input id="meetingTopic" class="form-control" type="text" placeholder="Tiêu đề cuộc họp..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" onclick="$('#meetingTopic').val('');" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12 mt10">
+                    <i class="fa fa-list"></i>
+                    <label class="fw600 require">Danh sách tài khoản zoom</label>
+                    <div class="input-group">
+                        <div id="listUserZoom"></div>
+                        <span class="input-group-btn">
+                            <button type="button" onclick="deleteUserZoom()" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt10">
+                <div class="form-group pull-right text-center">
+                    <button onclick="addMeeting()" class="btn btn-primary"><span class="fa fa-plus"></span>&nbsp;Thêm mới</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

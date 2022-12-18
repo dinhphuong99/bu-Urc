@@ -1,0 +1,486 @@
+﻿<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 27px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #006732;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+        width: 60px;
+        height: 27px;
+        margin-top: 7px;
+        background-color: #fd78c0;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+    .dataTables_wrapper .table-scrollable {
+        border: 1px solid #e7ecf1 !important;
+    }
+
+    .mBorder .ui-select-toggle {
+        border-top-right-radius: 5px !important;
+        border-bottom-right-radius: 5px !important;
+    }
+
+    .headerTab {
+        margin-top: -6px;
+        background: #cccccc;
+        padding-left: -8px;
+        margin-left: -21px;
+        margin-right: -21px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        padding-top: 5px;
+        padding-bottom: 2px;
+        font-size: 14px;
+        cursor: pointer
+    }
+
+    .openlog {
+        cursor: pointer
+    }
+    .btnSwitch {
+        width: 35px;
+        float: right;
+    }
+     @media (min-width: 992px) and (max-width:1200px) {
+        .modal-60 {
+           width: 80%;
+        }
+    } @media (min-width: 1201px) and (max-width:1500px) {
+        .modal-60 {
+           width: 70%;
+        }
+    }
+      @media (min-width: 1600px){
+          .modal-60 {
+           width: 60%;
+        }
+      }
+</style>
+<div class="modal-header" style="position:relative">
+    <img class="icon-remove pull-right" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <!--<span class="modal-title" id="modal-title">{{'CONTRACT_CURD_TITLE_ADD_CONTRACT' | translate}}</span>-->
+    <span class="modal-title" id="modal-title">{{'UM_TITLE_EDIT_SUPPLIER' | translate}}</span>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="position-fixed zindex-3 position-right-0">
+        <div class="col-md-12" style="right:50px;">
+            <div class="btnSwitch">
+                <label class="switch">
+                    <input type="checkbox" ng-model="isTex" ng-click="ShowHeader()">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="portlet-body form mt5" ng-show="isShowHeader==true">
+        <form class="form-horizontal userFormAreaHeader" name="forms.editform" method="post" ng-validate="validationOptions">
+            <div class="form-body pt-0">
+                <div class="row headerTab">
+                    <div class="col-md-12"><label class="bold">{{'UM_CURD_LBL_ORDER_INFOR' | translate}} {{model.PoSupCode}}</label></div>
+                </div>
+            </div>
+            <div class="form-body pt-0">
+                <div class="row">
+                    <div class="col-md-6 pt15">
+                        <label class="bold "><u>{{'UM_CURD_LBL_INFOR_BUYER' | translate}}</u></label>
+                    </div>
+                    <div class="col-md-5 pt15">
+                        <label class="bold green"><u>{{'UM_CURD_LBL_INFOR_SUPPLIER' | translate}}</u></label>
+                    </div>
+                </div>
+                <div class="row mt5">
+                    <div class="col-lg-6">
+                        <div class="form-group" ng-class="{ 'has-error': errorBuyerCode}">
+                            <div class="col-md-4 pr-0">
+                               
+                                <label class="control-label require"> <i class="fa fa-user"></i>&nbsp{{'UM_CURD_LBL_BUYER' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.BuyerCode" theme="bootstrap" ng-change="changeCustomer()" on-select="changleSelect('BuyerCode', $item)">
+                                        <ui-select-match placeholder="{{'UM_CURD_TXT_BUYER' | translate}}...">{{$select.selected.Code}} - {{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x  in Customers | filter: $select.search">
+                                            {{x.Code}} - {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.BuyerCode='';resetCustomer()" class="btn btn-default no-shadow" style="">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorBuyerCode" class="label-color validation-message">
+                                    {{'UM_VALIDATE_BUYER' | translate}}! |
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-home"></i>&nbsp{{'UM_CURD_LBL_CUS_ADDRESS' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.CusAddress" type="text" placeholder="{{'UM_CURD_TXT_CUS_ADDRESS' | translate}}..." readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-info-circle"></i>&nbsp{{'UM_CURD_LBL_CUS_ZIP_CODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.CusZipCode" type="text" placeholder="{{'UM_CURD_TXT_CUS_ZIP_CODE' | translate}}..." readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                               
+                                <label class="control-label "> <i class="fa fa-phone"></i>&nbsp{{'UM_CURD_LBL_CUS_MOBILE_PHONE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.CusMobilePhone" type="text" placeholder="{{'UM_CURD_TXT_CUS_MOBILE_PHONE' | translate}}..." readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-user"></i>&nbsp{{'UM_CURD_LBL_CUS_PERSON_IN_CHARGE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.CusPersonInCharge" type="text" placeholder="{{'UM_CURD_TXT_CUS_PERSON_IN_CHARGE' | translate}}..." readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-envelope"></i>&nbsp{{'UM_CURD_LBL_CUS_EMAIL' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.CusEmail" type="text" placeholder="{{'UM_CURD_TXT_CUS_EMAIL' | translate}}..." readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group" ng-class="{ 'has-error': errorSupCode}">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label require "><i class="fa fa-user"></i>&nbsp{{'UM_CURD_LBL_CUS_SUP_CODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.SupCode" theme="bootstrap" ng-change="changeSupplier()" on-select="changleSelect('SupCode', $item)">
+                                        <ui-select-match placeholder="{{'UM_CURD_TXT_CUS_SUP_CODE' | translate}}...">{{$select.selected.Code}} - {{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x  in Suppliers | filter: $select.search">
+                                            {{x.Code}} - {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.SupCode='';resetSupplier()" class="btn btn-default no-shadow" style="">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorSupCode" class="label-color validation-message">
+                                    {{'UM_VALIDATE_SUPPLIER' | translate}}! |
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-home"></i>&nbsp{{'UM_CURD_LBL_SUP_ADDRESS' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.SupAddress" type="text" placeholder="{{'UM_CURD_TXT_SUP_ADDRESS' | translate}}..." readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-info-circle"></i>&nbsp{{'UM_CURD_LBL_SUP_ZIP_CODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.SupZipCode" type="text" placeholder="{{'UM_CURD_TXT_SUP_ZIP_CODE' | translate}}..." readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-phone"></i>&nbsp{{'UM_CURD_LBL_SUP_MOBILE_PHONE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.SupMobilePhone" type="text" placeholder="{{'UM_CURD_TXT_SUP_MOBILE_PHONE' | translate}}..." readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-user"></i>&nbsp{{'UM_CURD_LBL_SUP_PERSON_IN_CHARGE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.SupPersonInCharge" type="text" placeholder="{{'UM_CURD_TXT_SUP_PERSON_IN_CHARGE' | translate}}..." readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-envelope"></i>&nbsp{{'UM_CURD_LBL_SUP_EMAIL' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.SupEmail" type="text" placeholder="{{'UM_CURD_TXT_SUP_EMAIL' | translate}}..." readonly />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row mt5">
+                    <div class="col-md-6"><label class="bold"><u>{{'UM_CURD_LBL_PO_INFOR' | translate}}</u></label></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                               
+                                <label class="control-label require"> <i class="fa fa-barcode"></i>&nbsp{{'UM_CURD_LBL_PO_SUP_CODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.PoSupCode" type="text" name="PoSupCode" placeholder="{{'UM_CURD_TXT_PO_SUP_CODE' | translate}}..." readonly disabled />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label require"><i class="fa fa-barcode"></i>&nbsp{{'UM_CURD_LBL_PO_TITLE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.PoTitle" type="text" name="PoTitle" placeholder="{{'UM_CURD_TXT_PO_TITLE' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-calendar"></i>&nbsp{{'UM_CURD_LBL_DATE_OF_ORDER' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class='input-group date' id='DateOfOrder'>
+                                    <input type='text' class="form-control input-date" ng-model="model.sDateOfOrder" placeholder="{{'UM_CURD_TXT_DATE_OF_ORDER' | translate}}..." />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorsEstimateTime}">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label require"><i class="fa fa-calendar"></i>&nbsp{{'UM_CURD_LBL_ES_TIMATE_TIME' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class='input-group date' id='EstimateTime'>
+                                    <input type='text' class="form-control input-date" ng-model="model.sEstimateTime" name="EstimateTime" placeholder="{{'UM_CURD_LBL_ES_TIMATE_TIME' | translate}}..." />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                                <span ng-show="errorsEstimateTime" class="label-color validation-message">
+                                    {{'UM_VALIDATE_TIME_NO_BLANK' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                               
+                                <label class="control-label "> <i class="fa fa-user"></i>&nbsp{{'UM_CURD_LBL_ORDER_BY' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.OrderBy" type="text" placeholder="{{'UM_CURD_TXT_ORDER_BY' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                               
+                                <label class="control-label "> <i class="fa fa-user"></i>&nbsp{{'UM_CURD_LBL_BUYER' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.Buyer" type="text" placeholder="{{'UM_CURD_TXT_BUYER' | translate}}..." />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                               
+                                <label class="control-label"> <i class="fa fa-flag"></i> {{'UM_CURD_LBL_STATUS' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.Status" theme="bootstrap" class="width-90-per">
+                                        <ui-select-match placeholder="{{'UM_CURD_TXT_STATUS' | translate}}...">
+                                            <span><i class="{{$select.selected.Icon}}"></i>&nbsp{{$select.selected.Name}}</span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in status  | filter: $select.search">
+                                            <i class="{{x.Icon}}"></i>&nbsp{{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingContractStatus()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="activity()" class="btn btn-default no-shadow">
+                                            <span class="fas fa-history"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-envelope"></i>&nbsp{{'UM_CURD_LBL_EMAIL' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.Email" type="text" placeholder="{{'UM_CURD_TXT_EMAIL' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-home"></i>&nbsp{{'UM_CURD_LBL_ADDRESS' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.ShippingAdd" type="text" placeholder="{{'UM_CURD_TXT_ADDRESS' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-user"></i>&nbsp{{'UM_CURD_LBL_CONSIGNER' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.Consigner" type="text" placeholder="{{'UM_CURD_TXT_CONSIGNER' | translate}}.." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fa fa-phone"></i>&nbsp{{'UM_CURD_LBL_MOBILE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.Mobile" type="text" placeholder="{{'UM_CURD_TXT_MOBILE' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fas fa-sticky-note"></i>&nbsp{{'UM_CURD_LBL_POLICY' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea rows="2" class="form-control" ng-model="model.PaymentTerm" type="text" placeholder="{{'UM_CURD_TXT_POLICY' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                
+                                <label class="control-label "><i class="fas fa-sticky-note"></i>&nbsp{{'UM_CURD_LBL_NOTED' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea rows="2" class="form-control" ng-model="model.Noted" type="text" placeholder="{{'UM_CURD_TXT_NOTED' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="PoSupCode!=''">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label "></label>
+                            </div>
+                            <div class="col-md-8">
+                                <a class="control-label text-primary text-underline" ng-click="openAttributeFormManager()">{{'UM_LINK_MANAGE_EXTEND﻿' | translate}}</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="pull-right mr15 user-mt">
+                                <div class="btn-group pull-right actions d-flex">
+                                    <div class="pl20 text-center">
+                                        <a class="btn-icon-only btn-circle btn btn-outline green-custom" ng-click="submit()">
+                                            <span><i class="fa fa-save"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_EDIT' | translate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="portlet-body form mt5" ng-show="isShowDetail==true">
+        <form class="form-horizontal userFormAreaHeader" ng-validate="validationOptions">
+            <div class="form-body pt-0">
+                <div class="row headerTab">
+                    <div class="col-md-12">
+                        <div class="col-md-6 pl-0"><label class="bold">{{'UM_LBL_DETAIL_PRO_PO' | translate}} {{model.PoSupCode}}</label></div>
+                        <div class="col-md-3 pull-right" ng-click="openLog()"><label class="bold openlog">{{'UM_LBL_TRACKING_LOG' | translate}}</label></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row mt10" ng-show="isShowDetail==true">
+        <div ng-include="'../views/admin/contractPo/addProduct.html'"></div>
+    </div>
+</div>

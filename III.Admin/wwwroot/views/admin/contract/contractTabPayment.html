@@ -1,0 +1,57 @@
+﻿<div ng-controller="contractTabPayment">
+    <div class="row">
+        <form name="search" method="post">
+            <div class="col-md-3">
+                <div class="form-group mb5">
+                    <label>{{'CONTRACT_CURD_TAB_PAYMENT_TXT_SEARCH_PAYMENT_NAME' | translate}}</label>
+                    <input class="form-control" ng-model="model.PaymentName" name="Title" type="text" placeholder="{{'CONTRACT_CURD_TAB_PAYMENT_TXT_SEARCH_PAYMENT_NAME' | translate}}..." />
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="btn-group pt20 actions d-flex">
+                    <div class="mr10 pr-0">
+                        <button class="btn gold-custom custom-width-button" ng-click="reload()" style="border-radius: 0px !important">
+                            <i class="fa fa-search"></i>
+                            {{'COM_BTN_SEARCH' | translate}}
+                        </button>
+                    </div>
+                    <div class="mr10 pr-0">
+                        <button class="btn green-custom custom-width-button" ng-click="add()" style="border-radius: 0px !important">
+                            <i class="fa fa-plus"></i>
+                            {{'COM_BTN_ADD' | translate}}
+                        </button>
+                    </div>
+
+                    <!--<div class="pr10 text-center">
+                        <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="reload()">
+                            <span><i class="fa fa-search"></i></span>
+                        </a>
+                        <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                    </div>
+                    <div class="text-center">
+                        <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="add()">
+                            <span><i class="fa fa-plus"></i></span>
+                        </a>
+                        <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                    </div>-->
+                </div>
+            </div>
+        </form>
+    </div>
+    <table class="table dataTable table-hover table-striped"
+           datatable
+           dt-options="dtOptions"
+           dt-columns="dtColumns"
+           dt-instance="dtInstance"
+           id="tblDataPayment">
+        <tfoot>
+            <tr>
+                <th ng-show="isVND" colspan="1" class=""></th>
+                <th ng-show="isVND" colspan="3" class=""></th>
+                <th ng-show="isVND" colspan="2" class="pl10">{{'CONTRACT_TAB_PAYMENT_COL_MONNEY_SUM' | translate}} : <span class="text-success">{{totalMoney | number : fractionSize}}</span></th>
+                <th ng-show="isVND" colspan="2" class="pl10">{{'CONTRACT_TAB_PAYMENT_COL_MONNEY_REVENU' | translate}} : <span class="text-success">{{totalReceipts | number : fractionSize}}</span></th>
+                <th ng-show="isVND" colspan="2" class="pl10">{{'CONTRACT_TAB_PAYMENT_COL_MONNEY_RECEIPT' | translate}} : <span class="text-danger">{{totalPaymentSlip | number : fractionSize}}</span></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>

@@ -1,0 +1,503 @@
+﻿<style>
+    .scroll-y {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .app-content {
+        width: 100%;
+    }
+</style>
+
+<div class="col-md-5 pl-0">
+    <div class="col-md-10 p1">
+        <input type="text" placeholder="{{'MS_TXT_SEARCH' | translate}}..." id="autocomplete" class="form-control" autocapitalize="off" autocomplete="off">
+    </div>
+    <div class="col-md-2 p2">
+        <!--<button class="btn btn-primary" id="TimKiem">
+         <i class="fa fa-search"></i> {{'COM_BTN_SEARCH' | translate}}
+        </button>-->
+        <div class="text-center">
+            <button class="btn btn-icon-only btn-circle btn-outline purple-custom" id="TimKiem">
+                <span><i class="fa fa-search"></i></span>
+            </button>
+            <!--<p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>-->
+        </div>
+    </div>
+</div>
+<div class="col-md-7">
+    <div class="rightPanel" id="pnSearch" style="z-index:999">
+        <div class="col-md-12" style="padding:0">
+            <ul class="nav nav-tabs pull-right">
+                <li class="text-center" ng-show="IsMapCustomer">
+                    <a class="tablinks fs13" data-toggle="tabMap" data-target="#customer">{{'MS_TAB_CUSTOMER' | translate}}</a>
+                </li>
+                <li class="text-center" ng-show="IsMapSupplier">
+                    <a class="tablinks fs13" data-toggle="tabMap" data-target="#supplier">{{'MS_TAB_SUPPLIER' | translate}}</a>
+                </li>
+                <li class="text-center" ng-show="IsMapStore">
+                    <a class="tablinks fs13" data-toggle="tabMap" data-target="#store">{{'MS_TAB_STORE' | translate}}</a>
+                </li>
+                <li class="text-center active">
+                    <a class="tablinks fs13" data-toggle="tabMap" data-target="#parking">{{'MS_TAB_PARKING' | translate}}</a>
+                </li>
+                <li class="mini-submenu pull-right">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content" id="tab-content-map">
+            <!--Customer-->
+            <div class="tab-pane" id="customer">
+                <div class="table-toolbar">
+                    <div class="form-bordered mh-450 scroll-y">
+                        <div class="row pt5 mb5">
+                            <div class="col-md-6">
+                                <label class="fw600">{{'MS_CURD_TAB_CUSTOMER_LBL_CUSTOMER_CODE' | translate}}</label>
+                                <div class="input-group">
+                                    <input ng-model="CustomerName" class="form-control fs11" type="text" placeholder="{{'MS_CURD_TAB_CUSTOMER_TXT_CUSTOMER_CODE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="CustomerName='';" class="btn btn-default no-shadow start-date">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!--<div class="col-md-6 pull-right mt25">
+                                <button ng-click="searchCustomer()" class="btn btn-accent">
+                                    <i class="fa fa-search"></i>
+                                    {{'COM_BTN_SEARCH' | translate}}
+                                </button>
+                            </div>-->
+                            <div class="col-lg-2">
+                                <div class="btn-group actions d-flex pt25">
+                                    <div class="text-center">
+                                        <a class="btn btn-icon-only btn-circle btn-outline purple-custom" id="customerSearch">
+                                            <span><i class="fa fa-search"></i></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div style="color:#d0d0d0; ">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</div>
+                        <div class="row pt5 mb5">
+                            <div class="col-md-6">
+                                <label class="fw600  fs13 ">{{'MS_CURD_TAB_CUSTOMER_LBL_CUSTOMER_AREAS' | translate}}</label>
+                            </div>
+                        </div>
+                        <div class="row pl10 h-150 mr10" style="overflow-y:scroll;">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label ng-repeat="x in CustomerAreas" class="mt-checkbox mt-checkbox-outline fs12" style="margin: 6px 0 0 15px!important;">
+                                        <input type="checkbox" ng-model="x.checked" ng-click="updateSelection($index, CustomerAreas)"> {{x.Name}}
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div style="color:#d0d0d0; ">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</div>
+                        <div class="row pt5 mb5">
+                            <div class="col-md-6">
+                                <label class="fw600  fs13 ">{{'MS_CURD_TAB_CUSTOMER_LBL_CUSTOMER_GROUP' | translate}}</label>
+                            </div>
+                        </div>
+                        <div class="row pl10">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label ng-repeat="x in CustomerGroup" class="mt-checkbox mt-checkbox-outline fs12" style="margin: 6px 0 0 15px!important;">
+                                            <input type="checkbox" ng-model="x.checked" ng-click="updateSelection($index, CustomerGroup)"> {{x.Name}}
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="color:#d0d0d0; ">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</div>
+
+                        <div class="row pt5 mb5">
+                            <div class="col-md-6">
+                                <label class="fw600  fs13 ">{{'MS_CURD_TAB_CUSTOMER_LBL_CUSTOMER_ROLE' | translate}}</label>
+                            </div>
+                        </div>
+                        <div class="row pl10">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label ng-repeat="x in CustomerRoles" class="mt-checkbox mt-checkbox-outline fs12" style="margin: 6px 0 0 15px!important; border:1px black">
+                                            <input type="checkbox" ng-model="x.checked" ng-click="updateSelection($index, CustomerRoles)"> {{x.Name}}
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="color:#d0d0d0; ">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</div>
+
+                        <div class="row pt5 mb5">
+                            <div class="col-md-6">
+                                <label class="fw600  fs13 ">{{'MS_CURD_TAB_CUSTOMER_LBL_CUSTOMER_TYPE' | translate}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row pl10">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label ng-repeat="x in CustomerTypes" class="mt-checkbox mt-checkbox-outline fs12" style="margin: 6px 0 0 15px!important; border:1px black">
+                                            <input type="checkbox" ng-model="x.checked" ng-click="updateSelection($index, CustomerTypes)"> {{x.Name}}
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End_Customer-->
+            <!--Supplier-->
+            <div class="tab-pane" id="supplier">
+                <div class="table-toolbar">
+                    <form class="form-horizontal ">
+                        <div class="form-bordered mh-450 scroll-y">
+                            <!--<div class="form-group">
+                                <div class="col-md-6">
+                                    <label class="fw600">{{'MS_CURD_TAB_SUPPLIER_LBL_FROM_TO' | translate}}</label>
+                                    <div class="input-group">
+                                        <input ng-model="supplier.FromTo" class="form-control fs11" type="text" placeholder="{{'MS_CURD_TAB_SUPPLIER_TXT_FROM_TO' | translate}}.." id="FromTo" />
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="supplier.FromTo='';" class="btn btn-default no-shadow start-date">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <label class="fw600">{{'MS_CURD_TAB_SUPPLIER_LBL_TO_DATE' | translate}}</label>
+                                    <div class="input-group">
+                                        <input ng-model="supplier.ToDate" class="form-control fs11" type="text" placeholder="{{'MS_CURD_TAB_SUPPLIER_TXT_TO_DATE' | translate}}..." id="DateTo" />
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="supplier.ToDate='';" class="btn btn-default no-shadow end-date">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>-->
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label class="fw600">{{'MS_CURD_TAB_SUPPLIER_LBL_SUPPLIER_CODE' | translate}}</label>
+                                    <div class="input-group">
+                                        <input ng-model="SupplierName" class="form-control fs11" type="text" placeholder="{{'MS_CURD_TAB_SUPPLIER_TXT_SUPPLIER_CODE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="SupplierName='';" class="btn btn-default no-shadow start-date">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pull-right mt10">
+                                    <!--<button ng-click="searchSupplier()" class="btn btn-accent">
+                                        <i class="fa fa-search"></i>
+                                        {{'COM_BTN_SEARCH' | translate}}
+                                    </button>-->
+                                    <button class="btn btn-icon-only btn-circle btn-outline purple-custom" id="supplierSearch">
+                                        <span><i class="fa fa-search"></i></span>
+                                    </button>
+                                    <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                                </div>
+                            </div>
+                            <div style="color:#d0d0d0; ">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - -</div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label class="fw600  fs13 ">{{'MS_CURD_TAB_SUPPLIER_LBL_SUPPLIER_AREAS' | translate}}</label>
+                                </div>
+                            </div>
+                            <div class="row pl10 h-150 mr10" style="overflow-y:scroll">
+                                <label ng-repeat="x in SupplierAreas" class="mt-checkbox mt-checkbox-outline fs12 col-md-4">
+                                    <input type="checkbox" ng-model="x.checked" ng-click="updateSelection($index, CustomerAreas)"> {{x.Name}}
+                                    <span></span>
+                                </label>
+                            </div>
+                            <div style="color:#d0d0d0; ">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - -</div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label class="fw600  fs13 ">{{'MS_CURD_TAB_SUPPLIER_LBL_SUPPLIER_GROUP' | translate}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <label ng-repeat="x in SupplierGroup" class="mt-checkbox mt-checkbox-outline fs12" style="margin: 6px 0 0 15px!important;">
+                                                <input type="checkbox" ng-model="x.checked" ng-click="updateSelection($index, CustomerGroup)"> {{x.Name}}
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="color:#d0d0d0; ">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - -</div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label class="fw600  fs13 ">{{'MS_CURD_TAB_SUPPLIER_LBL_SUPPLIER_ROLE' | translate}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <label ng-repeat="x in SupplierRoles" class="mt-checkbox mt-checkbox-outline fs12" style="margin: 6px 0 0 15px!important; border:1px black">
+                                                <input type="checkbox" ng-model="x.checked" ng-click="updateSelection($index, CustomerRoles)"> {{x.Name}}
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="color:#d0d0d0; ">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - -</div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label class="fw600  fs13 ">{{'MS_CURD_TAB_SUPPLIER_LBL_SUPPIER_TYPE' | translate}}</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <label ng-repeat="x in SupplierTypes" class="mt-checkbox mt-checkbox-outline fs12" style="margin: 6px 0 0 15px!important; border:1px black">
+                                                <input type="checkbox" ng-model="x.checked" ng-click="updateSelection($index, CustomerTypes)"> {{x.Name}}
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!--End_Supplier-->
+            <!--store-->
+            <div class="tab-pane " id="store">
+                <div class="table-toolbar">
+                    <div class="form-bordered">
+                        <div class="row pt5 mb5">
+                            <div class="col-md-6">
+                                <label class="fw600">{{'MS_LBL_STORE_NAME' | translate}}</label>
+                                <div class="input-group">
+                                    <input ng-model="WareHouseName" class="form-control fs11" type="text" placeholder="{{'MS_LBL_STORE_NAME' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="WareHouseName='';" class="btn btn-default no-shadow start-date">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <!--<div class="col-md-6 pull-right mt25">
+                                <button ng-click="searchCustomer()" class="btn btn-accent">
+                                    <i class="fa fa-search"></i>
+                                    {{'COM_BTN_SEARCH' | translate}}
+                                </button>
+                            </div>-->
+                            <div class="col-lg-2">
+                                <div class="btn-group actions d-flex pt25">
+                                    <div class="text-center">
+                                        <a class="btn btn-icon-only btn-circle btn-outline purple-custom" id="storeSearch">
+                                            <span><i class="fa fa-search"></i></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end store-->
+            <!--Start_drag-->
+            <div class="tab-pane active" id="parking">
+                <div class="table-toolbar">
+                    <form class="form-inline" hidden>
+                        <label>{{'MS_CURD_TAB_PARKING_LBL_SELECT_TYPE_PAINT' | translate}} &nbsp;</label>
+                        <select id="type">
+                            <option id="o2" value="Polygon">{{'MS_CURD_TAB_PARKING_COMBO_POLYGON' | translate}}</option>
+                            <option id="o1" value="None">{{'MS_CURD_TAB_PARKING_COMBO_NOT_SELECT' | translate}}</option>
+                        </select>
+                    </form>
+                    <div id="divstyle">
+                        <form class="form-horizontal">
+                            <div class="form-bordered">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label class="col-md-9 bold text-left pl-0">{{'MS_CURD_TAB_PARKING_LBL_BACKGROUND_COLOR' | translate}} &nbsp;</label>
+                                        <div class="col-md-3 pl-0">
+                                            <input type="color" name="favcolor" value="#64C936" id="cl1" class="w75 h-35">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="col-md-6 text-left bold pt5 pr-0">{{'MS_CURD_TAB_PARKING_LBL_SIZE' | translate}}&nbsp;</label>
+                                        <div class="col-md-6 pr-0 pl-0">
+                                            <input type="number" class="form-control" name="points" step="1" min="8" max="20" value="12" id="nb4">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 text-left bold">{{IsMapCustomer ? 'MS_TAB_CUSTOMER' : IsMapSupplier ? 'MS_TAB_SUPPLIER': 'MS_TAB_STORE' | translate}}</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <ui-select tagging ng-model="model.ObjCode" theme="bootstrap">
+                                                <ui-select-match placeholder="{{IsMapCustomer ? 'MS_TAB_CUSTOMER_COMB' : IsMapSupplier ? 'MS_TAB_SUPPLIER_COMB':'MS_TAB_STORE_COMB' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                                <ui-select-choices repeat="x.Code as x in objType | filter: $select.search">
+                                                    {{x.Name}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                            <span class="input-group-btn">
+                                                <button type="button" ng-click="model.ObjCode='';" class="btn btn-default no-shadow">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 text-left bold">{{'MS_CURD_TAB_PARKING_LBL_PICTURE' | translate}}</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <ui-select ng-model="model.Picture" theme="bootstrap">
+                                                <ui-select-match placeholder="{{'MS_CURD_TAB_PARKING_COMBO_PICTURE' | translate}}..."><img class="h-20" ng-src="{{ $select.selected.url }}" />&nbsp; {{$select.selected.name}}</ui-select-match>
+                                                <ui-select-choices repeat="x.url as x in lisPicture ">
+                                                    <img ng-src="{{ x.url }}" />
+                                                    <div ng-bind-html="x.name | highlight: $select.search" style="display: inline"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                            <span class="input-group-btn">
+                                                <button type="button" ng-click="model.Picture='';" class="btn btn-default no-shadow start-date">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 bold text-left">{{'MS_CURD_TAB_PARKING_LBL_NAME' | translate}} &nbsp;</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="{{'MS_CURD_TAB_PARKING_TXT_NAME' | translate}}" ng-model="model.Name" id="tx1">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 bold text-left">{{'MS_CURD_TAB_PARKING_LBL_NOTE' | translate}} &nbsp;</label>
+                                    <div class="col-md-8">
+                                        <textarea type="text" rows="3" class="form-control" ng-model="model.Note" placeholder="{{'MS_CURD_TAB_PARKING_TXT_NOTE' | translate}}" id="tx2" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 bold text-left">{{'MS_CURD_TAB_PARKING_LBL_IMAGES' | translate}} &nbsp;</label>
+                                    <div class="col-md-8">
+                                        <div class="pt10">
+                                            <div class="fileupload-new pull-left thumbnail mb5" role="button">
+                                                <input id="file" accept=".png,.jpg,.jpeg,.gif,.tif" type="file" style="display:none" />
+                                                <img ng-click="selectImage()" id="Profile_picture" class="h-100 w100" alt="holder" src="../../../images/default/no_image.png" />
+                                            </div>
+                                            <div class="fileupload-new  pull-left thumbnail ml10 mb5" role="button">
+                                                <img class="h-100 w100" alt="holder" src="../../../images/default/no_image.png" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="form-group">
+                                    <label class="col-md-4 bold text-left">{{'MS_CURD_TAB_PARKING_LBL_PAINT' | translate}} &nbsp;</label>
+                                    <div class="col-md-8">
+                                        <div class="col-md-6 pl-0">
+                                            <a><img src="../../../images/map/drawing.png" class="w50 h50" id="draw" /></a>
+                                            <label class="col-md-12 pl-0 fs10">{{'MS_CURD_TAB_PARKING_LBL_START_PAINT' | translate}}</label>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <a><img src="../../../images/map/Eraser.png" id="refresh" class="w50 h50" /></a>
+                                            <label class="col-md-12 fs10">{{'MS_CURD_TAB_PARKING_LBL_DELETE_PAINT' | translate}}</label>
+                                        </div>
+                                    </div>
+                                </div>-->
+
+                                <div class="form-group">
+
+                                    <div class="col-md-12 pt10">
+                                        <div class="col-md-3 p-0 text-center">
+                                            <a><img src="../../../images/map/drawing.png" class="mw35 h-35" id="draw" /></a>
+                                            <p class="text-underline fs9 mb5 pt3">{{'MS_CURD_TAB_PARKING_LBL_START_PAINT' | translate}}</p>
+
+                                            <!--<label class="col-md-12 pl-0 fs10">{{'MS_CURD_TAB_PARKING_LBL_START_PAINT' | translate}}</label>-->
+                                        </div>
+                                        <div class="col-md-3 p-0 text-center">
+                                            <a><img src="../../../images/map/Eraser.png" id="refresh" class="mw35 h-35" /></a>
+                                            <p class="text-underline fs9 mb5 pt3">{{'MS_CURD_TAB_PARKING_LBL_DELETE_PAINT' | translate}}</p>
+                                            <!--<label class="col-md-12 p-0 fs10"></label>-->
+                                        </div>
+                                        <div class="text-center col-md-3 pl20">
+                                            <button class="btn btn-icon-only btn-circle btn-outline green-custom" id="addToParkingTemp">
+                                                <span><i class="fa fa-plus"></i></span>
+                                            </button>
+                                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                        </div>
+                                        <div class="text-center col-md-3 pl20">
+                                            <button class="btn btn-icon-only btn-circle btn-outline green-custom" id="save">
+                                                <span><i class="fa fa-save"></i></span>
+                                            </button>
+                                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--<div class="form-group">
+                                    <label class="col-md-4 bold text-left"></label>
+                                    <div class="col-md-8">
+                                        <div id="divsave">
+                                            <button class="btn btn-primary" id="addToParkingTemp">{{'MS_CURD_TAB_PARKING_BTN_ADD_PARKING' | translate}}</button>
+                                            <button class="btn btn-primary pull-right" id="save">{{'COM_BTN_SAVE' | translate}}</button>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="form-group" ng-show="listParkingTemp.length>0">
+                                    <label class="col-md-4 bold">{{'MS_CURD_TAB_PARKING_LBL_LIST_PARK' | translate}}</label>
+                                    <div class="col-md-8">
+                                        <div>
+                                            <table class="table-bordered" style="max-height:20px; overflow:auto">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="bold" style="width:150px"><u>{{'MS_CURD_TAB_PARKING_COL_NAME_PARK' | translate}}</u></th>
+                                                        <th class="bold" style="width:150px"><u>{{'MS_CURD_TAB_PARKING_COL_IMAGES_PARK' | translate}}</u></th>
+                                                        <th class="bold" style="width:100px"><u>{{'MS_CURD_TAB_PARKING_COL_ACTION' | translate}}</u></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="x in listParkingTemp">
+                                                        <td>{{x.title}}</td>
+                                                        <td><img class="h-25" ng-src="{{x.Icon}}" /></td>
+                                                        <!-- <td>{{x.Description}}</td>-->
+                                                        <td><a ng-click="deleteParkingTempItem($index)">{{'COM_BTN_DELETE' | translate}}</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--End_drag-->
+
+
+        </div>
+    </div>
+</div>
+<div id="map" class="col-md-12 pl-0 pr-0">
+    <div id="popup" title="" style="align-content:center"></div>
+</div>

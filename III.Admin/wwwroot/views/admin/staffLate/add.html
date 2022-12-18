@@ -1,0 +1,136 @@
+﻿<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title " id="modal-title">{{'STL_CURD_TITTLE_LATE_LEAVE' | translate}}</span>
+</div>
+<div class="modal-body pt-0 pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal" method="post" ng-validate="validationOptions">
+            <div class="form-body pt0 pb-20">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <div class="mb-0">
+                            <input id="File" accept=".png,.jpg,.jpeg,.gif,.tif" type="file" style="display:none" />
+                            <img id="imageId" ng-click="loadImage()" src="{{image}}" class="img-circle h-150 w150" role="button" onerror="this.src='../../../images/default/uploadimg.png'"  alt="Hình ảnh" />
+                        </div>
+                        <span class="text-success fs10">{{'STL_CURD_LBL_LOCATION' | translate}}: {{model.LocationText}}.</span><br />
+                        <span class="text-success fs10">{{'STL_CURD_LBL_IP' | translate}}: {{model.Ip}}</span><br />
+                        <!--<span class="text-success fs10">{{'STL_CURD_LBL_CREATE_TIME' | translate}}: {{dateNow | date:'dd/MM/yyyy hh:ss'}}</span>-->
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group text-center pr40">
+                            <div class="input-group">
+                                <label ng-repeat="x in entities" class="mt-checkbox mt-checkbox-outline fs12" style="margin: 6px 0 0 15px!important;">
+                                    <input type="checkbox" ng-model="x.checked" ng-change="updateSelection($index, entities)"> {{x.name}}
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="pt10 row">
+                            <div class="col-md-6 form-group" ng-class="{ 'has-error': errorUserId}">
+                                <div class="col-md-12">
+                                    <label class="require">{{'STL_CURD_LBL_USER_ID' | translate}}</label>
+                                    <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.UserId" theme="bootstrap" ng-change="changleSelect('UserId')" on-select="selectUser(model.UserId)">
+                                        <ui-select-match placeholder="{{'STL_CURD_COMBO_USER_ID' | translate}}..."><img class="img-circle h-20" ng-src="{{ $select.selected.Picture }}" onerror="this.src='../../../images/default/no_user.png'" />&nbsp; {{$select.selected.GivenName}}</ui-select-match>
+                                        <ui-select-choices repeat="x.UserId as x in listUser | filter: $select.search">
+                                            <img class="img-circle w25 h-25" ng-src="{{ x.Picture }}" onerror="this.src='../../../images/default/no_user.png'" />
+                                            <div ng-bind-html="x.GivenName" style="display: inline"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span ng-show="errorUserId" class="label-color validation-message">
+                                        {{'STL_CURD_VALIDATE_EMPLOYEES' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 form-group" ng-if="goLate">
+                                <div class="col-md-12">
+                                    <label class="require">{{'STL_CURD_LBL_TIME' | translate}}</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control"  ng-model="model.ActionTime" name="ActionTime" placeholder="{{'STL_CURD_TXT_TIME' | translate}}..." id="ActionTime" />
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="model.ActionTime='';" class="btn btn-default no-shadow">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 form-group" ng-if="quitWork">
+                                <label class="require">{{'STL_CURD_LBL_TIME' | translate}}</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" autocomplete="off" ng-model="model.ActionTime" name="ActionTime" placeholder="{{'STL_CURD_TXT_TIME' | translate}}..." id="ActionDate" />
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.ActionTime='';" class="btn btn-default no-shadow">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="notWork">
+                            <div class="col-md-6">
+                                <label class="require">{{'STL_CURD_LBL_FROM_DAY' | translate}}</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" autocomplete="off" ng-model="model.ActionTime" name="ActionBegin" placeholder="{{'STL_CURD_TXT_FROM_DAY' | translate}}..." id="FromTo" />
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.ActionTime='';" class="btn btn-default no-shadow start-date">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="require">{{'STL_CURD_LBL_TO_DAY' | translate}}</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" autocomplete="off" ng-model="model.ActionTo" name="ActionTo" placeholder="{{'STL_CURD_TXT_TO_DAY' | translate}}..." id="DateTo" />
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.ActionTo='';" class="btn btn-default no-shadow end-date">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label>{{'STL_CURD_LBL_DESCRIPTION' | translate}}</label>
+                                <textarea class="form-control" rows="4" name="Content" ng-model="model.Note" placeholder="{{'STL_CURD_TXT_DESCRIPTION' | translate}}..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="portlet light bordered mb5">
+                        <div class="portlet-title mnh25">
+                            <div class="caption">
+                                <span class="caption-subject bold fs12">{{'STL_TITTLE_TABLE' | translate}}&nbsp;<span class="text-danger">{{GiveName}}</span></span>
+                            </div>
+                            <div class="pull-right d-flex">
+                                <div class="text-center pr10">
+                                    <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="add()">
+                                        <span><i class="fa fa-plus"></i></span>
+                                    </a>
+                                    <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                </div>
+                                <div class="text-center pr10">
+                                    <a class="btn btn-icon-only btn-circle btn-outline blue-custom" ng-click="update()">
+                                        <span><i class="fa fa-pencil"></i></span>
+                                    </a>
+                                    <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_EDIT' | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portlet-body todo-project-list-content">
+                            <table class="table dataTable table-hover table-striped"
+                                   datatable
+                                   dt-options="dtOptions"
+                                   dt-columns="dtColumns"
+                                   dt-instance="dtInstance"
+                                   id="tblDataUserLate"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

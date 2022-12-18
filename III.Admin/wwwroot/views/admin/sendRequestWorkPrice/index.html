@@ -1,0 +1,137 @@
+﻿<style>
+    .app-content{
+        width: 100%;
+    }
+</style>
+<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-md-8">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text-underline" style="color:black;" href="#">{{'COM_MENU_CONTRACT' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="#/contract">{{'SRWP_LBL_REQ'|translate}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <div class="btn-group pull-right pt5 pb-1 actions d-flex">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="pr-2">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+
+                <div class="">
+                    <button class="btn red-custom br4" ng-click="addCardJob()">
+                        <i class="fa fa-trello"></i>
+                        {{'COM_BTN_ADD_CAR'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-12" style="height:20px">
+                    <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-in-line" role="button" title="Ẩn tìm kiếm"></i>
+                </div>
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'SRWP_LBL_SEARCH_KEY' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.Key" class="form-control" type="text" placeholder="{{'SRWP_LBL_SEARCH_KEY' | translate}}.." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Key=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'SRWP_LBL_ORGANIZATION' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.BranchId" theme="bootstrap">
+                            <ui-select-match placeholder="{{'SRWP_TXT_ORGANIZATION' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in listBranch | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.BranchId='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'SRWP_CURD_LBL_SEARCH_FROM_DATE'|translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.FromDate" class="form-control" type="text" placeholder="{{'SRWP_CURD_LBL_SEARCH_FROM_DATE'|translate}}.." autocomplete="off" ng-keydown="($event.keyCode == 13) && reload()" id='datefrom' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.FromDate=''" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'SRWP_CURD_LBL_SEARCH_TO_DATE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.ToDate" class="form-control" type="text" autocomplete="off" placeholder="{{'SRWP_CURD_LBL_SEARCH_TO_DATE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" id='dateto' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ToDate=''" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'SRWP_CURD_LBL_SEARCH_STATUS' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select ng-model="model.Status" theme="bootstrap">
+                            <ui-select-match placeholder="{{'SRWP_CURD_LBL_SEARCH_STATUS' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in Status| filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Status=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="btn-group pt10 actions d-flex">
+                        <div class="pr10 text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="search()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12"> <label style="color:red">{{'SRWP_LBL_NOTE'|translate}} : {{'SRWP_LBL_NOTE2'|translate}}</label></div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblDataRequestPrice"></table>

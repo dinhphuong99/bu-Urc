@@ -1,0 +1,191 @@
+﻿<style>
+    .tab-content {
+        height: 230px;
+    }
+
+    .modal-body {
+        padding-bottom: 45px;
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title"> {{'RB_TITLE_ADD' | translate}}</span>
+</div>
+<div class="modal-body" id="modal-body" style="padding-bottom:0px !important">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptions">
+            <div class="form-body pt-0 pb-0">
+                <div class="row mt-action-5 pt15">
+                    <div class="col-md-8">
+                        <div class="form-group" ng-class="{ 'has-error': errorBinCode}">
+                            <div class="col-md-4">
+                                <i class="fa fa-code"></i>
+                                <label class="control-label ">&nbsp;{{'RB_CURD_LBL_RUB_CODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="model.BinCode" placeholder="{{'RB_CURD_TXT_RUB_CODE' | translate}}" ng-change="change('binCode')" />
+                                <span ng-show="errorBinCode" class="label-color validation-message">
+                                    {{'RB_MSG_RUB_CODE_NO_BLANK' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorBinName}">
+                            <div class="col-md-4">
+                                <i class="fas fa-file-signature"></i>
+                                <label class="control-label ">&nbsp;{{'RB_CURD_LBL_RUB_NAME' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="model.BinName" placeholder="{{'RB_CURD_TXT_RUB_NAME' | translate}}" ng-change="change('binName')" />
+                                <span ng-show="errorBinCode" class="label-color validation-message">
+                                    {{'RB_MSG_RUB_NAME_NO_BLANK' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fas fa-file-signature"></i>
+                                <label class="control-label ">&nbsp;{{'RB_CURD_LBL_MATERIAL' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.Material" theme="bootstrap" ng-change="changeQRCode()">
+                                        <ui-select-match placeholder="{{'RB_CURD_TXT_MATERIAL' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in binMaterials | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.Material=''" class="btn btn-default no-shadow" style="">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-user"></i>
+                                <label class="control-label ">&nbsp;{{'RB_CURD_LBL_MANAGER' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.WorkerManage" theme="bootstrap" ng-change="changeQRCode()">
+                                        <ui-select-match placeholder="{{'RB_CURD_TXT_MANAGER' | translate}}...">{{$select.selected.FullName}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Id as x in manageUsers | filter: $select.search">
+                                            {{x.FullName}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.WorkerManage=''" class="btn btn-default no-shadow" style="">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-code"></i>
+                                <label class="control-label ">&nbsp;{{'RB_CURD_LBL_TYPE_RUB' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.BinType" theme="bootstrap" ng-change="changeQRCode()">
+                                        <ui-select-match placeholder="{{'RB_CURD_TXT_TYPE_RUB' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in binTypes | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.BinType=''" class="btn btn-default no-shadow" style="">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 text-left "><i class="glyphicon glyphicon-copyright-mark"></i>&nbsp;{{'RB_CURD_LBL_VOLUME' | translate}}(m3)</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="model.Volume" placeholder="{{'RB_CURD_TXT_VOLUME' | translate}}(m3)" num-thousand="true" awnum num-int="21" ng-change="changeQRCode()" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 text-left "><i class="glyphicon glyphicon-copyright-mark"></i>&nbsp;{{'RB_CURD_LBL_STRUCTURE' | translate}}</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="model.Structure" placeholder="{{'RB_CURD_TXT_STRUCTURE' | translate}}" ng-change="changeQRCode()" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fas fa-flag"></i>
+                                <label class="control-label ">&nbsp;{{'RB_CURD_LBL_STATUS' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.Status" theme="bootstrap" ng-change="changeQRCode()">
+                                        <ui-select-match placeholder="{{'RB_CURD_TXT_STATUS' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in binStatuss | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.Status=''" class="btn btn-default no-shadow" style="">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 text-left "><i class="fa fa-clipboard"></i>&nbsp;{{'RB_CURD_LBL_NOTE' | translate}}</label>
+                            <div class="col-md-8">
+                                <textarea style="height:100px" class="form-control" ng-model="model.Note" placeholder="{{'RB_CURD_TXT_NOTE' | translate}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-12">
+                            <div class="form-group" style=" margin-left:10px;">
+                                <qrcode data="{{model.QrCode}}" download size="100"></qrcode>
+                            </div>
+                            <div class="col-md-12 text-center fs10 pl-0 pr-0">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                <label class="control-label ">&nbsp;{{'RB_CURD_LBL_QR_CODE' | translate}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt20">
+                            <div class="form-group">
+                                <div class="fileupload-new thumbnail pb-0" style="border:0; box-shadow: none;background:none;">
+                                    <input id="file" accept=".png,.jpg,.jpeg,.gif,.tif" type="file" style="display:none" />
+                                    <img id="picture" ng-click="loadImage()" style="width:100px; height:100px" onerror="this.src='/images/default/no_user.png'" ng-src="{{model.Image==null ? '/images/default/no_image.png' : model.Image}}" role="button" />
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center fs10 pl-0 pr-0" style="margin-top:-25px">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                <label class="control-label ">&nbsp;{{'RB_CURD_IMG_RUB' | translate}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row pt30">
+                            <div class="pull-right col-md-12">
+                                <div class="btn-group pull-right" style="margin-top:100px">
+                                    <div class="pl20">
+                                        <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="submit()">
+                                            <span><i class="fa fa-plus"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--<div class="modal-footer" >
+
+</div>-->

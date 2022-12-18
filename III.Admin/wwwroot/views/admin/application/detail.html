@@ -1,0 +1,38 @@
+﻿<div class="modal-header">
+    <img class="close icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-info-circle icon-detail" aria-hidden="true"></i>
+    <span class="modal-title black" id="modal-title"> Thông tin ứng dụng</span>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal" method="post" ng-validate="validationOptions">
+            <div class="form-body">
+                <div class="form-group">
+                    <span class="col-md-4 text-right" style="color:darkgray"><i class="fa fa-barcode" aria-hidden="true"></i> Mã ứng dụng:</span>
+                    <div class="col-md-8">M01</div>
+                </div>
+                <div class="form-group">
+                    <span class="col-md-4 text-right" style="color:darkgray"><i class="fa fa-info-circle" aria-hidden="true"></i> Tên ứng dụng:</span>
+                    <div class="col-md-8">Quan ly KHDN vua</div>
+                </div>
+                <div class="form-group">
+                    <span class="col-md-4 text-right" style="color:darkgray"><i class="fa fa-image" aria-hidden="true"></i> Hình ảnh:</span>
+                    <div class="col-md-8">Giam doc TTKD</div>
+                </div>
+                <div class="form-group">
+                    <span class="col-md-4 text-right" style="color:darkgray"><i class="fa fa-info-circle" aria-hidden="true"></i> Địa chỉ:</span>
+                    <div class="col-md-8">Giam doc TTKD</div>
+                </div>
+                <div class="form-group">
+                    <span class="col-md-4 text-right" style="color:darkgray"><i class="fa fa-tasks" aria-hidden="true"></i> Thứ tự:</span>
+                    <div class="col-md-8">Giam doc TTKD</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <a data-dismiss="modal" class="btn  btn-default close-box-shadow" href="javascript:;" style="border-radius:5px" ng-click="cancel()">
+        Đóng
+    </a>
+</div>

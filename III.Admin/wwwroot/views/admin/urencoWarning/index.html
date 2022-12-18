@@ -1,0 +1,106 @@
+﻿<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home" style="color:black;"></i>
+                    <a class=" bold text-underline" style="color:black;" href="#">{{'Urenco System' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="UrencoWarning#">{{'Cảnh báo' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group pb-1 pt5 actions d-flex pull-right">
+                <button class="btn green-custom br4" ng-click="add()">
+                    <i class="fa fa-plus"></i>
+                    {{'COM_BTN_ADD'| translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="row col-md-9 pr-0">
+                    <div class="col-md-3">
+                        <label class="fw600 text-underline">Tiêu đề</label>
+                        <div class="input-group">
+                            <ui-select ng-disabled="isAdd==false" ng-model="model.ProductCode" theme="bootstrap">
+                                <ui-select-match placeholder="Tiêu đề">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="x.Id as x in products | filter: $select.search">
+                                    {{x.Name}}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button ng-disabled="isAdd==false" type="button" class="btn btn-default no-shadow">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="fw600 text-underline">Loại cảnh báo</label>
+                        <div class="input-group">
+                            <ui-select ng-disabled="isAdd==false" ng-model="model.ProductCode" theme="bootstrap">
+                                <ui-select-match placeholder="Loại cảnh báo">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="x.Id as x in products | filter: $select.search">
+                                    {{x.Name}}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button ng-disabled="isAdd==false" type="button" class="btn btn-default no-shadow">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="fw600 text-underline">Thời gian từ</label>
+                        <div class="input-group">
+                            <div class='input-group date' id='date-InsurranceDuration'>
+                                <input type='text' class="form-control input-date" placeholder="Thời gian từ" />
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="fw600 text-underline">Thời gian đến</label>
+                        <div class="input-group">
+                            <div class='input-group date' id='date-InsurranceDuration'>
+                                <input type='text' class="form-control input-date" placeholder="Thời gian đến" />
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 pt5">
+                    <div class="btn-group pt5 actions d-flex flr">
+                        <div class="text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="search()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">Tìm kiếm</p>
+                        </div>
+                        <!--<div class="pl20 text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="add()">
+                                <span><i class="fa fa-plus"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">Thêm mới</p>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblDataContract"></table>

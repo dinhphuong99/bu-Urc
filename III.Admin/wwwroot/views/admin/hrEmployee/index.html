@@ -1,0 +1,199 @@
+﻿<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'HR_HR_MAN_LBL_HR_MAN' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/HrEmployee">{{'HR_HR_MAN_LINK_HR_MAN' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group pb-1 pt5 actions d-flex pull-right">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="" ng-if="showFunctionHr.Insert">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-lg-2">
+                    <label class="fw600 text-underline">{{'HR_HR_MAN_CURD_LBL_HR_MAN_FULL_NAME' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.FullName" class="form-control br4" type="text" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_FULL_NAME' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'HR_HR_LBL_ORGANIZATION' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.BranchId" theme="bootstrap">
+                            <ui-select-match placeholder="{{'HR_HR_TXT_ORGANIZATION' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in listBranch | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.BranchId='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label class="fw600 text-underline">{{'HR_HR_MAN_CURD_LBL_HR_MAN_EMPLOYEE_TYPE' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.EmployeeType" theme="bootstrap">
+                            <ui-select-match placeholder="{{'HR_HR_MAN_CURD_LBL_HR_MAN_EMPLOYEE_TYPE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in employeeStyleData | filter:$select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.EmployeeType=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'HR_HR_MAN_CURD_LBL_HR_MAN_DEPARTMENT'| translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.Unit" theme="bootstrap">
+                            <ui-select-match placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DEPARTMENT' | translate}}...">{{$select.selected.Title}}</ui-select-match>
+                            <ui-select-choices repeat="x.DepartmentCode as x in treeDataunit | filter:$select.search">
+                                {{x.Title}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Unit=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'HR_HR_MAN_CURD_LBL_HR_MAN_SEX'| translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.Gender" theme="bootstrap">
+                            <ui-select-match placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_SEX' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in listGender | filter:$select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Gender=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2" style="width: 14%;">
+                    <label class="fw600 text-underline">{{'HR_HR_MAN_CURD_LBL_HR_MAN_POSITION'| translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.Position" theme="bootstrap">
+                            <ui-select-match placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_POSITION' | translate}}...">{{$select.selected.Title}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in positionData | filter:$select.search">
+                                {{x.Title}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Position=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <i style="margin-top:30px !important; margin-right:15px !important; font-size:40px" ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search" role="button" title="Ẩn tìm kiếm"></i>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'HR_HR_CURD_LBL_AGE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.NumberOfYears" type="number" class="form-control br4" placeholder="{{'HR_HR_CURD_LBL_AGE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'HR_HR_LBL_TXT_NUM_WORK' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.YearsOfWork" type="number" class="form-control br4" placeholder="{{'HR_HR_LBL_TXT_NUM_WORK' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'HR_HR_LBL_TXT_SALARY' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.Wage" type="number" class="form-control br4" placeholder="{{'HR_HR_LBL_TXT_SALARY' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'HR_HR_LBL_TXT_LEVEL_EDUCATION' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.EducationalLevel" class="form-control br4" type="text" placeholder="{{'HR_HR_LBL_TXT_LEVEL_EDUCATION' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label class="fw600 text-underline">{{'HR_HR_MAN_CURD_LBL_HR_MAN_DATE_FROM' | translate}}</label>
+                    <div class="input-group ">
+                        <input ng-model="model.FromDate" class="form-control" type="text" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DATE_FROM' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" id='datefrom' autocomplete="off" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.FromDate=''" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label class="fw600 text-underline">{{'HR_HR_MAN_CURD_LBL_HR_MAN_DATE_TO' | translate}}</label>
+                    <div class="input-group ">
+                        <input ng-model="model.ToDate" class="form-control" type="text" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DATE_TO' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" id='dateto' autocomplete="off" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ToDate=''" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="fw600 text-underline">{{'HR_HR_MAN_CURD_LBL_HR_MAN_ADDRESS' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.Permanentresidence" class="form-control" type="text" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_ADDRESS' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Permanentresidence=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="btn-group pt20 actions d-flex">
+                        <div class="pr10 text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="reload()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12"> <label class="text-danger">{{'COM_MSG_LIST_GUIDE' | translate}}</label></div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblData"></table>

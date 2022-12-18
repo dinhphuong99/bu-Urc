@@ -1,0 +1,143 @@
+﻿<style>
+    .close-input-search-box {
+        margin: -15px 0px;
+        z-index: 10;
+        position: relative;
+    }
+
+    .labelbodergroup {
+        margin-top: 5px;
+        position: absolute;
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border: 1px solid #e9dada;
+        border-radius: 4px;
+        padding: 3px 10px !important;
+    }
+</style>
+<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-6 ">
+            <h1 class="bold mb-0">{{'EDMS_QRCODE_MANAGER_TITLE'|translate}}</h1>
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="#">{{'COM_LINK_HOME'|translate}}</a>
+                    <span>&gt;</span>
+                </li>
+                <li>
+                    <div href="#/user" class="bold">{{'EDMS_QRCODE_MANAGER_TITLE'|translate}}</div>
+                </li>
+            </ul>
+        </div>
+        <!--<div class="col-md-6">
+            <div class="btn-group pull-right actions">
+                <a ng-click="add()" class="btn btn-green">
+                    <i class="fa fa-plus"></i>
+                    Thêm mới
+                </a>
+                <a class="btn btn-red" style="padding: 7px 25px;" ng-click="print()">
+                    <span class=""><i class="fas fa-print"></i> In ấn</span>
+                </a>
+            </div>
+        </div>-->
+
+    </div>
+    <div class="portlet light bordered input-search  mt5 p10">
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'EDMSSRP_CURD_LBL_DATE_FROM' | translate}}</label>
+                    <div class="input-group date">
+                        <input type="text" id='dateFrom' autocomplete="off" class="form-control" placeholder="{{'EDMSSRP_CURD_TXT_DATE_FROM' | translate}}..." ng-model="model.FromDate">
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.FromDate='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'EDMSSRP_CURD_LBL_TO_FROM' | translate}}</label>
+                    <div class='input-group date'>
+                        <input type='text' id='dateTo' autocomplete="off" class="form-control " ng-model="model.ToDate" placeholder="{{'EDMSSRP_CURD_LBL_TO_FROM' | translate}}..." />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ToDate='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'EDMS_QRCODE_MANAGER_LBL_OBJ_TYPE'|translate}}</label>
+                    <div class="input-group" ng-class="{ 'has-error': errorObjType}">
+                        <ui-select tagging ng-model="model.OBJ_Type" theme="bootstrap" on-select="changeObjType(model.OBJ_Type)">
+                            <ui-select-match placeholder="{{'EDMS_QRCODE_MANAGER_TXT_OBJ_TYPE'|translate}}">{{$select.selected.OBJ_Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.OBJ_Code as x in listObjType | filter:$select.search">
+                                {{x.OBJ_Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.OBJ_Type=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'EDMS_QRCODE_MANAGER_LBL_CREATED_BY'|translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.CreatedBy" theme="bootstrap">
+                            <ui-select-match placeholder="{{'EDMS_QRCODE_MANAGER_TXT_CREATED_BY'|translate}}">{{$select.selected.GivenName}}</ui-select-match>
+                            <ui-select-choices repeat="x.UserName as x in listUser | filter:$select.search">
+                                {{x.GivenName}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.CreatedBy=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <!--<div class="col-md-2">
+                    <div class="btn-group" style="padding-top:23px">
+                        <a class="btn btn-accent" ng-click="search()">
+                            <span class=""><i class="fa fa-search"></i> Tìm kiếm</span>
+                        </a>
+                    </div>
+                </div>-->
+                <div class="col-md-3">
+                    <div class="btn-group pt20 actions d-flex">
+                        <div class="text-center pr10">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="reload()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                        <div class="text-center pr10">
+                            <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="add()">
+                                <span><i class="fa fa-plus"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                        </div>
+                        <div class="text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline blue-custom" ng-click="print()">
+                                <span><i class="fas fa-print"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">In ấn</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table dataTable  table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblData"></table>
+
+

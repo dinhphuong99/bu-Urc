@@ -1,0 +1,148 @@
+﻿<style>
+    .nav-link {
+        font-style: normal !important;
+        font-size: 13px !important;
+        font-weight: normal;
+    }
+
+    .nav-tabs > li.active > a {
+        font-style: normal !important;
+        font-size: 13px !important;
+        font-weight: normal;
+    }
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+            font-style: normal !important;
+            font-size: 13px !important;
+            font-weight: normal !important;
+        }
+</style>
+
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title"> {{'CATEGORY_TITLE_ADD_CATEGORY' | translate}}</span>
+</div>
+<div class="modal-body pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptions">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" ng-class="{ 'has-error': errorInheritance}">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            <label class="control-label">{{'FREE_STORAGE_LBL_ID' | translate}}</label>
+                            <div class="input-group  ">
+                                <ui-select tagging ng-model="model.ProductCode" theme="bootstrap" on-select="changleSelect('unit')">
+                                    <ui-select-match placeholder="{{'FREE_STORAGE_LBL_ID' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in products | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.ProductCode=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            <label class="control-label">{{'FREE_STORAGE_WAREHOUSE' | translate}}</label>
+                            <div class="input-group  ">
+                                <ui-select tagging ng-model="model.StoreCode" theme="bootstrap" on-select="changleSelect('unit')">
+                                    <ui-select-match placeholder="{{'FREE_STORAGE_WAREHOUSE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in stores | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.StoreCode=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            <label class="control-label">{{'FREE_STORAGE_LBL_FLOOR' | translate}}</label>
+                            <div class="input-group  ">
+                                <ui-select tagging ng-model="model.Floor" theme="bootstrap" on-select="changleSelect('unit')">
+                                    <ui-select-match placeholder="{{'FREE_STORAGE_LBL_FLOOR' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in floors | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.Floor=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            <label class="control-label">{{'FREE_STORAGE_LBL_LINE' | translate}}</label>
+                            <div class="input-group  ">
+                                <ui-select tagging ng-model="model.Line" theme="bootstrap" on-select="changleSelect('unit')">
+                                    <ui-select-match placeholder="{{'FREE_STORAGE_LBL_LINE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in lines | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.Line=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            <label class="control-label">{{'FREE_STORAGE_LBL_SHELF' | translate}}</label>
+                            <div class="input-group  ">
+                                <ui-select tagging ng-model="model.Rack" theme="bootstrap" on-select="changleSelect('unit')">
+                                    <ui-select-match placeholder="{{'FREE_STORAGE_LBL_LINE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in racks | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="model.Rack=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center pull-right" style=" margin-right:0px" ng-click="submit()">
+                            <a class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                <span><i class="fa fa-save"></i></span>
+                            </a>
+                            <p class="text-underline fs12 mb5 pt3">{{'FREE_STORAGE_LBL_ADD' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

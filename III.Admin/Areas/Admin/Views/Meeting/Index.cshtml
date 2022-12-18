@@ -1,0 +1,92 @@
+﻿@model III.Admin.Controllers.MeetingController.RoomInfo;
+@{
+    ViewData["Title"] = "Meeting";
+}
+
+<link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.7.6/css/bootstrap.css" />
+<link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.7.6/css/react-select.css" />
+
+<body>
+    <script src="https://source.zoom.us/1.7.6/lib/vendor/react.min.js"></script>
+    <script src="https://source.zoom.us/1.7.6/lib/vendor/react-dom.min.js"></script>
+    <script src="https://source.zoom.us/1.7.6/lib/vendor/redux.min.js"></script>
+    <script src="https://source.zoom.us/1.7.6/lib/vendor/redux-thunk.min.js"></script>
+    <script src="https://source.zoom.us/1.7.6/lib/vendor/jquery.min.js"></script>
+    <script src="https://source.zoom.us/1.7.6/lib/vendor/lodash.min.js"></script>
+    <script src="https://source.zoom.us/zoom-meeting-1.7.6.min.js"></script>
+    <script src="~/lib/zoom/js/tool.js"></script>
+
+    @Html.HiddenFor(m => m.RoomID);
+    @Html.HiddenFor(m => m.RoomName);
+    @Html.HiddenFor(m => m.Role);
+    @Html.HiddenFor(m => m.RoomPassWord);
+    @Html.HiddenFor(m => m.UserName);
+
+    <script>
+        var roomID = $('#RoomID').val();
+        var roomName = $('#RoomName').val();
+        var role = $('#Role').val();
+        var roomPassWord = $('#RoomPassWord').val();
+        var userName = $('#UserName').val();
+        if (roomID == null || roomID == '' ||roomID== undefined) {
+            alert('Không lấy được thông tin cuộc họp');
+            window.close();
+        } else {
+            console.log('checkSystemRequirements');
+            console.log(JSON.stringify(ZoomMtg.checkSystemRequirements()));
+
+            ZoomMtg.preLoadWasm();
+            ZoomMtg.prepareJssdk();
+
+            var API_KEY = 'o6EIJCatTZm3t4v0qThsoQ';
+            var API_SECRET = 'qwfleud1ZHN6IjzkXoI8ce5Qfnx49zh2mRHE';
+
+            var meetConfig = {
+                apiKey: API_KEY,
+                apiSecret: API_SECRET,
+                meetingNumber: parseInt(roomID),
+                userName: userName,
+                passWord: roomPassWord,
+                leaveUrl: "/admin",
+                role: parseInt(role)
+            };
+
+            var signature = ZoomMtg.generateSignature({
+                meetingNumber: meetConfig.meetingNumber,
+                apiKey: meetConfig.apiKey,
+                apiSecret: meetConfig.apiSecret,
+                role: meetConfig.role,
+                success: function (res) {
+                    console.log(res.result);
+                }
+            });
+
+            ZoomMtg.init({
+                leaveUrl: "/admin",
+                isSupportAV: true,
+                success: function () {
+                    ZoomMtg.join(
+                        {
+                            meetingNumber: meetConfig.meetingNumber,
+                            userName: meetConfig.userName,
+                            signature: signature,
+                            apiKey: meetConfig.apiKey,
+                            passWord: meetConfig.passWord,
+                            success: function (res) {
+                                $('#nav-tool').hide();
+                                console.log('join meeting success');
+                            },
+                            error: function (res) {
+                                console.log(res);
+                            }
+                        }
+                    );
+                },
+                error: function (res) {
+                    console.log(res);
+                }
+            });
+        }
+    </script>
+</body>
+

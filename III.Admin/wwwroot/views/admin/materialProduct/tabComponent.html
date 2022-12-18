@@ -1,0 +1,124 @@
+﻿<style>
+    .h-95-srcoll {
+        overflow: auto;
+        max-height: 95px !important;
+        height: 95px !important;
+    }
+
+    .boder-box-custom-scroll {
+        padding: 1px;
+        /* overflow: hidden; */
+        word-wrap: break-word;
+        cursor: text;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        height: 100%;
+        border-radius: 4px;
+        max-height: 200px;
+        height: 150px;
+    }
+
+    .tags-custom {
+        margin: 2px;
+        padding: 0 5px;
+        display: inline-block;
+        float: left;
+        font: 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
+        /*height: 26px;*/
+        height: auto;
+        line-height: 25px;
+        border: 1px solid #acacac;
+        border-radius: 3px;
+        background: -webkit-linear-gradient(top,#f0f9ff 0,#cbebff 47%,#a1dbff 100%);
+        background: linear-gradient(to bottom,#f0f9ff 0,#cbebff 47%,#a1dbff 100%);
+    }
+</style>
+<div ng-controller="tabComponent">
+    <div class="table-toolbar">
+        <div class="row">
+            <form name="addform" method="post" ng-validate="validationComponentOptions">
+                <div class="col-md-3" style="width: 22%;">
+                    <div class="form-group">
+                        <label class="control-label require">{{'MLP_CURD_LBL_COMPONENT_CODE' | translate}}</label>
+                        <input type="text" class="form-control" ng-model="model.Code" name="Code" placeholder="{{'MLP_CURD_TXT_COMPONENT_CODE' | translate}}..." ng-disabled="isEditComponent" />
+                    </div>
+                </div>
+                <div class="col-md-3" style="width: 22%;">
+                    <div class="form-group">
+                        <label class="control-label require">{{'MLP_CURD_LBL_COMPONENT_NAME' | translate}}</label>
+                        <input type="text" class="form-control" ng-model="model.Name" name="Name" placeholder="{{'MLP_CURD_TXT_COMPONENT_NAME' | translate}}..." />
+                    </div>
+                </div>
+                <div class="col-md-2" style="width: 10%;">
+                    <div class="form-group">
+                        <label class="control-label require">{{'MLP_CURD_LBL_COMPONENT_QUANTITY' | translate}}</label>
+                        <input type="text" class="form-control" ng-model="model.Quantity" name="Quantity" placeholder="{{'MLP_CURD_TXT_COMPONENT_QUANTITY' | translate}}..." />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">{{'MLP_CURD_LBL_COMPONENT_UNIT' | translate}}</label>
+                        <ui-select tagging ng-model="model.Unit" ng-change="reload()" theme="bootstrap">
+                            <ui-select-match placeholder="{{'MLP_CURD_TXT_COMPONENT_UNIT' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in listUnit | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="col-md-2" style="width: 28%;">
+                    <div class="btn-group pt20 actions d-flex">
+                        <div class="mr10 pr-0" ng-hide="isEditComponent">
+                            <button class="btn green-custom" ng-click="add()" style="border-radius: 0px !important">
+                                <i class="fa fa-plus"></i>
+                                {{'COM_BTN_ADD' | translate}}
+                            </button>
+                        </div>
+
+                        <div class="mr10 pr-0" ng-hide="!isEditComponent">
+                            <button class="btn green-custom" ng-click="submit()" style="border-radius: 0px !important">
+                                <i class="fa fa-save"></i>
+                                {{'COM_BTN_SAVE' | translate}}
+                            </button>
+                            <button class="btn red-custom ml-1" ng-click="cancel()" style="border-radius: 0px !important">
+                                <i class="fa fa-close"></i>
+                                {{'COM_BTN_CANCEL' | translate}}
+                            </button>
+                        </div>
+
+                        <!--<div class="text-center pr10" ng-hide="isEditComponent">
+                            <a ng-disabled="ProductID==''" class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="add()">
+                                <span><i class="fa fa-plus"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                        </div>-->
+                        <!--<div class="text-center pr10" ng-hide="isEditComponent" ng-if="isShowInheritance">
+                            <a ng-disabled="ProductID==''" class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="inheritance()">
+                                <span><i class="fa fa-recycle"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_INHERITANCE' | translate}}</p>
+                        </div>-->
+                        <!--<div class="text-center pr10" ng-hide="!isEditComponent">
+                            <a ng-disabled="ProductID==''" class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="submit()">
+                                <span><i class="fa fa-save"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                        </div>
+                        <div class="text-center" ng-hide="!isEditComponent">
+                            <a data-dismiss="modal" ng-click="cancel()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                                <span><i class="glyphicon glyphicon-remove"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+                        </div>-->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <table class="table dataTable table-hover table-striped"
+           datatable
+           dt-options="dtOptions"
+           dt-columns="dtColumns"
+           dt-instance="dtInstance"
+           id="tblDataComponent"></table>
+</div>

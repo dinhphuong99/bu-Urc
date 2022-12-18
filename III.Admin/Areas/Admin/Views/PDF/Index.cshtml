@@ -1,0 +1,35 @@
+﻿@using Syncfusion.EJ2
+@using ESEIM.Utils
+@{
+    ViewData["Title"] = "Pdf";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+@section ControlsSection{
+    <div>
+        <style>
+            .app-content{
+                width: 100%;
+            }
+        </style>
+        <ejs-pdfviewer id="pdfviewer" style="height:600px; width:100%;"></ejs-pdfviewer>
+    </div>
+}
+<script type="text/javascript">
+    window.onload = function () {
+        debugger
+        var pdfViewer = document.getElementById('pdfviewer').ej2_instances[0];
+        pdfViewer.serviceUrl = '/PDF';
+        documenteditor = pdfViewer.documentEditor;
+        jQuery.ajax({
+            type: "POST",
+            url: "/Admin/PDF/Loadtest",
+            success: function (data) {
+                pdfViewer.load(data);
+            },
+            failure: function (errMsg) {
+                alert(errMsg);
+            }
+        });
+    }
+</script>
+

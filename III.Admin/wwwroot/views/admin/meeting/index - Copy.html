@@ -1,0 +1,161 @@
+﻿<style>
+    #zmmtg-root, .meeting-client, .meeting-client-inner {
+        width: auto;
+        height: auto;
+        position: relative;
+    }
+
+    #footer-page {
+        display: none;
+    }
+
+    #wc-footer {
+        bottom: auto !important;
+        width: 100% !important;
+        height: 55px !important;
+    }
+
+    #dialog-join {
+        bottom: 0px !important;
+        width: 100% !important;
+    }
+
+    /*#sv-active-video, .active-main, #sv-active-speaker-view, .main-layout {
+        height: 500px !important;
+        width: 1000px !important;
+    }*/
+
+
+    .suspension-window {
+        transform: translate(-444px, 10px) !important;
+    }
+
+    /*#dialog-invite {
+        display: none;
+    }*/
+
+    .meeting-app {
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .title-room {
+        color: #5e82cc;
+    }
+
+    .border-bottom-room {
+        border-bottom: 1px solid #be2ab1;
+        margin-left: 15px;
+    }
+
+    .app-content {
+        width: 100%;
+    }
+
+    .zoom-item {
+        padding: 5px;
+        background: #141415;
+        /*height: 80px;*/
+        border-radius: 5px;
+        /*margin-right: 10px;*/
+        margin-top: 4px;
+        box-shadow: 1px 1px 1px #4a4545;
+    }
+
+    .zoom-content {
+        width: 102%;
+        height: 720px;
+        background-color: black;
+    }
+
+    /*#checkInOut {
+        display: none;
+    }*/
+
+    .tab-pane-zoom::-webkit-scrollbar {
+        width: 5px;
+        background-color: #c4c9cc;
+    }
+
+    .btn-show-hide-list-zoom {
+        z-index: 10;
+        margin-top: 0px !important;
+        margin-right: -12px;
+        padding-left: 5px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        background: white;
+    }
+
+    .margin-right-zoom-icon {
+        margin-right: -235px;
+    }
+
+    .active-main {
+        margin-left: 155px;
+    }
+
+    .footer {
+        bottom: 0px !important;
+    }
+
+    #wc-footer {
+        bottom: 0px !important;
+        width: 100% !important;
+        height: 55px !important;
+    }
+
+    #wc-container-right {
+        padding-top: 50px;
+        width: 400px !important;
+        /*height: auto;*/
+    }
+
+    .chat-scrollbar, .participant-scrollbar {
+        height: 600px!important;
+    }
+
+    .ant-message-notice:first-child {
+        margin-top: 30px !important;
+    }
+
+    .sharer-controlbar-container__r-b {
+        margin-top: 45px !important;
+    }
+
+    html body.fixed-navbar {
+        padding-top: 0px !important;
+    }
+</style>
+<!--<div class="row">
+    <button class="btn btn-success pull-right border-radius-15" ng-click="initZoom()"><span class="fa fa-plus"></span>&nbsp; <span class="bold">Thêm Room</span></button>
+</div>-->
+<button ng-show="showListZoom == false" ng-click="hideListZoom()" class="btn btn-show-hide-list-zoom pull-right border-radius-15">
+    <span class="fa fa-video-camera fs15"></span>&nbsp;
+    ROOMs
+</button>
+<button ng-show="showListZoom == true" ng-click="hideListZoom()" class="btn btn-show-hide-list-zoom pull-right border-radius-15">
+    <span class="fa fa-video-camera fs15"></span>&nbsp;
+    ROOMs
+</button>
+<div ng-show="showListZoom == true">
+    <div class="col-md-3 mh-500 tab-pane-zoom" style="z-index:10; float:right; border-radius: 10px;margin-top:30px; margin-right:-107px; ">
+        <div class="col-md-12 zoom-item" ng-repeat="x in ListZoomActive">
+            <div class="col-md-2">
+                <button class="text-center border-radius-15" ng-click="joinZoom(x)">
+                    <span class="fa fa-video-camera fs25 pt15" style="color:white; "></span>&nbsp;
+                </button>
+            </div>
+            <div class="col-md-10">
+                <label class="text-white fs12">{{x.RoomName}} [20]</label><br />
+                <span class="text-white fs12">{{x.CreatedBy}}, {{x.CreatedTime}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row zoom-content text-center">
+    <span id="icon-zoom" class="fa fa-video-camera center fs100" style="color:white; margin-top:300px;"></span>
+    <div id="zmmtg-root" ng-if="zoomActive"></div>
+</div>

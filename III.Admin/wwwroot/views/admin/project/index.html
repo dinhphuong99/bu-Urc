@@ -1,0 +1,172 @@
+﻿<div ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_MENU_PROJECT' | translate}}</a>
+                    <span style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/Project">{{'PROJECT_LINK_PROJECT' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group actions d-flex pull-right pt5 pb-1">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="pr-2">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn red-custom br4" ng-click="addCardJob()">
+                        <i class="fa fa-trello"></i>
+                        {{'COM_BTN_ADD_CAR'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'PROJECT_CURD_LBL_SEARCH_CODE_PROJECT' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.ProjectCode" class="form-control br4" type="text" placeholder="{{'PROJECT_CURD_TXT_SEARCH_CODE_PROJECT' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'PROJECT_CURD_LBL_SEARCH_NAME_PROJECT' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.ProjectTitle" class="form-control" type="text" placeholder="{{'PROJECT_CURD_TXT_SEARCH_NAME_PROJECT' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ProjectTitle=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'PROJECT_CURD_LBL_SEARCH_NAME_PROJECT_TYPE' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.ProjectType" theme="bootstrap">
+                            <ui-select-match placeholder="{{'PROJECT_CURD_LBL_SEARCH_NAME_PROJECT_TYPE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in projectType | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ProjectType='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'PROJECT_LBL_ORGANIZATION' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.BranchId" theme="bootstrap">
+                            <ui-select-match placeholder="{{'PROJECT_TXT_ORGANIZATION' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in listBranch | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.BranchId='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'PROJECT_CURD_LBL_SEARCH_STARTTIME' | translate}}</label>
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="{{'PROJECT_CURD_TXT_SEARCH_STARTTIME' | translate}}..." ng-model="model.StartTime" id="FromTo">
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.StartTime='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm" style="margin-right: 20px !important;"></i>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'PROJECT_CURD_LBL_SEARCH_ENDTIME' | translate}}</label>
+                    <div class='input-group '>
+                        <input type='text' autocomplete="off" class="form-control " ng-model="model.EndTime" placeholder="{{'PROJECT_CURD_TXT_SEARCH_ENDTIME' | translate}}..." id='DateTo' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.EndTime='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'PROJECT_CURD_LBL_BUGET_START' | translate}}</label>
+                    <div class="input-group">
+                        <div class="input-group">
+                            <input ng-model="model.BudgetStart" class="form-control" type="text" placeholder="{{'PROJECT_CURD_LBL_BUGET_START' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" num-thousand='true' awnum num-int='21' />
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="model.BudgetStart=''" class="btn btn-default no-shadow">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'PROJECT_CURD_LBL_BUGET_END' | translate}}</label>
+                    <div class="input-group">
+                        <div class="input-group">
+                            <input ng-model="model.BudgetEnd" class="form-control" type="text" placeholder="{{'PROJECT_CURD_LBL_BUGET_END' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" num-thousand='true' awnum num-int='21' />
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="model.BudgetEnd=''" class="btn btn-default no-shadow">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="btn-group pt20 actions d-flex">
+                        <div class="text-center pr10">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="search()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                        <!--<div class="pr10 text-center">
+                <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="add()">
+                    <span><i class="fa fa-plus"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+            </div>
+            <div class="text-center">
+                <a class="btn btn-icon-only btn-circle btn-outline red-custom" ng-click="addCardJob()">
+                    <span class="fa fa-trello"></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD_CAR' | translate}}</p>
+            </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12"> <label class="text-danger">{{'COM_MSG_LIST_GUIDE' | translate}}</label></div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       ng-show="IsTranslate"
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblData"></table>

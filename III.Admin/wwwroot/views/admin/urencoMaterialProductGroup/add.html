@@ -1,0 +1,77 @@
+﻿<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title"> Thêm nhóm tài sản</span>
+</div>
+
+<div class="modal-body pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptions">
+            <div class="form-body pt5">
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <i class="fa fa-barcode" aria-hidden="true"></i>
+                        <label class="control-label ">{{'MPG_CURD_LBL_MPG_FATHER_GROUP' | translate}}</label>
+                    </div>
+                    <div class="col-md-7">
+                        <ui-select tagging ng-model="model.ParentID" ng-change="reload()" theme="bootstrap">
+                            <ui-select-match placeholder="{{'MPG_CURD_COMBO_MPG_FATHER_GROUP' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Id as x in treedataCoursetype | filter:$select.Id| filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <i class="fa fa-barcode" aria-hidden="true"></i>
+                        <label class="control-label ">Mã nhóm tài tản (*)</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" ng-model="model.Code" name="ProductCode" id="ProductCode" placeholder="Mã nhóm tài tản" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        <label class="control-label ">Tên nhóm tài sản (*)</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" class="form-control" ng-model="model.Name" name="ProductName" placeholder="Tên nhóm tài sản (*)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <i class="fa fa-comment" aria-hidden="true"></i>
+                        <label class="control-label ">{{'MPG_CURD_LBL_MPG_DESCRIPTION' | translate}}</label>
+                    </div>
+                    <div class="col-md-7">
+                        <textarea type="text" class="form-control" ng-model="model.Description" rows="3" placeholder="{{'MPG_CURD_TXT_MPG_DESCRIPTION' | translate}}" name="Note"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer pt5">
+    <!--<a data-dismiss="modal" class="btn btn-red" href="javascript:;" ng-click="cancel()">
+        {{'COM_CONFIRM_CANCEL' | translate}}
+    </a>
+    <button ng-click="submit()" class="btn btn-green mr5">
+        {{'COM_BTN_ADD' | translate}}
+    </button>-->
+    <div class="btn-group pull-right actions d-flex">
+        <div class="pr10">
+            <a data-dismiss="modal" ng-click="cancel()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                <span><i class="glyphicon glyphicon-remove"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+        </div>
+        <div class="pr10">
+            <a ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                <span><i class="fa fa-plus"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+        </div>
+    </div>
+</div>

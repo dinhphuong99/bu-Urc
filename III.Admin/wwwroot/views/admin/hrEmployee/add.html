@@ -1,0 +1,992 @@
+﻿<style>
+    .tab-content {
+        height: 230px;
+    }
+
+    .modal-body {
+        padding-bottom: 45px;
+    }
+
+    #inputDate {
+        color: dodgerblue;
+        font-weight: bold;
+    }
+
+    #idPhone {
+        color: dodgerblue;
+        font-weight: bold;
+    }
+
+    #identitycard {
+        color: dodgerblue;
+        font-weight: bold;
+    }
+
+    form .form-control {
+        border: 1px solid #908a8a;
+        color: #5a5a5a;
+    }
+
+    input::placeholder {
+        color: red;
+        font-weight: 600
+    }
+
+    .text-box-important {
+        background-color: #27ae60 !important;
+        color: #fcfdfd !important;
+        font-weight: bold;
+    }
+    .form-item {
+        position: relative;
+    }
+
+    .message-error:after {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: 0;
+        left: -20%;
+        display: none;
+        padding: 1em 2em;
+        color: white;
+    }
+
+    .message-error:hover:after {
+        display: block;
+        -webkit-animation: showTooltip 0.35s ease-in-out;
+        -moz-animation: showTooltip 0.35s ease-in-out;
+        animation: showTooltip 0.35s ease-in-out;
+    }
+
+    .message-error:after {
+        background: #c8fbfb;
+        border-radius: 5px;
+        color: #000000;
+        z-index: 99999;
+        margin-top: 0px;
+        font-size: 14px;
+        font-weight: 600;
+        margin-left: 150px;
+        border: 1px solid #d4d4d4;
+        width: 92% !important;
+    }
+
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title"> {{'HR_HR_MAN_CURD_TITLE_ADD_HR_MAN' | translate}}</span>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptions">
+            <div class="form-body pt-0 pb-0">
+                <div class="row mt-action-5">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left require bold"><i class="fas fa-user"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_FULL_NAME' | translate}}</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control bold" ng-model="model.fullname" name="fullname" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_NAME' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left bold"><i class="fas fa-user"></i>&nbsp;{{'HR_HR_LBL_TXT_SALARY' | translate}}</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control bold" num-thousand="true" awnum num-int="21" ng-model="model.Salary" placeholder="{{'HR_HR_LBL_TXT_SALARY' | translate}}" ng-readonly="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left require bold"><i class="fas fa-user"></i>&nbsp;{{'HR_HR_LBL_TXT_NUM_EXPERIENCE' | translate}}</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" ng-model="model.years_of_exp" name="years_of_exp" placeholder="{{'HR_HR_LBL_TXT_NUM_EXPERIENCE' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorGender}">
+                            <div class="col-md-5">
+                                <i class="fas fa-transgender"></i>
+                                <label class="control-label require bold">&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_SEX' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.gender" theme="bootstrap" on-select="changleSelect('gender')">
+                                        <ui-select-match placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_SEX' | translate}}...">{{$select.selected.value}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.gender as x in gioitinh | filter: $select.search">
+                                            {{x.value}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.gender=''" class="btn btn-default no-shadow" style="border: 1px solid #908a8a;">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorGender" class="label-color validation-message">
+                                    {{'HR_HR_MAN_CURD_VALIDATE_HR_MAN_SEX' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label require col-md-5 text-left bold"><i class="fas fa-gift"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_DATE_OF_BIRTH' | translate}}</label>
+                            <div class="col-md-7">
+                                <div class='input-group date bold' id='date-birthday'>
+                                    <input type='text' id="inputDate" class="form-control input-date" name="birthday" ng-model="model.birthdayView" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DATE_OF_BIRTH' | translate}}..." />
+                                    <span class="input-group-addon" style="border-right: 1px solid #908a8a;border-top: 1px solid #908a8a;border-bottom: 1px solid #908a8a;">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left require bold"><i class="fas fa-passport"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_PASSPORT' | translate}}</label>
+                            <div class="col-md-7">
+                                <input id="identitycard" type="text" class="form-control" ng-model="model.identitycard" name="identitycard" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_PASSPORT' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left bold"><i class="far fa-calendar-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_DATE_OF_ISSUE' | translate}}</label>
+                            <div class="bs-component col-md-7">
+                                <div class='input-group date' id='date-identitycard'>
+                                    <input type='text' class="form-control input-date" ng-model="model.identitycarddateView" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DATE_OF_ISSUE' | translate}}..." />
+                                    <span class="input-group-addon" style="border-right: 1px solid #908a8a;border-top: 1px solid #908a8a;border-bottom: 1px solid #908a8a;">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left bold"><i class="fas fa-map-marker-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_PLACE_OF_ISSUE' | translate}}</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.identitycardplace" name="identitycardplace" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_PLACE_OF_PLACEMENT' | translate}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group" ng-class="{ 'has-error': errorUnit}">
+                            <div class="col-md-5">
+                                <label class="control-label require bold"><i class="far fa-building"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_DEPARTMENT' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.unit" theme="bootstrap" on-select="changleSelect('unit')">
+                                        <ui-select-match placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DEPARTMENT' | translate}}...">{{$select.selected.Title}}</ui-select-match>
+                                        <ui-select-choices repeat="x.DepartmentCode as x in treeDataunit | filter:$select.search">
+                                            {{x.Title}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.unit=''" class="btn btn-default no-shadow" style="">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorUnit" class="label-color validation-message">
+                                    {{'HR_HR_MAN_CURD_VALIDATE_HR_MAN_DEPARTMENT' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left bold"><i class="fas fa-award"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_POSITION' | translate}}</label>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.position" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_POSITION' | translate}}...">{{$select.selected.Title}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in positionData | filter:$select.search">
+                                            {{x.Title}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.position=''" class="btn btn-default no-shadow">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left bold"><i class="far fa-address-card"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_DOMICILE' | translate}}</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.birthofplace" name="birthofplace" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DOMICILE' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left require pr-0 bold"><i class="fas fa-address-card"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_ADDRESS' | translate}}</label>
+                            <div class="col-md-7 form-item message-error" data-tooltip="{{model.permanentresidence}}">
+                                <input type="text" class="form-control" ng-model="model.permanentresidence" name="permanentresidence" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_ADDRESS' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorphone}">
+                            <label class="control-label require col-md-5 text-left bold"><i class="fas fa-phone"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_PHONE' | translate}}</label>
+                            <div class="col-md-7">
+                                <input type='text' id="idPhone" class="form-control bold" name="phone" ng-model="model.phone" placeholder="{{'HR_HR_MAN_CURD_LBL_HR_MAN_PHONE' | translate}}..." ng-change="changleSelect('phone')" />
+                                <span ng-show="errorphone" class="label-color validation-message">
+                                    {{'HR_HR_MAN_CURD_TXT_HR_MAN_PHONE' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left bold"><i class="fas fa-barcode"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_TAX_CODE' | translate}}</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.taxcode" name="taxcode" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_TAX_CODE' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left bold"><i class="fab fa-cc-amazon-pay"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_BANK_ACCOUNT' | translate}}</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.bank" name="bank" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_BANK_ACCOUNT' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorEmployeetype}">
+                            <div class="col-md-5">
+                                <i class="fa fa-joomla"></i>
+                                <label class="control-label require bold">&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_EMPLOYEE_TYPE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.employeetype" theme="bootstrap" on-select="changleSelect('employeetype')">
+                                        <ui-select-match placeholder="{{'HR_HR_MAN_CURD_COMBO_HR_MAN_EMPLOYEE_TYPE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in employeeStyleData | filter:$select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingEmployeeStype()" class="btn no-shadow green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorEmployeetype" class="label-color validation-message">
+                                    {{'HR_HR_MAN_CURD_VALIDATE_HR_MAN_EMPLOYEE_TYPE' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <div class="fileupload-new thumbnail pb-0" style="border:0; box-shadow: none;background:none;">
+                                <input id="file" accept=".png,.jpg,.jpeg,.gif,.tif" type="file" style="display:none" />
+                                <img id="picture" ng-click="loadImage()" class="img-circle h-170 w170 br-n" onerror="this.src='/images/default/no_user.png'" ng-src="{{model.picture==null ? '/images/default/no_user.png' : model.picture}}" role="button" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center fs10 pl-0 pr-0">
+                            <i class="fa fa-picture-o" aria-hidden="true"></i>
+                            <label class="control-label bold ">&nbsp;{{'HR_HR_MAN_LIST_COL_HR_MAN_AVATAR' | translate}}</label>
+                        </div>
+                        <div class="col-md-12 text-center pt50 pr-0">
+                            <button class="btn red-custom custom-width-button" ng-click="submit()" style="border-radius: 0px !important">
+                                <i class="fa fa-save"></i>
+                                {{'COM_BTN_SAVE' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-12">
+                <uib-tabset active="active">
+                    <uib-tab index="0" heading="{{'HR_HR_MAN_CURD_TAB_PROFILE' | translate}}">
+                        <form name="form.addform1" class="form-horizontal userFormAreaHeader " method="post" ng-validate="validationOptionsInfomation">
+                            <div class="form-body pt-0 pb-0">
+                                <div class="row mt-action-5">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="fas fa-user"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_ACCOUNT_HOLDER' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.accountholder" name="accountholder" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_ACCOUNT_HOLDER' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="fas fa-sort-numeric-up"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_ACCOUNT_NUMBER' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.accountnumber" name="accountnumber" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_ACCOUNT_NUMBER' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="fas fa-map-marker-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_PLACE_TO_OPEN_ACCOUNT' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.accountopenplace" name="accountopenplace" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_PLACE_TO_OPEN_ACCOUNT' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="fas fa-language"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_ENGLISH_LEVEL' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.languagelevel" name="languagelevel" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_ENGLISH_LEVEL' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="fas fa-sort-numeric-up"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_INSURANCE_NUMBER' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.socialinsurance" name="socialinsurance" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_INSURANCE_NUMBER' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="far fa-calendar-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_DATE_OF_ISSUE' | translate}}</label>
+                                            <div class="bs-component col-md-7">
+                                                <div class="input-group date" id="date-birthday2">
+                                                    <input type="text" class="form-control input-date" ng-model="model.socialinsurancedateText" name="socialinsurancedate" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DATE_OF_ISSUE' | translate}}" />
+                                                    <span class="input-group-addon" style="border-right: 1px solid #908a8a;border-top: 1px solid #908a8a;border-bottom: 1px solid #908a8a;">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="fas fa-map-marker-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_PLACE_OF_ISSUE' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.socialinsuranceplace" name="socialinsuranceplace" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_PLACE_OF_ISSUE' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="fas fa-school"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_SCHOOL' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.trainingschool" name="trainingschool" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_SCHOOL' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="far fa-clock"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_TRAINING_TIME' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.trainingtime" name="trainingtime" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_TRAINING_TIME' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="fas fa-info-circle"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_TYPE_OF_EDUCATION' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.trainingtype" name="trainingtype" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_TYPE_OF_EDUCATION' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="fas fa-info-circle"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_MAJORS' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.disciplines" name="disciplines" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_MAJORS' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <!--<div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="fas fa-laptop"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_COMPUTER_SKILL' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.computerskill" name="computerskill" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_COMPUTER_SKILL' | translate}}" />
+                                            </div>
+                                        </div>-->
+
+                                    </div>
+                                    <div class=" col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="glyphicon glyphicon-screenshot"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_SPECIALIZED' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.specialized" name="specialized" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_SPECIALIZED' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="	glyphicon glyphicon-earphone"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_NATION' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.nation" name="nation" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_NATION' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="	glyphicon glyphicon-earphone"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_RELIGION' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.religion" name="religion" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_RELIGION' | translate}}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="glyphicon glyphicon-ok"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_MARITAL_STATUS' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <label style="margin-top:5px">
+                                                    <input type="radio" ng-model="model.maritalstatus" ng-value=0>
+                                                    {{'HR_HR_MAN_CURD_LBL_MARRIAGE' | translate}}
+                                                </label>
+                                                <label style="margin-left:7px;">
+                                                    <input type="radio" ng-model="model.maritalstatus" ng-value=1>
+                                                    {{'HR_HR_MAN_CURD_LBL_ALONE' | translate}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="fas fa-globe-asia"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_NATIONALITY' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.nationlaty" name="nationlaty" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_NATIONALITY' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="glyphicon glyphicon-screenshot"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_EDUCATIONAL_LEVEL' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.educationallevel" name="educationallevel" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_EDUCATIONAL_LEVEL' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <!--<div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="glyphicon glyphicon-screenshot"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_HEALTH' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.health" name="health" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_HEALTH' | translate}}" />
+                                            </div>
+                                        </div>-->
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="glyphicon glyphicon-screenshot"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_IDENTIFICATION' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.identification" name="identification" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_IDENTIFICATION' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="glyphicon glyphicon-screenshot"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_TYPE_OF_SALARY' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.salarytype" name="salarytype" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_TYPE_OF_SALARY' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="glyphicon glyphicon-screenshot"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_SALARY_GROUP' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.salarygroup" name="salarygroup" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_SALARY_GROUP' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="glyphicon glyphicon-21"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_WAGE' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.salaryfactor" name="salaryfactor" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_WAGE' | translate}}" num-thousand='true' awnum num-int='21' onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-class="{ 'has-error': errorEmail}">
+                                            <label class="control-label bold col-md-5 text-left"><i class="glyphicon glyphicon-envelope"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_EMAIL' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control" ng-model="model.emailuser" name="emailuser" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_EMAIL' | translate}}" ng-change="changleSelect('emailuser')" />
+                                                <span ng-show="errorEmail" class="label-color validation-message">
+                                                    {{'Thư điện tử sai định dạng' | translate}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <!--<div class="form-group">
+                                            <label class="control-label bold col-md-5 text-left"><i class="glyphicon glyphicon-screenshot"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_PASSWORD' | translate}}</label>
+                                            <div class="col-md-7">
+                                                <input  class="form-control" ng-model="model.emailpassword" name="emailpassword" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_PASSWORD' | translate}}" />
+                                            </div>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </uib-tab>
+                    <uib-tab index="1" heading="{{'HR_HR_MAN_CURD_TAB_ADDRESS' | translate}}" disable="model.Id == ''">
+                        <form name="form.addformdc" class="form-horizontal" method="post" ng-validate="validationOptionsAddress">
+                            <div class="col-md-7">
+                                <table class="table dataTable table-hover table-striped"
+                                       datatable
+                                       dt-options="dtOptionsAddress"
+                                       dt-columns="dtColumnsAddress"
+                                       dt-instance="dt.dtInstanceAddress"
+                                       id="tblDataAddress"></table>
+                            </div>
+                            <div class=" col-md-5">
+                                <div class="form-group" hidden>
+                                    <label class="control-label bold col-md-5 text-left pr-0 pl-0"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_ADDRESS' | translate}}</label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" ng-model="address.id_dc" name="id_dc" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_ADDRESS' | translate}}" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label bold col-md-5 require text-left pr-0 pl-0"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;{{'HR_HR_MAN_CURD_TAB_ADDRESS' | translate}}</label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" ng-model="address.Now_Address" name="Now_Address" placeholder=" {{'HR_HR_MAN_CURD_TXT_ADDRESS' | translate}}" />
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error': errorAddressPhone}">
+                                    <label class="control-label bold col-md-5 text-left pr-0 pl-0"><i class="glyphicon glyphicon-earphone"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_PHONE' | translate}}</label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" ng-model="address.Phone" name="Phone" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_PHONE1' | translate}}" ng-change="changleSelectAddress('Phone')" />
+                                        <span ng-show="errorAddressPhone" class="label-color validation-message">
+                                            {{'HR_HR_MAN_CURD_TXT_HR_MAN_PHONE' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label bold col-md-5 text-left pr-0 pl-0"><i class="glyphicon glyphicon-time"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_VALID_FROM_DAY' | translate}}</label>
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" ng-model="address.Start_Time" name="Start_Time" placeholder="{{'HR_HR_MAN_CURD_LBL_HR_MAN_VALID_FROM_DAY' | translate}}" autocomplete="off" id="startTime" />
+                                            <span class="input-group-btn">
+                                                <button type="button" ng-click="address.Start_Time='';" class="btn btn-default no-shadow start-date" style="border: 1px solid #908a8a;">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label bold col-md-5 text-left pr-0 pl-0"><i class="glyphicon glyphicon-time"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_VALID_TO_DAY' | translate}}</label>
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" ng-model="address.End_Time" name="End_time" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DATE_TO' | translate}}" autocomplete="off" id="endTime" />
+                                            <span class="input-group-btn">
+                                                <button type="button" ng-click="address.End_Time='';" class="btn btn-default no-shadow end-date" style="border: 1px solid #908a8a;">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="form-group mt10">
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit" class="btn btn-green" ng-click="addDC()" ng-show="enableaddDC"><i class="fa fa-plus"></i>&nbsp;{{'COM_BTN_ADD' | translate}}</button>
+                                        <button type="submit" class="btn btn-green" ng-click="editDC()" ng-show="enableeditDC"><i class="fas fa-edit"></i> {{'COM_BTN_EDIT' | translate}}</button>
+                                    </div>
+                                </div>-->
+                                <div class="btn-group pull-right actions d-flex">
+                                    <button ng-show="enableaddDC" class="btn green-custom custom-width-button" ng-click="addDC()" style="border-radius: 0px !important">
+                                        <i class="fa fa-plus"></i>
+                                        {{'COM_BTN_ADD' | translate}}
+                                    </button>
+                                    <button ng-show="enableeditDC" class="btn blue-custom custom-width-button" ng-click="editDC()" style="border-radius: 0px !important">
+                                        <i class="fa fa-pencil"></i>
+                                        {{'COM_BTN_EDIT' | translate}}
+                                    </button>
+
+
+                                    <!--<div class="text-center" ng-show="enableaddDC">
+                                        <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="addDC()">
+                                            <span><i class="fa fa-plus"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                    </div>-->
+                                    <!--<div class="text-center pr10" ng-show="enableeditDC">
+                                        <a ng-click="editDC()" class="btn btn-icon-only btn-circle btn-outline blue-custom">
+                                            <span><i class="fa fa-pencil"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_EDIT' | translate}}</p>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </form>
+                    </uib-tab>
+                    <uib-tab index="2" heading="{{'HR_HR_MAN_CURD_TAB_CONTACT' | translate}}" disable="model.Id == ''">
+                        <form name="form.addformlienhe" class="form-horizontal  " method="post" ng-validate="validationOptionsContact">
+                            <div class="form-body pt-0 pb-0">
+                                <div class="row mt-action-5">
+                                    <div class=" col-md-7">
+                                        <table class="table dataTable table-hover table-striped"
+                                               datatable
+                                               dt-options="dtOptionsContact"
+                                               dt-columns="dtColumnsContact"
+                                               dt-instance="dt.dtInstanceContact"
+                                               id="tblDataContact"></table>
+                                    </div>
+                                    <div class=" col-md-5">
+                                        <div class="form-group">
+                                            <label class="control-label bold require col-md-4 text-left pr-0 pl-0"><i class="glyphicon glyphicon-user"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_RELATIVEST' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="contact.Name" name="Name" placeholder=" {{'HR_HR_MAN_CURD_TXT_HR_MAN_RELATIVES' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold require col-md-4 text-left pr-0 pl-0"><i class="fas fa-users"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_RELATIONSHIP' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="contact.Relationship" name="Relationship" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_RELATIONSHIP' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="fas fa-user-astronaut"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_JOB' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="contact.Job_Name" name="Job_Name" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_JOB' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="far fa-calendar-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_DATE_OF_BIRTH' | translate}}</label>
+                                            <div class="bs-component col-md-8" style="height: 35px;border:none">
+                                                <div class="input-group date" id='contact-birthday'>
+                                                    <input type="text" class="form-control" ng-model="contact.Birthday" name="Birthday" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DATE_OF_BIRTH' | translate}}" />
+                                                    <span class="input-group-addon" style="border-right: 1px solid #908a8a;border-top: 1px solid #908a8a;border-bottom: 1px solid #908a8a;">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-class="{ 'has-error': errorContactPhone}">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="	glyphicon glyphicon-earphone"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_PHONE' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="contact.Phone" name="Phone" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_PHONE1' | translate}}" ng-change="changleSelectContact('Phone')" />
+                                                <span ng-show="errorContactPhone" class="label-color validation-message">
+                                                    {{'HR_HR_MAN_CURD_TXT_HR_MAN_PHONE' | translate}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="fas fa-fax"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_FAX' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="contact.Fax" name="Fax" placeholder=" {{'HR_HR_MAN_CURD_TXT_HR_MAN_FAX' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-class="{ 'has-error': errorContactEmail}">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="fas fa-envelope-square"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_EMAIL' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="contact.Email" name="Email" placeholder=" {{'HR_HR_MAN_CURD_TXT_HR_MAN_EMAIL' | translate}}" ng-change="changleSelectContact('Email')" />
+                                                <span ng-show="errorContactEmail" class="label-color validation-message">
+                                                    {{'Thư điện tử sai định dạng' | translate}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="fas fa-address-card"></i>&nbsp;{{'HR_HR_MAN_CURD_TAB_ADDRESS' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="contact.Address" name="Address" placeholder="{{'HR_HR_MAN_CURD_TAB_ADDRESS' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="far fa-comment-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_NOTE' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <textarea rows="5" cols="25" type="text" class="form-control" ng-model="contact.Note" name="Note" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_NOTE' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <!--<div class="form-group text-right mt10">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-green" ng-click="addLH()" ng-show="enableaddLH"><i class="fa fa-plus"></i>&nbsp;{{'COM_BTN_ADD' | translate}}</button>
+                                                <button type="submit" class="btn btn-green" ng-click="editLH()" ng-show="enableeditLH"><i class="fas fa-edit"></i>&nbsp;{{'COM_BTN_EDIT' | translate}}</button>
+                                            </div>
+                                        </div>-->
+                                        <div class="btn-group pull-right actions d-flex ">
+                                            <div class="text-center pr-0">
+                                                <button ng-show="enableaddLH" class="btn green-custom custom-width-button" ng-click="addLH()" style="border-radius: 0px !important">
+                                                    <i class="fa fa-plus"></i>
+                                                    {{'COM_BTN_ADD' | translate}}
+                                                </button>
+                                            </div>
+
+                                            <div class="text-center pr-0">
+                                                <button ng-show="enableeditLH" class="btn blue-custom custom-width-button" ng-click="editLH()" style="border-radius: 0px !important">
+                                                    <i class="fa fa-pencil"></i>
+                                                    {{'COM_BTN_EDIT' | translate}}
+                                                </button>
+                                            </div>
+
+                                            <!--<div class="text-center" ng-show="enableaddLH">
+                                                <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="addLH()">
+                                                    <span><i class="fa fa-plus"></i></span>
+                                                </a>
+                                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                            </div>
+                                            <div class="text-center pr10" ng-show="enableeditLH">
+                                                <a ng-click="editLH()" class="btn btn-icon-only btn-circle btn-outline blue-custom">
+                                                    <span><i class="fa fa-pencil"></i></span>
+                                                </a>
+                                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_EDIT' | translate}}</p>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </uib-tab>
+                    <uib-tab index="3" heading="{{'HR_HR_MAN_CURD_TAB_CONTRACT' | translate}}" disable="model.Id == ''">
+                        <div class="portlet-body">
+                            <div class="table-toolbar">
+                                <!--<div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-green" ng-click="add_contract()"><i class="fa fa-plus"></i>&nbsp;{{'COM_BTN_ADD' | translate}}</button>
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="btn-group pull-right actions d-flex mr25">
+                                    <div class="text-center pr-0">
+                                        <button class="btn green-custom custom-width-button" ng-click="add_contract()" style="border-radius: 0px !important">
+                                            <i class="fa fa-plus"></i>
+                                            {{'COM_BTN_ADD' | translate}}
+                                        </button>
+                                    </div>
+                                    <!--<div class="text-center">
+                                        <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="add_contract()">
+                                            <span><i class="fa fa-plus"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                    </div>-->
+                                </div>
+                                <div class="col-md-12">
+                                    <table class="table dataTable table-hover table-striped"
+                                           datatable
+                                           dt-options="dtOptionsContract"
+                                           dt-columns="dtColumnsContract"
+                                           dt-instance="dt.dtInstanceContract"
+                                           id="tblDataContract"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                    <uib-tab index="4" heading="{{'HR_HR_MAN_CURD_TAB_CERTIFICATE' | translate}}" disable="model.Id == ''">
+                        <form name="form.addformBC" class="form-horizontal" method="post" ng-validate="validationOptionsDegree">
+                            <div class="form-body pt-0 pb-0">
+                                <div class="row mt-action-5">
+                                    <div class=" col-md-7">
+                                        <table class="table dataTable  table-hover table-striped"
+                                               datatable
+                                               dt-options="dtOptionsCertificate"
+                                               dt-columns="dtColumnsCertificate"
+                                               dt-instance="dt.dtInstanceCertificate"
+                                               id="tblDataCertificate"></table>
+                                    </div>
+                                    <div class=" col-md-5">
+                                        <div class="form-group">
+                                            <label class="control-label bold require col-md-4 text-left pr-0 pl-0"><i class="glyphicon glyphicon-th-large"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_MAN_EDUCATION_NAME' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="certificate.Education_Name" name="Education_Name" placeholder="{{'HR_HR_MAN_CURD_TXT_MAN_EDUCATION_NAME' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="far fa-calendar-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_DATE_FROM' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <div class="input-group" id="certificateStart">
+                                                    <input type="text" class="form-control" ng-model="certificate.Start_Time3" name="Start_Time3" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DATE_FROM' | translate}}" />
+                                                    <span class="input-group-addon" style="border-right: 1px solid #908a8a;border-top: 1px solid #908a8a;border-bottom: 1px solid #908a8a;">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="far fa-calendar-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_DATE_TO' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <div class="input-group" id="certificateEnd">
+                                                    <input type="text" class="form-control" ng-model="certificate.End_Time3" name="End_Time3" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DATE_TO' | translate}}" />
+                                                    <span class="input-group-addon" style="border-right: 1px solid #908a8a;border-top: 1px solid #908a8a;border-bottom: 1px solid #908a8a;">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold require col-md-4 text-left pr-0 pl-0"><i class="fas fa-check"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_RESULT' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="certificate.Result" name="Result" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_RESULT' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="fas fa-shield-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_CERTIFICATE' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="certificate.Certificate_Name" name="Certificate_Name" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_CERTIFICATE' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="fas fa-map-marker-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_PLACE_OF_PLACEMENT' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="certificate.Received_Place" name="Received_Place" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_PLACE_OF_PLACEMENT' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="fas fa-map-marker-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_PLACE_TO_TRAIN_TRAINING' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="certificate.Traing_Place" name="Traing_Place" placeholder="{{'HR_HR_MAN_CURD_LBL_HR_MAN_PLACE_TO_TRAIN_TRAINING' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pr-0 pl-0"><i class="fas fa-plus"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_MORE_INFORMATION' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <textarea rows="4" cols="25" type="text" class="form-control" ng-model="certificate.Info_Details1" name="Info_Details1" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_MORE_INFORMATION' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <!--<div class="form-group">
+                                            <div class="col-md-12 text-right">
+                                                <button type="submit" class="btn btn-green" ng-click="submitBCCC()" ng-show="enableaddbccc"><i class="fa fa-plus"></i>&nbsp;{{'COM_BTN_ADD' | translate}}</button>
+                                                <button type="submit" class="btn btn-green" ng-click="editBCCC()" ng-show="enableeditbccc"><i class="fas fa-edit"></i>&nbsp;{{'COM_BTN_EDIT' | translate}}</button>
+                                            </div>
+                                        </div>-->
+                                        <div class="btn-group pull-right actions d-flex ">
+                                            <div class="text-center pr-0">
+                                                <button ng-show="enableaddbccc" class="btn green-custom custom-width-button" ng-click="submitBCCC()" style="border-radius: 0px !important">
+                                                    <i class="fa fa-plus"></i>
+                                                    {{'COM_BTN_ADD' | translate}}
+                                                </button>
+                                            </div>
+                                            <div class="text-center pr-0">
+                                                <button ng-show="enableeditbccc" class="btn blue-custom custom-width-button" ng-click="editBCCC()" style="border-radius: 0px !important">
+                                                    <i class="fa fa-pencil"></i>
+                                                    {{'COM_BTN_EDIT' | translate}}
+                                                </button>
+                                            </div>
+
+                                            <!--<div class="text-center" ng-show="enableaddbccc">
+                                                <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="submitBCCC()">
+                                                    <span><i class="fa fa-plus"></i></span>
+                                                </a>
+                                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                            </div>
+                                            <div class="text-center pr10" ng-show="enableeditbccc">
+                                                <a ng-click="editBCCC()" class="btn btn-icon-only btn-circle btn-outline blue-custom">
+                                                    <span><i class="fa fa-pencil"></i></span>
+                                                </a>
+                                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_EDIT' | translate}}</p>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </uib-tab>
+                    <uib-tab index="5" heading="{{'HR_HR_MAN_CURD_TAB_WORK_ PROGRESS' | translate}}" disable="model.Id == ''">
+                        <form name="form.addformqtlv" class="form-horizontal  " method="post" ng-validate="validationOptionsWorkProgress">
+                            <div class="form-body pt-0 pb-0">
+                                <div class="row mt-action-5">
+                                    <div class="col-md-7">
+                                        <table class="table dataTable table-hover table-striped"
+                                               datatable
+                                               dt-options="dtOptionsWorkprocess"
+                                               dt-columns="dtColumnsWorkprocess"
+                                               dt-instance="dt.dtInstanceWorkprocess"
+                                               id="tblDataWorkprocess"></table>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="control-label bold require col-md-4 text-left pl-0 pr-0"><i class="far fa-calendar-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_DATE_FROM' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <div class="input-group date" id="Start_Time_Workprocess">
+                                                    <input type="text" class="form-control" ng-model="workprocess.Start_Time1" name="Start_Time_Workprocess" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DATE_FROM' | translate}}" />
+                                                    <span class="input-group-addon" style="border-right: 1px solid #908a8a;border-top: 1px solid #908a8a;border-bottom: 1px solid #908a8a;">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pl-0 pr-0"><i class="far fa-calendar-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_DATE_TO' | translate}}</label>
+                                            <div class="col-md-8" style="width: 50%;">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" ng-model="workprocess.End_Date1" name="End_Time_Workprocess" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DATE_TO' | translate}}" id="End_Time_Workprocess" />
+                                                    <!--<span class="input-group-addon" style="border-right: 1px solid #908a8a;border-top: 1px solid #908a8a;border-bottom: 1px solid #908a8a;">
+                                                        <span class="fa fa-calendar"></span>
+                                                    </span>-->
+                                                </div>
+                                            </div>
+                                            <span class="">
+                                                <label class="mt-checkbox mt-checkbox-outline fs12" style="margin: 6px 0 0 20px!important;display:inline" ng-disabled="isInteract">
+                                                    <input type="checkbox" ng-model="workprocess.IsNow" ng-change="toNow()">
+                                                    <span></span>
+                                                </label>
+                                                <br />
+                                                <span style="display: inline-grid">
+                                                    <span class="text-danger fw600 fs10 pl10">{{'HR_HR_CURD_TO_NOW' | translate}}</span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold require col-md-4 text-left pl-0 pr-0"><i class="fas fa-sort-numeric-up"></i>&nbsp;{{'HR_HR_MAN_LIST_COL_HR_MAN_WAGE_LEVEL' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="workprocess.Wage_Level" name="Wage_Level" placeholder="{{'HR_HR_MAN_LIST_COL_HR_MAN_WAGE_LEVEL' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold require col-md-4 text-left pl-0 pr-0"><i class="fas fa-sort-numeric-up"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_COEFFICIENTS_SALARY' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" ng-model="workprocess.Salary_Ratio" name="Salary_Ratio" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_COEFFICIENTS_SALARY' | translate}}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-4 text-left pl-0 pr-0"><i class="far fa-comment-alt"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_DESCRIBE' | translate}}</label>
+                                            <div class="col-md-8">
+                                                <textarea rows="5" cols="25" type="text" class="form-control" ng-model="workprocess.Description1" name="Description1" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_DESCRIBE' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <!--<div class="form-group">
+                                            <div class="col-md-12 text-right">
+                                                <button type="submit" class="btn btn-green" ng-click="submitQTLV()" ng-show="enableaddqtlv"><i class="fa fa-plus"></i>&nbsp;{{'COM_BTN_ADD' | translate}}</button>
+                                                <button type="submit" class="btn btn-green" ng-click="editQTLV()" ng-show="enableeditqtlv"><i class="fas fa-edit"></i>&nbsp;{{'COM_BTN_EDIT' | translate}}</button>
+                                            </div>
+                                        </div>-->
+                                        <div class="btn-group pull-right actions d-flex">
+                                            <div class="pr-0" ng-show="enableaddqtlv" ng-click="submitQTLV()">
+                                                <button class="btn green-custom custom-width-button" style="border-radius: 0px !important">
+                                                    <i class="fa fa-plus"></i>
+                                                    {{'COM_BTN_ADD'| translate}}
+                                                </button>
+                                            </div>
+                                            <div class="pr-0" ng-show="enableeditqtlv" ng-click="editQTLV()">
+                                                <button class="btn blue-custom custom-width-button" style="border-radius: 0px !important">
+                                                    <i class="fa fa-pencil"></i>
+                                                    {{'COM_BTN_EDIT'| translate}}
+                                                </button>
+                                            </div>
+
+                                            <!--<div class="text-center" ng-show="enableaddqtlv">
+                                                <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="submitQTLV()">
+                                                    <span><i class="fa fa-plus"></i></span>
+                                                </a>
+                                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                            </div>
+                                            <div class="text-center pr10" ng-show="enableeditqtlv">
+                                                <a ng-click="editQTLV()" class="btn btn-icon-only btn-circle btn-outline blue-custom">
+                                                    <span><i class="fa fa-pencil"></i></span>
+                                                </a>
+                                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_EDIT' | translate}}</p>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </uib-tab>
+                    <uib-tab index="6" heading="{{'HR_HR_MAN_CURD_TAB_WORK_ PROCEDURE' | translate}}" disable="model.Id == ''">
+                        <form name="form.addformQTCV1" class="form-horizontal" method="post" ng-validate="validationOptionsWorkflow">
+                            <div class="form-body pt-0 pb-0">
+                                <div class="row mt-action-5">
+                                    <div class=" col-md-7">
+                                        <table class="table dataTable table-hover table-striped"
+                                               datatable
+                                               dt-options="dtOptionsWorkflow"
+                                               dt-columns="dtColumnsWorkflow"
+                                               dt-instance="dt.dtInstanceWorkflow"
+                                               id="tblDataWorkflow"></table>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="control-label bold require col-md-6 text-left pl-0 pr-0"><i class="glyphicon glyphicon-screenshot"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_NAME_JOB' | translate}}</label>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" ng-model="workflow.Name_Job" name="Name_Job" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_NAME_JOB' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold require col-md-6 text-left pl-0 pr-0"><i class="glyphicon glyphicon-screenshot"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_PROCEDURE' | translate}}</label>
+                                            <div class="col-md-6">
+                                                <textarea rows="3" cols="25" type="text" class="form-control" ng-model="workflow.Working_Process" name="Working_Process" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_PROCEDURE' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-6 text-left pl-0 pr-0"><i class="glyphicon glyphicon-screenshot"></i> {{'HR_HR_MAN_CURD_LBL_HR_MAN_JOB_DESCRIPTION' | translate}}</label>
+                                            <div class="col-md-6">
+                                                <textarea rows="3" cols="25" type="text" class="form-control" ng-model="workflow.Description2" name="Description2" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_JOB_DESCRIPTION' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label bold col-md-6 text-left pl-0 pr-0"><i class="glyphicon glyphicon-screenshot"></i>&nbsp;{{'HR_HR_MAN_CURD_LBL_HR_MAN_MORE_INFORMATION' | translate}}</label>
+                                            <div class="col-md-6">
+                                                <textarea rows="3" cols="25" type="text" class="form-control" ng-model="workflow.Info_Details" name="Info_Details" placeholder="{{'HR_HR_MAN_CURD_TXT_HR_MAN_MORE_INFORMATION' | translate}}" />
+                                            </div>
+                                        </div>
+                                        <!--<div class="form-group">
+                                            <div class="col-md-12 text-right">
+                                                <button type="submit" class="btn btn-green" ng-click="submitQTCV()" ng-show="enableaddqtcv"><i class="fa fa-plus"></i>&nbsp;{{'COM_BTN_ADD' | translate}}</button>
+                                                <button type="submit" class="btn btn-green" ng-click="editQTCV()" ng-show="enableeditqtcv"><i class="fas fa-edit"></i>&nbsp;{{'COM_BTN_SAVE' | translate}}</button>
+                                            </div>
+                                        </div>-->
+                                        <div class="btn-group pull-right actions d-flex ">
+                                            <div class="text-center" ng-show="enableaddqtcv">
+                                                <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="submitQTCV()">
+                                                    <span><i class="fa fa-plus"></i></span>
+                                                </a>
+                                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                            </div>
+                                            <div class="text-center pr10" ng-show="enableeditqtcv">
+                                                <a ng-click="editQTCV()" class="btn btn-icon-only btn-circle btn-outline blue-custom">
+                                                    <span><i class="fa fa-pencil"></i></span>
+                                                </a>
+                                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_EDIT' | translate}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </uib-tab>
+                    <uib-tab index="7" heading="{{'HR_HR_TAB_DEPARTMENT_GROUP' | translate}}" disable="model.Id == ''">
+
+                    </uib-tab>
+                    <uib-tab index="8" heading="{{'HR_HR_MAN_FILE' | translate}}" disable="model.Id == ''">
+                        <div ng-include="'../views/admin/hrEmployee/file.html'"></div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+    </div>
+</div>

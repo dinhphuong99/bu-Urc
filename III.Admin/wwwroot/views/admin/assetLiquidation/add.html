@@ -1,0 +1,423 @@
+﻿<style>
+    .width_90 {
+        width: 90px;
+    }
+    .tab-content {
+        width: 100%;
+        min-height: 250px;
+        /*overflow-y: scroll;
+        overflow-x: hidden;*/
+    }
+    .labelbodergroup {
+        margin-left: 24px;
+        margin-top: -12px;
+        position: absolute;
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border: 1px solid #e9dada;
+        border-radius: 4px;
+        font-size: 11px;
+        padding: 3px 10px !important;
+    }
+
+    .table_body {
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border-radius: 4px !important;
+        border: 1px solid #e9dada;
+        padding-top: 15px;
+        box-shadow: 0px 5px 10px 2px rgba(127, 143, 166,0.2) !important;
+        padding-bottom: 15px;
+    }
+
+    .border-qrcode .box-file {
+        overflow: auto;
+        height: 130px;
+        border-radius: 4px !important;
+        border: 1px solid #e9dada;
+        padding-top: 15px;
+        background: #fffdfd;
+    }
+
+        .border-qrcode .box-file .header {
+            justify-content: center;
+            display: flex;
+        }
+
+            .border-qrcode .box-file .header label {
+                margin-top: -25px;
+                position: absolute;
+                background: linear-gradient(to bottom,#f1f1f1,#FBFCFC );
+                border: 1px solid #cccccc;
+                border-radius: 4px;
+                font-size: 11px;
+                padding: 3px 10px !important;
+            }
+
+
+    #tblFileRequest {
+        max-height: 60px;
+    }
+
+        #tblFileRequest tbody tr td {
+            max-width: 115px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+    @media(min-width:992px) and (max-width:1200px) {
+        .modal-60 {
+            width: 85% !important;
+        }
+    }
+
+    @media(min-width:1200px) and (max-width:1300px) {
+        .modal-60 {
+            width: 70% !important;
+        }
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title text-limit" id="modal-title">{{'ASLQDT_TITLE_ADD_TICKET_ASLQDT' | translate}}  <span>{{model.RcTicketCode}}</span></span>
+</div>
+<div class="modal-body userFormAreaHeader" id="modal-body" style="padding-bottom: 0px;">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal" method="post" ng-validate="validationOptions">
+            <div class="form-body pt10 pl-0 pr-0">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-barcode" aria-hidden="true"></i>
+                                <label class="control-label bold ">{{'ASLQDT_CURD_LBL_TICKET_CODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input type="text" name="TicketCode" class="form-control text-box-asset" ng-model="model.TicketCode" placeholder="{{'ASLQDT_CURD_TXT_TICKET_CODE' | translate}}" ng-readonly="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-comment"></i>
+                                <label class="control-label require bold"> &nbsp;{{'ASLQDT_CURD_LBL_TITLE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input type="text" class="form-control text-box-asset" ng-model="model.Title" name="Title" placeholder="{{'ASLQDT_CURD_TXT_TITLE' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class=" {'has-error': errorBranchLiquidation}">
+                            <div class="col-md-4">
+                                <i class="fa fa-user"></i>
+                                <label class="control-label require">&nbsp;{{'ASLQDT_CURD_LBL_BRANCH' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class="input-group">
+                                    <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.BranchLiquidation" theme="bootstrap" ng-change="changeSelect('BranchLiquidation', model.BranchLiquidation)">
+                                        <ui-select-match placeholder="{{'ASLQDT_CURD_TXT_BRANCH' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in model.listBranch | filter:$select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorBranchLiquidation" class="label-color validation-message">
+                                    {{'ASLQDT_MSG_CURD_LBL_BRANCH' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorUserLiquidation}">
+                            <div class="col-md-4">
+                                <i class="fa fa-user"></i>
+                                <label class="control-label require"> &nbsp;{{'ASLQDT_CURD_LBL_USER_LQDT' |translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class="input-group">
+                                    <ui-select class="ui-select-bootstrap-right-radius" rows="2" ng-model="model.UserLiquidation" theme="bootstrap" ng-change="changeSelect('UserLiquidation', model.UserLiquidation)">
+                                        <ui-select-match placeholder="{{'ASLQDT_CURD_TXT_USER_LQDT' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in model.listEmp | filter:$select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorUserLiquidation" class="label-color validation-message">
+                                    {{'ASLQDT_MSG_CURD_LBL_USER_LQDT' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <label class="control-label require">&nbsp;{{'ASLQDT_CURD_LBL_DATE_LQDT' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class='input-group date' id='liquidationTime'>
+                                    <input class="form-control" rows="2" ng-model="model.sLiquidationTime" name="sLiquidationTime" placeholder="{{'ASLQDT_CURD_TXT_DATE_LQDT' | translate}}..." />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <label class="control-label require">&nbsp;{{'ASLQDT_CURD_LBL_USER_BUY' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input type="text" name="UserBuy" class="form-control" ng-model="model.UserBuy" placeholder="{{'ASLQDT_CURD_TXT_USER_BUY' | translate}}..." />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group" ng-class="{ 'has-error': errorObjActCode}">
+                            <div class="col-md-4">
+                                <i class="fa fa-flag"></i>
+                                <label class="control-label require">{{'COM_CURD_LBL_CAT_ACT' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class="input-group" ng-class="{ 'has-error': errorObjActCode}">
+                                    <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.ObjActCode" theme="bootstrap" ng-change="changeSelect('ObjActCode',model.ObjActCode)">
+                                        <ui-select-match placeholder="{{'COM_CURD_LBL_CAT_ACT' | translate}}...">{{$select.selected.CatName}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listCatObjActivity  | filter: $select.search">
+                                            {{x.CatName}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorObjActCode" class="label-color validation-message">
+                                    {{'ASLQDT_MSG_CURD_LBL_CATEGORY_ACTIVITY_NULL' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-flag" aria-hidden="true"></i>
+                                <label class="control-label">&nbsp;{{'ASLQDT_CURD_LBL_STATUS' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0" ng-disable="true">
+                                <div class="input-group">
+                                    <ui-select ng-model="model.Status" theme="bootstrap" ng-change="changeSelect('Status', model.Status)" disabled="true">
+                                        <ui-select-match placeholder="{{'ASLQDT_CURD_TXT_STATUS' | translate}}"><i class="{{$select.selected.Icon}}"></i>{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listStatus | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.Status=''" class="btn btn-default no-shadow" ng-disabled="true">
+                                            <span><img src="https://img.icons8.com/material/18/000000/log.png"></span>
+                                        </button>
+                                    </span>
+                                    <span ng-show="errorStatus" class="label-color validation-message">
+                                        {{'ASLQDT_MSG_CURD_LBL_STATUS' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <label class="control-label require">&nbsp;{{'ASLQDT_CURD_LBL_LOCATION' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input class="form-control" ng-model="model.LocationLiquidation" name="LocationLiquidation" placeholder="{{'ASLQDT_CURD_TXT_LOCATION' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-comment"></i>
+                                <label class="control-label">&nbsp;{{'ASLQDT_CURD_LBL_NOTE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <textarea name="Description" class="form-control" rows="5" placeholder="{{'ASLQDT_CURD_TXT_NOTE' | translate}}..." ng-model="model.Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group" ng-class="{ 'has-error': errorTicketCode}">
+                                <label class="require custom-title-code-bold">{{'ASLQDT_CURD_LBL_TICKET_CODE' | translate}} </label>
+                                <input type="text" name="TicketCode" rows="1" class=" form-control text-box-asset" ng-model="model.TicketCode" placeholder="{{'ASLQDT_CURD_TXT_TICKET_CODE' | translate}}..." ng-readonly="true" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="require custom-title-code-bold">{{'ASLQDT_CURD_LBL_TITLE' | translate}}</label>
+                                <input ng-model="model.Title" rows="1" name="Title" class="form-control text-box-asset" placeholder="{{'ASLQDT_CURD_TXT_TITLE' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="require">{{'ASLQDT_CURD_LBL_STATUS' | translate}}</label>
+                                <div class='input-group'>
+                                    <ui-select tagging ng-model="model.Status" theme="bootstrap" ng-change="changeSelect('Status', model.Status)" ng-disabled="true">
+                                        <ui-select-match placeholder="{{'ASLQDT_CURD_TXT_STATUS' | translate}} ..."><i class="{{$select.selected.Icon}}"></i>{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listStatus| filter: $select.search">
+                                            <i class="{{x.Icon}}"></i>{{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="viewActivityStatus()" class="btn btn-default no-shadow" style="padding:3px 7px;">
+                                            <span><img src="https://img.icons8.com/material/24/000000/log.png"></span>
+                                        </button>
+                                    </span>
+                                    <span ng-show="errorStatus" class="label-color validation-message">
+                                        {{'ASLQDT_MSG_CURD_LBL_STATUS' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group" ng-class="{ 'has-error': errorBranchLiquidation}">
+                                <label class="require">{{'ASLQDT_CURD_LBL_BRANCH' | translate}} </label>
+                                <ui-select class="ui-select-bootstrap-right-radius" rows="2" ng-model="model.BranchLiquidation" theme="bootstrap" ng-change="changeSelect('BranchLiquidation', model.BranchLiquidation)">
+                                    <ui-select-match placeholder="{{'ASLQDT_CURD_TXT_BRANCH' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in model.listBranch | filter:$select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span ng-show="errorBranchLiquidation" class="label-color validation-message">
+                                    {{'ASLQDT_MSG_CURD_LBL_BRANCH' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group" ng-class="{ 'has-error': errorUserLiquidation}">
+                                <label class="require">{{'ASLQDT_CURD_LBL_USER_LQDT' |translate}}</label>
+                                <ui-select class="ui-select-bootstrap-right-radius" rows="2" ng-model="model.UserLiquidation" theme="bootstrap" ng-change="changeSelect('UserLiquidation', model.UserLiquidation)">
+                                    <ui-select-match placeholder="{{'ASLQDT_CURD_TXT_USER_LQDT' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in model.listEmp | filter:$select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span ng-show="errorUserLiquidation" class="label-color validation-message">
+                                    {{'ASLQDT_MSG_CURD_LBL_USER_LQDT' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="require">{{'ASLQDT_CURD_LBL_USER_BUY' | translate}}</label>
+                                <input type="text" rows="3" name="UserBuy" class="form-control" ng-model="model.UserBuy" placeholder="{{'ASLQDT_CURD_TXT_USER_BUY' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="require">{{'ASLQDT_CURD_LBL_LOCATION' |translate}}</label>
+                                <input class="form-control" rows="3" ng-model="model.LocationLiquidation" name="LocationLiquidation" placeholder="{{'ASLQDT_CURD_TXT_LOCATION' | translate}}..." />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="">{{'ASLQDT_CURD_LBL_NOTE' | translate}}</label>
+                                <textarea name="Description" class="form-control" rows="4" placeholder="{{'ASLQDT_CURD_TXT_NOTE' | translate}}..." ng-model="model.Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                    <!--<div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" ng-class="{ 'has-error': errorObjActCode}">
+                                <label class="require">{{'ASLQDT_CURD_LBL_CATEGORY_ACTIVITY' | translate}}</label>
+                                <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.ObjActCode" theme="bootstrap" ng-change="changeSelect('ObjActCode',model.ObjActCode)">
+                                    <ui-select-match placeholder="{{'ASLQDT_CURD_TXT_CATEGORY_ACTIVITY' | translate}}...">{{$select.selected.CatName}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in listCatObjActivity  | filter: $select.search">
+                                        {{x.CatName}}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <span ng-show="errorObjActCode" class="label-color validation-message">
+                                {{'ASLQDT_MSG_CURD_LBL_CATEGORY_ACTIVITY_NULL' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="border-qrcode">
+                            <div class="text-center hidden">
+                                <div class="img-thumbnail input-unstyled">
+                                    <qrcode id="qrCode" ng-if="model.RcTicketCode!=''" role="button" data={{model.RcTicketCode}} size="100" download></qrcode>
+                                    <img ng-if="model.RcTicketCode==''" class="opacityQrCode" src="/images/default/qrCode.png" width="100" height="100" />
+                                </div>
+                            </div>
+                            <div class="table-toolbar box-file">
+                                <div class="header">
+                                    <label><span>{{'ASLQDT_CURD_LBL_LIST_UP_FILE' | translate}}</span></label>
+                                </div>
+                                <table class="table table-bordered" id="tblFileRequest">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-5 text-center fw600 text-underline">{{'ASLQDT_CURD_LBL_FILE_NAME' | translate}}</th>
+                                            <th class="col-md-1 text-center fw600 text-underline">{{'ASLQDT_CURD_LBL_FILE_DEL' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="x in model.listFile">
+                                            <td class="text-center"><a>{{x.Name}}</a></td>
+                                            <td class="text-center">
+                                                <i role="button" class="fa fa-minus-circle" title="{{'COM_BTN_DELETE' | translate}}" ng-click="deleteFile(x.Id)" style="color:red !important;font-size: 25px;padding-top:5px"></i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="btn-group actions d-flex justify-content-center pt-2 col-md-offset-3">
+                                <div class="text-center pr15">
+                                    <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="addFile()">
+                                        <span><i class="fa fa-upload"></i></span>
+                                    </a>
+                                    <p class="text-underline fs9 mb5 pt3">{{'COM_UPLOAD' | translate}}</p>
+                                </div>
+                                <div class="text-center pr15" ng-click="print()">
+                                    <a class="btn btn-icon-only btn-circle btn-outline blue-custom">
+                                        <span><i class="fa fa-print"></i></span>
+                                    </a>
+                                    <p class="text-underline fs9 mb5 pt3">{{'ASLQDT_CURD_LBL_PRINT' | translate}}</p>
+                                </div>
+                                <div class="text-center pr15">
+                                    <a ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                        <span><i class="fa fa-save"></i></span>
+                                    </a>
+                                    <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-lg-12" style="margin-top:-10px;">
+                <uib-tabset active="active">
+                    <uib-tab class="mt5" index="1" heading="{{'ASLQDT_CURD_COL_ASSET' | translate}}" disable="CheckCode == '' || CheckCode==undefined" ng-click="chkAdd()">
+                        <div disable="tests" ng-include="'../views/admin/assetLiquidation/assetDetail.html'" ng-class="{'disabled-element' : CheckCode =='' || CheckCode==undefined }"></div>
+                    </uib-tab>
+                    <uib-tab class="mt5" index="2" heading="{{'COM_FILE' | translate}}" disable="CheckCode == '' || CheckCode==undefined" ng-click="chkAdd()">
+                        <div disable="tests" ng-include="'../views/admin/assetLiquidation/file.html'"></div>
+                    </uib-tab>
+                    <div class="btn-group actions d-flex pull-right">
+                        <div class="text-center pr10">
+                            <a data-dismiss="modal" ng-click="refresh()" class="btn btn-icon-only btn-circle btn-outline red-custom" style="border-radius: 30px !important;background: #e7505a;">
+                                <span><i class="glyphicon glyphicon-remove"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_DELETE' | translate}}</p>
+                        </div>
+                        <div class="btn-group pull-right actions d-flex">
+                            <div class="text-center pr-0">
+                                <a ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom" style="border-radius: 30px !important;background: #009432;">
+                                    <span><i class="fa fa-save"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_SAVE' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tabset>
+            </div>
+        </div>
+    </div>
+</div>

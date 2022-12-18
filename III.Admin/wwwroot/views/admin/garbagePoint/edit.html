@@ -1,0 +1,285 @@
+﻿<style>
+    @media (min-width:992px) and (max-width:1200px) {
+        .modal-70 {
+            width: 80% !important;
+        }
+    }
+
+    @media (min-width:1201px) and (max-width:1400px) {
+        .modal-70 {
+            width: 70% !important;
+        }
+    }
+
+    @media (min-width:1400px) {
+        .modal-70 {
+            width: 60% !important;
+        }
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title">{{'GBP_MSG_LBL_MORE_INFORMATION' | translate}}</span>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptions">
+            <div class="form-body pt-0">
+                <div class="row mt-action-5">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-md-4">
+                                    <i class="fas fa-barcode" aria-hidden="true"></i>
+                                    <label class="control-label require ">{{'GBP_MSG_LBL_SPAM_POINT_CODE' | translate}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="NodeCode" ng-model="model.NodeCode" placeholder="{{'GBP_MSG_LBL_SPAM_POINT_CODE' | translate}}..." ng-change="changeQrCode()" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-md-4">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    <label class="control-label require ">{{'GBP_MSG_LBL_NAME_GARBAGE_POINT' | translate}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="NodeName" ng-model="model.NodeName" placeholder="{{'GBP_MSG_TXT_NAME_GARBAGE_POINT' | translate}}..." ng-change="changeQrCode()" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-md-4">
+                                    <i class="fa fa-address-card" aria-hidden="true"></i>
+                                    <label class="control-label require ">{{'GBP_MSG_LBL_ADDRESS' | translate}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="Address" ng-model="model.Address" placeholder="{{'GBP_MSG_TXT_ADDRESS' | translate}}..." ng-change="changeQrCode()" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-md-4">
+                                    <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                                    <label class="control-label require ">{{'GBP_MSG_LBL_EDIT' | translate}}</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <input type="number" min="1" class="form-control" name="VolumeLimit" ng-model="model.VolumeLimit" placeholder="{{'GBP_MSG_TXT_EDIT' | translate}}..." ng-change="changeQrCode()" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <ui-select tagging ng-model="model.Unit" theme="bootstrap">
+                                            <ui-select-match placeholder="{{'GBP_MSG_LBL_UNIT' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                            <ui-select-choices repeat="x.Code as x in listUnit">
+                                                {{x.Name}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="addCommonSettingUrencoUnit()" class="btn btn-default no-shadow  green-custom" style="">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <span ng-show="errorUnit" class="label-color validation-message">
+                                        <!--Đơn vị không được để trống--> {{'GBP_MSG_LBL_UNITS_NOT_BLANK' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-md-4">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    <label class="control-label require ">{{'GBP_MSG_LBL_STATUS' | translate}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <ui-select tagging ng-model="model.Status" theme="bootstrap">
+                                            <ui-select-match placeholder="{{'GBP_MSG_TXT_STATUS' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                            <ui-select-choices repeat="x.Code as x in listStatus">
+                                                {{x.Name}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="addCommonSettingUrencoStatus()" class="btn no-shadow  green-custom" style="">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <span ng-show="errorStatus" class="label-color validation-message">
+                                        <!--Trạng thái không được để trống--> {{'GBP_MSG_LBL_STATUS_CANNOT_BE_BLANK' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-md-4">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <label class="control-label ">{{'GBP_MSG_LBL_ROUTE' | translate}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <ui-select tagging ng-model="model.Route" theme="bootstrap" ng-change="changleSelect('AETType')">
+                                        <ui-select-match placeholder="{{'GBP_MSG_LBL_ROUTE' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listRoute">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span ng-show="errorRoute" class="label-color validation-message">
+                                        <!--Tuyến đường không được để trống--> {{'GBP_MSG_LBL_ROUTE_NOT_BLANK' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-md-4">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <label class="control-label require ">{{'GBP_MSG_LBL_GPS_DATA' | translate}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <input type="text" disabled ng-click="openMap()" class="form-control" name="GpsNode" ng-model="model.GpsNode" placeholder="{{'GBP_MSG_TXT_GPS_DATA' | translate}}..." />
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="openMap()" class="btn btn-default no-shadow green-custom" style="">
+                                                <span class="fa fa-map-marker"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-md-4">
+                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                    <label class="control-label ">{{'GBP_MSG_LBL_MANAGER' | translate}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <ui-select tagging ng-model="model.Manager" theme="bootstrap" ng-change="changleSelect('AETType')">
+                                        <ui-select-match placeholder="{{'GBP_MSG_TXT_MANAGER' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in managers | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span ng-show="errorManager" class="label-color validation-message">
+                                        <!--Người quản lý không được để trống--> {{'GBP_MSG_LBL_MANAGER_NOT_BLANK' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-md-4">
+                                    <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                                    <label class="control-label ">{{'GBP_MSG_LBL_CURRENT_AMOUNT_GARBAGE' | translate}}</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <input type="number" min="1" class="form-control" name="Used" ng-model="model.Volume" placeholder="{{'GBP_MSG_TXT_CURRENT_AMOUNT_GARBAGE' | translate}}..." ng-change="changeQrCode()" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <ui-select tagging ng-model="model.Unit" theme="bootstrap" ng-change="changleSelect('AETType')">
+                                            <ui-select-match placeholder="{{'GBP_MSG_LBL_UNIT' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                            <ui-select-choices repeat="x.Code as x in listUnit">
+                                                {{x.Name}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="addCommonSettingUrencoUnit()" class="btn no-shadow  green-custom" style="">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <span ng-show="errorUnit" class="label-color validation-message">
+                                        <!--Đơn vị không được để trống--> {{'GBP_MSG_LBL_UNITS_NOT_BLANK' | translate}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-md-4">
+                                    <i class="fa fa-comments-o" aria-hidden="true"></i>
+                                    <label class="control-label ">{{'GBP_MSG_LBL_NOTE' | translate}}</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <textarea style="height:100px" type="text" class="form-control" ng-model="model.Note" placeholder="{{'GBP_MSG_TXT_NOTE' | translate}}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group pt20">
+                            <div class="col-md-12">
+                                <div class="form-group" style=" margin-left:60px;">
+                                    <qrcode data="{{model.QrCode}}" download size="100"></qrcode>
+                                </div>
+                                <div class="col-md-12 text-center fs10 pl-0 pr-0">
+                                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                    <label class="control-label ">&nbsp;{{'GBP_LBL_QR_CODE' | translate}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group pt20">
+                            <div class="form-group">
+                                <div class="fileupload-new thumbnail mt15 pb-0" style="border:0; box-shadow: none;background:none;">
+                                    <input id="file" accept=".png,.jpg,.jpeg,.gif,.tif" type="file" style="display:none" />
+                                    <img id="picture" style="cursor: pointer" ng-click="loadImage()" class="img-circle h-150 w150 br-n" onerror="this.src='/images/default/uploadimg.png'" ng-src="{{model.Image==null ? '/images/default/uploadimg.png' : model.Image}}" role="button" />
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center fs10 pl-0 pr-0 mb15">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                <label class="control-label "><!--&nbsp;Hình ảnh điểm tập kết--> {{'GBP_MSG_LBL_IMAGES_GATHERING_POINTS' | translate}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12  fs10 pl10 pr-0 mb15">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                <label class="control-label "><!--&nbsp;Số thùng hiện tại :--> {{'GBP_MSG_LBL_CURRENT_BOX' | translate}} </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="btn-group pull-right actions d-flex">
+        <div class="text-center pr10">
+            <a data-dismiss="modal" ng-click="cancel()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                <span><i class="glyphicon glyphicon-remove"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+        </div>
+        <div class="text-center">
+            <a ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                <span><i class="fa fa-save"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+        </div>
+    </div>
+</div>
+
+
+

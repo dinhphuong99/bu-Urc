@@ -1,0 +1,246 @@
+﻿<style>
+    .dataTables_wrapper .table-scrollable {
+        border: 1px solid #e7ecf1 !important;
+    }
+
+    @media (min-width:992px) and (max-width:1200px) {
+        .modal-80 {
+            width: 80%;
+        }
+    }
+
+    @media (min-width:1201px) and (max-width:1400px) {
+        .modal-80 {
+            width: 70%;
+        }
+    }
+
+    @media (min-width:1400px) {
+        .modal-80 {
+            width: 60%;
+        }
+    }
+
+    .modal-content {
+        width: 106%;
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title">{{'CMS_CAT_LBL_ADDCATEGORY' | translate}}</span>
+</div>
+<div class="modal-body pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptions">
+            <div class="form-body pt-0">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fa fa-barcode"></i>
+                                <label class="control-label require">{{'CMS_CAT_LBL_CATEGORYNAME' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input class="form-control" name="Name" ng-model="model.name" type="text" ng-change="ConvertToAlias(model.name)" placeholder="{{'CMS_CAT_TXT_ADDCATEGORY' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fas fa-info-circle"></i>
+                                <label class="control-label">{{'CMS_CAT_LBL_CHOOSETEMPLATE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.template" theme="bootstrap" on-select="changleSelect('PrjType')">
+                                        <ui-select-match placeholder="{{'CMS_CAT_LBL_CHOOSETEMPLATE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listTemplate | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.template=''" class="btn no-shadow btn-default" style="">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errortemplate" class="label-color validation-message">
+                                    {{'CATEGOTY_VALIDATE_SAMPLE' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="far fa-money-bill-alt"></i>
+                                <label class="control-label require">{{'CMS_CAT_LBL_ALIAS' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input class="form-control" name="Alias" ng-model="model.alias" type="text" placeholder="{{'CMS_CAT_TXT_ALIAS' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="far fa-money-bill-alt"></i>
+                                <label class="control-label">{{'CMS_CAT_LBL_ODERING' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input class="form-control remove-zero" name="Ordering" ng-model="model.ordering"  type="text" placeholder="{{'CMS_CAT_TXT_ODERING' | translate}}..." num-thousand='true' awnum num-int='21'/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fa fa-user"></i>
+                                <label class="control-label ">{{'CMS_CAT_LBL_PARENT' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.parent" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'CMS_CAT_TXT_PARENT' | translate}}...">{{$select.selected.Title}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Id as x  in listParenCat | filter: $select.search">
+                                            <div style="padding-left: {{30 * x.Level}}px">
+                                                <i ng-show="x.HasChild" class="fa fa-folder-open icon-state-warning"></i>
+                                                <i ng-show="!x.HasChild" class="fa fa-folder text-info"></i>
+                                                {{x.Title}}
+                                            </div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.parent=''" class="btn btn-default no-shadow" style="">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorparent" class="label-color validation-message">
+                                    {{'CATEGORY_VALIDATE_DAD' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fa fa-user"></i>
+                                <label class="control-label ">{{'CMS_CAT_LBL_EXTRA_GROUP' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.extra_fields_group" theme="bootstrap" on-select="changleSelect('CaseWorker')">
+                                        <ui-select-match placeholder="{{'Nhóm' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Id as x in listExtraFiled | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.extra_fields_group='';" class="btn btn-default no-shadow">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorextra_fields_group" class="label-color validation-message">
+                                    {{'CATEGORY_VALIDATE_GROUP' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5 pr-0">
+                                <i class="fa fa-money" aria-hidden="true"></i>
+                                <label class="control-label ">{{'CMS_CAT_LBL_PUBLISH' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 d-flex pr-0">
+                                <label class="mt-checkbox mt-checkbox-outline ng-binding">
+                                    <input type="checkbox" name="DefaultPayment" ng-model="model.published" ng-checked="model.published" class="ng-pristine ng-untouched ng-valid ng-empty">
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fa fa-user"></i>
+                                <label class="control-label ">{{'CMS_CAT_LBL_LANGUAGE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.language" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'CMS_CAT_TXT_LANGUAGE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listLanguage | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.language='';" class="btn btn-default no-shadow">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorlanguage" class="label-color validation-message">
+                                    {{'CATEGORY_VALIDATE_GROUP' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <uib-tabset active="active">
+                <uib-tab class="mt5" index="0" heading="{{'CMS_CAT_LBL_DESCRIPTION' | translate}}">
+                    <textarea ng-model="model.description" id="ckEditorItemCategory"></textarea>
+                </uib-tab>
+                <!--<uib-tab class="mt5" index="1" heading="{{'CMS_ITEM_BTN_IMAGE' | translate}}" disable="isShow == ''" ng-click="chkSubTab()">
+                    <div ng-include="'../views/admin/cmsCategory/image.html'" ng-class="{'disabled-element' : isShow == '' }"></div>
+                </uib-tab>-->
+                <uib-tab class="mt5" index="1" heading="{{'CMS_CAT_LBL_IMAGE' | translate}}">
+                    <div id="tab_image" class="tab-pane admin-form">
+                        <div class="form-group">
+                            <div class="fileupload fileupload-new mh15" data-provides="fileupload" id="block-upload-image" style="width: 600px; height: 350px; margin: 0 auto !important;">
+                                <div class="form-group">
+                                    <div class="fileupload-new thumbnail pb-0" style="border:0; box-shadow: none;background:none;">
+                                        <input id="File" accept=".png,.jpg,.jpeg,.gif,.tif" type="file" ng-src="{{model.img}}" style="display:none" />
+                                        <!--<img id="imageId" ng-click="loadImage()" style="height: 200px; width: 200px;cursor: pointer" ng-src="{{model.img}}" onerror="this.src='../../../images/default/uploadimg.png'" alt="CMS_CAT_LBL_IMAGE" />-->
+                                        <img id="imageId" ng-click="loadImage()" class="h-300 w-450 br-n" onerror="this.src='../../../images/default/uploadimg.png'" ng-src="{{model.img==null ? '../../../images/default/uploadimg.png' : model.img}}" role="button" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-3 ">
+                                        <input class="btn btn-system btn-block" type="button" id="browseButton" value="Thêm ảnh từ máy" ng-click="loadImage()">
+                                    </div>
+                                    <div class="col-xs-3 hidden">
+                                        <input id="ImageServer" name="ImageServer" type="hidden" value="" />
+                                        <a href="javascript:void(0);"
+                                           data-href="#modal-panel-frame"
+                                           class="btn btn-system btn-block"
+                                           data-event="popup-modal"
+                                           data-iframe-href="/assets/vendor/filemanager/dialog.php?type=1&amp;field_id=ImageServer"
+                                           data-iframe-title="Responsive Filemanager"
+                                           data-iframe-height="500">
+                                            Browse server...
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tab>
+                <div class="pull-right">
+                    <div class="btn-group actions d-flex">
+                        <div class="pr10">
+                            <div data-dismiss="modal" ng-click="cancel()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                                <span><i class="glyphicon glyphicon-remove"></i></span>
+                            </div>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+                        </div>
+                        <div class="text-center pl10" ng-click="submit()">
+                            <div class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                <span><i class="fa fa-plus"></i></span>
+                            </div>
+                            <p class="text-underline mb-0 fs9  pt3">{{'COM_BTN_ADD' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </uib-tabset>
+        </div>
+    </div>
+</div>
+

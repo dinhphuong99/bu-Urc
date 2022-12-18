@@ -1,0 +1,107 @@
+﻿<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-md-12">
+            <!--<h1 class="bold mb-0">{{'SP_LBL_SP' | translate}}</h1>-->
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_MENU_SUPPLIER' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/SupplierProgress">{{'SP_LINK_SP' | translate}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5">
+        <div class="portlet-body">
+            <div class="row pt5 m5">
+                <div class="col-md-3">
+                    <div class="form-group p-0" ng-class="{ 'has-error': errorSupplierCode}">
+                        <label class="require">{{'SP_SEACH_LBL_SUPPLIER' | translate}}</label>
+                        <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.SupplierCode" theme="bootstrap" on-select="changleSelect('SupplierCode')">
+                            <ui-select-match placeholder="{{'SP_SEACH_COMBO_SUPPLIER' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in listSupplier | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span ng-show="errorSupplierCode" class="label-color validation-message">
+                            {{'SP_VALIDATE_SUPPLIER_REQUIRED' | translate}}!
+                        </span>
+                    </div>
+                    <!--<div class="col-md-3 p-0">
+                        <div class="text-center pt20">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="searchAdvanced()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="col-lg-2 form-group" ng-class="{ 'has-error': errorBoardCode}">
+                    <label class="require">{{'SP_CURD_LBL_TABLE_WORKING' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.BoardCode" theme="bootstrap" on-select="changleSelect('BoardCode')">
+                            <ui-select-match placeholder="{{'SP_CURD_LBL_TABLE_WORKING' | translate}}...">{{$select.selected.BoardName}}</ui-select-match>
+                            <ui-select-choices repeat="x.BoardCode as x in listBoard | filter: $select.search">
+                                {{x.BoardName}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="addBoard()" class="btn no-shadow  green-custom" style="">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </span>
+                    </div>
+                    <span ng-show="errorBoardCode" class="label-color validation-message">
+                        {{'SP_VALIDATE_TABLE_WORKING_REQUIRED' | translate}}!
+                    </span>
+                </div>
+                <div class="col-lg-2 form-group" ng-class="{ 'has-error': errorListCode}">
+                    <label class="require">{{'SP_CURD_LBL_LIST' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select ng-model="model.ListCode" theme="bootstrap" on-select="changleSelect('ListCode')">
+                            <ui-select-match placeholder="{{'SP_CURD_TXT_LIST' | translate}}...">{{$select.selected.ListName}}</ui-select-match>
+                            <ui-select-choices repeat="x.ListCode as x in listLists | filter: $select.search">
+                                {{x.ListName}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="addList()" class="btn no-shadow  green-custom" style="">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </span>
+                    </div>
+                    <span ng-show="errorListCode" class="label-color validation-message">
+                        {{'SP_VALIDATE_LIST_REQUIRED' | translate}}!
+                    </span>
+                </div>
+                <div class="col-lg-3 form-group" ng-class="{ 'has-error': errorCardName}">
+                    <label class="require">{{'SP_CURD_LBL_JOB' | translate}}</label>
+                    <input class="form-control" ng-model="model.CardName" ng-change="changleSelect('CardName')" placeholder="{{'SP_CURD_TXT_ENTER_JOB' | translate}}" />
+                    <span ng-show="errorCardName" class="label-color validation-message">
+                        {{'SP_VALIDATE_JOB_REQUIRED' | translate}}!
+                    </span>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="btn-group pt20 actions d-flex">
+                        <div class="text-center pr10">
+                            <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="addCard()">
+                                <span><i class="fa fa-plus"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="supplierGantt" dhx-gantt style='height:600px;'></div>
+    </div>
+</div>

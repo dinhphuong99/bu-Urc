@@ -1,0 +1,50 @@
+﻿<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title " id="modal-title">{{'Tồn kho theo lot' | translate}}</span>
+</div>
+<div class="modal-body pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="tab-content">
+                    <div class="tab-pane active">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="tblListCoil">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-1 text-center fw600 text-underline">{{'IN_TXT_NO' | translate}}</th>
+                                        <th class="col-md-2 text-center fw600 text-underline">{{'Lot' | translate}}</th>
+                                        <th class="col-md-1 text-center fw600 text-underline">{{'IN_COL_QUANTITY_BOX' | translate}}</th>
+                                        <th class="col-md-1 text-center fw600 text-underline">{{'IN_TABLE_SUM_UNIT' | translate}}</th>
+                                        <th class="col-md-1 text-center fw600 text-underline">{{'IN_LIST_COL_UNIT' | translate}}</th>
+                                        <th class="col-md-1 text-center fw600 text-underline">{{'IN_TXT_INVENTORY_NAME' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in listLot">
+                                        <td class="text-center">{{$index+1}}</td>
+                                        <td class="text-center">{{x.ProductLot}}</td>
+                                        <td class="text-center">{{x.Quantity}}</td>
+                                        <td class="text-center">{{x.QuantityUnit}}</td>
+                                        <td class="text-center">{{x.UnitCoil}}</td>
+                                        <td class="text-center">{{x.StoreName}}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="2" class="text-center "><span class="text-danger fw600 bold">{{'IN_TXT_SUM' | translate}}</span></th>
+                                        <th colspan="1" class="text-center"><span class="text-danger fw600 bold">{{QuantityTotal}}</span></th>
+                                        <th colspan="1" class="text-center"><span class="text-danger fw600 bold">{{QuantityUnitTotal}}</span></th>
+                                        <th colspan="1" class="text-center fw600"></th>
+                                        <th colspan="1" class="text-center fw600"></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

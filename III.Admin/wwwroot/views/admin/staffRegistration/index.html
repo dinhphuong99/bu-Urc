@@ -1,0 +1,119 @@
+﻿<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home" style="color:black;"></i>
+                    <a class="bold text text-underline" style="color:black;" href="#">{{'STRE_TITLE_HR_EMPLOYEE' | translate}}</a>
+                    <span style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class="bold text-underline" style="color:black;" href="/Admin/StaffRegistration">{{'STRE_TAB_WORK_CALENDAR' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group pt5 pb-1 actions d-flex pull-right">
+                <!--<div class="text-center">
+                    <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="registration()">
+                        <span><i class="fa fa-plus"></i></span>
+                    </a>
+                    <p class="text-underline fs9 mb5 pt3">{{'STRE_TITLE_CALENDAR_MANAGEMENT' | translate}}</p>
+                </div>-->
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn green-custom br4" ng-click="registration()">
+                        <i class="fa fa-plus"></i>
+                        {{'STRE_TITLE_CALENDAR_MANAGEMENT'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .fc-more-popover {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        @media only screen and (min-width: 992px) and (max-width: 1200px) {
+            .cus-col-3 {
+                width: 45% !important;
+            }
+        }
+
+        @media only screen and (min-width: 1300px) and (max-width: 1400px) {
+            .cus-col-3 {
+                width: 42% !important;
+            }
+        }
+
+        @media only screen and (min-width: 1400px) and (max-width: 1500px) {
+            .cus-col-3 {
+                width: 45% !important;
+            }
+        }
+    </style>
+    <div class="portlet light bordered input-search mb5">
+        <div class="portlet-body" ng-show="isSearch">
+            <div class="row">
+                <div class="col-md-12" style="height:20px">
+                    <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-in-line" role="button" title="Ẩn tìm kiếm"></i>
+                </div>
+                <div class="col-lg-3">
+                    <label>{{'STRE_CURD_LBL_MEMBER' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select ng-model="model.MemberId" theme="bootstrap">
+                            <ui-select-match placeholder="{{'STRE_TXT_ALL' | translate}}..."><img class="img-circle h-20" ng-src="{{ $select.selected.Picture }}" onerror="this.src='../../../images/default/no_user.png'" />&nbsp; {{$select.selected.GivenName}}</ui-select-match>
+                            <ui-select-choices repeat="x.Id as x in listUser | filter: $select.search">
+                                <img class="img-circle w25 h-25" ng-src="{{ x.Picture }}" onerror="this.src='../../../images/default/no_user.png'" />
+                                <div ng-bind-html="x.GivenName" style="display: inline"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.MemberId=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4 cus-col-3">
+                    <!--<label class="control-label mr20"><input type="checkbox" id="morning" class="checkmark work-type" />{{'STRE_LBL_SEARCH_PARTTIME_MORNING' | translate}}</label>
+        <label class="control-label mr20"><input type="checkbox" id="afternoon" class="checkmark work-type" />{{'STRE_LBL_SEARCH_PARTTIME_AFTERNOON' | translate}}</label>
+        <label class="control-label"><input type="checkbox" id="evening" class="checkmark work-type" />{{'STRE_LBL_SEARCH_PARTTIME_EVENING' | translate}}</label>-->
+                    <div class="pt20">
+                        <label ng-repeat="x in schedule" class="mt-checkbox mt-checkbox-outline fs12" style="margin: 6px 0 0 15px!important;">
+                            <input type="checkbox" ng-model="x.checked" ng-change="updateSelection($index, entities)"> {{x.name}}
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="btn-group pt10  actions d-flex">
+                        <div class="pr10">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="search()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <style>
+                .fc-time {
+                    display: none;
+                }
+            </style>
+            <div class="calendar-wrap pt10">
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+</div>

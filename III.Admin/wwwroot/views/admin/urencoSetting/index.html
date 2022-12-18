@@ -1,0 +1,95 @@
+﻿
+<style>
+    .tab-item {
+        margin-right: 1px;
+    }
+
+    .icon-number {
+        width: 20px;
+        height: 20px;
+        background: #ffffff;
+        color: #428bca;
+        border-radius: 50%;
+        font-weight: 600;
+        padding: 2px;
+    }
+</style>
+
+<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'Urenco' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="UrencoSetting#">{{'Cấu hình tham số' | translate}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tabbable pt10">
+        <div class="tabbable">
+            <ul class="nav nav-tabs child">
+                <li class="tab-item active"><a href="#pane1" data-toggle="tab"><span class="icon-number">1</span>&nbsp;{{'Nguyên liệu, VT, TB' | translate}}</a></li>
+                <li class="tab-item"><a href="#pane2" data-toggle="tab"><span class="icon-number">2</span>&nbsp;{{'Nhóm vật tư' | translate}}</a></li>
+                <li class="tab-item"><a href="#pane3" data-toggle="tab"><span class="icon-number">3</span>&nbsp;{{'Loại vật tư' | translate}}</a></li>
+                <li class="tab-item"><a href="#pane4" data-toggle="tab"><span class="icon-number">4</span>&nbsp;{{'Danh mục dịch vụ' | translate}}</a></li>
+                <li class="tab-item"><a href="#pane5" data-toggle="tab"><span class="icon-number">5</span>&nbsp;{{'Nhóm dịch vụ' | translate}}</a></li>
+                <li class="tab-item"><a href="#pane6" data-toggle="tab"><span class="icon-number">6</span>&nbsp;{{'Loại dịch vụ' | translate}}</a></li>
+                <li class="tab-item"><a href="#pane7" data-toggle="tab"><span class="icon-number">7</span>&nbsp;{{'Danh mục chi phí' | translate}}</a></li>
+                <li class="tab-item"><a href="#pane8" data-toggle="tab"><span class="icon-number">8</span>&nbsp;{{'Nhóm chi phí' | translate}}</a></li>
+                <li class="tab-item"><a href="#pane9" data-toggle="tab"><span class="icon-number">9</span>&nbsp;{{'Loại chi phí' | translate}}</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="pane1" class="tab-pane active">
+                    <div ng-include="'../views/admin/materialProduct/index.html'" ng-controller="index_material_prod"></div>
+                </div>
+                <div id="pane2" class="tab-pane">
+                    <div ng-include="'../views/admin/materialProductGroup/index.html'" ng-controller="index_material_group"></div>
+                </div>
+                <div id="pane3" class="tab-pane">
+                    <div ng-include="'../views/admin/materialsType/index.html'" ng-controller="index_material_type"></div>
+                </div>
+                <div id="pane4" class="tab-pane">
+                    <div ng-include="'../views/admin/serviceCategory/index.html'" ng-controller="index_svc"></div>
+                </div>
+                <div id="pane5" class="tab-pane">
+                    <div ng-include="'../views/admin/serviceCategoryGroup/index.html'" ng-controller="index_service_cat_group"></div>
+                </div>
+                <div id="pane6" class="tab-pane">
+                    <div ng-include="'../views/admin/serviceCategoryType/index.html'" ng-controller="index_service_cat_type"></div>
+                </div>
+                <div id="pane7" class="tab-pane">
+                    <div ng-include="'../views/admin/urencoCostCategory/index.html'" ng-controller="index_urenco_cost_category"></div>
+                </div>
+                <div id="pane8" class="tab-pane">
+                    <div ng-include="'../views/admin/urencoCostGroup/index.html'" ng-controller="index_urenco_cost_group"></div>
+                </div>
+                <div id="pane9" class="tab-pane">
+                    <div ng-include="'../views/admin/urencoCostType/index.html'" ng-controller="index_urenco_cost_type"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var url = window.location.href;
+    var check = url.indexOf("/#");
+
+    if (check > -1) {
+        var activeTab = url.substring(url.indexOf("/#") + 1);
+        if (activeTab != null && activeTab != '') {
+            $('.nav-tabs >.child > li.active').removeClass('active');
+            $('a[href="' + activeTab + '"]').tab('show')
+        } 
+    }
+
+    $('.nav-tabs >.child > li > a').click(function () {
+        $('.nav-tabs >.child > li.active').removeClass('active');
+        $(this).parent().addClass('active');
+    });
+</script>

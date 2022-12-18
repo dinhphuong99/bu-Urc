@@ -1,0 +1,967 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="COM_ACTIVITY" xml:space="preserve">
+    <value>활성</value>
+    <comment>Hoạt động</comment>
+  </data>
+  <data name="COM_ADD_FILE" xml:space="preserve">
+    <value>파일 추가</value>
+    <comment>Thêm tệp tin</comment>
+  </data>
+  <data name="COM_ADD_FILE_SUCCESS" xml:space="preserve">
+    <value>새 파일을 성공적으로 추가</value>
+    <comment>Thêm mới tệp tin thành công</comment>
+  </data>
+  <data name="COM_ADD_SUCCESS" xml:space="preserve">
+    <value>더 많은 성공</value>
+    <comment>Thêm thành công</comment>
+  </data>
+  <data name="COM_ATTACHED_FILE" xml:space="preserve">
+    <value>첨부 파일</value>
+    <comment>Tệp đính kèm</comment>
+  </data>
+  <data name="COM_BODY_EDIT" xml:space="preserve">
+    <value>수정 된 내용</value>
+    <comment>Nội dung sửa đổi</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_ASSET_MAINTENANCE" xml:space="preserve">
+    <value>유지 보수 및 수리</value>
+    <comment>Bảo dưỡng sửa chữa</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_ASSET_OPERATE" xml:space="preserve">
+    <value>조달 실행</value>
+    <comment>Mua sắm vận hành</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_COMMON_CATE" xml:space="preserve">
+    <value>일반 카탈로그</value>
+    <comment>Danh mục chung</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_STATISTICAL" xml:space="preserve">
+    <value>통계 보고서</value>
+    <comment>Báo cáo thống kê</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_STORE" xml:space="preserve">
+    <value>영업</value>
+    <comment>Bán hàng</comment>
+  </data>
+  <data name="COM_BREAD_CRUMD_FINANCE_FUND" xml:space="preserve">
+    <value>자금 경고</value>
+    <comment>Cảnh báo quỹ</comment>
+  </data>
+  <data name="COM_BTN_ADD" xml:space="preserve">
+    <value>새로 추가</value>
+    <comment>Thêm mới</comment>
+  </data>
+  <data name="COM_BTN_ADD_BOARD" xml:space="preserve">
+    <value>테이블 만들기</value>
+    <comment>Tạo bảng</comment>
+  </data>
+  <data name="COM_BTN_ADD_CALENDAR" xml:space="preserve">
+    <value>캘린더 추가</value>
+    <comment>Thêm lịch</comment>
+  </data>
+  <data name="COM_BTN_ADD_CAR" xml:space="preserve">
+    <value>할당</value>
+    <comment>Giao việc</comment>
+  </data>
+  <data name="COM_BTN_ADD_TEAM" xml:space="preserve">
+    <value>그룹 만들기</value>
+    <comment>Tạo nhóm</comment>
+  </data>
+  <data name="COM_BTN_ADVANCE_SEARCH" xml:space="preserve">
+    <value>고급 검색</value>
+    <comment>Tìm kiếm nâng cao</comment>
+  </data>
+  <data name="COM_BTN_BACK" xml:space="preserve">
+    <value>돌아서</value>
+    <comment>Quay lại</comment>
+  </data>
+  <data name="COM_BTN_CANCEL" xml:space="preserve">
+    <value>중단</value>
+    <comment>Hủy bỏ</comment>
+  </data>
+  <data name="COM_BTN_CARD_JOB" xml:space="preserve">
+    <value>태그 추가</value>
+    <comment>Thêm thẻ</comment>
+  </data>
+  <data name="COM_BTN_CHECK" xml:space="preserve">
+    <value>체크 아웃</value>
+    <comment>Kiểm tra</comment>
+  </data>
+  <data name="COM_BTN_CLOSE" xml:space="preserve">
+    <value>닫습니다</value>
+    <comment>Đóng</comment>
+  </data>
+  <data name="COM_BTN_CONFIRM" xml:space="preserve">
+    <value>확인</value>
+    <comment>Xác nhận</comment>
+  </data>
+  <data name="COM_BTN_CONTINUE" xml:space="preserve">
+    <value>계속</value>
+    <comment>Tiếp tục</comment>
+  </data>
+  <data name="COM_BTN_DELETE" xml:space="preserve">
+    <value>삭제</value>
+    <comment>Xóa</comment>
+  </data>
+  <data name="COM_BTN_DESCRIBE" xml:space="preserve">
+    <value>설명</value>
+    <comment>Mô tả</comment>
+  </data>
+  <data name="COM_BTN_DOWLOAD" xml:space="preserve">
+    <value>그것을 다운로드</value>
+    <comment>Tải xuống</comment>
+  </data>
+  <data name="COM_BTN_EDIT" xml:space="preserve">
+    <value>업데이트</value>
+    <comment>Cập nhật</comment>
+  </data>
+  <data name="COM_BTN_EDIT_BOARD" xml:space="preserve">
+    <value>테이블 편집</value>
+    <comment>Sửa bảng</comment>
+  </data>
+  <data name="COM_BTN_EXCEL" xml:space="preserve">
+    <value>엑셀 내보내기</value>
+    <comment>Xuất Excel</comment>
+  </data>
+  <data name="COM_BTN_FILE" xml:space="preserve">
+    <value>파일</value>
+    <comment>Tệp tin</comment>
+  </data>
+  <data name="COM_BTN_IMPORT" xml:space="preserve">
+    <value>수입품</value>
+    <comment>Nhập khẩu</comment>
+  </data>
+  <data name="COM_BTN_INHERITANCE" xml:space="preserve">
+    <value>상속</value>
+    <comment>Kế thừa</comment>
+  </data>
+  <data name="COM_BTN_PDF" xml:space="preserve">
+    <value>PDF 파일 내보내기</value>
+    <comment>Xuất file PDF</comment>
+  </data>
+  <data name="COM_BTN_PROPERTIES" xml:space="preserve">
+    <value>속성</value>
+    <comment>Thuộc tính</comment>
+  </data>
+  <data name="COM_BTN_REATTACHED" xml:space="preserve">
+    <value>다시 부착</value>
+    <comment>Gắn lại</comment>
+  </data>
+  <data name="COM_BTN_RECALL" xml:space="preserve">
+    <value>취소</value>
+    <comment>Thu hồi</comment>
+  </data>
+  <data name="COM_BTN_REFRESH" xml:space="preserve">
+    <value>새로 고침</value>
+    <comment>Làm mới</comment>
+  </data>
+  <data name="COM_BTN_REPOSITORY" xml:space="preserve">
+    <value>파일 저장소</value>
+    <comment>Kho tệp tin</comment>
+  </data>
+  <data name="COM_BTN_SAVE" xml:space="preserve">
+    <value>저장</value>
+    <comment>Lưu lại</comment>
+  </data>
+  <data name="COM_BTN_SEARCH" xml:space="preserve">
+    <value>검색</value>
+    <comment>Tìm kiếm</comment>
+  </data>
+  <data name="COM_BTN_SET_SIGN" xml:space="preserve">
+    <value>가입</value>
+    <comment>Đăng ký</comment>
+  </data>
+  <data name="COM_BTN_SHARE" xml:space="preserve">
+    <value>파일 공유</value>
+    <comment>Chia sẻ tệp</comment>
+  </data>
+  <data name="COM_BTN_SIGN_UP" xml:space="preserve">
+    <value>가입</value>
+    <comment>Đăng kí</comment>
+  </data>
+  <data name="COM_BTN_STATISTICAL" xml:space="preserve">
+    <value>통계</value>
+    <comment>Thống kê</comment>
+  </data>
+  <data name="COM_BTN_UP_FILE" xml:space="preserve">
+    <value>파일 다운로드</value>
+    <comment>Tải tệp</comment>
+  </data>
+  <data name="COM_BTN_USE_DEFAULT_SETTING" xml:space="preserve">
+    <value>기본 설정 사용</value>
+    <comment>Sử dụng cài đặt mặt định</comment>
+  </data>
+  <data name="COM_CONFIRM" xml:space="preserve">
+    <value>확인</value>
+    <comment>Xác nhận</comment>
+  </data>
+  <data name="COM_CONFIRM_CANCEL" xml:space="preserve">
+    <value>중단</value>
+    <comment>Hủy</comment>
+  </data>
+  <data name="COM_CONFIRM_OK" xml:space="preserve">
+    <value>확실히</value>
+    <comment>Chắc chắn</comment>
+  </data>
+  <data name="COM_CONNECT_FAILURE" xml:space="preserve">
+    <value>서버 연결 실패</value>
+    <comment>Kết nối server không thành công</comment>
+  </data>
+  <data name="COM_CRUMB_MANAGER_CONTENT" xml:space="preserve">
+    <value>컨텐츠 관리</value>
+    <comment>Quản lý nội dung</comment>
+  </data>
+  <data name="COM_CURD_BTN_ADD_DATA" xml:space="preserve">
+    <value>데이터로</value>
+    <comment>Vào dữ liệu</comment>
+  </data>
+  <data name="COM_CURD_BTN_HISTORY" xml:space="preserve">
+    <value>연혁</value>
+    <comment>Lịch sử</comment>
+  </data>
+  <data name="COM_CURD_DETAIL_TITLE_SET" xml:space="preserve">
+    <value>속성 목록</value>
+    <comment>Danh sách thuộc tính</comment>
+  </data>
+  <data name="COM_CURD_LBL_CAT_ACT" xml:space="preserve">
+    <value>사업 흐름</value>
+    <comment>Luồng nghiệp vụ</comment>
+  </data>
+  <data name="COM_CURD_LBL_TYPE_SET" xml:space="preserve">
+    <value>자료형</value>
+    <comment>Kiểu dữ liệu</comment>
+  </data>
+  <data name="COM_CURD_LBL_VALUE_SET" xml:space="preserve">
+    <value>설정 값</value>
+    <comment>Giá trị cài đặt</comment>
+  </data>
+  <data name="COM_DELETE_FAIL" xml:space="preserve">
+    <value>삭제 실패</value>
+    <comment>Xóa thất bại</comment>
+  </data>
+  <data name="COM_DELETE_FILE_SUCCESS" xml:space="preserve">
+    <value>파일을 성공적으로 삭제</value>
+    <comment>Xóa tệp tin thành công</comment>
+  </data>
+  <data name="COM_DELETE_SUCCESS" xml:space="preserve">
+    <value>성공적으로 삭제</value>
+    <comment>Xóa thành công</comment>
+  </data>
+  <data name="COM_DEL_SUCCESS_LIST_ITEM_BUT_HAS_CHILD_OR_REF" xml:space="preserve">
+    <value>{0}이 (가) 선택되지 않은 {0} 또는 {0}을 (를) 사용하여 {0}을 (를) 성공적으로 삭제했습니다.</value>
+    <comment>Xóa thành công các {0} các {0} được sử dụng ở nơi khác hoặc {0} có {0} con không được chọn.</comment>
+  </data>
+  <data name="COM_EDIT_FILE" xml:space="preserve">
+    <value>파일 편집</value>
+    <comment>Sửa tệp tin</comment>
+  </data>
+  <data name="COM_EDIT_INFORMATION_SUCCESS" xml:space="preserve">
+    <value>파일 정보를 성공적으로 편집</value>
+    <comment>Sửa thông tin tệp tin thành công</comment>
+  </data>
+  <data name="COM_ERR_ADD" xml:space="preserve">
+    <value>추가하는 중에 오류가 발생했습니다!</value>
+    <comment>Có lỗi khi thêm !</comment>
+  </data>
+  <data name="COM_ERR_CODE_CHANGE" xml:space="preserve">
+    <value>코드 {0}을 (를) 변경할 수 없습니다.</value>
+    <comment>Mã {0} không được phép thay đổi.</comment>
+  </data>
+  <data name="COM_ERR_DELETE" xml:space="preserve">
+    <value>제거하는 중에 오류가 발생했습니다!</value>
+    <comment>Có lỗi khi xóa !</comment>
+  </data>
+  <data name="COM_ERR_EXCEED_CHARACTERS" xml:space="preserve">
+    <value>{0}은 {1}자를 초과 할 수 없습니다.</value>
+    <comment>{0} không được nhập quá {1} ký tự.</comment>
+  </data>
+  <data name="COM_ERR_EXIST" xml:space="preserve">
+    <value>{0}이 (가) 이미 존재합니다!</value>
+    <comment>{0} đã tồn tại!</comment>
+  </data>
+  <data name="COM_ERR_FAIL_ADD" xml:space="preserve">
+    <value>{0} 오류 추가</value>
+    <comment>Thêm {0} lỗi</comment>
+  </data>
+  <data name="COM_ERR_FAIL_DOWLOAD" xml:space="preserve">
+    <value>{0}로드 오류</value>
+    <comment>Tải {0} lỗi</comment>
+  </data>
+  <data name="COM_ERR_LIST_OBJ_HAS_CHILD_OR_REF" xml:space="preserve">
+    <value>다른 곳에서 사용하거나 {0}을 (를) 선택하지 않은 {0}을 (를) 삭제할 수 없습니다. 모든 {0} 자식을 먼저 삭제해야합니다.</value>
+    <comment>Không thể xóa các {0} được sử dụng ở nơi khác hoặc có {0} con không được chọn. Bạn phải xóa hết {0} con trước.</comment>
+  </data>
+  <data name="COM_ERR_NOT_CHECKED" xml:space="preserve">
+    <value>{0}이 (가) 선택되지 않았습니다!</value>
+    <comment>Không có {0} nào được chọn!</comment>
+  </data>
+  <data name="COM_ERR_OBJ_REF" xml:space="preserve">
+    <value>다른 곳에서 사용중인 {0}을 (를) 삭제할 수 없습니다</value>
+    <comment>Không thể xóa {0} đang được sử dụng ở nơi khác</comment>
+  </data>
+  <data name="COM_ERR_OBJ_USER" xml:space="preserve">
+    <value>비활성 계획 {0}이 (가) 계획에 이미 사용됨</value>
+    <comment>Không Thể Ngừng Hoạt Động {0} Đã Được Sử Dụng trong Kế Hoạch</comment>
+  </data>
+  <data name="COM_ERR_OLD" xml:space="preserve">
+    <value>아직 18 세가 아닙니다 !!!!</value>
+    <comment>Bạn chưa đủ 18 tuổi!!!!</comment>
+  </data>
+  <data name="COM_ERR_REQUIRED" xml:space="preserve">
+    <value>{0}은 비워 둘 수 없습니다</value>
+    <comment>{0} không được để trống</comment>
+  </data>
+  <data name="COM_ERR_SEARCH" xml:space="preserve">
+    <value>{0}을 (를) 찾는 중 오류가 발생했습니다</value>
+    <comment>Có lỗi khi tìm {0}</comment>
+  </data>
+  <data name="COM_ERR_SUCCESS_DOWLOAD" xml:space="preserve">
+    <value>{0} 다운로드 성공</value>
+    <comment>Tải {0} thành công</comment>
+  </data>
+  <data name="COM_ERR_UPLOAD_FILE" xml:space="preserve">
+    <value>파일을 업로드하는 중에 오류가 발생했습니다!</value>
+    <comment>Có lỗi xảy ra khi upload file!</comment>
+  </data>
+  <data name="COM_ERR_UPLOAD_IMAGE" xml:space="preserve">
+    <value>사진을 업로드하는 중에 오류가 발생했습니다!</value>
+    <comment>Có lỗi khi tải ảnh lên!</comment>
+  </data>
+  <data name="COM_ERR_VALIDATE_DAY" xml:space="preserve">
+    <value>과거 날짜를 변경할 수 없습니다</value>
+    <comment>Không thể thay đổi ngày đã qua</comment>
+  </data>
+  <data name="COM_FILE" xml:space="preserve">
+    <value>파일</value>
+    <comment>Tệp tin</comment>
+  </data>
+  <data name="COM_ITEM_VALIDATE" xml:space="preserve">
+    <value>기사</value>
+  </data>
+  <data name="COM_ITEM_VALIDATE_TITLE" xml:space="preserve">
+    <value>직함</value>
+  </data>
+  <data name="COM_LBL_PLS_CONFIRM" xml:space="preserve">
+    <value>확인 해주세요</value>
+    <comment>Làm ơn xác nhận</comment>
+  </data>
+  <data name="COM_LBL_SAVE_UPDATE" xml:space="preserve">
+    <value>업데이트 저장</value>
+    <comment>Lưu lại cập nhật</comment>
+  </data>
+  <data name="COM_LBL_SHARE_TITLE" xml:space="preserve">
+    <value>파일 공유</value>
+    <comment>Chia sẻ tệp</comment>
+  </data>
+  <data name="COM_LINK_HOME" xml:space="preserve">
+    <value>홈</value>
+    <comment>Trang chủ</comment>
+  </data>
+  <data name="COM_LIST_COL_ACTION" xml:space="preserve">
+    <value>조작</value>
+    <comment>Thao tác</comment>
+  </data>
+  <data name="COM_LIST_USER" xml:space="preserve">
+    <value>사용자 목록</value>
+    <comment>Danh sách người dùng</comment>
+  </data>
+  <data name="COM_MENU_ASSET" xml:space="preserve">
+    <value>재산</value>
+    <comment>Tài sản</comment>
+  </data>
+  <data name="COM_MENU_CONTRACT" xml:space="preserve">
+    <value>계약 / 주문</value>
+    <comment>Hợp đồng/Đơn hàng</comment>
+  </data>
+  <data name="COM_MENU_CUSTOMER" xml:space="preserve">
+    <value>고객</value>
+    <comment>Khách hàng</comment>
+  </data>
+  <data name="COM_MENU_MANAGE_FUND" xml:space="preserve">
+    <value>자금 관리</value>
+    <comment>Quản lý quỹ</comment>
+  </data>
+  <data name="COM_MENU_MANAGE_SERVICE" xml:space="preserve">
+    <value>서비스 관리</value>
+    <comment>Quản trị dịch vụ</comment>
+  </data>
+  <data name="COM_MENU_MANAGE_USER" xml:space="preserve">
+    <value>사용자 관리</value>
+    <comment>Quản trị người dùng</comment>
+  </data>
+  <data name="COM_MENU_MATERIAL" xml:space="preserve">
+    <value>DM 장비 및 소모품</value>
+    <comment>DM thiết bị &amp; Vật tư</comment>
+  </data>
+  <data name="COM_MENU_PROJECT" xml:space="preserve">
+    <value>프로젝트</value>
+    <comment>Dự án</comment>
+  </data>
+  <data name="COM_MENU_SETTING_SYSTEM" xml:space="preserve">
+    <value>시스템 설정</value>
+    <comment>Cài đặt hệ thống</comment>
+  </data>
+  <data name="COM_MENU_STORAGE_DIGITAL" xml:space="preserve">
+    <value>데이터웨어 하우스 및 디지털화</value>
+    <comment>Kho dữ liệu &amp; số hóa</comment>
+  </data>
+  <data name="COM_MENU_SUPPLIER" xml:space="preserve">
+    <value>공급자</value>
+    <comment>Nhà cung cấp</comment>
+  </data>
+  <data name="COM_MSG_ADD_BEFORE" xml:space="preserve">
+    <value>저장하기 전에 {0}을 (를) 추가하십시오</value>
+    <comment>Vui lòng thêm {0} trước khi lưu</comment>
+  </data>
+  <data name="COM_MSG_ADD_BEFORE_SAVE" xml:space="preserve">
+    <value>저장하기 전에 {0}을 (를) 추가하십시오</value>
+    <comment>Vui lòng thêm {0} trước khi lưu</comment>
+  </data>
+  <data name="COM_MSG_ADD_FAILED" xml:space="preserve">
+    <value>{0} 추가 실패</value>
+    <comment>Thêm {0} thất bại</comment>
+  </data>
+  <data name="COM_MSG_ADD_PARENT_FIRST" xml:space="preserve">
+    <value>먼저 {0} 아버지를 추가해야합니다!</value>
+    <comment>Bạn phải thêm {0} cha trước!</comment>
+  </data>
+  <data name="COM_MSG_ADD_SUCCESS" xml:space="preserve">
+    <value>{0}을 (를) 추가했습니다</value>
+    <comment>Thêm {0} thành công</comment>
+  </data>
+  <data name="COM_MSG_APP_GUIDE" xml:space="preserve">
+    <value>지침 : 기능 관리를 마우스 오른쪽 버튼으로 클릭하여 선택</value>
+    <comment>Hướng dẫn: Nhấn chuột phải để lựa chọn Quản lý chức năng</comment>
+  </data>
+  <data name="COM_MSG_BRANCH_GUIDE" xml:space="preserve">
+    <value>지침 : 마우스 오른쪽 버튼을 클릭하여 분기 추가 / 편집 / 삭제를 선택하십시오.</value>
+    <comment>Hướng dẫn: Nhấn chuột phải để lựa chọn Thêm / Sửa / Xóa chi nhánh</comment>
+  </data>
+  <data name="COM_MSG_CHOSE_FILE" xml:space="preserve">
+    <value>파일을 선택하십시오</value>
+    <comment>Vui lòng chọn tệp tin</comment>
+  </data>
+  <data name="COM_MSG_CREAT_DOCUMENT_COM" xml:space="preserve">
+    <value>텍스트를 작성 하시겠습니까?</value>
+    <comment>Bạn muốn tạo văn bản hay không?</comment>
+  </data>
+  <data name="COM_MSG_DATA_FAIL" xml:space="preserve">
+    <value>데이터를 검색하는 중에 오류가 발생했습니다 !!</value>
+    <comment>Có lỗi khi lấy dữ liệu!!</comment>
+  </data>
+  <data name="COM_MSG_DEACTIVE_COUNT_SUCCESS" xml:space="preserve">
+    <value>비활성 상태를 성공적으로 설정하는 {1} / {2} {0}이 (가) 있습니다!</value>
+    <comment>Có {1}/{2} {0} đặt trạng thái không hoạt động thành công!</comment>
+  </data>
+  <data name="COM_MSG_DEACTIVE_FAILED" xml:space="preserve">
+    <value>{0}에 대해 비활성 상태를 설정하지 못했습니다!</value>
+    <comment>Ðặt trạng thái không hoạt động cho các {0} thất bại!</comment>
+  </data>
+  <data name="COM_MSG_DEACTIVE_SUCCESS" xml:space="preserve">
+    <value>{0} 성공을위한 비활성 상태 설정!</value>
+    <comment>Đặt trạng thái không hoạt động cho các {0} thành công!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_CHILD" xml:space="preserve">
+    <value>{0} 어린이를 먼저 삭제해야합니다!</value>
+    <comment>Bạn phải xóa {0} con trước!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_CONFIRM" xml:space="preserve">
+    <value>선택한 항목 {0}을 (를) 삭제 하시겠습니까?</value>
+    <comment>Bạn có chắc chắn muốn xóa mục {0} đã chọn?</comment>
+  </data>
+  <data name="COM_MSG_DELETE_CONFIRM_COM" xml:space="preserve">
+    <value>정말로 삭제 하시겠습니까?</value>
+    <comment>Bạn có chắc chắn muốn xóa ?</comment>
+  </data>
+  <data name="COM_MSG_DELETE_FAIL" xml:space="preserve">
+    <value>{0} 삭제에 실패했습니다!</value>
+    <comment>Xóa {0} thất bại!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_LIST_FAIL" xml:space="preserve">
+    <value>{0}을 (를) 삭제하지 못했습니다!</value>
+    <comment>Xóa các {0} thất bại!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_LIST_SUCCESS" xml:space="preserve">
+    <value>{0}을 (를) 삭제했습니다!</value>
+    <comment>Xóa các {0} thành công!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_SUCCESS" xml:space="preserve">
+    <value>{0}을 (를) 삭제했습니다!</value>
+    <comment>Xóa {0} thành công!</comment>
+  </data>
+  <data name="COM_MSG_DOWLOAD_ERR" xml:space="preserve">
+    <value>오류 파일 다운로드</value>
+    <comment>Tải tệp tin lỗi</comment>
+  </data>
+  <data name="COM_MSG_DOWLOAD_SUCCESS" xml:space="preserve">
+    <value>파일을 성공적으로 다운로드</value>
+    <comment>Tải tệp tin thành công</comment>
+  </data>
+  <data name="COM_MSG_EDITED_FILE_SUCCESS" xml:space="preserve">
+    <value>파일이 성공적으로 저장되었습니다</value>
+    <comment>Lưu tệp thành công</comment>
+  </data>
+  <data name="COM_MSG_EDITED_PEOPLE_OTHER" xml:space="preserve">
+    <value>다른 사용자가 파일을 편집하고 있습니다. 나중에 다시 시도하십시오</value>
+    <comment>Tệp đang được chỉnh sửa bởi một người dùng khác. Vui lòng thử lại sau</comment>
+  </data>
+  <data name="COM_MSG_EDIT_CONFIRM" xml:space="preserve">
+    <value>변경 하시겠습니까?</value>
+    <comment>Bạn có muốn thay đổi không</comment>
+  </data>
+  <data name="COM_MSG_ERR" xml:space="preserve">
+    <value>오류가 발생했습니다!</value>
+    <comment>Có lỗi xảy ra !</comment>
+  </data>
+  <data name="COM_MSG_ERR_ADD" xml:space="preserve">
+    <value>추가하는 중에 오류가 발생했습니다!</value>
+  </data>
+  <data name="COM_MSG_ERR_ADD_IMG" xml:space="preserve">
+    <value>{0}을 (를) 추가하는 중에 오류가 발생했습니다</value>
+    <comment>Có lỗi khi thêm {0}</comment>
+  </data>
+  <data name="COM_MSG_ERR_RETRY" xml:space="preserve">
+    <value>오류입니다. 다시 시도하십시오.</value>
+    <comment>Xảy ra lỗi, vui lòng thử lại.</comment>
+  </data>
+  <data name="COM_MSG_EXITS" xml:space="preserve">
+    <value>{0}이 (가) 이미 존재합니다</value>
+    <comment>{0} đã tồn tại</comment>
+  </data>
+  <data name="COM_MSG_FILE_EXISTS" xml:space="preserve">
+    <value>파일이 이미 존재합니다</value>
+    <comment>Tệp tin đã tồn tại</comment>
+  </data>
+  <data name="COM_MSG_FILE_FAIL" xml:space="preserve">
+    <value>파일을로드하는 중에 오류가 발생했습니다</value>
+  </data>
+  <data name="COM_MSG_FILE_FAIL_FORMAT" xml:space="preserve">
+    <value>파일 형식이 잘못되었습니다</value>
+  </data>
+  <data name="COM_MSG_FILE_NOT_HISTORY" xml:space="preserve">
+    <value>형식에 기록이 없습니다</value>
+    <comment>Định dạng không có lịch sử</comment>
+  </data>
+  <data name="COM_MSG_FILE_SUPPORT_PREVIEW" xml:space="preserve">
+    <value>파일 미리보기를 지원하지 않습니다</value>
+    <comment>Tệp chưa hỗ trợ xem trước</comment>
+  </data>
+  <data name="COM_MSG_FINISH" xml:space="preserve">
+    <value>완료</value>
+    <comment>Hoàn thành</comment>
+  </data>
+  <data name="COM_MSG_FORMAT_DOCX_PDF" xml:space="preserve">
+    <value>필요한 형식은 docx, pdf입니다!</value>
+    <comment>Định dạng bắt buộc là: docx,pdf!</comment>
+  </data>
+  <data name="COM_MSG_FORMAT_EMAIL" xml:space="preserve">
+    <value>이메일 형식이 잘못되었습니다. 다시 입력하십시오</value>
+    <comment>Định dạng Email chưa đúng vui lòng nhập lại</comment>
+  </data>
+  <data name="COM_MSG_FORMAT_EXCEL" xml:space="preserve">
+    <value>이메일 형식이 잘못되었습니다. 다시 입력하십시오</value>
+  </data>
+  <data name="COM_MSG_FORMAT_IMAGE" xml:space="preserve">
+    <value>Excel 파일의 형식이 잘못되었습니다</value>
+  </data>
+  <data name="COM_MSG_FORMAT_PNG_JPG_JEG_GIF_BMP" xml:space="preserve">
+    <value>png, jpg, jpeg, gif, bmp 형식 만 수신하십시오!</value>
+    <comment>Chỉ nhận các định dạng sau: png, jpg, jpeg, gif, bmp!</comment>
+  </data>
+  <data name="COM_MSG_FUNC_GUIDE" xml:space="preserve">
+    <value>지시 사항 : 마우스 오른쪽 단추를 클릭하여 자원 관리를 선택하십시오.</value>
+    <comment>Hướng dẫn: Nhấn chuột phải để lựa chọn Quản lý tài nguyên</comment>
+  </data>
+  <data name="COM_MSG_IMG" xml:space="preserve">
+    <value>사진</value>
+    <comment>ảnh</comment>
+  </data>
+  <data name="COM_MSG_INFOMATION" xml:space="preserve">
+    <value>정보를 기입하십시오 !!</value>
+    <comment>Vui lòng điền đầy đủ thông tin!!</comment>
+  </data>
+  <data name="COM_MSG_INVALID_FORMAT" xml:space="preserve">
+    <value>잘못된 형식입니다!</value>
+    <comment>Định dạng không hợp lệ !</comment>
+  </data>
+  <data name="COM_MSG_LIST_GUIDE" xml:space="preserve">
+    <value>지침 : 레코드를 편집하려면 두 번 클릭하십시오.</value>
+    <comment>Hướng dẫn: Nhấn đúp chuột để chỉnh sửa bản ghi</comment>
+  </data>
+  <data name="COM_MSG_LIST_PRODUCT" xml:space="preserve">
+    <value>제품 목록</value>
+  </data>
+  <data name="COM_MSG_MAXIMUM_FILE" xml:space="preserve">
+    <value>허용되는 최대 파일 크기는 1MB입니다.</value>
+    <comment>Kích thước tệp tối đa được phép là 1 MB</comment>
+  </data>
+  <data name="COM_MSG_MAXIMUM_FILE_SIZE" xml:space="preserve">
+    <value>허용되는 최대 파일 크기는 (1000px x 1000px)입니다!</value>
+    <comment>Kích thước tệp tối đa được phép là (1000px x 1000px)!</comment>
+  </data>
+  <data name="COM_MSG_NO _UNKNOWN" xml:space="preserve">
+    <value>지정되지 않음</value>
+    <comment>Không xác định</comment>
+  </data>
+  <data name="COM_MSG_NOREVIEW" xml:space="preserve">
+    <value>보이지 않음</value>
+    <comment>Chưa xem</comment>
+  </data>
+  <data name="COM_MSG_NOTIFY_SUCCES" xml:space="preserve">
+    <value>성공을 알리십시오!</value>
+    <comment>Đã Notify thành công!</comment>
+  </data>
+  <data name="COM_MSG_NOT_ACCOUNT" xml:space="preserve">
+    <value>아직 로그인 한 계정이 없습니다!</value>
+    <comment>Chưa có tài khoản nào đăng nhập!</comment>
+  </data>
+  <data name="COM_MSG_NOT_EDIT_FILE_HISTORY" xml:space="preserve">
+    <value>히스토리 파일은 편집 할 수 없습니다</value>
+    <comment>Tệp tin lịch sử không được phép chỉnh sửa</comment>
+  </data>
+  <data name="COM_MSG_NOT_EXITS" xml:space="preserve">
+    <value>시스템에 {0}이 (가) 없습니다!</value>
+    <comment>{0} không tồn tại trong hệ thống !</comment>
+  </data>
+  <data name="COM_MSG_NOT_EXITS_FILE" xml:space="preserve">
+    <value>데이터가 없습니다. 페이지를 다시로드하십시오.</value>
+    <comment>Không tồn tại dữ liệu. Vui lòng tải lại trang.</comment>
+  </data>
+  <data name="COM_MSG_NOT_EXITS_RECORD" xml:space="preserve">
+    <value>레코드가 없습니다</value>
+  </data>
+  <data name="COM_MSG_NOT_FOUND" xml:space="preserve">
+    <value>찾을 수 없습니다</value>
+    <comment>Không tìm thấy</comment>
+  </data>
+  <data name="COM_MSG_NOT_FOUND_DATA" xml:space="preserve">
+    <value>데이터가 없습니다!</value>
+    <comment>Không tìm thấy dữ liệu!</comment>
+  </data>
+  <data name="COM_MSG_NOT_FOUND_RECORD" xml:space="preserve">
+    <value>레코드를 찾을 수 없습니다</value>
+    <comment>Không tìm thấy bản ghi này</comment>
+  </data>
+  <data name="COM_MSG_NOT_SUPPORT" xml:space="preserve">
+    <value>지원되지 않는 형식</value>
+    <comment>Định dạng không được hỗ trợ</comment>
+  </data>
+  <data name="COM_MSG_NO_CONFIRM" xml:space="preserve">
+    <value>확인하지 마십시오</value>
+    <comment>Không xác nhận</comment>
+  </data>
+  <data name="COM_MSG_ON_LOCATION" xml:space="preserve">
+    <value>위치를 켜십시오</value>
+    <comment>Vui lòng bật vị trí</comment>
+  </data>
+  <data name="COM_MSG_PAINT_BEFORE_ADD" xml:space="preserve">
+    <value>추가하기 전에 {0}을 그립니다</value>
+    <comment>Vui lòng vẽ {0} trước khi thêm</comment>
+  </data>
+  <data name="COM_MSG_QUESTION_SAVE" xml:space="preserve">
+    <value>변경 사항을 저장 하시겠습니까?</value>
+    <comment>Bạn có muốn lưu lại thay đổi?</comment>
+  </data>
+  <data name="COM_MSG_RECORD_ADD" xml:space="preserve">
+    <value>새로 추가 할 레코드를 선택하십시오</value>
+  </data>
+  <data name="COM_MSG_RECORD_DELETE" xml:space="preserve">
+    <value>삭제할 레코드를 선택하십시오</value>
+  </data>
+  <data name="COM_MSG_REFRESH" xml:space="preserve">
+    <value>정보가 없습니다. 페이지를 새로 고침하십시오.</value>
+    <comment>Không tìm thấy thông tin, vui lòng làm mới trang</comment>
+  </data>
+  <data name="COM_MSG_RESOURCE_GUIDE" xml:space="preserve">
+    <value>지침 : 기능 관리를 마우스 오른쪽 버튼으로 클릭하여 선택</value>
+    <comment>Hướng dẫn: Nhấn chuột phải để lựa chọn Quản lý chức năng</comment>
+  </data>
+  <data name="COM_MSG_REVIEW" xml:space="preserve">
+    <value>시청</value>
+    <comment>Đã xem</comment>
+  </data>
+  <data name="COM_MSG_SEND_FAIL" xml:space="preserve">
+    <value>실패를 보내십시오!</value>
+    <comment>Send Fail!</comment>
+  </data>
+  <data name="COM_MSG_SOS" xml:space="preserve">
+    <value>긴급</value>
+    <comment>Khẩn cấp</comment>
+  </data>
+  <data name="COM_MSG_SUCCES" xml:space="preserve">
+    <value>{0} 성공 !!!</value>
+    <comment>{0} thành công!!!</comment>
+  </data>
+  <data name="COM_MSG_SUCCES_SAVE" xml:space="preserve">
+    <value>정보를 성공적으로 저장하십시오!</value>
+    <comment>Lưu thông tin thành công!!</comment>
+  </data>
+  <data name="COM_MSG_SUCCES_SIGN" xml:space="preserve">
+    <value>등록 성공</value>
+    <comment>Đăng kí thành công</comment>
+  </data>
+  <data name="COM_MSG_UNFINISH" xml:space="preserve">
+    <value>아직 완료되지 않은</value>
+    <comment>Chưa hoàn thành</comment>
+  </data>
+  <data name="COM_MSG_UNSELECTED" xml:space="preserve">
+    <value>선택된 항목이 없습니다</value>
+    <comment>Không có khoản mục nào được chọn</comment>
+  </data>
+  <data name="COM_MSG_UNSELECTED_FILE" xml:space="preserve">
+    <value>선택된 파일이 없습니다</value>
+    <comment>Không có tệp nào được chọn</comment>
+  </data>
+  <data name="COM_MSG_UNSELECTED_RECORD" xml:space="preserve">
+    <value>선택된 레코드가 없습니다</value>
+    <comment>Không có bản ghi nào được chọn</comment>
+  </data>
+  <data name="COM_MSG_UPDATE_FAILED" xml:space="preserve">
+    <value>{0} 업데이트 실패</value>
+    <comment>Cập nhật {0} thất bại</comment>
+  </data>
+  <data name="COM_MSG_UPDATE_SUCCESS" xml:space="preserve">
+    <value>{0} 업데이트 성공</value>
+    <comment>Cập nhật {0} thành công</comment>
+  </data>
+  <data name="COM_MSG_UPDATE_USER_DEPT_FAIL" xml:space="preserve">
+    <value>부서 / 센터 사용자를 업데이트하지 못했습니다.</value>
+    <comment>Cập nhật người dùng của bộ phận / trung tâm không thành công</comment>
+  </data>
+  <data name="COM_MSG_UPDATE_USER_DEPT_SUCCESS" xml:space="preserve">
+    <value>부서 / 센터 사용자 업데이트 성공</value>
+    <comment>Cập nhật người dùng của bộ phận / trung tâm thành công</comment>
+  </data>
+  <data name="COM_MSG_VALIDATE_SEARCH" xml:space="preserve">
+    <value>검색하려면 입력</value>
+    <comment>Nhập Để Tìm Kiếm</comment>
+  </data>
+  <data name="COM_NAME_FILE" xml:space="preserve">
+    <value>파일명</value>
+    <comment>Tên tệp tin</comment>
+  </data>
+  <data name="COM_NEXT" xml:space="preserve">
+    <value>전달</value>
+    <comment>Chuyển tiếp</comment>
+  </data>
+  <data name="COM_NOT_IMAGE" xml:space="preserve">
+    <value>사진이 없습니다</value>
+    <comment>Không có ảnh</comment>
+  </data>
+  <data name="COM_PREVIEW" xml:space="preserve">
+    <value>미리보기</value>
+    <comment>Xem trước</comment>
+  </data>
+  <data name="COM_RECEIVER" xml:space="preserve">
+    <value>받는 사람</value>
+    <comment>Người nhận</comment>
+  </data>
+  <data name="COM_SHARE_CURD_LBL_FILE_NAME" xml:space="preserve">
+    <value>파일명</value>
+    <comment>Tên tệp</comment>
+  </data>
+  <data name="COM_SHARE_CURD_LBL_OBJECT_CODE" xml:space="preserve">
+    <value>대상</value>
+    <comment>Đối tượng</comment>
+  </data>
+  <data name="COM_SHARE_CURD_LBL_OBJECT_TYPE" xml:space="preserve">
+    <value>객체 유형</value>
+    <comment>Kiểu đối tượng</comment>
+  </data>
+  <data name="COM_STOP_WORKING" xml:space="preserve">
+    <value>비활성화</value>
+    <comment>Ngừng hoạt động</comment>
+  </data>
+  <data name="COM_SUB_MENU_MATERIAL" xml:space="preserve">
+    <value>통계 보고서</value>
+    <comment>Báo cáo thống kê</comment>
+  </data>
+  <data name="COM_SUB_MENU_MATERIAL_CONTRACT" xml:space="preserve">
+    <value>주문 / 계약</value>
+    <comment>Đơn hàng/ hợp đồng</comment>
+  </data>
+  <data name="COM_SUB_MENU_MATERIAL_SUPP" xml:space="preserve">
+    <value>공급 업체 주문</value>
+    <comment>Đặt hàng NCC</comment>
+  </data>
+  <data name="COM_TIME" xml:space="preserve">
+    <value>시간</value>
+    <comment>Thời gian</comment>
+  </data>
+  <data name="COM_TITLE_ADMIN_CATEGORY" xml:space="preserve">
+    <value>디렉토리 관리</value>
+    <comment>Quản trị danh mục</comment>
+  </data>
+  <data name="COM_TITLE_CODE" xml:space="preserve">
+    <value>코드</value>
+    <comment>Mã</comment>
+  </data>
+  <data name="COM_TITLE_HISTORY_FILE" xml:space="preserve">
+    <value>파일 편집 내역</value>
+    <comment>Lịch sử sửa tệp</comment>
+  </data>
+  <data name="COM_UPDATE_FAIL" xml:space="preserve">
+    <value>업데이트 중 오류가 발생했습니다</value>
+    <comment>Có lỗi khi cập nhật</comment>
+  </data>
+  <data name="COM_UPDATE_SUCCESS" xml:space="preserve">
+    <value>업데이트 성공</value>
+    <comment>Cập nhật thành công</comment>
+  </data>
+  <data name="COM_UPLOAD" xml:space="preserve">
+    <value>업로드</value>
+    <comment>Tải lên</comment>
+  </data>
+  <data name="COM_USER" xml:space="preserve">
+    <value>사용자</value>
+    <comment>Người dùng</comment>
+  </data>
+  <data name="COM_VALIDATE_CHOOSE_DATA" xml:space="preserve">
+    <value>데이터웨어 하우스를 선택하십시오</value>
+  </data>
+  <data name="COM_VALIDATE_CHOOSE_DRAFTERS" xml:space="preserve">
+    <value>저자를 선택하십시오</value>
+    <comment>Vui lòng chọn người soạn thảo</comment>
+  </data>
+  <data name="COM_VALIDATE_DELETE_RECORD" xml:space="preserve">
+    <value>삭제할 레코드를 선택하십시오!</value>
+    <comment>Vui lòng chọn bản ghi để xóa!</comment>
+  </data>
+  <data name="COM_VALIDATE_ITEM" xml:space="preserve">
+    <value>{0} 특수 문자가 없습니다!</value>
+    <comment>{0} không cho phép có ký tự đặc biệt!</comment>
+  </data>
+  <data name="COM_VALIDATE_ITEM_CODE" xml:space="preserve">
+    <value>{0}은 하나 이상의 문자 또는 숫자가 필요하며 특수 문자, 공백을 포함하지 않습니다!</value>
+    <comment>Yêu cầu {0} có ít nhất một ký tự là chữ cái hoặc số và không bao gồm ký tự đặc biệt, khoảng trống!</comment>
+  </data>
+  <data name="COM_VALIDATE_ITEM_NAME" xml:space="preserve">
+    <value>{0}은 하나 이상의 문자 또는 숫자가 필요하며 특수 문자는 필요하지 않습니다!</value>
+    <comment>Yêu cầu {0} có ít nhất một ký tự là chữ cái hoặc số và không bao gồm ký tự đặc biệt!</comment>
+  </data>
+  <data name="COM_VALIDATE_NOT_FOUND_DATA" xml:space="preserve">
+    <value>데이터웨어 하우스가 없습니다.</value>
+  </data>
+  <data name="COM_WORKING" xml:space="preserve">
+    <value>활성</value>
+    <comment>Hoạt động</comment>
+  </data>
+</root>

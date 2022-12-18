@@ -1,0 +1,129 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12">
+            <!--   <h1 class="bold mb-0">{{ showTitle ? 'EDMSWHPV_TITLE_WARE_HOUSE_PROFILE_VOUCHERS' : 'EDMSWHPV_TITLE_WARE_HOUSE' | translate}}</h1>-->
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="/Admin/DashBoard">{{ showTitle ? 'EDMSWHPV_TITLE_WARE_HOUSE_PROFILE_VOUCHERS' : 'COM_BREAD_CRUMB_COMMON_CATE' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <div class=" bold text-underline" style="color:black;" href="EDMSCustomer#">{{ showTitle ? 'EDMSWHPV_TITLE_WARE_HOUSE_PROFILE_VOUCHERS' : 'EDMSWHPV_TITLE_WARE_HOUSE' | translate}}</div>
+                </li>
+            </ul>
+            <div class="btn-group pt5 pb-1 pull-right actions d-flex">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="" ng-if="PERMISSION_EDMSWareHouseProfileVouchers.Insert">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mt5 p10" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'EDMSWHPV_CURD_LBL_WHS_CODE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.WHS_Code" class="form-control" type="text" placeholder="{{'EDMSWHPV_CURD_TXT_WHS_CODE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.WHS_Code='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'EDMSWHPV_CURD_LBL_WHS_NAME' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.WHS_Name" class="form-control" type="text" placeholder="{{'EDMSWHPV_CURD_TXT_WHS_NAME' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.WHS_Name='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'EDMSWHPV_CURD_LBL_WHS_AREASQUARE' | translate}}</label>
+                    <div class="input-group">
+                        <!--<input ng-model="model.WHS_AreaSquare" class="form-control" type="text" placeholder="{{'EDMSWHPV_CURD_TXT_WHS_AREASQUARE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />-->
+                        <ui-select tagging ng-model="model.WHS_AreaSquare" theme="bootstrap" on-select="changleSelect('Area')">
+                            <ui-select-match placeholder="{{'EDMSWHPV_CURD_TXT_WHS_AREASQUARE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in CustomerAreas | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.WHS_AreaSquare='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'EDMSWHPV_CURD_LBL_WHS_ADDRESS' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.WHS_ADDR_Text" class="form-control" type="text" placeholder="{{'EDMSWHPV_CURD_TXT_WHS_ADDRESS' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.WHS_ADDR_Text='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3" style="width: 21%;">
+                    <label class="fw600 text-underline">{{'EDMSWHPV_CURD_LBL_WHS_NOTE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.WHS_Note" class="form-control" type="text" placeholder="{{'EDMSWHPV_CURD_TXT_WHS_NOTE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.WHS_Note='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm" style="margin-right: 20px !important;"></i>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'EDMSWHPV_CURD_LBL_WHS_KEY' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.WHS_Tags" class="form-control" type="text" placeholder="{{'EDMSWHPV_CURD_TXT_WHS_KEY' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.WHS_Tags='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="btn-group  pt20 actions d-flex">
+                        <div class="text-center pr10">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="reload()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12"> <label class="text-danger">{{'EDMSWHPV_CURD_LBL_INSTRUCTIONS_BOUBLE_CLICK_EDIT_RECORD' | translate}}</label></div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblData"></table>

@@ -1,0 +1,117 @@
+﻿<style>
+    .textView {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+<div class="">
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home" style="color:black;"></i>
+                    <a class=" bold text-underline" style="color:black;" href="#">{{'Urenco System' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="GarbagePoint#">{{'GBP_MSG_MANAGE' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group pb-1 pt5 actions d-flex pull-right">
+                <button class="btn green-custom br4" ng-click="add()">
+                    <i class="fa fa-plus"></i>
+                    {{'COM_BTN_ADD'| translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'GBP_MSG_LBL_CODE_LOCATION' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.NodeCode" class="form-control" type="text" placeholder="{{'GBP_MSG_TXT_CODE_LOCATION' | translate}}" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.NodeCode=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'GBP_MSG_LBL_NAME_LOCATION' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.NodeName" class="form-control" type="text" placeholder="{{'GBP_MSG_TXT_NAME_LOCATION' | translate}}" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.NodeName=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'GBP_MSG_LBL_NOTE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.Note" class="form-control" type="text" placeholder="{{'GBP_MSG_TXT_NOTE' | translate}}" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Note=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'GBP_MSG_LBL_ADDRESS' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.Address" class="form-control" type="text" placeholder="{{'GBP_MSG_TXT_ADDRESS' | translate}}" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Address=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'GBP_MSG_LBL_EDIT' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.VolumeLimit" class="form-control" type="text" placeholder="{{'GBP_MSG_TXT_EDIT' | translate}}" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.VolumeLimit=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="btn-group pull-left actions d-flex pt15">
+                        <div class="text-center pr10">
+                            <a ng-click="search()" class=" btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                        <!--<div class="text-center">
+                            <a ng-click="add()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                <span><i class="fa fa-plus"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblData"></table>
+
+
+ 

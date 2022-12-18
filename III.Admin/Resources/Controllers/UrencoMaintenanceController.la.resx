@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="UM_CONFIRM_ADD_MSG" xml:space="preserve">
+    <value>ທ່ານຕ້ອງການເພີ່ມບ່ອນສ້ອມແປງບໍລິການບໍ?</value>
+    <comment>Bạn có muốn thêm phiếu sửa chữa bảo dưỡng không?</comment>
+  </data>
+  <data name="UM_CURD_CB_CAR_PLATE" xml:space="preserve">
+    <value>ປ້າຍທະບຽນ</value>
+    <comment>Biển số xe</comment>
+  </data>
+  <data name="UM_CURD_CB_MATERIAL_CODE" xml:space="preserve">
+    <value>ເລືອກເຄື່ອງອາໄຫຼ່</value>
+    <comment>Chọn phụ tùng thay thế</comment>
+  </data>
+  <data name="UM_CURD_CB_MATERIAL_UNIT" xml:space="preserve">
+    <value>ໜ່ວຍ ງານ</value>
+    <comment>Đơn vị</comment>
+  </data>
+  <data name="UM_CURD_CB_SERVICE_CODE" xml:space="preserve">
+    <value>ເລືອກບໍລິການ</value>
+    <comment>Chọn dịch vụ</comment>
+  </data>
+  <data name="UM_CURD_CB_SERVICE_UNIT" xml:space="preserve">
+    <value>ໜ່ວຍ ງານ</value>
+    <comment>Đơn vị</comment>
+  </data>
+  <data name="UM_CURD_LBL_APPROVED_BY" xml:space="preserve">
+    <value>ຜູ້ຄວບຄຸມ</value>
+    <comment>Người duyệt</comment>
+  </data>
+  <data name="UM_CURD_LBL_APPROVED_TIME" xml:space="preserve">
+    <value>ວັນທີທີ່ອະນຸມັດ</value>
+    <comment>Ngày duyệt</comment>
+  </data>
+  <data name="UM_CURD_LBL_CAR_INFO" xml:space="preserve">
+    <value>ຂໍ້ມູນກ່ຽວກັບພາຫະນະ</value>
+    <comment>Thông tin xe</comment>
+  </data>
+  <data name="UM_CURD_LBL_CAR_PLATE" xml:space="preserve">
+    <value>ປ້າຍທະບຽນ</value>
+    <comment>Biển số xe</comment>
+  </data>
+  <data name="UM_CURD_LBL_CODE" xml:space="preserve">
+    <value>ລະຫັດບັດ</value>
+    <comment>Mã phiếu</comment>
+  </data>
+  <data name="UM_CURD_LBL_CREATED_BY" xml:space="preserve">
+    <value>ຜູ້ສ້າງ</value>
+    <comment>Người tạo</comment>
+  </data>
+  <data name="UM_CURD_LBL_CREATED_TIME" xml:space="preserve">
+    <value>ວັນທີສ້າງ</value>
+    <comment>Ngày tạo</comment>
+  </data>
+  <data name="UM_CURD_LBL_END_DATE" xml:space="preserve">
+    <value>ວັນສິ້ນສຸດ</value>
+    <comment>Ngày kết thúc</comment>
+  </data>
+  <data name="UM_CURD_LBL_GARA" xml:space="preserve">
+    <value>ລົດຕູ້</value>
+    <comment>Gara</comment>
+  </data>
+  <data name="UM_CURD_LBL_MATERIAL_CODE" xml:space="preserve">
+    <value>ອາໄຫຼ່</value>
+    <comment>Phụ tùng thay thế</comment>
+  </data>
+  <data name="UM_CURD_LBL_MATERIAL_COST" xml:space="preserve">
+    <value>ລາຄາ</value>
+    <comment>Giá</comment>
+  </data>
+  <data name="UM_CURD_LBL_MATERIAL_NOTE" xml:space="preserve">
+    <value>ບັນທຶກ</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UM_CURD_LBL_MATERIAL_QUANTITY" xml:space="preserve">
+    <value>ຈຳ ນວນເງິນ</value>
+    <comment>Số lượng</comment>
+  </data>
+  <data name="UM_CURD_LBL_MATERIAL_TYPE" xml:space="preserve">
+    <value>ປະເພດອາໄຫຼ່</value>
+    <comment>Loại phụ tùng thay thế</comment>
+  </data>
+  <data name="UM_CURD_LBL_MATERIAL_UNIT" xml:space="preserve">
+    <value>ໜ່ວຍ ງານ</value>
+    <comment>Đơn vị</comment>
+  </data>
+  <data name="UM_CURD_LBL_NOTE" xml:space="preserve">
+    <value>ບັນທຶກ</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UM_CURD_LBL_REQ_TYPE" xml:space="preserve">
+    <value>ປະເພດຄະແນນສຽງ</value>
+    <comment>Loại phiếu</comment>
+  </data>
+  <data name="UM_CURD_LBL_SERVICE_CODE" xml:space="preserve">
+    <value>ການບໍລິການ</value>
+    <comment>Dịch vụ</comment>
+  </data>
+  <data name="UM_CURD_LBL_SERVICE_COST" xml:space="preserve">
+    <value>ລາຄາ</value>
+    <comment>Giá</comment>
+  </data>
+  <data name="UM_CURD_LBL_SERVICE_NOTE" xml:space="preserve">
+    <value>ບັນທຶກ</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UM_CURD_LBL_SERVICE_QUANTITY" xml:space="preserve">
+    <value>ຈຳ ນວນເງິນ</value>
+    <comment>Số lượng</comment>
+  </data>
+  <data name="UM_CURD_LBL_SERVICE_TYPE" xml:space="preserve">
+    <value>ປະເພດການບໍລິການ</value>
+    <comment>Loại dịch vụ</comment>
+  </data>
+  <data name="UM_CURD_LBL_SERVICE_UNIT" xml:space="preserve">
+    <value>ໜ່ວຍ ງານ</value>
+    <comment>Đơn vị</comment>
+  </data>
+  <data name="UM_CURD_LBL_START_DATE" xml:space="preserve">
+    <value>ວັນທີເລີ່ມຕົ້ນ</value>
+    <comment>Ngày bắt đầu</comment>
+  </data>
+  <data name="UM_CURD_LBL_TITLE" xml:space="preserve">
+    <value>ຫົວຂໍ້ຄູປອງ</value>
+    <comment>Tiêu đề phiếu</comment>
+  </data>
+  <data name="UM_CURD_TAB_MAINTENANCE" xml:space="preserve">
+    <value>ສ້ອມແປງແລະ ບຳ ລຸງຮັກສາ</value>
+    <comment>Sửa chữa &amp; Bảo dưỡng</comment>
+  </data>
+  <data name="UM_CURD_TAB_SERVICE" xml:space="preserve">
+    <value>ການບໍລິການ</value>
+    <comment>Dịch vụ</comment>
+  </data>
+  <data name="UM_CURD_TXT_APPROVED_BY" xml:space="preserve">
+    <value>ຜູ້ຄວບຄຸມ</value>
+    <comment>Người duyệt</comment>
+  </data>
+  <data name="UM_CURD_TXT_APPROVED_TIME" xml:space="preserve">
+    <value>ວັນທີທີ່ອະນຸມັດ</value>
+    <comment>Ngày duyệt</comment>
+  </data>
+  <data name="UM_CURD_TXT_CAR_INFO_DETAIL" xml:space="preserve">
+    <value>ລາຍລະອຽດ</value>
+    <comment>Thông tin chi tiết</comment>
+  </data>
+  <data name="UM_CURD_TXT_CODE" xml:space="preserve">
+    <value>ລະຫັດບັດ</value>
+    <comment>Mã phiếu</comment>
+  </data>
+  <data name="UM_CURD_TXT_CREATED_BY" xml:space="preserve">
+    <value>ຜູ້ສ້າງ</value>
+    <comment>Người tạo</comment>
+  </data>
+  <data name="UM_CURD_TXT_CREATED_TIME" xml:space="preserve">
+    <value>ວັນທີສ້າງ</value>
+    <comment>Ngày tạo</comment>
+  </data>
+  <data name="UM_CURD_TXT_END_DATE" xml:space="preserve">
+    <value>ວັນສິ້ນສຸດ</value>
+    <comment>Ngày kết thúc</comment>
+  </data>
+  <data name="UM_CURD_TXT_GARA" xml:space="preserve">
+    <value>ລົດຕູ້</value>
+    <comment>Gara</comment>
+  </data>
+  <data name="UM_CURD_TXT_MATERIAL_COST" xml:space="preserve">
+    <value>ລາຄາ</value>
+    <comment>Giá</comment>
+  </data>
+  <data name="UM_CURD_TXT_MATERIAL_NOTE" xml:space="preserve">
+    <value>ບັນທຶກ</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UM_CURD_TXT_MATERIAL_QUANTITY" xml:space="preserve">
+    <value>ຈຳ ນວນເງິນ</value>
+    <comment>Số lượng</comment>
+  </data>
+  <data name="UM_CURD_TXT_MATERIAL_TYPE" xml:space="preserve">
+    <value>ປະເພດອາໄຫຼ່</value>
+    <comment>Loại phụ tùng thay thế</comment>
+  </data>
+  <data name="UM_CURD_TXT_NOTE" xml:space="preserve">
+    <value>ບັນທຶກ</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UM_CURD_TXT_REQ_TYPE" xml:space="preserve">
+    <value>ປະເພດຄະແນນສຽງ</value>
+    <comment>Loại phiếu</comment>
+  </data>
+  <data name="UM_CURD_TXT_SERVICE_COST" xml:space="preserve">
+    <value>ລາຄາ</value>
+    <comment>Giá</comment>
+  </data>
+  <data name="UM_CURD_TXT_SERVICE_NOTE" xml:space="preserve">
+    <value>ບັນທຶກ</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UM_CURD_TXT_SERVICE_QUANTITY" xml:space="preserve">
+    <value>ຈຳ ນວນເງິນ</value>
+    <comment>Số lượng</comment>
+  </data>
+  <data name="UM_CURD_TXT_SERVICE_TYPE" xml:space="preserve">
+    <value>ປະເພດການບໍລິການ</value>
+    <comment>Loại dịch vụ</comment>
+  </data>
+  <data name="UM_CURD_TXT_START_DATE" xml:space="preserve">
+    <value>ວັນທີເລີ່ມຕົ້ນ</value>
+    <comment>Ngày bắt đầu</comment>
+  </data>
+  <data name="UM_CURD_TXT_TITLE" xml:space="preserve">
+    <value>ຫົວຂໍ້ຄູປອງ</value>
+    <comment>Tiêu đề phiếu</comment>
+  </data>
+  <data name="UM_ERR_APPROVED_BY_REQUIRED" xml:space="preserve">
+    <value>ຈຳ ເປັນຕ້ອງມີແບບ ຈຳ ລອງ</value>
+    <comment>Người duyệt yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UM_ERR_CAR_PLATE_REQUIRED" xml:space="preserve">
+    <value>ຕ້ອງການປ້າຍທະບຽນ</value>
+    <comment>Biển số xe yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UM_ERR_CODE_REQUIRED" xml:space="preserve">
+    <value>ລະຫັດຄູປອງທີ່ຕ້ອງການ</value>
+    <comment>Mã phiếu yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UM_ERR_COST_REQUIRED" xml:space="preserve">
+    <value>ລາຄາຕ້ອງການ</value>
+    <comment>Giá yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UM_ERR_COST_THAN_ZERO_REQUIRED" xml:space="preserve">
+    <value>ລາຄາຕ້ອງສູງກວ່າ 0</value>
+    <comment>Giá phải lớn hơn 0</comment>
+  </data>
+  <data name="UM_ERR_CREATED_BY_REQUIRED" xml:space="preserve">
+    <value>ຜູ້ສ້າງໄດ້ຮຽກຮ້ອງໃຫ້ມີຄວາມ ຈຳ ເປັນ</value>
+    <comment>Người tạo yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UM_ERR_MAINTANANCE_EXITS" xml:space="preserve">
+    <value>ການສ້ອມແປງ ບຳ ລຸງຮັກສາມີຢູ່ແລ້ວ</value>
+    <comment>Bảo dưỡng sửa chữa đã tồn tại</comment>
+  </data>
+  <data name="UM_ERR_MAINTANANCE_NOT_EXITS" xml:space="preserve">
+    <value>ການສ້ອມແປງ ບຳ ລຸງຮັກສາບໍ່ມີ</value>
+    <comment>Bảo dưỡng sửa chữa không tồn tại</comment>
+  </data>
+  <data name="UM_ERR_MATERIAL_CODE_REQUIRED" xml:space="preserve">
+    <value>ຈຳ ໜ່າຍ ອາໄຫຼ່ທີ່ ຈຳ ເປັນ</value>
+    <comment>Phụ tùng thay thế yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UM_ERR_MATERIAL_EXITS" xml:space="preserve">
+    <value>ເຄື່ອງອາໄຫຼ່ມີຢູ່ແລ້ວ</value>
+    <comment>Phụ tùng thay thế đã tồn tại</comment>
+  </data>
+  <data name="UM_ERR_MATERIAL_NOT_EXITS" xml:space="preserve">
+    <value>ອາໄຫຼ່ບໍ່ມີ</value>
+    <comment>Phụ tùng thay thế không tồn tại</comment>
+  </data>
+  <data name="UM_ERR_QUANTITY_REQUIRED" xml:space="preserve">
+    <value>ປະລິມານທີ່ຕ້ອງການ</value>
+    <comment>Số lượng yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UM_ERR_QUANTITY_THAN_ZERO_REQUIRED" xml:space="preserve">
+    <value>ປະລິມານຕ້ອງມີຫຼາຍກ່ວາສູນ</value>
+    <comment>Số lượng phải lớn hơn 0</comment>
+  </data>
+  <data name="UM_ERR_REQ_TYPE_REQUIRED" xml:space="preserve">
+    <value>ປະເພດປີ້ທີ່ຕ້ອງການ</value>
+    <comment>Loại phiếu yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UM_ERR_SERVICE_CODE_REQUIRED" xml:space="preserve">
+    <value>ຕ້ອງການບໍລິການ</value>
+    <comment>Dịch vụ yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UM_ERR_SERVICE_EXITS" xml:space="preserve">
+    <value>ມີບໍລິການແລ້ວ</value>
+    <comment>Dịch vụ đã tồn tại</comment>
+  </data>
+  <data name="UM_ERR_SERVICE_NOT_EXITS" xml:space="preserve">
+    <value>ບໍ່ມີບໍລິການ</value>
+    <comment>Dịch vụ không tồn tại</comment>
+  </data>
+  <data name="UM_ERR_TITLE_REQUIRED" xml:space="preserve">
+    <value>ມີໃບຕາດິນທີ່ຕ້ອງການ</value>
+    <comment>Tiêu đề phiếu yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UM_ERR_UNIT_REQUIRED" xml:space="preserve">
+    <value>ຕ້ອງມີ ໜ່ວຍ ງານທີ່ ຈຳ ເປັນ</value>
+    <comment>Đơn vị yêu cầu bắt buộc</comment>
+  </data>
+  <data name="UM_LBL_ADD_REQUEST_MAINTENANCE" xml:space="preserve">
+    <value>ຕື່ມບັດສ້ອມແປງ ບຳ ລຸງຮັກສາ ໃໝ່</value>
+    <comment>Thêm mới phiếu sửa chữa bảo dưỡng</comment>
+  </data>
+  <data name="UM_LBL_EDIT_REQUEST_MAINTENANCE" xml:space="preserve">
+    <value>ແກ້ໄຂຄວາມຜິດພາດໃນການ ບຳ ລຸງຮັກສາ</value>
+    <comment>Chỉnh sửa phiếu sửa chữa bảo dưỡng</comment>
+  </data>
+  <data name="UM_LBL_GUIDE" xml:space="preserve">
+    <value>ຄຳ ແນະ ນຳ: ກົດສອງຄັ້ງໃສ່ບັນທຶກເພື່ອແກ້ປີ້</value>
+    <comment>Hướng dẫn: Nhấn đúp chuột vào bản ghi để chỉnh sửa phiếu</comment>
+  </data>
+  <data name="UM_LBL_INFO_REQUEST_MAINTENANCE" xml:space="preserve">
+    <value>ບັດສ້ອມແປງ ບຳ ລຸງຮັກສາຂໍ້ມູນຂ່າວສານ</value>
+    <comment>Thông tin phiếu sửa chữa bảo dưỡng</comment>
+  </data>
+  <data name="UM_LBL_MAINTENANCE" xml:space="preserve">
+    <value>ສ້ອມແປງແລະ ບຳ ລຸງຮັກສາ</value>
+    <comment>Sửa chữa bảo dưỡng</comment>
+  </data>
+  <data name="UM_LBL_SEARCH_FROM_DATE" xml:space="preserve">
+    <value>ນັບແຕ່ວັນທີ</value>
+    <comment>Từ ngày</comment>
+  </data>
+  <data name="UM_LBL_SEARCH_TO_DATE" xml:space="preserve">
+    <value>ມາແລ້ວ</value>
+    <comment>Đến ngày</comment>
+  </data>
+  <data name="UM_LIST_COL_MATERIAL_CODE" xml:space="preserve">
+    <value>ລະຫັດສ່ວນ spare</value>
+    <comment>Mã phụ tùng thay thế</comment>
+  </data>
+  <data name="UM_LIST_COL_MATERIAL_COST" xml:space="preserve">
+    <value>ລາຄາ</value>
+    <comment>Giá</comment>
+  </data>
+  <data name="UM_LIST_COL_MATERIAL_NAME" xml:space="preserve">
+    <value>ຊື່ເຄື່ອງອາໄຫຼ່</value>
+    <comment>Tên phụ tùng thay thế</comment>
+  </data>
+  <data name="UM_LIST_COL_MATERIAL_NOTE" xml:space="preserve">
+    <value>ບັນທຶກ</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UM_LIST_COL_MATERIAL_QUANTITY" xml:space="preserve">
+    <value>ຈຳ ນວນເງິນ</value>
+    <comment>Số lượng</comment>
+  </data>
+  <data name="UM_LIST_COL_MATERIAL_TOTAL" xml:space="preserve">
+    <value>ລາຄາລວມ</value>
+    <comment>Tổng giá</comment>
+  </data>
+  <data name="UM_LIST_COL_MATERIAL_UNIT" xml:space="preserve">
+    <value>ໜ່ວຍ ງານ</value>
+    <comment>Đơn vị</comment>
+  </data>
+  <data name="UM_LIST_COL_SERVICE_CODE" xml:space="preserve">
+    <value>ລະຫັດບໍລິການ</value>
+    <comment>Mã dịch vụ</comment>
+  </data>
+  <data name="UM_LIST_COL_SERVICE_COST" xml:space="preserve">
+    <value>ລາຄາ</value>
+    <comment>Giá</comment>
+  </data>
+  <data name="UM_LIST_COL_SERVICE_NAME" xml:space="preserve">
+    <value>ຊື່ບໍລິການ</value>
+    <comment>Tên dịch vụ</comment>
+  </data>
+  <data name="UM_LIST_COL_SERVICE_NOTE" xml:space="preserve">
+    <value>ບັນທຶກ</value>
+    <comment>Ghi chú</comment>
+  </data>
+  <data name="UM_LIST_COL_SERVICE_QUANTITY" xml:space="preserve">
+    <value>ຈຳ ນວນເງິນ</value>
+    <comment>Số lượng</comment>
+  </data>
+  <data name="UM_LIST_COL_SERVICE_TOTAL" xml:space="preserve">
+    <value>ລາຄາລວມ</value>
+    <comment>Tổng giá</comment>
+  </data>
+  <data name="UM_LIST_COL_SERVICE_UNIT" xml:space="preserve">
+    <value>ໜ່ວຍ ງານ</value>
+    <comment>Đơn vị</comment>
+  </data>
+  <data name="UM_TXT_SEARCH_FROM_DATE" xml:space="preserve">
+    <value>ນັບແຕ່ວັນທີ</value>
+    <comment>Từ ngày</comment>
+  </data>
+  <data name="UM_TXT_SEARCH_TO_DATE" xml:space="preserve">
+    <value>ມາແລ້ວ</value>
+    <comment>Đến ngày</comment>
+  </data>
+</root>

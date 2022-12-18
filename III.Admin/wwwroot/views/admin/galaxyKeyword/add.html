@@ -1,0 +1,32 @@
+﻿<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fas fa-key icon-insert "></i>
+    <span class="modal-title" id="modal-title"> {{'GKW_TITLE_ADD' | translate}}</span>
+</div>
+<div class="modal-body pt-0 pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal" method="post" ng-validate="validationOptions">
+            <div class="form-body pt0 pb-0">
+                <div class="form-group">
+                    <textarea type="text" class="form-control" rows="6" ng-model="model.Keyword" name="Keyword" autofocus placeholder="{{'GKW_CURD_TXT_KEYWORK' | translate}}..." />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="btn-group pull-right actions d-flex mr25">
+        <div class="text-center pr10">
+            <a data-dismiss="modal" ng-click="cancel()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                <span><i class="glyphicon glyphicon-remove"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+        </div>
+        <div class="text-center">
+            <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="submit()">
+                <span><i class="fa fa-save"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+        </div>
+    </div>
+</div>

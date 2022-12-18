@@ -1,0 +1,125 @@
+﻿<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home" style="color:black;"></i>
+                    <a class=" bold text-underline" style="color:black;" href="#">{{'Urenco System' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="RubbishBin#">{{'RB_LINK_RUBBISH' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group pb-1 pt5 actions d-flex pull-right">
+                <button class="btn green-custom br4" ng-click="add()">
+                    <i class="fa fa-plus"></i>
+                    {{'COM_BTN_ADD'| translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5">
+        <div class="portlet-body" style="position:relative">
+            <div class="row pt5 mb5">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'RB_CURD_LBL_CODE_RUB' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.BinCode" class="form-control" type="text" placeholder="{{'RB_CURD_TXT_CODE_RUB' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.BinCode=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'RB_CURD_LBL_ROUTE' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.RouteCode" theme="bootstrap">
+                            <ui-select-match placeholder="{{'RB_CURD_TXT_ROUTE' | translate}}...">{{$select.selected.RouteName}}</ui-select-match>
+                            <ui-select-choices repeat="x.RouteCode as x in routes | filter:$select.search">
+                                {{x.RouteName}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.RouteCode=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'RB_CURD_LBL_NODE_TRASH' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.NodeCode" theme="bootstrap">
+                            <ui-select-match placeholder="{{'RB_CURD_TXT_NODE_TRASH' | translate}}...">{{$select.selected.NodeName}}</ui-select-match>
+                            <ui-select-choices repeat="x.NodeCode as x in nodes | filter:$select.search">
+                                {{x.NodeName}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.NodeCode=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'RB_CURD_LBL_STATUS' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.Status" theme="bootstrap">
+                            <ui-select-match placeholder="{{'RB_CURD_TXT_STATUS' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in binStatuss | filter:$select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Status=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'RB_CURD_LBL_MANAGER' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.WorkerManage" theme="bootstrap">
+                            <ui-select-match placeholder="{{'RB_CURD_TXT_MANAGER' | translate}}...">{{$select.selected.FullName}}</ui-select-match>
+                            <ui-select-choices repeat="x.Id as x in manageUsers | filter:$select.search">
+                                {{x.FullName}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.WorkerManage=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="btn-group pt10 actions d-flex">
+                        <div class="text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="reload()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                        <!--<div class="pl20 text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="add()">
+                                <span><i class="fa fa-plus"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblDataContract"></table>

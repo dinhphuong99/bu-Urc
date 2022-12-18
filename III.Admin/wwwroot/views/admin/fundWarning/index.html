@@ -1,0 +1,49 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-6">
+            <!--<h1 class="bold mb-0"> {{'FW_TITLE_FW' | translate}}</h1>-->
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_BREAD_CRUMD_FINANCE_FUND' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <div  class=" bold text-underline" style="color:black;" href="FundWarning#" >{{'FW_TITLE_FW' | translate}}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <div class="btn-group pull-right actions">
+                <!--<a class="btn btn-export">
+                    <span class=""><i class="glyphicon glyphicon-export"></i> Xuất excel</span>
+                </a>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-6">
+    <div class="table-toolbar">
+        <div class="row">
+            <div class="col-md-12">
+                <h6 class="bold pb10"> {{'FW_CURD_LBL_PAY_SLIP' | translate}} <span class="text-danger bold">({{countExpense}})</span></h6>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'../views/admin/fundWarning/fundEntryExpense.html'"></div>
+</div>
+<div class="col-md-6">
+    <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-12">
+                    <h6 class="bold pb10"> {{'FW_CURD_LBL_RECEIPTS' | translate}} <span class="text-danger bold">({{countReceipt}})</span></h6>
+                </div>
+            </div>
+     </div>
+     <div ng-include="'../views/admin/fundWarning/fundEntryReceipt.html'"></div>
+</div>
+    
+
+

@@ -1,0 +1,179 @@
+﻿<div ng-controller="projectTabProduct">
+    <div class="row">
+        <form name="addformTabProduct" class="form-horizontal" method="post" ng-validate="validationOptionsTabProduct">
+            <div class="row col-md-12">
+                <div class="col-md-5 pr-0" ng-class="{ 'has-error': errorProductCode}">
+                    <label class="control-label require fs11">{{'PROJECT_TAB_PRODUCT_CURD_LBL_PRODUCT' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select ng-disabled="model.Id!=''" ng-model="model.ProductCode" on-select="selectProduct($item)" ng-change="changleSelect('ProductCode')" style="width: 100%" name="ProductCode">
+                            <ui-select-match placeholder="{{'PROJECT_TAB_PRODUCT_CURD_LBL_PRODUCT' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices refresh="loadMoreSaler($select)"
+                                               refresh-delay="300"
+                                               repeat="x.Code as x in products | filter:$select.search">
+                                {{x.Name}}
+                                <div ng-if="$index == products.length - 1 && showButtonLoadMoreSaler">
+                                    <button class="btn btn-xs btn-success"
+                                            style="width: 100%; margin-top: 5px;"
+                                            ng-click="loadMoreProduct($select, $event);"
+                                            ng-disabled="loadingSaler">
+                                        {{'PROJECT_LBL_LOAD_MORE' | translate}}...
+                                    </button>
+                                </div>
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button  ng-disabled="model.Id!=''" type="button" ng-click="addMaterialProd()" class="btn no-shadow  green-custom" style="">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </span>
+                        <!--<span class="input-group-btn">
+                            <button ng-disabled="model.Id!=''" type="button" ng-click="model.ProductCode=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>-->
+                    </div>
+                    <span ng-show="errorProductCode" class="label-color validation-message">
+                        {{'PROJECT_TAB_PRODUCT_VALIDATE_PRODUCT' | translate}}
+                    </span>
+                </div>
+                <div class="col-md-3">
+                    <label class="control-label fs11">{{'PROJECT_TAB_PRODUCT_CURD_LBL_PRICE_OPTION' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select ng-model="model.PriceOption" theme="bootstrap" ng-change="filterPrice()">
+                            <ui-select-match placeholder="{{'PROJECT_TAB_PRODUCT_CURD_LBL_PRICE_OPTION' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in priceOption | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.PriceOption=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="" ng-class="{ 'has-error': errorUnitPrice}">
+                        <label class="control-label require fs11">{{'PROJECT_TAB_PRODUCT_CURD_LBL_PRICE' | translate}}</label>
+                        <input type="text" num-thousand='true' awnum num-int='21' class="form-control bold black" ng-model="model.Cost" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" name="UnitPrice" placeholder="{{'PROJECT_TAB_PRODUCT_CURD_LBL_PRICE' | translate}}..." ng-change="changleSelect('UnitPrice')" />
+                        <span ng-show="errorUnitPrice" class="label-color validation-message">
+                            {{'PROJECT_TAB_PRODUCT_VALIDATE_PRICE' | translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="" ng-class="{ 'has-error': errorQuantity}">
+                        <label class="control-label require fs11">{{'PROJECT_TAB_PRODUCT_CURD_LBL_AMOUNT' | translate}}</label>
+                        <input type="text" num-thousand='true' awnum num-int='21' class="form-control" ng-model="model.Quantity" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" name="Quantity" placeholder="{{'PROJECT_TAB_PRODUCT_CURD_LBL_AMOUNT' | translate}}..." ng-change="changleSelect('Quantity')" />
+                        <span ng-show="errorQuantity" class="label-color validation-message">
+                            {{'PROJECT_TAB_PRODUCT_VALIDATE_QUANTITY' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-12">
+                <div class="col-md-3" style="width: 20%;" ng-class="{ 'has-error': errorUnit}">
+                    <label class="control-label require fs11">{{'PROJECT_TAB_PRODUCT_CURD_LBL_UNIT' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select ng-model="model.Unit" theme="bootstrap" ng-change="changleSelect('Unit')">
+                            <ui-select-match placeholder="{{'PROJECT_TAB_PRODUCT_CURD_LBL_UNIT' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in units | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Unit=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                    <span ng-show="errorUnit" class="label-color validation-message">
+                        {{'PROJECT_TAB_PRODUCT_VALIDATE_UNIT' | translate}}
+                    </span>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group" ng-class="{ 'has-error': errorTax}">
+                        <label class="control-label fs11">{{'PROJECT_TAB_PRODUCT_CURD_LBL_TAX' | translate}}</label>
+                        <input type="number" num-thousand='true'  id="Tax" class="form-control bold black" ng-model="model.Tax" name="Tax" placeholder="{{'PROJECT_TAB_PRODUCT_CURD_LBL_TAX' | translate}}" ng-change="changleSelect('Tax')" />
+                        <span ng-show="errorTax" class="label-color validation-message">
+                            {{'CONTRACT_CURD_VALIDATE_BUDGET_EXCLUDE_TAX'|translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2 ml-2" style="width: 12%">
+                    <div class="form-group">
+                        <label class="control-label fs11">{{'PROJECT_LBL_TAX_MONEY' | translate}}</label>
+                        <input type="text" num-thousand='true' awnum num-int='21' readonly class="form-control pl-2 bold black" ng-model="modelView.TaxMoney" placeholder="{{'PROJECT_LBL_TAX_MONEY' | translate}}" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="control-label fs11">{{'PROJECT_TAB_PRODUCT_CURD_LBL_NOTE' | translate}}</label>
+                    <input type="text" class="form-control" ng-model="model.Note" name="Code" placeholder="{{'PROJECT_TAB_PRODUCT_CURD_LBL_NOTE' | translate}}..." />
+                </div>
+                <div class="col-md-3" style="width: 32%;">
+                    <div class="btn-group pr10 pt20">
+                        <div class="mr10 pr-0" ng-show="isShowImpProduct==true">
+                            <button class="btn green-custom custom-width-button" ng-click="impProduct()" style="border-radius: 0px !important">
+                                <i class="fa fa-download"></i>
+                                {{'COM_BTN_IMPORT' | translate}}
+                            </button>
+                        </div>
+                        <div class="mr10 pr-0" ng-if="model.Id==''">
+                            <button class="btn green-custom custom-width-button" ng-click="add()" style="border-radius: 0px !important">
+                                <i class="fa fa-plus"></i>
+                                {{'COM_BTN_ADD' | translate}}
+                            </button>
+                        </div>
+                        <div class="mr10 pr-0" ng-if="model.Id!=''">
+                            <button class="btn green-custom custom-width-button mr-1" ng-click="update()" style="border-radius: 0px !important">
+                                <i class="fa fa-save"></i>
+                                {{'COM_BTN_SAVE' | translate}}
+                            </button>
+                            <button class="btn red-custom custom-width-button" ng-click="reset()" style="border-radius: 0px !important">
+                                <i class="fa fa-close"></i>
+                                {{'COM_BTN_CLOSE' | translate}}
+                            </button>
+                        </div>
+
+                        <!--<div ng-show="isShowImpProduct==true">
+                            <a class="btn btn-icon-only btn-circle btn-outline blue-custom mt10" ng-click="impProduct()">
+                                <span><i class="fa fa-download"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_IMPORT' | translate}}</p>
+                        </div>-->
+                    </div>
+                    <!--<div class="btn-group pr10 pt10" ng-if="model.Id==''">
+                        <div class="">
+                            <a class="btn btn-icon-only btn-circle btn-outline green-custom mt10" ng-click="add()">
+                                <span><i class="fa fa-plus"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                        </div>
+                    </div>-->
+                    <!--<div class="btn-group pr10 pt10" ng-if="model.Id!=''">
+                        <div class="text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline green-custom mt10" ng-click="update()">
+                                <span><i class="fa fa-save"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                        </div>
+                    </div>-->
+                    <!--<div class="btn-group pr10 pt10" ng-if="model.Id!=''">
+                        <div class="text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline red-custom mt10" ng-click="reset()">
+                                <span><i class="fa fa-close"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CLOSE' | translate}}</p>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </form>
+    </div>
+    <table class="table dataTable table-hover table-striped"
+           datatable
+           dt-options="dtOptions"
+           dt-columns="dtColumns"
+           dt-instance="dtInstance"
+           id="tblDataProductProject"></table>
+</div>

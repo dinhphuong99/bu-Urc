@@ -1,0 +1,71 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-4 ">
+            <h1 class="bold mb-0">{{'CM_TITLE_CM' | translate}}</h1>
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="#">{{'CM_LINK_HOME' | translate}}</a>
+                    <span>&gt;</span>
+                </li>
+                <li>
+                    <a href="/Admin/CandidatesManagement">{{'CM_LINK_CM' | translate}}</a>
+                    <span>&gt;</span>
+                </li>
+                <li>
+                    <div>
+                        {{'CM_LINK_ADD_CM' | translate}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8 text-center">
+           <div class="btn-group pull-right actions">
+            <div class="text-center pr10">
+                <a ng-click="cancel()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                    <span><i class="fa fa-arrow-left"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_BACK' | translate}}</p>
+            </div>
+           </div>
+            <!--<div class="btn-group pull-right actions">
+        <a ng-click="cancel()" class="btn btn-blue br4">
+            <i class="fa fa-arrow-left"></i>{{'COM_BTN_BACK' | translate}}
+        </a>
+    </div>-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="pt20" id="index-calendar">
+            <div class="col-md-12 tab pb40" role="tabpanel">
+                <div class="tab" role="tabpanel">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <div href="#Section1" aria-controls="home" role="button" data-toggle="tab">1. {{'CM_CURD_TAB_CM_CANDIDATE_INFORMATION' | translate}}</div>
+                        </li>
+                        <li role="presentation" class="disabled stepNext">
+                            <div href="#Section2" aria-controls="profile" role="button" data-toggle="tab">
+                                2. {{'CM_CURD_TAB_CM_CANDIDATE_INFORMATION_ADDITIONAL' | translate}}
+                            </div>
+                        </li>
+                        <li role="presentation" class="disabled stepNext">
+                            <div href="#Section3" aria-controls="messages" role="button" data-toggle="tab">3. {{'CM_CURD_TAB_CM_REGISTER_TO_WORK' | translate}}</div>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                            <div ng-include="'../views/admin/candidatesManagement/candidate-basic.html'"></div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="Section2">
+                            <div ng-include="'../views/admin/candidatesManagement/advanced-info.html'"></div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="Section3">
+                            <div ng-include="'../views/admin/candidatesManagement/duration.html'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

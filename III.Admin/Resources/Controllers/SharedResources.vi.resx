@@ -1,0 +1,975 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="COM_ACTIVITY" xml:space="preserve">
+    <value>Hoạt động</value>
+    <comment>Hoạt động</comment>
+  </data>
+  <data name="COM_ADD_FILE" xml:space="preserve">
+    <value>Thêm tệp tin</value>
+    <comment>Thêm tệp tin</comment>
+  </data>
+  <data name="COM_ADD_FILE_SUCCESS" xml:space="preserve">
+    <value>Thêm mới tệp tin thành công</value>
+    <comment>Thêm mới tệp tin thành công</comment>
+  </data>
+  <data name="COM_ADD_SUCCESS" xml:space="preserve">
+    <value>Thêm thành công</value>
+    <comment>Thêm thành công</comment>
+  </data>
+  <data name="COM_ATTACHED_FILE" xml:space="preserve">
+    <value>Tệp đính kèm</value>
+    <comment>Tệp đính kèm</comment>
+  </data>
+  <data name="COM_BODY_EDIT" xml:space="preserve">
+    <value>Nội dung sửa đổi</value>
+    <comment>Nội dung sửa đổi</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_ASSET_MAINTENANCE" xml:space="preserve">
+    <value>Bảo dưỡng sửa chữa</value>
+    <comment>Bảo dưỡng sửa chữa</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_ASSET_OPERATE" xml:space="preserve">
+    <value>Mua sắm vận hành</value>
+    <comment>Mua sắm vận hành</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_COMMON_CATE" xml:space="preserve">
+    <value>Danh mục chung</value>
+    <comment>Danh mục chung</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_STATISTICAL" xml:space="preserve">
+    <value>Báo cáo thống kê</value>
+    <comment>Báo cáo thống kê</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_STORE" xml:space="preserve">
+    <value>Bán hàng</value>
+    <comment>Bán hàng</comment>
+  </data>
+  <data name="COM_BREAD_CRUMD_FINANCE_FUND" xml:space="preserve">
+    <value>Cảnh báo quỹ</value>
+    <comment>Cảnh báo quỹ</comment>
+  </data>
+  <data name="COM_BTN_ADD" xml:space="preserve">
+    <value>Thêm mới</value>
+    <comment>Thêm mới</comment>
+  </data>
+  <data name="COM_BTN_ADD_BOARD" xml:space="preserve">
+    <value>Tạo bảng</value>
+    <comment>Tạo bảng</comment>
+  </data>
+  <data name="COM_BTN_ADD_CALENDAR" xml:space="preserve">
+    <value>Thêm lịch</value>
+    <comment>Thêm lịch</comment>
+  </data>
+  <data name="COM_BTN_ADD_CAR" xml:space="preserve">
+    <value>Giao việc</value>
+    <comment>Giao việc</comment>
+  </data>
+  <data name="COM_BTN_ADD_TEAM" xml:space="preserve">
+    <value>Tạo nhóm</value>
+    <comment>Tạo nhóm</comment>
+  </data>
+  <data name="COM_BTN_ADVANCE_SEARCH" xml:space="preserve">
+    <value>Tìm kiếm nâng cao</value>
+    <comment>Tìm kiếm nâng cao</comment>
+  </data>
+  <data name="COM_BTN_BACK" xml:space="preserve">
+    <value>Quay lại</value>
+    <comment>Quay lại</comment>
+  </data>
+  <data name="COM_BTN_CANCEL" xml:space="preserve">
+    <value>Hủy bỏ</value>
+    <comment>Hủy bỏ</comment>
+  </data>
+  <data name="COM_BTN_CARD_JOB" xml:space="preserve">
+    <value>Thêm thẻ</value>
+    <comment>Thêm thẻ</comment>
+  </data>
+  <data name="COM_BTN_CHECK" xml:space="preserve">
+    <value>Kiểm tra</value>
+    <comment>Kiểm tra</comment>
+  </data>
+  <data name="COM_BTN_CLOSE" xml:space="preserve">
+    <value>Đóng</value>
+    <comment>Đóng</comment>
+  </data>
+  <data name="COM_BTN_CONFIRM" xml:space="preserve">
+    <value>Xác nhận</value>
+    <comment>Xác nhận</comment>
+  </data>
+  <data name="COM_BTN_CONTINUE" xml:space="preserve">
+    <value>Tiếp tục</value>
+    <comment>Tiếp tục</comment>
+  </data>
+  <data name="COM_BTN_DELETE" xml:space="preserve">
+    <value>Xóa</value>
+    <comment>Xóa</comment>
+  </data>
+  <data name="COM_BTN_DESCRIBE" xml:space="preserve">
+    <value>Mô tả</value>
+    <comment>Mô tả</comment>
+  </data>
+  <data name="COM_BTN_DOWLOAD" xml:space="preserve">
+    <value>Tải xuống</value>
+    <comment>Tải xuống</comment>
+  </data>
+  <data name="COM_BTN_EDIT" xml:space="preserve">
+    <value>Cập nhật</value>
+    <comment>Cập nhật</comment>
+  </data>
+  <data name="COM_BTN_EDIT_BOARD" xml:space="preserve">
+    <value>Sửa bảng</value>
+    <comment>Sửa bảng</comment>
+  </data>
+  <data name="COM_BTN_EXCEL" xml:space="preserve">
+    <value>Xuất Excel</value>
+    <comment>Xuất Excel</comment>
+  </data>
+  <data name="COM_BTN_FILE" xml:space="preserve">
+    <value>Tệp tin</value>
+    <comment>Tệp tin</comment>
+  </data>
+  <data name="COM_BTN_IMPORT" xml:space="preserve">
+    <value>Nhập khẩu</value>
+    <comment>Nhập khẩu</comment>
+  </data>
+  <data name="COM_BTN_INHERITANCE" xml:space="preserve">
+    <value>Kế thừa</value>
+    <comment>Kế thừa</comment>
+  </data>
+  <data name="COM_BTN_PDF" xml:space="preserve">
+    <value>Xuất file PDF</value>
+    <comment>Xuất file PDF</comment>
+  </data>
+  <data name="COM_BTN_PROPERTIES" xml:space="preserve">
+    <value>Thuộc tính</value>
+    <comment>Thuộc tính</comment>
+  </data>
+  <data name="COM_BTN_REATTACHED" xml:space="preserve">
+    <value>Gắn lại</value>
+    <comment>Gắn lại</comment>
+  </data>
+  <data name="COM_BTN_RECALL" xml:space="preserve">
+    <value>Thu hồi</value>
+    <comment>Thu hồi</comment>
+  </data>
+  <data name="COM_BTN_REFRESH" xml:space="preserve">
+    <value>Làm mới</value>
+    <comment>Làm mới</comment>
+  </data>
+  <data name="COM_BTN_REPOSITORY" xml:space="preserve">
+    <value>Kho tệp tin</value>
+    <comment>Kho tệp tin</comment>
+  </data>
+  <data name="COM_BTN_SAVE" xml:space="preserve">
+    <value>Lưu lại</value>
+    <comment>Lưu lại</comment>
+  </data>
+  <data name="COM_BTN_SEARCH" xml:space="preserve">
+    <value>Tìm kiếm</value>
+    <comment>Tìm kiếm</comment>
+  </data>
+  <data name="COM_BTN_SET_SIGN" xml:space="preserve">
+    <value>Đăng ký</value>
+    <comment>Đăng ký</comment>
+  </data>
+  <data name="COM_BTN_SHARE" xml:space="preserve">
+    <value>Chia sẻ tệp</value>
+    <comment>Chia sẻ tệp</comment>
+  </data>
+  <data name="COM_BTN_SIGN_UP" xml:space="preserve">
+    <value>Đăng kí</value>
+    <comment>Đăng kí</comment>
+  </data>
+  <data name="COM_BTN_STATISTICAL" xml:space="preserve">
+    <value>Thống kê</value>
+    <comment>Thống kê</comment>
+  </data>
+  <data name="COM_BTN_UP_FILE" xml:space="preserve">
+    <value>Tải tệp</value>
+    <comment>Tải tệp</comment>
+  </data>
+  <data name="COM_BTN_USE_DEFAULT_SETTING" xml:space="preserve">
+    <value>Sử dụng cài đặt mặt định</value>
+    <comment>Sử dụng cài đặt mặt định</comment>
+  </data>
+  <data name="COM_CONFIRM" xml:space="preserve">
+    <value>Xác nhận</value>
+    <comment>Xác nhận</comment>
+  </data>
+  <data name="COM_CONFIRM_CANCEL" xml:space="preserve">
+    <value>Hủy</value>
+    <comment>Hủy</comment>
+  </data>
+  <data name="COM_CONFIRM_OK" xml:space="preserve">
+    <value>Chắc chắn</value>
+    <comment>Chắc chắn</comment>
+  </data>
+  <data name="COM_CONNECT_FAILURE" xml:space="preserve">
+    <value>Kết nối server không thành công</value>
+    <comment>Kết nối server không thành công</comment>
+  </data>
+  <data name="COM_CRUMB_MANAGER_CONTENT" xml:space="preserve">
+    <value>Quản lý nội dung</value>
+    <comment>Quản lý nội dung</comment>
+  </data>
+  <data name="COM_CURD_BTN_ADD_DATA" xml:space="preserve">
+    <value>Vào dữ liệu</value>
+    <comment>Vào dữ liệu</comment>
+  </data>
+  <data name="COM_CURD_BTN_HISTORY" xml:space="preserve">
+    <value>Lịch sử</value>
+    <comment>Lịch sử</comment>
+  </data>
+  <data name="COM_CURD_DETAIL_TITLE_SET" xml:space="preserve">
+    <value>Danh sách thuộc tính</value>
+    <comment>Danh sách thuộc tính</comment>
+  </data>
+  <data name="COM_CURD_LBL_CAT_ACT" xml:space="preserve">
+    <value>Luồng nghiệp vụ</value>
+    <comment>Luồng nghiệp vụ</comment>
+  </data>
+  <data name="COM_CURD_LBL_TYPE_SET" xml:space="preserve">
+    <value>Kiểu dữ liệu</value>
+    <comment>Kiểu dữ liệu</comment>
+  </data>
+  <data name="COM_CURD_LBL_VALUE_SET" xml:space="preserve">
+    <value>Giá trị cài đặt</value>
+    <comment>Giá trị cài đặt</comment>
+  </data>
+  <data name="COM_DELETE_FAIL" xml:space="preserve">
+    <value>Xóa thất bại</value>
+    <comment>Xóa thất bại</comment>
+  </data>
+  <data name="COM_DELETE_FILE_SUCCESS" xml:space="preserve">
+    <value>Xóa tệp tin thành công</value>
+    <comment>Xóa tệp tin thành công</comment>
+  </data>
+  <data name="COM_DELETE_SUCCESS" xml:space="preserve">
+    <value>Xóa thành công</value>
+    <comment>Xóa thành công</comment>
+  </data>
+  <data name="COM_DEL_SUCCESS_LIST_ITEM_BUT_HAS_CHILD_OR_REF" xml:space="preserve">
+    <value>Xóa thành công các {0} các {0} được sử dụng ở nơi khác hoặc {0} có {0} con không được chọn.</value>
+    <comment>Xóa thành công các {0} các {0} được sử dụng ở nơi khác hoặc {0} có {0} con không được chọn.</comment>
+  </data>
+  <data name="COM_EDIT_FILE" xml:space="preserve">
+    <value>Sửa tệp tin</value>
+    <comment>Sửa tệp tin</comment>
+  </data>
+  <data name="COM_EDIT_INFORMATION_SUCCESS" xml:space="preserve">
+    <value>Sửa thông tin tệp tin thành công</value>
+    <comment>Sửa thông tin tệp tin thành công</comment>
+  </data>
+  <data name="COM_ERR_ADD" xml:space="preserve">
+    <value>Có lỗi khi thêm !</value>
+    <comment>Có lỗi khi thêm !</comment>
+  </data>
+  <data name="COM_ERR_CODE_CHANGE" xml:space="preserve">
+    <value>Mã {0} không được phép thay đổi.</value>
+    <comment>Mã {0} không được phép thay đổi.</comment>
+  </data>
+  <data name="COM_ERR_DELETE" xml:space="preserve">
+    <value>Có lỗi khi xóa !</value>
+    <comment>Có lỗi khi xóa !</comment>
+  </data>
+  <data name="COM_ERR_EXCEED_CHARACTERS" xml:space="preserve">
+    <value>{0} không được nhập quá {1} ký tự.</value>
+    <comment>{0} không được nhập quá {1} ký tự.</comment>
+  </data>
+  <data name="COM_ERR_EXIST" xml:space="preserve">
+    <value>{0} đã tồn tại!</value>
+    <comment>{0} đã tồn tại!</comment>
+  </data>
+  <data name="COM_ERR_FAIL_ADD" xml:space="preserve">
+    <value>Thêm {0} lỗi</value>
+    <comment>Thêm {0} lỗi</comment>
+  </data>
+  <data name="COM_ERR_FAIL_DOWLOAD" xml:space="preserve">
+    <value>Tải {0} lỗi</value>
+    <comment>Tải {0} lỗi</comment>
+  </data>
+  <data name="COM_ERR_LIST_OBJ_HAS_CHILD_OR_REF" xml:space="preserve">
+    <value>Không thể xóa các {0} được sử dụng ở nơi khác hoặc có {0} con không được chọn. Bạn phải xóa hết {0} con trước.</value>
+    <comment>Không thể xóa các {0} được sử dụng ở nơi khác hoặc có {0} con không được chọn. Bạn phải xóa hết {0} con trước.</comment>
+  </data>
+  <data name="COM_ERR_NOT_CHECKED" xml:space="preserve">
+    <value>Không có {0} nào được chọn!</value>
+    <comment>Không có {0} nào được chọn!</comment>
+  </data>
+  <data name="COM_ERR_OBJ_REF" xml:space="preserve">
+    <value>Không thể xóa {0} đang được sử dụng ở nơi khác</value>
+    <comment>Không thể xóa {0} đang được sử dụng ở nơi khác</comment>
+  </data>
+  <data name="COM_ERR_OBJ_USER" xml:space="preserve">
+    <value>Không Thể Ngừng Hoạt Động {0} Đã Được Sử Dụng trong Kế Hoạch</value>
+    <comment>Không Thể Ngừng Hoạt Động {0} Đã Được Sử Dụng trong Kế Hoạch</comment>
+  </data>
+  <data name="COM_ERR_OLD" xml:space="preserve">
+    <value>Bạn chưa đủ 18 tuổi!!!!</value>
+    <comment>Bạn chưa đủ 18 tuổi!!!!</comment>
+  </data>
+  <data name="COM_ERR_REQUIRED" xml:space="preserve">
+    <value>{0} không được để trống</value>
+    <comment>{0} không được để trống</comment>
+  </data>
+  <data name="COM_ERR_SEARCH" xml:space="preserve">
+    <value>Có lỗi khi tìm {0}</value>
+    <comment>Có lỗi khi tìm {0}</comment>
+  </data>
+  <data name="COM_ERR_SUCCESS_DOWLOAD" xml:space="preserve">
+    <value>Tải {0} thành công</value>
+    <comment>Tải {0} thành công</comment>
+  </data>
+  <data name="COM_ERR_UPLOAD_FILE" xml:space="preserve">
+    <value>Có lỗi xảy ra khi upload file!</value>
+    <comment>Có lỗi xảy ra khi upload file!</comment>
+  </data>
+  <data name="COM_ERR_UPLOAD_IMAGE" xml:space="preserve">
+    <value>Có lỗi khi tải ảnh lên!</value>
+    <comment>Có lỗi khi tải ảnh lên!</comment>
+  </data>
+  <data name="COM_ERR_VALIDATE_DAY" xml:space="preserve">
+    <value>Không thể thay đổi ngày đã qua</value>
+    <comment>Không thể thay đổi ngày đã qua</comment>
+  </data>
+  <data name="COM_FILE" xml:space="preserve">
+    <value>Tệp tin</value>
+    <comment>Tệp tin</comment>
+  </data>
+  <data name="COM_FOMART_FAILED" xml:space="preserve">
+    <value>{0} sai định dạng</value>
+    <comment>{0} sai định dạng</comment>
+  </data>
+  <data name="COM_ITEM_VALIDATE" xml:space="preserve">
+    <value>Bài viết</value>
+  </data>
+  <data name="COM_ITEM_VALIDATE_TITLE" xml:space="preserve">
+    <value>Tiêu đề</value>
+  </data>
+  <data name="COM_LBL_PLS_CONFIRM" xml:space="preserve">
+    <value>Làm ơn xác nhận</value>
+    <comment>Làm ơn xác nhận</comment>
+  </data>
+  <data name="COM_LBL_SAVE_UPDATE" xml:space="preserve">
+    <value>Lưu lại cập nhật</value>
+    <comment>Lưu lại cập nhật</comment>
+  </data>
+  <data name="COM_LBL_SHARE_TITLE" xml:space="preserve">
+    <value>Chia sẻ tệp</value>
+    <comment>Chia sẻ tệp</comment>
+  </data>
+  <data name="COM_LINK_HOME" xml:space="preserve">
+    <value>Trang chủ</value>
+    <comment>Trang chủ</comment>
+  </data>
+  <data name="COM_LIST_COL_ACTION" xml:space="preserve">
+    <value>Thao tác</value>
+    <comment>Thao tác</comment>
+  </data>
+  <data name="COM_LIST_USER" xml:space="preserve">
+    <value>Danh sách người dùng</value>
+    <comment>Danh sách người dùng</comment>
+  </data>
+  <data name="COM_MENU_ASSET" xml:space="preserve">
+    <value>Tài sản</value>
+    <comment>Tài sản</comment>
+  </data>
+  <data name="COM_MENU_CONTRACT" xml:space="preserve">
+    <value>Hợp đồng/Đơn hàng</value>
+    <comment>Hợp đồng/Đơn hàng</comment>
+  </data>
+  <data name="COM_MENU_CUSTOMER" xml:space="preserve">
+    <value>Khách hàng</value>
+    <comment>Khách hàng</comment>
+  </data>
+  <data name="COM_MENU_MANAGE_FUND" xml:space="preserve">
+    <value>Quản lý quỹ</value>
+    <comment>Quản lý quỹ</comment>
+  </data>
+  <data name="COM_MENU_MANAGE_SERVICE" xml:space="preserve">
+    <value>Quản trị dịch vụ</value>
+    <comment>Quản trị dịch vụ</comment>
+  </data>
+  <data name="COM_MENU_MANAGE_USER" xml:space="preserve">
+    <value>Quản trị người dùng</value>
+    <comment>Quản trị người dùng</comment>
+  </data>
+  <data name="COM_MENU_MATERIAL" xml:space="preserve">
+    <value>DM thiết bị &amp; Vật tư</value>
+    <comment>DM thiết bị &amp; Vật tư</comment>
+  </data>
+  <data name="COM_MENU_PROJECT" xml:space="preserve">
+    <value>Dự án</value>
+    <comment>Dự án</comment>
+  </data>
+  <data name="COM_MENU_SETTING_SYSTEM" xml:space="preserve">
+    <value>Cài đặt hệ thống</value>
+    <comment>Cài đặt hệ thống</comment>
+  </data>
+  <data name="COM_MENU_STORAGE_DIGITAL" xml:space="preserve">
+    <value>Kho dữ liệu &amp; số hóa</value>
+    <comment>Kho dữ liệu &amp; số hóa</comment>
+  </data>
+  <data name="COM_MENU_SUPPLIER" xml:space="preserve">
+    <value>Nhà cung cấp</value>
+    <comment>Nhà cung cấp</comment>
+  </data>
+  <data name="COM_MENU_URENCO_COST" xml:space="preserve">
+    <value>Chí phí</value>
+    <comment>Chi phí</comment>
+  </data>
+  <data name="COM_MSG_ADD_BEFORE" xml:space="preserve">
+    <value>Vui lòng thêm {0} trước khi lưu</value>
+    <comment>Vui lòng thêm {0} trước khi lưu</comment>
+  </data>
+  <data name="COM_MSG_ADD_BEFORE_SAVE" xml:space="preserve">
+    <value>Vui lòng thêm {0} trước khi lưu</value>
+    <comment>Vui lòng thêm {0} trước khi lưu</comment>
+  </data>
+  <data name="COM_MSG_ADD_FAILED" xml:space="preserve">
+    <value>Thêm {0} thất bại</value>
+    <comment>Thêm {0} thất bại</comment>
+  </data>
+  <data name="COM_MSG_ADD_PARENT_FIRST" xml:space="preserve">
+    <value>Bạn phải thêm {0} cha trước!</value>
+    <comment>Bạn phải thêm {0} cha trước!</comment>
+  </data>
+  <data name="COM_MSG_ADD_SUCCESS" xml:space="preserve">
+    <value>Thêm {0} thành công</value>
+    <comment>Thêm {0} thành công</comment>
+  </data>
+  <data name="COM_MSG_APP_GUIDE" xml:space="preserve">
+    <value>Hướng dẫn: Nhấn chuột phải để lựa chọn Quản lý chức năng</value>
+    <comment>Hướng dẫn: Nhấn chuột phải để lựa chọn Quản lý chức năng</comment>
+  </data>
+  <data name="COM_MSG_BRANCH_GUIDE" xml:space="preserve">
+    <value>Hướng dẫn: Nhấn chuột phải để lựa chọn Thêm / Sửa / Xóa chi nhánh</value>
+    <comment>Hướng dẫn: Nhấn chuột phải để lựa chọn Thêm / Sửa / Xóa chi nhánh</comment>
+  </data>
+  <data name="COM_MSG_CHOSE_FILE" xml:space="preserve">
+    <value>Vui lòng chọn tệp tin</value>
+    <comment>Vui lòng chọn tệp tin</comment>
+  </data>
+  <data name="COM_MSG_CREAT_DOCUMENT_COM" xml:space="preserve">
+    <value>Bạn muốn tạo văn bản hay không?</value>
+    <comment>Bạn muốn tạo văn bản hay không?</comment>
+  </data>
+  <data name="COM_MSG_DATA_FAIL" xml:space="preserve">
+    <value>Có lỗi khi lấy dữ liệu!!</value>
+    <comment>Có lỗi khi lấy dữ liệu!!</comment>
+  </data>
+  <data name="COM_MSG_DEACTIVE_COUNT_SUCCESS" xml:space="preserve">
+    <value>Có {1}/{2} {0} đặt trạng thái không hoạt động thành công!</value>
+    <comment>Có {1}/{2} {0} đặt trạng thái không hoạt động thành công!</comment>
+  </data>
+  <data name="COM_MSG_DEACTIVE_FAILED" xml:space="preserve">
+    <value>Ðặt trạng thái không hoạt động cho các {0} thất bại!</value>
+    <comment>Ðặt trạng thái không hoạt động cho các {0} thất bại!</comment>
+  </data>
+  <data name="COM_MSG_DEACTIVE_SUCCESS" xml:space="preserve">
+    <value>Đặt trạng thái không hoạt động cho các {0} thành công!</value>
+    <comment>Đặt trạng thái không hoạt động cho các {0} thành công!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_CHILD" xml:space="preserve">
+    <value>Bạn phải xóa {0} con trước!</value>
+    <comment>Bạn phải xóa {0} con trước!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_CONFIRM" xml:space="preserve">
+    <value>Bạn có chắc chắn muốn xóa mục {0} đã chọn?</value>
+    <comment>Bạn có chắc chắn muốn xóa mục {0} đã chọn?</comment>
+  </data>
+  <data name="COM_MSG_DELETE_CONFIRM_COM" xml:space="preserve">
+    <value>Bạn có chắc chắn muốn xóa ?</value>
+    <comment>Bạn có chắc chắn muốn xóa ?</comment>
+  </data>
+  <data name="COM_MSG_DELETE_FAIL" xml:space="preserve">
+    <value>Xóa {0} thất bại!</value>
+    <comment>Xóa {0} thất bại!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_LIST_FAIL" xml:space="preserve">
+    <value>Xóa các {0} thất bại!</value>
+    <comment>Xóa các {0} thất bại!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_LIST_SUCCESS" xml:space="preserve">
+    <value>Xóa các {0} thành công!</value>
+    <comment>Xóa các {0} thành công!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_SUCCESS" xml:space="preserve">
+    <value>Xóa {0} thành công!</value>
+    <comment>Xóa {0} thành công!</comment>
+  </data>
+  <data name="COM_MSG_DOWLOAD_ERR" xml:space="preserve">
+    <value>Tải tệp tin lỗi</value>
+    <comment>Tải tệp tin lỗi</comment>
+  </data>
+  <data name="COM_MSG_DOWLOAD_SUCCESS" xml:space="preserve">
+    <value>Tải tệp tin thành công</value>
+    <comment>Tải tệp tin thành công</comment>
+  </data>
+  <data name="COM_MSG_EDITED_FILE_SUCCESS" xml:space="preserve">
+    <value>Lưu tệp thành công</value>
+    <comment>Lưu tệp thành công</comment>
+  </data>
+  <data name="COM_MSG_EDITED_PEOPLE_OTHER" xml:space="preserve">
+    <value>Tệp đang được chỉnh sửa bởi một người dùng khác. Vui lòng thử lại sau</value>
+    <comment>Tệp đang được chỉnh sửa bởi một người dùng khác. Vui lòng thử lại sau</comment>
+  </data>
+  <data name="COM_MSG_EDIT_CONFIRM" xml:space="preserve">
+    <value>Bạn có muốn thay đổi không</value>
+    <comment>Bạn có muốn thay đổi không</comment>
+  </data>
+  <data name="COM_MSG_ERR" xml:space="preserve">
+    <value>Có lỗi xảy ra !</value>
+    <comment>Có lỗi xảy ra !</comment>
+  </data>
+  <data name="COM_MSG_ERR_ADD" xml:space="preserve">
+    <value>Có lỗi khi thêm !</value>
+  </data>
+  <data name="COM_MSG_ERR_ADD_IMG" xml:space="preserve">
+    <value>Có lỗi khi thêm {0}</value>
+    <comment>Có lỗi khi thêm {0}</comment>
+  </data>
+  <data name="COM_MSG_ERR_RETRY" xml:space="preserve">
+    <value>Xảy ra lỗi, vui lòng thử lại.</value>
+    <comment>Xảy ra lỗi, vui lòng thử lại.</comment>
+  </data>
+  <data name="COM_MSG_EXITS" xml:space="preserve">
+    <value>{0} đã tồn tại</value>
+    <comment>{0} đã tồn tại</comment>
+  </data>
+  <data name="COM_MSG_FILE_EXISTS" xml:space="preserve">
+    <value>Tệp tin đã tồn tại</value>
+    <comment>Tệp tin đã tồn tại</comment>
+  </data>
+  <data name="COM_MSG_FILE_FAIL" xml:space="preserve">
+    <value>Có lỗi khi tải tệp</value>
+  </data>
+  <data name="COM_MSG_FILE_FAIL_FORMAT" xml:space="preserve">
+    <value>Tệp tin sai định dạng</value>
+  </data>
+  <data name="COM_MSG_FILE_NOT_HISTORY" xml:space="preserve">
+    <value>Định dạng không có lịch sử</value>
+    <comment>Định dạng không có lịch sử</comment>
+  </data>
+  <data name="COM_MSG_FILE_SUPPORT_PREVIEW" xml:space="preserve">
+    <value>Tệp chưa hỗ trợ xem trước</value>
+    <comment>Tệp chưa hỗ trợ xem trước</comment>
+  </data>
+  <data name="COM_MSG_FINISH" xml:space="preserve">
+    <value>Hoàn thành</value>
+    <comment>Hoàn thành</comment>
+  </data>
+  <data name="COM_MSG_FORMAT_DOCX_PDF" xml:space="preserve">
+    <value>Định dạng bắt buộc là: docx,pdf!</value>
+    <comment>Định dạng bắt buộc là: docx,pdf!</comment>
+  </data>
+  <data name="COM_MSG_FORMAT_EMAIL" xml:space="preserve">
+    <value>Định dạng Email chưa đúng vui lòng nhập lại</value>
+    <comment>Định dạng Email chưa đúng vui lòng nhập lại</comment>
+  </data>
+  <data name="COM_MSG_FORMAT_EXCEL" xml:space="preserve">
+    <value>Định dạng Email chưa đúng vui lòng nhập lại</value>
+  </data>
+  <data name="COM_MSG_FORMAT_IMAGE" xml:space="preserve">
+    <value>Sai định dạng tệp excel</value>
+  </data>
+  <data name="COM_MSG_FORMAT_PNG_JPG_JEG_GIF_BMP" xml:space="preserve">
+    <value>Chỉ nhận các định dạng sau: png, jpg, jpeg, gif, bmp!</value>
+    <comment>Chỉ nhận các định dạng sau: png, jpg, jpeg, gif, bmp!</comment>
+  </data>
+  <data name="COM_MSG_FUNC_GUIDE" xml:space="preserve">
+    <value>Hướng dẫn: Nhấn chuột phải để lựa chọn Quản lý tài nguyên</value>
+    <comment>Hướng dẫn: Nhấn chuột phải để lựa chọn Quản lý tài nguyên</comment>
+  </data>
+  <data name="COM_MSG_IMG" xml:space="preserve">
+    <value>ảnh</value>
+    <comment>ảnh</comment>
+  </data>
+  <data name="COM_MSG_INFOMATION" xml:space="preserve">
+    <value>Vui lòng điền đầy đủ thông tin!!</value>
+    <comment>Vui lòng điền đầy đủ thông tin!!</comment>
+  </data>
+  <data name="COM_MSG_INVALID_FORMAT" xml:space="preserve">
+    <value>Định dạng không hợp lệ !</value>
+    <comment>Định dạng không hợp lệ !</comment>
+  </data>
+  <data name="COM_MSG_LIST_GUIDE" xml:space="preserve">
+    <value>Hướng dẫn: Nhấn đúp chuột để chỉnh sửa bản ghi</value>
+    <comment>Hướng dẫn: Nhấn đúp chuột để chỉnh sửa bản ghi</comment>
+  </data>
+  <data name="COM_MSG_LIST_PRODUCT" xml:space="preserve">
+    <value>Danh mục sản phẩm</value>
+  </data>
+  <data name="COM_MSG_MAXIMUM_FILE" xml:space="preserve">
+    <value>Kích thước tệp tối đa được phép là 1 MB</value>
+    <comment>Kích thước tệp tối đa được phép là 1 MB</comment>
+  </data>
+  <data name="COM_MSG_MAXIMUM_FILE_SIZE" xml:space="preserve">
+    <value>Kích thước tệp tối đa được phép là (1000px x 1000px)!</value>
+    <comment>Kích thước tệp tối đa được phép là (1000px x 1000px)!</comment>
+  </data>
+  <data name="COM_MSG_NO _UNKNOWN" xml:space="preserve">
+    <value>Không xác định</value>
+    <comment>Không xác định</comment>
+  </data>
+  <data name="COM_MSG_NOREVIEW" xml:space="preserve">
+    <value>Chưa xem</value>
+    <comment>Chưa xem</comment>
+  </data>
+  <data name="COM_MSG_NOTIFY_SUCCES" xml:space="preserve">
+    <value>Đã Notify thành công!</value>
+    <comment>Đã Notify thành công!</comment>
+  </data>
+  <data name="COM_MSG_NOT_ACCOUNT" xml:space="preserve">
+    <value>Chưa có tài khoản nào đăng nhập!</value>
+    <comment>Chưa có tài khoản nào đăng nhập!</comment>
+  </data>
+  <data name="COM_MSG_NOT_EDIT_FILE_HISTORY" xml:space="preserve">
+    <value>Tệp tin lịch sử không được phép chỉnh sửa</value>
+    <comment>Tệp tin lịch sử không được phép chỉnh sửa</comment>
+  </data>
+  <data name="COM_MSG_NOT_EXITS" xml:space="preserve">
+    <value>{0} không tồn tại trong hệ thống !</value>
+    <comment>{0} không tồn tại trong hệ thống !</comment>
+  </data>
+  <data name="COM_MSG_NOT_EXITS_FILE" xml:space="preserve">
+    <value>Không tồn tại dữ liệu. Vui lòng tải lại trang.</value>
+    <comment>Không tồn tại dữ liệu. Vui lòng tải lại trang.</comment>
+  </data>
+  <data name="COM_MSG_NOT_EXITS_RECORD" xml:space="preserve">
+    <value>Không tồn tại bản ghi</value>
+  </data>
+  <data name="COM_MSG_NOT_FOUND" xml:space="preserve">
+    <value>Không tìm thấy</value>
+    <comment>Không tìm thấy</comment>
+  </data>
+  <data name="COM_MSG_NOT_FOUND_DATA" xml:space="preserve">
+    <value>Không tìm thấy dữ liệu!</value>
+    <comment>Không tìm thấy dữ liệu!</comment>
+  </data>
+  <data name="COM_MSG_NOT_FOUND_RECORD" xml:space="preserve">
+    <value>Không tìm thấy bản ghi này</value>
+    <comment>Không tìm thấy bản ghi này</comment>
+  </data>
+  <data name="COM_MSG_NOT_SUPPORT" xml:space="preserve">
+    <value>Định dạng không được hỗ trợ</value>
+    <comment>Định dạng không được hỗ trợ</comment>
+  </data>
+  <data name="COM_MSG_NO_CONFIRM" xml:space="preserve">
+    <value>Không xác nhận</value>
+    <comment>Không xác nhận</comment>
+  </data>
+  <data name="COM_MSG_ON_LOCATION" xml:space="preserve">
+    <value>Vui lòng bật vị trí</value>
+    <comment>Vui lòng bật vị trí</comment>
+  </data>
+  <data name="COM_MSG_PAINT_BEFORE_ADD" xml:space="preserve">
+    <value>Vui lòng vẽ {0} trước khi thêm</value>
+    <comment>Vui lòng vẽ {0} trước khi thêm</comment>
+  </data>
+  <data name="COM_MSG_QUESTION_SAVE" xml:space="preserve">
+    <value>Bạn có muốn lưu lại thay đổi?</value>
+    <comment>Bạn có muốn lưu lại thay đổi?</comment>
+  </data>
+  <data name="COM_MSG_RECORD_ADD" xml:space="preserve">
+    <value>Chọn bản ghi để thêm mới</value>
+  </data>
+  <data name="COM_MSG_RECORD_DELETE" xml:space="preserve">
+    <value>Chọn bản ghi để xóa</value>
+  </data>
+  <data name="COM_MSG_REFRESH" xml:space="preserve">
+    <value>Không tìm thấy thông tin, vui lòng làm mới trang</value>
+    <comment>Không tìm thấy thông tin, vui lòng làm mới trang</comment>
+  </data>
+  <data name="COM_MSG_RESOURCE_GUIDE" xml:space="preserve">
+    <value>Hướng dẫn: Nhấn chuột phải để lựa chọn Quản lý chức năng</value>
+    <comment>Hướng dẫn: Nhấn chuột phải để lựa chọn Quản lý chức năng</comment>
+  </data>
+  <data name="COM_MSG_REVIEW" xml:space="preserve">
+    <value>Đã xem</value>
+    <comment>Đã xem</comment>
+  </data>
+  <data name="COM_MSG_SEND_FAIL" xml:space="preserve">
+    <value>Send Fail!</value>
+    <comment>Send Fail!</comment>
+  </data>
+  <data name="COM_MSG_SOS" xml:space="preserve">
+    <value>Khẩn cấp</value>
+    <comment>Khẩn cấp</comment>
+  </data>
+  <data name="COM_MSG_SUCCES" xml:space="preserve">
+    <value>{0} thành công!!!</value>
+    <comment>{0} thành công!!!</comment>
+  </data>
+  <data name="COM_MSG_SUCCES_SAVE" xml:space="preserve">
+    <value>Lưu thông tin thành công!!</value>
+    <comment>Lưu thông tin thành công!!</comment>
+  </data>
+  <data name="COM_MSG_SUCCES_SIGN" xml:space="preserve">
+    <value>Đăng kí thành công</value>
+    <comment>Đăng kí thành công</comment>
+  </data>
+  <data name="COM_MSG_UNFINISH" xml:space="preserve">
+    <value>Chưa hoàn thành</value>
+    <comment>Chưa hoàn thành</comment>
+  </data>
+  <data name="COM_MSG_UNSELECTED" xml:space="preserve">
+    <value>Không có khoản mục nào được chọn</value>
+    <comment>Không có khoản mục nào được chọn</comment>
+  </data>
+  <data name="COM_MSG_UNSELECTED_FILE" xml:space="preserve">
+    <value>Không có tệp nào được chọn</value>
+    <comment>Không có tệp nào được chọn</comment>
+  </data>
+  <data name="COM_MSG_UNSELECTED_RECORD" xml:space="preserve">
+    <value>Không có bản ghi nào được chọn</value>
+    <comment>Không có bản ghi nào được chọn</comment>
+  </data>
+  <data name="COM_MSG_UPDATE_FAILED" xml:space="preserve">
+    <value>Cập nhật {0} thất bại</value>
+    <comment>Cập nhật {0} thất bại</comment>
+  </data>
+  <data name="COM_MSG_UPDATE_SUCCESS" xml:space="preserve">
+    <value>Cập nhật {0} thành công</value>
+    <comment>Cập nhật {0} thành công</comment>
+  </data>
+  <data name="COM_MSG_UPDATE_USER_DEPT_FAIL" xml:space="preserve">
+    <value>Cập nhật người dùng của bộ phận / trung tâm không thành công</value>
+    <comment>Cập nhật người dùng của bộ phận / trung tâm không thành công</comment>
+  </data>
+  <data name="COM_MSG_UPDATE_USER_DEPT_SUCCESS" xml:space="preserve">
+    <value>Cập nhật người dùng của bộ phận / trung tâm thành công</value>
+    <comment>Cập nhật người dùng của bộ phận / trung tâm thành công</comment>
+  </data>
+  <data name="COM_MSG_VALIDATE_SEARCH" xml:space="preserve">
+    <value>Nhập Để Tìm Kiếm</value>
+    <comment>Nhập Để Tìm Kiếm</comment>
+  </data>
+  <data name="COM_NAME_FILE" xml:space="preserve">
+    <value>Tên tệp tin</value>
+    <comment>Tên tệp tin</comment>
+  </data>
+  <data name="COM_NEXT" xml:space="preserve">
+    <value>Chuyển tiếp</value>
+    <comment>Chuyển tiếp</comment>
+  </data>
+  <data name="COM_NOT_IMAGE" xml:space="preserve">
+    <value>Không có ảnh</value>
+    <comment>Không có ảnh</comment>
+  </data>
+  <data name="COM_PREVIEW" xml:space="preserve">
+    <value>Xem trước</value>
+    <comment>Xem trước</comment>
+  </data>
+  <data name="COM_RECEIVER" xml:space="preserve">
+    <value>Người nhận</value>
+    <comment>Người nhận</comment>
+  </data>
+  <data name="COM_SHARE_CURD_LBL_FILE_NAME" xml:space="preserve">
+    <value>Tên tệp</value>
+    <comment>Tên tệp</comment>
+  </data>
+  <data name="COM_SHARE_CURD_LBL_OBJECT_CODE" xml:space="preserve">
+    <value>Đối tượng</value>
+    <comment>Đối tượng</comment>
+  </data>
+  <data name="COM_SHARE_CURD_LBL_OBJECT_TYPE" xml:space="preserve">
+    <value>Kiểu đối tượng</value>
+    <comment>Kiểu đối tượng</comment>
+  </data>
+  <data name="COM_STOP_WORKING" xml:space="preserve">
+    <value>Ngừng hoạt động</value>
+    <comment>Ngừng hoạt động</comment>
+  </data>
+  <data name="COM_SUB_MENU_MATERIAL" xml:space="preserve">
+    <value>Báo cáo thống kê</value>
+    <comment>Báo cáo thống kê</comment>
+  </data>
+  <data name="COM_SUB_MENU_MATERIAL_CONTRACT" xml:space="preserve">
+    <value>Đơn hàng/ hợp đồng</value>
+    <comment>Đơn hàng/ hợp đồng</comment>
+  </data>
+  <data name="COM_SUB_MENU_MATERIAL_SUPP" xml:space="preserve">
+    <value>Đặt hàng NCC</value>
+    <comment>Đặt hàng NCC</comment>
+  </data>
+  <data name="COM_TIME" xml:space="preserve">
+    <value>Thời gian</value>
+    <comment>Thời gian</comment>
+  </data>
+  <data name="COM_TITLE_ADMIN_CATEGORY" xml:space="preserve">
+    <value>Quản trị danh mục</value>
+    <comment>Quản trị danh mục</comment>
+  </data>
+  <data name="COM_TITLE_CODE" xml:space="preserve">
+    <value>Mã</value>
+    <comment>Mã</comment>
+  </data>
+  <data name="COM_TITLE_HISTORY_FILE" xml:space="preserve">
+    <value>Lịch sử sửa tệp</value>
+    <comment>Lịch sử sửa tệp</comment>
+  </data>
+  <data name="COM_UPDATE_FAIL" xml:space="preserve">
+    <value>Có lỗi khi cập nhật</value>
+    <comment>Có lỗi khi cập nhật</comment>
+  </data>
+  <data name="COM_UPDATE_SUCCESS" xml:space="preserve">
+    <value>Cập nhật thành công</value>
+    <comment>Cập nhật thành công</comment>
+  </data>
+  <data name="COM_UPLOAD" xml:space="preserve">
+    <value>Tải lên</value>
+    <comment>Tải lên</comment>
+  </data>
+  <data name="COM_USER" xml:space="preserve">
+    <value>Người dùng</value>
+    <comment>Người dùng</comment>
+  </data>
+  <data name="COM_VALIDATE_CHOOSE_DATA" xml:space="preserve">
+    <value>Vui lòng chọn kho dữ liệu</value>
+  </data>
+  <data name="COM_VALIDATE_CHOOSE_DRAFTERS" xml:space="preserve">
+    <value>Vui lòng chọn người soạn thảo</value>
+    <comment>Vui lòng chọn người soạn thảo</comment>
+  </data>
+  <data name="COM_VALIDATE_DELETE_RECORD" xml:space="preserve">
+    <value>Vui lòng chọn bản ghi để xóa!</value>
+    <comment>Vui lòng chọn bản ghi để xóa!</comment>
+  </data>
+  <data name="COM_VALIDATE_ITEM" xml:space="preserve">
+    <value>{0} không cho phép có ký tự đặc biệt!</value>
+    <comment>{0} không cho phép có ký tự đặc biệt!</comment>
+  </data>
+  <data name="COM_VALIDATE_ITEM_CODE" xml:space="preserve">
+    <value>Yêu cầu {0} có ít nhất một ký tự là chữ cái hoặc số và không bao gồm ký tự đặc biệt, khoảng trống!</value>
+    <comment>Yêu cầu {0} có ít nhất một ký tự là chữ cái hoặc số và không bao gồm ký tự đặc biệt, khoảng trống!</comment>
+  </data>
+  <data name="COM_VALIDATE_ITEM_NAME" xml:space="preserve">
+    <value>Yêu cầu {0} có ít nhất một ký tự là chữ cái hoặc số và không bao gồm ký tự đặc biệt!</value>
+    <comment>Yêu cầu {0} có ít nhất một ký tự là chữ cái hoặc số và không bao gồm ký tự đặc biệt!</comment>
+  </data>
+  <data name="COM_VALIDATE_NOT_FOUND_DATA" xml:space="preserve">
+    <value>Không tìm thấy kho dữ liệu</value>
+  </data>
+  <data name="COM_WORKING" xml:space="preserve">
+    <value>Hoạt động</value>
+    <comment>Hoạt động</comment>
+  </data>
+</root>

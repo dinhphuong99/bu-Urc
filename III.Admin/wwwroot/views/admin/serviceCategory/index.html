@@ -1,0 +1,110 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text-underline" style="color:black;" href="#">{{'COM_MENU_MANAGE_SERVICE' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="ServiceCategory#">{{'SVC_LINK_CATEGORY' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group pt5 pb-1 pull-right actions d-flex">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'SVC_CURE_LBL_CODE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.servicecode" class="form-control" type="text" placeholder="{{'SVC_CURE_TXT_CODE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.servicecode=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'SVC_CURE_LBL_NAME' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.servicename" class="form-control" type="text" placeholder="{{'SVC_CURE_TXT_NAME' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.servicename=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'SVC_CURE_LBL_GROUP' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.servicegroup" theme="bootstrap">
+                            <ui-select-match placeholder="{{'SVC_CURE_TXT_GROUP' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in ServiceCategoryGroup | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.servicegroup=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'SVC_CURE_LBL_UNIT' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.unit" theme="bootstrap">
+                            <ui-select-match placeholder="{{'SVC_CURE_TXT_UNIT' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in ServiceUnitData | filter:$select.Unit| filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.unit=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2" style="width: 14%;">
+                    <div class="btn-group pt20 actions d-flex">
+                        <div class="text-center pr10 pull-right" ng-click="search()">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+                <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm" style="margin-right: 20px !important;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12"> <label class="text-danger">{{'COM_MSG_LIST_GUIDE' | translate}}</label></div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptionsServiceCategory"
+       dt-columns="dtColumnsServiceCategory"
+       dt-instance="dt.dtInstanceServiceCategory"
+       id="tblDataServiceCategory"></table>

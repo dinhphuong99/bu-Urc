@@ -1,0 +1,18 @@
+﻿<link href="../../css/message-box/style.css" rel="stylesheet" />
+<div class="message-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <div class="message-title" id="message-title"><img src="../../images/message/question_card.png" style="height:20px;" />  {{'COM_LBL_PLS_CONFIRM' | translate}}</div>
+</div>
+<div class="message-body">
+    <div class="col-md-9">
+        <span class="fs14">{{message}}</span>
+    </div>
+</div>
+<div class="message-footer pt-0">
+    <div class="pr10">
+        <a ng-click="ok()" class="btn btn-icon-only btn-circle btn-outline" style="margin-right:8px; background:#f97528eb !important">
+            <span><i class="fa fa-check" style="color:white;"></i></span>
+        </a>
+        <p class="text-underline fs12 mb5 pt3">{{'COM_BTN_CONFIRM' | translate}}</p>
+    </div>
+</div>

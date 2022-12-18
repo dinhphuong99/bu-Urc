@@ -1,0 +1,412 @@
+﻿<style>
+    .dataTables_wrapper .table-scrollable {
+        border: 1px solid #e7ecf1 !important;
+    }
+
+    .mBorder .ui-select-toggle {
+        border-top-right-radius: 5px !important;
+        border-bottom-right-radius: 5px !important;
+    }
+
+    @media (min-width: 992px) and (max-width:1200px) {
+        .modal-70 {
+            width: 75%;
+        }
+    }
+
+    @media (min-width: 1600px) {
+        .modal-70 {
+            width: 65%;
+        }
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title"> {{'TRC_EDIT_TITLE' | translate}}</span>
+</div>
+<div class="modal-body userFormAreaHeader" id="modal-body" style="padding-bottom:0px !important">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal " method="post" ng-validate="validationOptions">
+            <div class="form-body pt-0">
+                <div class="col-md-12 mt-action-5 pl-0 pr-0 mt15">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-home"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_LICENCES_PLATE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.LicensePlate" placeholder="{{'TRC_CURD_TXT_LICENCES_PLATE' | translate}}" ng-change="changeQRCode()" />
+                                <span ng-show="errorLicensePlate" class="label-color validation-message">
+                                    {{'TRC_MSG_LICENCES_PLATE_NOT_BLANK' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-home"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_GROUP_CAR' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.NameDriver" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'TRC_CURD_TXT_GROUP_CAR' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in groupsName | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.NameDriver=''" class="btn btn-default no-shadow" style="">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fas fa-code-branch"></i>
+                                <label class="control-label require">{{'Chi nhánh' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.BranchCode" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'Chi nhánh' | translate}}...">{{$select.selected.OrgName}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.OrgAddonCode as x in listBranchWorking | filter: $select.search">
+                                            {{x.OrgName}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <!--<span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingCustomerGroup()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-home"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_DRIVER_DEFAULT' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.DriverDefault" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'TRC_CURD_TXT_DRIVER_DEFAULT' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in managers | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.DriverDefault=''" class="btn btn-default no-shadow" style="">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-home"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_ROUTE_DEFAULT' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.RouteDefault" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'TRC_CURD_TXT_ROUTE_DEFAULT' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in listRoute | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.RouteDefault=''" class="btn btn-default no-shadow" style="">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fas fa-info-circle"></i>
+                                <label class="control-label">{{'TRC_CURD_LBL_LIST' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.Category" placeholder="{{'TRC_CURD_TXT_LIST' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fa fa-truck"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_TYPE_CAR' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.Type" theme="bootstrap" ng-change="changeQRCode()">
+                                        <ui-select-match placeholder="{{'TRC_CURD_TXT_TYPE_CAR' | translate}}...">{{$select.selected.ValueSet}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.CodeSet as x in types | filter: $select.search">
+                                            {{x.ValueSet}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingCustomerGroup()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-tower"></i>
+                                <label class="control-label">{{'TRC_CURD_LBL_WEIGHT' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.WeightItself" placeholder="{{'TRC_CURD_TXT_WEIGHT' | translate}}" num-thousand="true" awnum num-int="21" ng-change="changeQRCode()" />
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-copyright-mark"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_PAYLOAD_DESIGN' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.DesignPayload" placeholder="{{'TRC_CURD_TXT_PAYLOAD_DESIGN' | translate}}" num-thousand="true" awnum num-int="21" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-copyright-mark"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_PAYLOAD_USE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.PayloadPulled" placeholder="{{'TRC_CURD_TXT_PAYLOAD_USE' | translate}}" num-thousand="true" awnum num-int="21" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-copyright-mark"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_TOTAL_PAYLOAD' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.PayloadTotal" placeholder="{{'TRC_CURD_TXT_TOTAL_PAYLOAD' | translate}}" num-thousand="true" awnum num-int="21" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_INSURANCE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class='input-group date' id='date-InsurranceDuration'>
+                                    <input type='text' class="form-control input-date" ng-model="model.sInsurranceDuration" placeholder="{{'TRC_CURD_TXT_EXPERIED_INSURANCE' | translate}}..." ng-change="changeQRCode()" />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-th-list"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_NOTE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.Note" placeholder="{{'TRC_CURD_TXT_NOTE' | translate}}" num-thousand="true" awnum num-int="21" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-home"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_MANUFACT' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.Generic" placeholder="{{'TRC_CURD_TXT_MANUFACT' | translate}}" ng-change="changeQRCode()" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_TIME_REGISTER' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class='input-group date' id='date-YearManufacture'>
+                                    <input type='text' class="form-control input-date" ng-model="model.sYearManufacture" placeholder="{{'TRC_CURD_TXT_TIME_REGISTER' | translate}}..." ng-change="changeQRCode()" />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <label class="control-label">{{'TRC_CURD_LBL_OWNER' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.OwnerCode" placeholder="{{'TRC_CURD_TXT_OWNER' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-flag"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_MADE_FROM' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.Origin" placeholder="{{'TRC_CURD_TXT_MADE_FROM' | translate}}" ng-change="changeQRCode()" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-menu-hamburger"></i>
+                                <label class="control-label">{{'TRC_CURD_LBL_SIZE_REGISTER' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.SizeRegistry" placeholder="{{'TRC_CURD_TXT_SIZE_REGISTER' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_SIZE_USE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.SizeUse" placeholder="{{'TRC_CURD_TXT_SIZE_USE' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                                <label class="control-label require">{{'TRC_CURD_LBL_TIME_REGISTER' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class='input-group date' id='date-RegistryDuration'>
+                                    <input type='text' class="form-control input-date" ng-model="model.sRegistryDuration" placeholder="{{'TRC_CURD_TXT_TIME_REGISTER' | translate}}..." />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                                <label class="control-label">{{'Ngày hết hạn đăng kiểm' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class='input-group date' id='dateRegistryExpirationDate'>
+                                    <input type='text' class="form-control input-date" ng-model="model.sRegistryExpirationDate" placeholder="{{'Ngày hết hạn đăng kiểm' | translate}}..." />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                                <label class="control-label">{{'Ngày hết hạn phí đường bộ' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class='input-group date' id='dateRoadExpirationDate'>
+                                    <input type='text' class="form-control input-date" ng-model="model.sRoadExpirationDate" placeholder="{{'Ngày hết hạn phí đường bộ' | translate}}..." />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                                <label class="control-label">{{'Ngày bảo dưỡng tiếp theo' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class='input-group date' id='dateMaintenanceNextDate'>
+                                    <input type='text' class="form-control input-date" ng-model="model.sMaintenanceNextDate" placeholder="{{'Ngày bảo dưỡng tiếp theo' | translate}}..." />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pull-right  user-mt">
+                            <div class="btn-group pull-right text-center">
+                                <div class="pl20">
+                                    <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="submit()">
+                                        <span><i class="fa fa-plus"></i></span>
+                                    </a>
+                                    <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div>
+                            <div class="form-group">
+                                <div class="fileupload-new thumbnail mt15 pb-0" style="border:0; box-shadow: none;background:none;">
+                                    <input id="file" accept=".png,.jpg,.jpeg,.gif,.tif" type="file" style="display:none" />
+                                    <img id="picture" style="cursor: pointer" ng-click="loadImage()" class="img-circle h-150 w150 br-n" onerror="this.src='/images/default/uploadimg.png'" ng-src="{{model.Images==null ? '/images/default/uploadimg.png' : model.Images}}" role="button" />
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center fs10 pl-0 pr-0 mb15">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                <label class="control-label ">&nbsp;{{'TRC_CURD_IMG_MEDIA' | translate}}</label>
+                            </div>
+                            <div class="form-group" style="text-align: center;">
+                                <qrcode data="{{model.QrCode}}" download size="100"></qrcode>
+                            </div>
+                            <div class="col-md-12 text-center fs10 pl-0 pr-0">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                <label class="control-label ">&nbsp;{{'TRC_CURD_LBL_QR_CODE' | translate}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="portlet light bordered input-search mb5">
+            <div class="row">
+                <div class="col-lg-12 ">
+                    <uib-tabset active="active">
+                        <uib-tab class="mt5" index="1" heading="{{'TRC_TAB_HISTORY_ROUTE' | translate}}" disable="Object.Id == ''" ng-click="chkHistoryRun()">
+                            <div ng-include="'../views/admin/trashCar/trashCarTabHistoryRun.html'"></div>
+                        </uib-tab>
+                        <uib-tab class="mt5" index="2" heading="{{'TRC_TAB_WARNING' | translate}}" disable="Object.Id == ''" ng-click="chkWarning()">
+                            <div ng-include="'../views/admin/trashCar/trashCarTabWarning.html'"></div>
+                        </uib-tab>
+                        <uib-tab class="mt5" index="3" heading="{{'TRC_TAB_QUOTA' | translate}}" disable="Object.Id == ''" ng-click="chkTabQuota()">
+                            <div ng-include="'../views/admin/trashCar/trashCarTabQuota.html'"></div>
+                        </uib-tab>
+                        <uib-tab class="mt5" index="4" heading="{{'TRC_TAB_REAL_COST' | translate}}" disable="Object.Id == ''" ng-click="chkContract()">
+                            <div ng-include="'../views/admin/trashCar/trashCarTabActualCosts.html'"></div>
+                        </uib-tab>
+                        <uib-tab class="mt5" index="5" heading="{{'TRC_TAB_HISTORY_SCBD' | translate}}" disable="Object.Id == ''" ng-click="chkContract()">
+                            <div ng-include="'../views/admin/trashCar/trashCarTabMaintenanceHistory.html'"></div>
+                        </uib-tab>
+                        <uib-tab class="mt5" index="6" heading="{{'TRC_TAB_WARNING_SCBD' | translate}}" disable="Object.Id == ''" ng-click="chkContract()">
+                            <div ng-include="'../views/admin/trashCar/trashCarTabRegisterCars.html'"></div>
+                        </uib-tab>
+                        <!--<uib-tab class="mt5" index="7" heading="{{'TRC_TAB_PROFILE_TL' | translate}}" disable="Object.Id == ''" ng-click="chkContract()">
+                            <div ng-include="'../views/admin/trashCar/trashCarTabFile.html'"></div>
+                        </uib-tab>-->
+                        <uib-tab class="mt5" index="8" heading="{{'TRC_TAB_ATTR_EXTEND' | translate}}" disable="Object.Id == ''" ng-click="chkContract()">
+                            <div ng-include="'../views/admin/trashCar/trashCarTabWorkSpace.html'"></div>
+                        </uib-tab>
+                        <uib-tab class="mt5" index="9" heading="Không gian làm việc" disable="Object.Id == ''" ng-click="chkContract()">
+                            <div ng-include="'../views/admin/trashCar/trashCarTabWorkSpace.html'"></div>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

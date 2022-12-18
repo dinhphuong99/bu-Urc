@@ -1,0 +1,209 @@
+﻿<div class="input-group">
+    <div class="row">
+        <div class="col-md-12">
+            <!--   <h1 class="bold mb-0">{{'ASMTNC_TITLE_ASSET_MAINTENANCE' | translate}}</h1>-->
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_BREAD_CRUMB_ASSET_MAINTENANCE' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/AssetMaintenance">{{'ASMTNC_LINK_ASSET_MAINTENANCE' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group actions pt5 pb-1 pull-right d-flex mr5">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="portlet light bordered input-search mb5 hidden">-->
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-12 pl-0">
+                    <div class="col-md-2">
+                        <label class="fw600 text-underline">{{'ASMTNC_CURD_LBL_TICKET_CODE' | translate}}</label>
+                        <div class='input-group'>
+                            <input ng-model="modelsearch.TicketCode" class="form-control" type="text" placeholder="{{'ASMTNC_CURD_TXT_TICKET_CODE' | translate}}..." ng-keydown="($event.keyCode == 13) &&  reloadTabHeader()" />
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelsearch.TicketCode='';" class="btn btn-default no-shadow end-date">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 pl-0 pr-0">
+                        <label class="fw600 text-underline">{{'Tiêu đề' | translate}}</label>
+                        <div class='input-group'>
+                            <input ng-model="modelsearch.Title" class="form-control" type="text" placeholder="{{'Tiêu đề' | translate}}.." ng-keydown="($event.keyCode == 13) && reloadTabHeader()" />
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelsearch.Title='';" class="btn btn-default no-shadow end-date">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-0">
+                        <div class="col-md-6 pl-0">
+                            <label class="fw600 text-underline">{{'ASMTNC_CURD_LBL_FROM_DATE' | translate}}</label>
+                            <div class='input-group date'>
+                                <input type='text' id='StartTime' class="form-control input-date" name="StartTime" ng-model="modelsearch.FromDate" placeholder="{{'ASMTNC_CURD_TXT_FROM_DATE' | translate}}..." ng-keydown="($event.keyCode == 13) && reloadTabHeader()" />
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="modelsearch.FromDate='';" class="btn btn-default no-shadow end-date">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pl-0">
+                            <label class="fw600 text-underline">{{'ASMTNC_CURD_LBL_TO_DATE' | translate}}</label>
+                            <div class='input-group date'>
+                                <input type='text' id='ReceivedTime' class="form-control input-date" name="ReceivedTime" ng-model="modelsearch.ToDate" placeholder="{{'ASMTNC_CURD_TXT_TO_DATE' | translate}}..." ng-keydown="($event.keyCode == 13) && reloadTabHeader()" />
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="modelsearch.ToDate='';" class="btn btn-default no-shadow end-date">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 pl-0 pr-0" style="width: 14%;">
+                        <label class="fw600 text-underline">{{'ASMTNC_CURD_LBL_BRANCH' | translate}}</label>
+                        <div class='input-group'>
+                            <div class="input-group">
+                                <ui-select tagging ng-model="modelsearch.Branch" theme="bootstrap">
+                                    <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_BRANCH' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat=" x.Code as x in listOrganization | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="modelsearch.Branch='';" class="btn btn-default no-shadow end-date">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="fw600 text-underline">{{'ASMTNC_CURD_LBL_UNIT_MAINTENANCE' | translate}}</label>
+                        <div class='input-group'>
+                            <div class="input-group">
+                                <ui-select tagging ng-model="modelsearch.UnitMaintenance" theme="bootstrap">
+                                    <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_UNIT_MAINTENANCE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat=" x.Code as x in listUnitMaintenance | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="modelsearch.UnitMaintenance='';" class="btn btn-default no-shadow end-date">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 pr-0 pl-0 pt10">
+                        <div class="btn-group actions d-flex mr5">
+                            <div class="text-center pr10 pl10">
+                                <a data-dismiss="modal" ng-click="searchHeader()" class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                    <span><i class="fa fa-search"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm" style="margin-right: 20px !important;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="portlet light bordered input-search mb5">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                
+                            </div>
+                            <div class="col-md-3">
+                              
+                            </div>
+                            <div class="col-md-3">
+                               
+                            </div>
+                            <div class="col-md-3">
+                                
+                            </div>
+                        </div>
+                        <div class="row pt10">
+                            <div class="col-md-3">
+                               
+                            </div>
+                            <div class="col-md-3">
+                               
+                            </div>
+                            <div class="col-md-3">
+                                <label class="fw600 text-underline">{{'ASMTNC_CURD_LBL_STATUS' | translate}}</label>
+                                <div class='input-group'>
+                                    <div class="input-group">
+                                        <ui-select tagging ng-model="model.Status" theme="bootstrap">
+                                            <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_STATUS' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                            <ui-select-choices repeat=" x.Code as x in listStatus | filter: $select.search">
+                                                {{x.Name}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                        <span class="input-group-btn">
+                                            <button type="button" ng-click="model.Status='';" class="btn btn-default no-shadow end-date">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="btn-group actions d-flex mr25">
+                                    <div class="pr10">
+                                        <a data-dismiss="modal" ng-click="searchHeader()" class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                            <span><i class="fa fa-search"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_SEARCH' | translate}}</p>
+                                    </div>
+                                    <div class="text-center pr10">
+                                        <a ng-click="add()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                            <span><i class="fa fa-plus"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_ADD' | translate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</div>
+<div class="tabbable margin-top-15">
+	<uib-tabset active="active">
+		<uib-tab index="0" heading="{{'ASMTNC_CURD_TABLE_IMPROVEMENT' | translate}}">
+			<div ng-include="'../views/admin/assetMaintenance/tableheader.html'"></div>
+		</uib-tab>
+		<uib-tab index="1" heading="{{'ASMTNC_CURD_TABLE_ASSET_IMPROVEMENT' | translate}}">
+			<div ng-include="'../views/admin/assetMaintenance/tabledetails.html'"></div>
+		</uib-tab>
+	</uib-tabset>
+</div>

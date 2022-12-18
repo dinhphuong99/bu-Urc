@@ -1,0 +1,114 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_MENU_SETTING_SYSTEM' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/Activity">{{'CAT_TITLE_ACTIVITY'|translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group actions pt5 pb-1 pull-right d-flex mr5">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn green-custom br4" ng-click="addcatactivity()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <!--Mã hđ-->
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'CAT_TITLE_ACTIVITY_CODE'|translate}}</label>
+                    <div class='input-group '>
+                        <input ng-model="model.ActCode" class="form-control" type="text" placeholder="{{'CAT_TITLE_ACTIVITY_CODE'|translate}}..." ng-keydown="($event.keyCode == 13) && reloadNoResetPage()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ActCode='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <!--Tên hđ-->
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'CAT_TITLE_ACTIVITY_NAME'|translate}}</label>
+                    <div class='input-group '>
+                        <input ng-model="model.ActName" class="form-control" type="text" placeholder="{{'CAT_TITLE_ACTIVITY_NAME'|translate}}..." ng-keydown="($event.keyCode == 13) && reloadNoResetPage()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ActName='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <!--nhóm hđ-->
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'CAT_TITLE_ACTIVITY_GROUP'|translate}}</label>
+                    <div class='input-group '>
+                        <ui-select tagging ng-model="model.ActGroup" theme="bootstrap" ng-click="click()">
+                            <ui-select-match placeholder="{{'CAT_TITLE_ACTIVITY_GROUP'|translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in ListActivityGroup | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="clear()" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <!--loại hđ-->
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'CAT_TITLE_ACTIVITY_TYPE'|translate}}</label>
+                    <div class='input-group '>
+                        <ui-select tagging ng-model="model.ActType" theme="bootstrap" ng-click="check()" ng-disabled="isDisabled">
+                            <ui-select-match placeholder="{{'CAT_TITLE_ACTIVITY_TYPE'|translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in ListActivityType | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ActType='';" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <!--button-->
+                <div class="col-md-2">
+                    <div class="btn-group actions pt15 d-flex">
+                        <div class="pr10">
+                            <a data-dismiss="modal" ng-click="search()" class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH'|translate}}</p>
+                        </div>
+                    </div>
+                </div>
+                <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tabbable">
+    <uib-tabset active="active">
+        <div ng-include="'../views/admin/catactivity/Activity.html'"></div>
+        <!--<uib-tab index="1" heading="Hoạt động">
+            <div ng-include="'../views/admin/catactivity/Activity.html'"></div>
+        </uib-tab>-->
+    </uib-tabset>
+</div>

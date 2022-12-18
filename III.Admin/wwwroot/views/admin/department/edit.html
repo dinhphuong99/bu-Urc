@@ -1,0 +1,87 @@
+﻿<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-edit icon-edit "></i>
+    <span class="modal-title" id="modal-title"> {{"ADM_DEPARTMENT_CURD_TITLE_EDIT_DEPT" | translate}}</span>
+</div>
+<div class="modal-body pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="editform" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptions">
+            <div class="form-body">
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <i class="fa fa-barcode" aria-hidden="true"></i>
+                        <label class="control-label require custom-title-code-bold">{{"ADM_DEPARTMENT_CURD_LBL_DEPT_CODE" | translate}}</label>
+                    </div>
+                    <div class="col-md-8 pl-0">
+                        <input type="text" class="form-control custom-title-code-bold" ng-model="model.DepartmentCode" name="DepartmentCode" placeholder="{{'ADM_DEPARTMENT_CURD_TXT_DEPT_CODE' | translate}}..." readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        <label class="control-label require custom-title-code-bold">{{"ADM_DEPARTMENT_CURD_LBL_DEPT_NAME" | translate}}</label>
+                    </div>
+                    <div class="col-md-8 pl-0">
+                        <input type="text" class="form-control custom-title-code-bold" ng-model="model.Title" name="Title" placeholder="{{'ADM_DEPARTMENT_CURD_TXT_DEPT_NAME' | translate}}..." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        <label class="control-label ">{{'ADM_DEPARTMENT_CURD_LBL_DEPT_PARENT' | translate }}</label>
+                    </div>
+                    <div class="col-md-8 pl-0">
+                        <input type="text" readonly="readonly" class="form-control" ng-model="model.ParentName" name="ParentName" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <i class="fa fa-comment" aria-hidden="true"></i>
+                        <label class="control-label">{{'ADM_DEPARTMENT_CURD_LBL_DEPT_DESCIPTION' | translate }}</label>
+                    </div>
+                    <div class="col-md-8 pl-0">
+                        <textarea type="text" class="form-control" ng-model="model.Description" rows="3" placeholder="{{'ADM_DEPARTMENT_CURD_TXT_DEPT_DESCIPTION' | translate }}..."></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        <label class="control-label ">{{'ADM_DEPARTMENT_CURD_LBL_DEPT_STATUS' | translate }}</label>
+                    </div>
+                    <div class="col-md-6 pl-0">
+                        <div class="mt-checkbox-list pt10">
+                            <label class="mt-checkbox mt-checkbox-outline mb10">
+                                {{'ADM_DEPARTMENT_LIST_LBL_DEPT_ACTIVE' | translate }} / {{'ADM_DEPARTMENT_LIST_LBL_DEPT_INACTIVE' | translate }}
+                                <input type="checkbox" name="IsEnabled" ng-model="model.IsEnabled" ng-checked="model.IsEnabled" />
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 pt-1">
+                        <div class="btn-group pull-right actions d-flex">
+                            <div class="text-center pr10">
+                                <a data-dismiss="modal" ng-click="cancel()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                                    <span><i class="glyphicon glyphicon-remove"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+                            </div>
+                            <div class="text-center">
+                                <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="submit()">
+                                    <span><i class="fa fa-save"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include="'../views/admin/department/jTableHrEmp.html'"></div>
+        </form>
+    </div>
+</div>
+<!--<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblData"></table>-->

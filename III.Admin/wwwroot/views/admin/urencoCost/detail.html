@@ -1,0 +1,170 @@
+﻿<style>
+    .class9 {
+        width: 8% !important
+    }
+
+    .class18 {
+        width: 13.5% !important
+    }
+
+    .groupUser .btn {
+        margin: 10px 5px 10px 0;
+        background: #fff;
+        border-radius: 2px !important;
+        padding: 2px 0px 2px 5px !important;
+        min-width: 88px;
+        font-size: 13px !important;
+    }
+
+    #formItem .help-block {
+        font-size: 9px !important;
+    }
+
+    #tblListPoItem th {
+        white-space: nowrap;
+    }
+
+    input.largerCheckbox {
+        width: 25px;
+        height: 25px;
+    }
+
+    .reqNew {
+        background: blanchedalmond !important;
+    }
+</style>
+<div ng-controller="detail">
+    <form name="addform" method="post" ng-validate="validationItemOptions">
+        <div id="formItem">
+            <div class="col-md-12 p-0">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{ 'has-error': errorItemCode}">
+                            <label class="control-label require fs9">{{'UC_CURD_LBL_MATERIAL_CODE' | translate}}</label>
+                            <div class="input-group">
+                                <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.ItemCode" theme="bootstrap" ng-disabled="isDisableItemCode" ng-change="changeItem()" on-select="changleSelect('ItemCode',$item)">
+                                    <ui-select-match placeholder="{{'UC_CURD_CB_MATERIAL_CODE' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in listItem | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                    <!--<ui-select-choices ui-disable-choice="x.HasChild" repeat="x.Code as x in listItem | filter: $select.search" style="z-index: 100">
+                                        <div style="padding-left: {{15 * x.Level}}px">
+                                            <i ng-show="x.HasChild" class="fa fa-folder-open icon-state-warning"></i>
+                                            <i ng-show="!x.HasChild" class="fa fa-folder text-info"></i>
+                                            {{x.Title}}
+                                        </div>
+                                    </ui-select-choices>-->
+                                </ui-select>
+                            </div>
+                            <span ng-show="errorItemCode" class="label-color validation-message fs9">
+                                {{'UC_ERR_MATERIAL_CODE_REQUIRED' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 pl-0">
+                        <div class="form-group">
+                            <label class="control-label require fs9">{{'UC_CURD_LBL_MATERIAL_COST' | translate}}</label>
+                            <input class="form-control bold" ng-model="model.Cost" name="Cost" type="text" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" num-thousand='true' awnum num-int='21' placeholder="{{'UC_CURD_TXT_MATERIAL_COST' | translate}}..." ng-change="changeQuantityPrice()" />
+                            <span ng-show="errorPrice" class="label-color validation-message fs9">
+                                {{'UC_ERR_COST_THAN_ZERO_REQUIRED' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 pl-0">
+                        <div class="form-group" ng-class="{ 'has-error': errorUnit}">
+                            <label class="control-label require fs9">{{'UC_CURD_LBL_MATERIAL_UNIT' | translate}}</label>
+                            <div class="input-group">
+                                <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.Unit" theme="bootstrap" ng-disabled="isDisableUnit" on-select="changleSelect('Unit', $item)">
+                                    <ui-select-match placeholder="{{'UC_CURD_CB_MATERIAL_UNIT' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in units | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <span ng-show="errorUnit" class="label-color validation-message fs9">
+                                {{'UC_ERR_UNIT_REQUIRED' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 pl-0">
+                        <div class="form-group">
+                            <label class="control-label require fs9">{{'UC_CURD_LBL_MATERIAL_QUANTITY' | translate}}</label>
+                            <input class="form-control bold" ng-model="model.Quantity" type="text" name="Quantity" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" placeholder="{{'UC_CURD_TXT_MATERIAL_QUANTITY' | translate}}..." ng-change="changeQuantityPrice()" />
+                            <span ng-show="errorQuantity" class="label-color validation-message fs9">
+                                {{'UC_ERR_QUANTITY_THAN_ZERO_REQUIRED' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <!--<div class="col-md-12 pl-0">
+                        <label class="col-md-12 text-danger fs9">{{'CP_TITLE_SEARCH_CHILD_PRODUCTS' | translate}}</label>
+                        <label class="col-md-12 text-danger fs9">{{'CP_TITLE_SEARCH_PRODUCTS_COMPLETE' | translate}}</label>
+                    </div>-->
+                </div>
+            </div>
+
+            <div class="col-md-12 p-0">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label fs9">{{'UC_CURD_LBL_MATERIAL_TYPE' | translate}}</label>
+                            <input type="text" class="form-control" ng-disabled="isDisableItemType" ng-model="model.ItemTypeName" name="ItemTypeName" placeholder="{{'UC_CURD_TXT_MATERIAL_TYPE' | translate}}..." />
+                        </div>
+                    </div>
+                    <!--<div class="col-md-4 pl-0">
+                        <div class="form-group">
+                            <label class="control-label fs9">{{'CP_CURD_LBL_CATALOGUE' | translate}}</label>
+                            <input type="text" class="form-control" ng-disabled="isDisableCatalogue" ng-model="model.Catalogue" name="Catalogue" placeholder="{{'CP_CURD_TXT_CATALOGUE' | translate}}..." />
+                        </div>
+                    </div>-->
+                    <div class="col-md-2 pl-0">
+                        <div class="form-group">
+                            <label class="control-label text-left">&nbsp{{'UC_CURD_LBL_CREATED_TIME' | translate}}</label>
+                            <div class='input-group date' id='_CreatedDate'>
+                                <input type='text' class="form-control input-date" ng-model="model.CreatedDate" placeholder="{{'UC_CURD_TXT_CREATED_TIME' | translate}}..." />
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-class="{ 'col-md-6': !isAdd,'col-md-5': isAdd}" class="pl-0">
+                        <div class="form-group">
+                            <label class="control-label fs9">{{'UC_CURD_LBL_MATERIAL_NOTE' | translate}}</label>
+                            <input class="form-control" ng-model="model.Note" type="text" placeholder="{{'UC_CURD_TXT_MATERIAL_NOTE' | translate}}..." />
+                        </div>
+                    </div>
+                    <div ng-class="{ 'col-md-2 pr-0': !isAdd,'col-md-1 pr-0': isAdd}">
+                        <div class="btn-group actions d-flex">
+                            <div class="text-center pt10" ng-if="isAdd==true">
+                                <a ng-click="add()" ng-disabled="CostCode==''" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                    <span><i class="fa fa-plus"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                            </div>
+                            <div class="text-center pt10" ng-if="isAdd==false">
+                                <a ng-click="close()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                                    <span><i class="fa fa-close"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+                            </div>
+                            <div class="text-center pl10 pt10" ng-if="isAdd==false">
+                                <a ng-click="save()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                    <span><i class="fa fa-save"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="col-md-12 mt5">
+        <table class="table dataTable table-hover table-striped"
+               datatable
+               dt-options="dtOptions"
+               dt-columns="dtColumns"
+               dt-instance="dtInstance"
+               id="tblDataItem"></table>
+    </div>
+</div>

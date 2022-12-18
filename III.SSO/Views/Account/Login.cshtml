@@ -1,0 +1,111 @@
+﻿
+@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+<style type="text/css">
+    .checkbox-default label::before {
+        margin-left: -17px !important;
+    }
+</style>
+@*<div class="row icon-3i" style="position:fixed;float:right;right:25px; bottom:25px" >
+        <div >
+            <img class="ui_img_logo" style="visibility: visible; margin-left:35%; margin-right:35%; " src="/images/logo3i.png" />
+            <div style="color:white">Copyright @@ by 3i 2017 </div>
+        </div>
+    </div>*@
+<link rel="stylesheet" href="/css/login.css" />
+<link href="~/css/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<div class="wapter col-md-12" style="padding-top: 100px;">
+    <div class="col-md-3 " style="padding-right: 0px;padding-top: 35px;padding-bottom: 35px;">
+        <a href="https://itunes.apple.com/us/app/warehouse-system/id1290213064?ls=1&mt=8"><img class="ui_applestore" src="/images/appstore.png"></a>
+    </div>
+    <div id="login_panel" class="login_panel col-md-6" role="form" style="display: block;">
+        <div class="login_inner_container" role="main">
+            <div id="true_inner" class="inner_container cred">
+                <div class="text-center">
+                    <img src="~/images/Swork.png" class="img-thumbnail logo_swork"></>
+                    @*<p class="s-wrok"><span style="color:#8bd5f7"></span>SWork</p>*@
+                    @*<p class="logistic"><span style="color:#8bd5f7"></span>logistic</p>*@
+                </div>
+                <section>
+                    <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                        @if (ViewData?.ModelState[""]?.Errors?.Any() == true)
+                        {
+                            <div asp-validation-summary="All" class="text-danger alert alert-danger" style="color: red !important;"></div>
+                        }
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <i class="fa fa-user icon"></i>
+                                <input asp-for="Username" placeholder="Tài khoản" class="form-control login_textfield" autocomplete="off" />
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <i class="fa fa-lock icon"></i>
+                                <input asp-for="Password" placeholder="Mật khẩu" class="form-control login_textfield" autocomplete="off" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                                <div class="col-md-3">
+                                    <i class="fa fa-building" aria-hidden="true"></i>
+                                    <label class="control-label">Công Ty</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input asp-for="CompanyCode" class="form-control login_textfield" autocomplete="off" style="border-radius: 5px;" />
+                                    <span asp-validation-for="CompanyCode" class="text-danger"></span>
+                                </div>
+                            </div>*@
+                        @*<div class="form-group">
+                                <div class="col-md-offset-3 col-md-4">
+                                    <div class="checkbox" style="padding: 0;">
+                                        <label asp-for="AllowRememberLogin">
+                                            <input asp-for="AllowRememberLogin" />
+                                            @Html.DisplayNameFor(m => m.AllowRememberLogin)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <a asp-action="ForgotPassword">Forgot your password?</a>
+                                </div>
+                            </div>*@
+
+                        @*<div class="form-group">
+                                <div class="col-md-offset-3 col-md-9" style="margin-bottom:20px">
+                                    <button type="submit" class="btn btn-default button ">Log in</button>
+                                </div>
+                            </div>*@
+                        <div class="form-group">
+                            <div class="col-md-6 text-center" style="padding-left:80px">
+                                <div class="checkbox-default">
+                                    <input id="checkbox5" type="checkbox">
+                                    <label for="checkbox5">
+                                        Nhớ mật khẩu
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center" style="padding-top:2px;padding-right:65px">
+                                <a href="javascript:;" id="forget-password" class="forget-password">Quên mật khẩu ?</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-6">
+                                <button style="margin-bottom:40px" type="submit" class="btn btn-login ">Đăng nhập</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3" style="padding-top: 35px;">
+        <a href="https://play.google.com/store/apps/details?id=com.iii.romooc_tracking"><img class="ui_chplay" src="/images/googleplay.png"></a>
+    </div>
+</div>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

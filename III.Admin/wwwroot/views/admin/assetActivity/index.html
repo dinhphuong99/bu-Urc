@@ -1,0 +1,100 @@
+﻿<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-md-6 ">
+        <!--    <h1 class="bold mb-0">{{'AA_TITLE_ASSET_ACTIVITY' | translate}}</h1>-->
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home  " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_BREAD_CRUMB_COMMON_CATE' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/AssetActivity">{{'AA_TITLE_ASSET_ACTIVITY' | translate}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6 text-center">
+            <div class="btn-group pull-right actions pb-1">
+                <a class="btn red-custom btnSearch">
+                    <i class="fa fa-search"></i> {{'COM_BTN_SEARCH' | translate}}
+                </a>
+                <a ng-click="add()" class="btn green-custom">
+                    <i class="fa fa-plus"></i> {{'COM_BTN_ADD' | translate}}
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5 hidden">
+        <div class="portlet-body">
+            <!--<img class="pull-right h28 w28 close-input-search" role="button" title="Đóng" src="/images/default/close.png" />-->
+            <div class="row pt5 mb5">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'AA_CURD_LBL_SEARCH_ACTCODE' | translate}}</label>
+                    <div class='input-group '>
+                        <input ng-model="model.ActCode" class="form-control" type="text" placeholder="{{'AA_CURD_TXT_SEARCH_ACTCODE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ActCode='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'AA_CURD_LBL_SEARCH_ACTTITLE' | translate}}</label>
+                    <div class='input-group '>
+                        <input ng-model="model.ActTitle" class="form-control" type="text" placeholder="{{'AA_CURD_TXT_SEARCH_ACTTITLE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ActTitle='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'AA_CURD_LBL_SEARCH_ACTTYPE' | translate}}</label>
+                    <div class='input-group'>
+                        <ui-select tagging ng-model="model.ActType" theme="bootstrap">
+                            <ui-select-match placeholder="{{'AA_CURD_COMBO_SEARCH_ACTTYPE' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in ActivityType | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ActType='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'AA_CURD_LBL_SEARCH_ACTNOTE' | translate}}</label>
+                    <div class='input-group'>
+                        <input ng-model="model.ActNote" class="form-control" type="text" placeholder="{{'AA_CURD_TXT_SEARCH_ACTNOTE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ActNote='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="btn-group actions d-flex mr5 pt15">
+                        <div class="text-center pr10 pl10">
+                            <a data-dismiss="modal" ng-click="search()" class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+                <i class="close-input-search fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm" style="margin-right: 20px !important;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblData"></table>

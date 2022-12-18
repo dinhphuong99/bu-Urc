@@ -1,0 +1,57 @@
+﻿<!--<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fas fa-list" style="padding-top:8px"></i>
+    <span class="modal-title" id="modal-title">Gán hoạt động xe</span>
+</div>-->
+<div class="modal-body pb-0" id="modal-body" ng-controller="trashCarTabWorkSpace">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal" method="post">
+            <div class="form-body pt5">
+                <div class="form-group">
+                    <div>
+                        <tags-input add-on-enter="true" use-Strings="true" min-length="0" placeholder="Hoạt động" ng-model="model.Tags" on-tag-added="onTagAdded($tag)" on-tag-clicked="tagClick($tag)" on-tag-removed="tagRemoved($tag)"></tags-input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 row">
+                        <label class="text-underline">Kiểu đối tượng</label>
+                        <ui-select tagging ng-model="model.ObjectType" theme="bootstrap" ng-change="ChangObjType(model.ObjectType)" >
+                            <ui-select-match placeholder="Chọn kiểu đối tượng...">{{$select.selected.ObjTypeName}}</ui-select-match>
+                            <ui-select-choices repeat="x.ObjTypeCode as x in listCatObjectType | filter: $select.search">
+                                {{x.ObjTypeName}}
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="text-underline">Đối tượng</label>
+                        <ui-select tagging ng-model="model.ObjectCode" theme="bootstrap">
+                            <ui-select-match placeholder="Chọn đối tượng...">{{$select.selected.Value}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in listObj | filter: $select.search">
+                                {{x.Value}}
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-md-2 pt20">
+                        <div class="btn-group actions d-flex">
+                            <div class="text-center">
+                                <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="addCode()">
+                                    <span><i class="fa fa-plus"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <table class="table dataTable table-bordered table-hover table-striped"
+                           datatable
+                           dt-options="dtOptions"
+                           dt-columns="dtColumns"
+                           dt-instance="dtInstance"
+                           id="tblDataDetailWorking"></table>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</div>

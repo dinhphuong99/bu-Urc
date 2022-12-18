@@ -1,0 +1,128 @@
+﻿<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home" style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="/Admin/DashBoard">{{'COM_BREAD_CRUMB_STATISTICAL' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/ReportStaticsPoSupPayment">{{'RSPSORP_LINK_PO_SUB_CODE' | translate}}</a>
+                </li>
+            </ul>
+            <div class="pr-0 pull-right" ng-show="!isSearch" ng-click="showSearch()">
+                <button class="btn gold-custom br4">
+                    <i class="fa fa-search"></i>
+                    {{'COM_BTN_SEARCH'| translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'RSPSORP_CURD_LBL_SEARCH_FORM_DATE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.FromDate" class="form-control" type="text" placeholder="{{'RSPSORP_CURD_TXT_SEARCH_FORM_DATE' | translate}}..." autocomplete="off" ng-keydown="($event.keyCode == 13) && reload()" id='datefrom' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.FromDate=''" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'RSPSORP_CURD_LBL_SEARCH_TO_DATE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.ToDate" class="form-control" type="text" autocomplete="off" placeholder="{{'RSPSORP_CURD_TXT_SEARCH_TO_DATE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" id='dateto' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ToDate=''" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'RSPSORP_CURD_LBL_SUP_CODE' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.SupCode" theme="bootstrap" on-select="changleSelect('SupCode',$item)">
+                            <ui-select-match placeholder="{{'RSPSORP_CURD_TXT_SUP_CODE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in suppliers | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.SupCode=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'RSPSORP_CURD_LBL_PO_SUB_CODE' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.PoSupCode" theme="bootstrap" on-select="changleSelect('PoSupCode',$item)">
+                            <ui-select-match placeholder="{{'RSPSORP_CURD_TXT_PO_SUB_CODE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in poSups | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.PoSupCode=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <!--<div class="col-md-3">
+        <label class="fw600 text-underline">{{'CONTRACT_CURD_LBL_STATUS' | translate}}</label>
+        <div class="input-group">
+            <ui-select ng-model="model.Status" theme="bootstrap">
+                <ui-select-match placeholder="{{'CONTRACT_CURD_COMBO_STATUS' | translate}}"><span><i class="{{$select.selected.Icon}}"></i>&nbsp{{$select.selected.Name}}</span></ui-select-match>
+                <ui-select-choices repeat="x.Code as x in ListCommon | filter:{Group:'CONTRACT_STATUS_PO_SUP'} | filter: $select.search">
+                    <i class="{{x.Icon}}"></i>&nbsp{{x.Name}}
+                </ui-select-choices>
+            </ui-select>
+            <span class="input-group-btn">
+                <button type="button" ng-click="model.Status=''" class="btn btn-default no-shadow">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </span>
+        </div>
+    </div>-->
+                <div class="col-md-1 ">
+                    <div class="btn-group pt20 d-flex">
+                        <div class="text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="search()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+                <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm" style="margin-right: 20px !important;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table dataTable table-hover table-striped" 
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblData">
+    <tfoot>
+        <tr>
+            <th colspan="1" class=""></th>
+            <th colspan="1" class=""></th>
+            <th colspan="1" class=""></th>
+            <th colspan="1" class="text-danger">{{'RSPSORP_CURD_LBL_TOTAL' | translate}}</th>
+            <th colspan="1" class=""><span class="text-success">{{TotalAmount | number : fractionSize}}</span></th>
+            <th colspan="1" class=""><span class="text-success">{{TotalPayment | number : fractionSize}}</span></th>
+            <th colspan="1" class=""><span class="text-success">{{TotalNotPayment | number : fractionSize}}</span></th>
+            <th colspan="1" class=""></th>
+        </tr>
+    </tfoot>
+</table>

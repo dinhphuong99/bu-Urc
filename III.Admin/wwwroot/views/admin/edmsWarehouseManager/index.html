@@ -1,0 +1,46 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-6">
+            <!--<h1 class="bold mb-0">{{'EDMSWM_LINK_FLOOR_LINE_RACK' | translate}}</h1>-->
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:green;"></i>
+                    <a class=" bold text text-underline" style="color:green;" href="/Admin/DashBoard">{{'COM_BREAD_CRUMB_COMMON_CATE' | translate}}</a>
+                    <span class="" style="color:green;">&gt;</span>
+                </li>
+                <li>
+                    <div class=" bold text-underline" style="color:green;"  href="/EDMSWarehouseManager">{{'EDMSWM_LINK_FLOOR_LINE_RACK' | translate}}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <div class="btn-group pull-right actions hidden">
+                <div class="pl20 text-center pr10">
+                    <a class="btn btn-icon-only btn-circle btn-outline green-custom">
+                        <span><i class="fa fa-file-excel-o"></i></span>
+                    </a>
+                    <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_EXCEL' | translate}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="list-body-scroll mt15">
+    <div class="listWareHouse col-md-6">
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-4">
+                    <h6 class="bold pt15 pb10">{{'EDMSWM_CURD_LBL_LIST_WAREHOUSE' | translate}}</h6>
+                </div>
+            </div>
+        </div>
+        <div ng-if="IsTranslate" ng-include="'../views/admin/edmsWarehouseManager/listWarehouse.html'"></div>
+        <div ng-if="IsTranslate"  ng-include="'../views/admin/edmsWarehouseManager/listLine.html'"></div>
+    </div>
+    <div class="col-md-6">
+        <div ng-if="IsTranslate" ng-include="'../views/admin/edmsWarehouseManager/listFloor.html'"></div>
+        <div ng-if="IsTranslate"  ng-include="'../views/admin/edmsWarehouseManager/listRack.html'"></div>
+    </div>
+</div>
+

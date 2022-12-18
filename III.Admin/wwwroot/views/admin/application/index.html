@@ -1,0 +1,83 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home  " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_MENU_MANAGE_USER' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/Application">{{'ADM_APP_LINK_APP' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group actions pt5 pb-1 pull-right d-flex mr5">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'ADM_APP_CURD_LBL_APP_CODE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.AppCode" class="form-control" type="text" placeholder="{{'ADM_APP_CURD_TXT_APP_CODE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.AppCode=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'ADM_APP_CURD_LBL_APP_NAME' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.Name" class="form-control" type="text" placeholder="{{'ADM_APP_CURD_TXT_APP_NAME' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Name=''" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="btn-group pt20 actions d-flex">
+                        <div class="text-center pr10">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="search()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+                <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm"></i>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row">
+        <div class="col-md-12">
+            <span class="text-danger">{{'COM_MSG_APP_GUIDE' | translate}}</span>
+        </div>
+    </div>-->
+</div>
+<div class="row">
+    <div class="col-md-12"> <label class="text-danger">{{'COM_MSG_LIST_GUIDE' | translate}}</label></div>
+</div>
+<table class="table dataTable table-hover table-striped" 
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblData"></table>

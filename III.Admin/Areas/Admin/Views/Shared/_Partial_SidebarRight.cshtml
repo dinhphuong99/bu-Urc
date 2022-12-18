@@ -1,0 +1,168 @@
+﻿@using ESEIM.Utils
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IParameterService ParameterService
+@inject IHttpContextAccessor HttpContextAccessor
+@inject ILanguageService LanguageService
+@inject IViewLocalizer Localizer
+@{
+    var session = HttpContextAccessor.HttpContext.GetSessionUser();
+    var userName = session.UserName;
+    var fullName = session.FullName;
+    var avatar = session.Picture;
+    var userId = session.UserId;
+    var host = "https://vatco.s-work.vn/";
+    var users = ParameterService.GetListUser();
+}
+
+<link href="~/lib/chat/css/style.css" rel="stylesheet" />
+<link href="~/lib/chat/css/main.css" rel="stylesheet" />
+
+<div class="table-toolbar">
+    <div class="pt5">
+        <div class="sidebar-left" style="z-index: 999;">
+            <div class="block-chat">
+                <p class="student_list">
+                    <img src="../../../lib/chat/image/icon_Student_List.png" alt="Lisst">
+                </p>
+                <p class="video_list">
+                    <img src="../../../lib/chat/image/icon_Video_List.png" alt="Video chat">
+                </p>
+                <p id="catturacam">
+                    <img src="../../../lib/chat/image/icon_Tutor_Video.png" alt="Studentst">
+                </p>
+            </div>
+            <div class="stl-border">
+                <p class="pop-chat">
+                    <img src="../../../lib/chat/image/icon_Chat.png" alt="Chat">
+                </p>
+            </div>
+            <div class="block-video">
+                <p>
+                    <img src="../../../lib/chat/image/icon_VIDEO.png" alt="Video">
+                </p>
+                <p class="switch" id="toggleVideoMute">
+                    <img src="../../../lib/chat/image/icon_Toggle_ALL_OFF.png" alt="Video">
+                </p>
+            </div>
+            <div class="block-voice">
+                <p>
+                    <img src="../../../lib/chat/image/icon_VOICE.png" alt="Voice">
+                </p>
+                <p class="switch active" id="toggleAudioMute">
+                    <img src="../../../lib/chat/image/icon_Toggle_ALL_ON.png" alt="Voice">
+                </p>
+            </div>
+        </div>
+        <div class="menu-tray" style="box-shadow: 0px 3px 8px rgb(100,100,100);">
+            <div class="header-menu style-scrollbar">
+                <div class="btn-chat-and-notifications">
+                    <div onclick="messageDetail('Team Beta(1)')">
+                        <div class="div-items-icons">
+                            <img class="icons-40" src="~/images/logo/icon_users.png" />
+                        </div>
+                        <div class="div-items-text">
+                            <div>
+                                <div class="csspadding2px "><span>Team Beta(1)</span></div>
+                                <div class="csspadding2px "><span style="font-size: 14px;"> Team lên họp chút nhé</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cssBtn">
+                        <div class="CssBtnUpdate fs12">
+                            20/06/2020
+                        </div>
+                        <br>
+                        <img style="height: 30px; width: 30px;" src="~/images/default/video-call-2.png" />
+                    </div>
+                </div>
+                <div class="btn-chat-and-notifications">
+                    <div onclick="messageDetail('III')">
+                        <div class="div-items-icons">
+                            <img class="icons-40" src="~/images/logo/icon_users.png" />
+                        </div>
+                        <div class="div-items-text">
+                            <div>
+                                <div class="csspadding2px "><span> III </span></div>
+                                <div class="csspadding2px "><span style="font-size: 14px;">Ok em</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cssBtn fs12">
+                        <div class="CssBtnUpdate fs12">
+                            20/06/2020
+                        </div>
+                        <br>
+                        <img style="height: 30px; width: 30px;" src="~/images/default/video-call-2.png" onclick="joinMeeting()" />
+                    </div>
+                </div>
+                @{
+                    foreach (var item in users)
+                    {
+                        <div class="btn-chat-and-notifications">
+                            <div onclick="messageUser('@item.UserName', '@item.GivenName')">
+                                <div class="div-items-icons">
+                                    <img class="icons-40" src="@host@item.Avatar" />
+                                </div>
+                                <div class="div-items-text">
+                                    <div>
+                                        <div class="csspadding2px "><span> @item.GivenName </span></div>
+                                        <div class="csspadding2px "><span style="font-size: 14px;"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cssBtn fs12">
+                                <div class="CssBtnUpdate fs12">
+                                    20/06/2020
+                                </div>
+                                <br>
+                                <img style="height: 30px; width: 30px;" src="~/images/default/video-call-2.png" onclick="joinMeeting()" />
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div id="chat" class="chat-content hidden">
+                <div class="chat-content-header">
+                    <img class="pull-left pb5" src="~/images/default/ic_arrow_left.png" height="30" onclick="backMenu()" />
+                    <span class="bold" id="message-title-room"></span>
+                </div>
+                <ul id="testichat" class="inbox-message style-scrollbar"></ul>
+                <div class="box-chat">
+                    <div class="message-send pl-0 br4">
+                        <div class="float-left message-input">
+                            <textarea id="scrivi" placeholder="Nhập tin nhắn..." autofocus rows="2" name="message-input p10"></textarea>
+                        </div>
+                        <div class="button-send float-left">
+                            <div id="btn-send" role="button" title="Gửi">
+                                <img src="~/images/default/send-skype.png" alt="Gửi" style="top: 75px; position: relative; margin-left: 10px;">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden">
+            <input type="hidden" id="UserName" value="@userName" />
+            <input type="hidden" id="FullName" value="@fullName" />
+            <input type="hidden" id="Avatar" value="@avatar" />
+            <input type="hidden" id="UserId" value="@userId" />
+            <input type="hidden" id="Host" value="@host" />
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/chat/js/fm.js"></script>
+<script src="~/lib/chat/js/fm.websync.js"></script>
+<script src="~/lib/chat/js/fm.websync.subscribers.js"></script>
+<script src="~/lib/chat/js/fm.websync.chat.js"></script>
+<script src="~/lib/chat/js/fm.icelink.js"></script>
+<script src="~/lib/chat/js/fm.icelink.webrtc.js"></script>
+<script src="~/lib/chat/js/fm.icelink.websync.js"></script>
+<script src="~/lib/chat/js/app.js"></script>
+<script src="~/lib/chat/js/localMedia.js"></script>
+<script src="~/lib/chat/js/signalling.js"></script>
+<script src="~/lib/chat/js/socket.io.js"></script>
+
+<script src="~/lib/chat/js/chat.js"></script>

@@ -1,0 +1,274 @@
+﻿<link href="../../../css/admin/cardJob/sideNavLeft.css" rel="stylesheet" />
+<style>
+    .popover {
+        max-width: 300px;
+        left: -145.5703px !important;
+        top: 50px !important;
+    }
+
+    .custom-shadow-box {
+        box-shadow: 3px 3px 3px #042906ee !important;
+    }
+
+    .img-check-in:hover {
+        box-shadow: 2px 2px 2px 2px #80c196;
+        border-radius: 4px;
+    }
+
+    .img-check-out:hover {
+        box-shadow: 2px 2px 2px 2px #9a9797;
+        border-radius: 13px;
+    }
+
+    .search-advantage-mode {
+        padding-left: 0px !important;
+    }
+
+    .has-branch-department {
+        bottom: -15px;
+    }
+</style>
+<div class="row h100">
+    <!--nav left-->
+    <div class="sidenav" id="mySidenav" style="width: 345px;" ng-show="!SearchAdvMode">
+        <div class="nav-header">
+            <div class="btn-group actions d-flex pt10 col-md-12">
+                <div class="text-center pr5">
+                    <a class="btn btn-icon-only btn-circle btn-outline green-custom w30 h-30 pt5" ng-class="{'custom-shadow-box' : show.board}" ng-click="show.board=true;show.user=false;show.groupUser=false;show.team=false;show.project=false;show.customer=false;show.contract=false;show.supplier=false;boardCommom()">
+                        <span><i class="fa fa-trello fs10"></i></span>
+                    </a>
+                    <p class="text-underline fs8 mb5 nowrap" ng-class="{'selected-item-red':show.board}">{{'CJ_BTN_BOARD_WORK' | translate}}</p>
+                </div>
+                <div class="text-center pr5">
+                    <a class="btn btn-icon-only btn-circle btn-outline blue-custom w30 h-30 pt5" ng-class="{'custom-shadow-box' : show.groupUser}" ng-click="show.board=false;show.user=false;show.groupUser=true;show.team=false;show.project=false;show.customer=false;show.contract=false;show.supplier=false;boardCommom()">
+                        <span><i class="fas fa-warehouse fs10"></i></span>
+                    </a>
+                    <p class="text-underline fs8 mb5 nowrap" ng-class="{'selected-item-red':show.groupUser}">{{'CJ_BTN_DEPARTMENT' | translate}}</p>
+                </div>
+                <div class="text-center pr5">
+                    <a class="btn btn-icon-only btn-circle btn-outline pink-custom w30 h-30 pt5" ng-class="{'custom-shadow-box' : show.user}" ng-click="show.board=false;show.user=true;show.groupUser=false;show.team=false;show.project=false;show.customer=false;show.contract=false;show.supplier=false;boardCommom()">
+                        <span><i class="fa fa-user fs10"></i></span>
+                    </a>
+                    <p class="text-underline fs8 mb5 nowrap" ng-class="{'selected-item-red':show.user}">{{'CJ_CURD_BTN_MEMBER' | translate}}</p>
+                </div>
+                <div class="text-center pr5">
+                    <a class="btn btn-icon-only btn-circle btn-outline green-custom w30 h-30 pt5" ng-class="{'custom-shadow-box' : show.team}" ng-click="show.board=false;show.user=false;show.groupUser=false;show.team=true;show.project=false;show.customer=false;show.contract=false;show.supplier=false;boardCommom()">
+                        <span><i class="fa fa-users fs10"></i></span>
+                    </a>
+                    <p class="text-underline fs8 mb5" ng-class="{'selected-item-red':show.team}">{{'CJ_CURD_TXT_TEAM' | translate}}</p>
+                </div>
+                <div class="text-center pr5">
+                    <a class="btn btn-icon-only btn-circle btn-outline yellow-custom w30 h-30 pt5" ng-class="{'custom-shadow-box' : show.project}" ng-click="show.board=false;show.user=false;show.groupUser=false;show.team=false;show.project=true;show.customer=false;show.contract=false;show.supplier=false;boardCommom()">
+                        <span><i class="fas fa-folder-open fs10"></i></span>
+                    </a>
+                    <p class="text-underline fs8 mb5 nowrap" ng-class="{'selected-item-red':show.project}">{{'CJ_CURD_BTN_PROJECT' | translate}}</p>
+                </div>
+                <div class="text-center pr5">
+                    <a class="btn btn-icon-only btn-circle btn-outline purple-custom w30 h-30 pt5" ng-class="{'custom-shadow-box' : show.customer}" ng-click="show.board=false;show.user=false;show.groupUser=false;show.team=false;show.project=false;show.customer=true;show.contract=false;show.supplier=false;boardCommom()">
+                        <span><i class="fas fa-user fs10"></i></span>
+                    </a>
+                    <p class="text-underline fs8 mb5 nowrap" ng-class="{'selected-item-red':show.customer}">{{'CJ_CURD_BTN_CUSTOMER' | translate}}</p>
+                </div>
+                <div class="text-center pr5">
+                    <a class="btn btn-icon-only btn-circle btn-outline green-custom w30 h-30 pt5" ng-class="{'custom-shadow-box' : show.contract}" ng-click="show.board=false;show.user=false;show.groupUser=false;show.team=false;show.project=false;show.customer=false;show.contract=true;show.supplier=false;boardCommom()">
+                        <span><i class="fa fa-suitcase fs10"></i></span>
+                    </a>
+                    <p class="text-underline fs8 mb5 nowrap" ng-class="{'selected-item-red':show.contract}">{{'CJ_CURD_BTN_CONTRACT' | translate}}</p>
+                </div>
+                <div class="text-center pr5">
+                    <a class="btn btn-icon-only btn-circle btn-outline red-custom w30 h-30 pt5" ng-class="{'custom-shadow-box' : show.supplier}" ng-click="show.board=false;show.user=false;show.groupUser=false;show.team=false;show.project=false;show.customer=false;show.contract=false;show.supplier=true;boardCommom()">
+                        <span><i class="fas fa-user fs10"></i></span>
+                    </a>
+                    <p class="text-underline fs8 mb5 nowrap" ng-class="{'selected-item-red':show.supplier}">{{'CJ_BTN_SUPPLIER' | translate}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="nav-search">
+            <div class="col-md-12">
+                <input class="form-control" autofocus ng-model="searchKey.BoardName" placeholder="{{'CJ_TXT_FIND' | translate}} {{tabCommon.toLowerCase()}} {{'CJ_TXT_BY_NAME' | translate}}..." ng-change="searchBoardCommom()"><span class="fas fa-times fs15" style="position:absolute;right: 30px;top: 10px;cursor: pointer;" ng-click="searchKey.BoardName='';searchBoardCommom()" ng-if="searchKey.BoardName!=''"></span>
+            </div>
+        </div>
+        <div class="nav-body">
+            <div id="list-board" class="scroller-sm-fade p0" style="width:100%" ng-if="show.board">
+                <uib-tabset active="active">
+                    <uib-tab class="mt5 text-underline ml15" index="0" heading="{{'CJ_TAB_SUMARY' | translate}}" ng-click="showControl(0)" style="background-color:white">
+                        <div class="col-md-12 p0 boards">
+                            <div class="col-md-12 pr10 text-white">
+                                <div class="col-xs-12 pt10 p0" style="line-height: 30px;">
+                                    <div class="col-xs-12" ng-mouseover="hoverPercent = true" ng-mouseleave="hoverPercent = false" ng-class="{'board-selected':boardCode==x.BoardCode}" style="border-radius: 5px;background-color: #d6d5d55e; box-shadow: 3px 3px 3px #d6d5d5bd;">
+                                        <div class="col-xs-9 ml0 pl-0 pr-0 cursor" style="height: 100%" ng-click="detail(null)">
+                                            <span class="pr-1"><i class="fa fa-bars" ng-class="{'board-selected' :  boardCode==x.BoardCode}" style="color: green;"></i></span>
+                                            <b ng-class="{'board-no-selected' : boardCode!=x.BoardCode}" title="{{x.BoardName}}">{{'CJ_BOARD_ALL' | translate}}</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 p0 boards" ng-repeat="board in listBoardsGroup">
+                            <div class="col-md-12">
+                                <i class="fas" ng-class="{'fa-store-alt':board.BoardTypeText=='Văn phòng','fa-folder-open':board.BoardTypeText=='Dự án','fa-plus':board.BoardTypeText==''}"></i>&nbsp;
+                                <b title="{{board.BoardTypeText}}">{{board.BoardTypeText==''?'Khác':board.BoardTypeText}}&nbsp;-&nbsp;{{board.ListBoard.length}}</b>
+                            </div>
+                            <div class="col-md-12 pr10 text-white" ng-repeat="x in board.ListBoard | filter: searchKey" style="color: #ffffff;">
+                                <div class="col-md-12 p0" ng-repeat="k in x | filter: searchKey">
+                                    <div class="col-xs-12 pt10 p0" style="line-height: 30px;">
+                                        <div class="col-xs-12" ng-mouseover="hoverPercent = true" ng-mouseleave="hoverPercent = false" ng-class="{'board-selected':boardCode==k.BoardCode}" style="border-radius: 5px;background-color: {{k.BackgroundColor}}; box-shadow: 3px 3px 3px #d6d5d5bd;">
+                                            <!--<div class="col-xs-1 text-left pl-0" style="bottom: -15px;">
+                                                <i class="{{k.BackgroundImage}}" ng-class="{'board-selected' :  boardCode==k.BoardCode}" style="color: {{k.BackgroundColor}}"></i>
+                                            </div>-->
+                                            <div class="col-xs-10 ml0 pl-0 pr-0 cursor" style="height: 100%" ng-click="detail(k.BoardCode)">
+                                                <b ng-class="{'board-no-selected' : boardCode!=k.BoardCode}" title="{{k.BoardName}}">
+                                                    {{ k.BoardName.length > 25 ? k.BoardName.substr(0, 25) + "..." : k.BoardName }}
+                                                </b>
+                                            </div>
+                                            <div class="col-xs-1 text-right pull-right pr-3" ng-if="!hoverPercent" ng-class="{'has-branch-department' : k.DepartmentText != '' || k.BranchText != ''}">
+                                                <i ng-class="{'board-no-selected' : boardCode!=k.BoardCode}" style="font-family:serif">{{k.Completed}}%</i>
+                                            </div>
+                                            <div class="col-xs-1 text-right pl-1 pr-0" ng-if="hoverPercent" ng-class="{'has-branch-department' : k.DepartmentText != '' || k.BranchText != ''}">
+                                                <i class="fa fa-edit cursor" title="{{'CJ_BTN_EDIT_BOARD' | translate}}" ng-click="editBoard(k.BoardCode)" style="color: green;"></i>
+                                            </div>
+                                            <div class="col-xs-1 text-right pl-1 pr-0" ng-if="hoverPercent" ng-class="{'has-branch-department' : k.DepartmentText != '' || k.BranchText != ''}">
+                                                <i class="fa fa-times cursor" style="color: red;" title="{{'CJ_BTN_DELEETE_BOARD' | translate}}" ng-click="deleteBoard(k.BoardID)"></i>
+                                            </div>
+                                            <div class="col-xs-12 pl-0" ng-if="k.BranchText != '' || k.DepartmentText !=''">
+                                                <span class="badge-customer badge-customer-puple">{{k.BranchText}} - {{k.DepartmentText}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt10">
+                            <div class="text-center pull-right">
+                                <a class="btn btn-icon-only btn-circle btn-outline green-custom w30 h-30 pt5" ng-click="addBoard()">
+                                    <span><i class="fa fa-plus fs10"></i></span>
+                                </a>
+                                <p class="text-underline fs8 mb5 nowrap">{{'CJ_BTN_ADD_BOARD' | translate}}</p>
+                            </div>
+                        </div>
+                    </uib-tab>
+                    <uib-tab class="mt5 text-underline" index="1" heading="{{'CJ_TAB_WORK_FLOW' | translate}}" ng-click="showControl(1)" style="background-color:white">
+                        <div class="col-md-12 p0 boards" ng-repeat="board in listBoardsGroupWorkFlow">
+                            <div class="col-md-12 pr10 text-white" ng-repeat="x in board.ListBoard | filter: searchKey" style="color: #ffffff;">
+                                <div class="col-xs-12 pt5 p0 border-bottom" style="line-height: 35px;">
+                                    <div class="col-xs-12 p0" ng-mouseover="hoverPercent = true" ng-mouseleave="hoverPercent = false" ng-class="{'board-selected-cus':boardCode==x.BoardCode}" style="border-radius: 5px;background-color:#889b9c;background-image:{{x.BackgroundImage}}">
+                                        <div class="col-xs-9 ml10 pl-0 pr-0 cursor" style="height: 100%" ng-click="detail(x.BoardCode)">
+                                            <span>({{$index +1}})</span>
+                                            <span title="{{x.BoardName}}">{{ x.BoardName.length > 25 ? x.BoardName.substr(0, 25) + "..." : x.BoardName }}</span>
+                                        </div>
+                                        <div class="col-xs-1 text-right pl-0 pr-0">
+                                            {{x.Completed}}%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <span style="height:10px; width:1px; border-left: 2px solid #008000; padding-bottom:3px;" ng-if="$index != (board.ListBoard.length -1)"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+            <div id="list-groupUser" ng-show="show.groupUser">
+                <div class="col-md-12 pt5">
+                    <div class="col-md-12 border bg-white p10 br4 scrollbar-sm" style="overflow:auto; height:660px">
+                        <span class="switch pull-right" style="color:#606060" title="Chọn nhiều phòng ban">
+                            <span> {{'CJ_BTN_SELECT_MULTI' | translate}}</span>
+                            <label>
+                                <input type="checkbox" ng-init="isCheck=false" ng-model="isCheck" ng-change="onMultipleGroupUser()">
+                                <span class="lever"></span>
+                            </label>
+                        </span>
+                        <span class="pb5 pl5 d-flex">
+                            <i class="fas fa-warehouse pr5" style="color: #888c8e;"></i>
+                            <span>
+                                <span class="text-underline pr-1">{{tabCommon}}</span><i class="fa fa-check-square-o inline pl5 badge-customer badge-customer-success bold r5" ng-if="totalSelectBoardCommon>0">{{totalSelectBoardCommon}}</i>
+                            </span>
+                        </span>
+                        <div id="treeDiv" tree="treeInstance" js-tree="treeConfigGroupUser" should-apply="ac()" ng-model="treeDataDepartment" tree-events-obj="treeEventsGroupUser"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="list-common" ng-if="show.contract">
+                <div class="col-md-12 pt5">
+                    <div class="col-md-12 br4 border bg-white" style="overflow:hidden; height:660px">
+                        <div class="row board-header-commom">
+                            <span class="fs14 pl15"><i class="{{iconCommon}}"></i>&nbsp;&nbsp;{{tabCommon}} ({{listBoardCommon.length}}/{{totalBoardCommon}})</span>
+                            <span class="badge-customer badge-customer-success position-absolute bold r5" ng-if="totalSelectBoardCommon>0"><i class="fa fa-check-square-o inline"></i>&nbsp;{{totalSelectBoardCommon}}</span>
+                        </div>
+                        <div class="body row scroller-sm-fade" id="list-board-commom" scroll-to-end="scrollCommon">
+                            <div class="col-md-12" ng-repeat="x in listBoardCommon" context-menu="contextmenuOptionsCommon(x.Code)" ng-class="{'selected-item':x.IsCheck}">
+                                <div class="mt-checkbox-list pb-0 pt-0" role="button">
+                                    <label class="mt-checkbox mt-checkbox-outline bold mb-0" style="color:#337ab7">
+                                        {{$index + 1}}&nbsp;-&nbsp;{{x.Name}}
+                                        <div style="float:right;">
+                                            {{x.PercentObject}}%
+                                        </div>
+                                        <input type="checkbox" ng-change="selectBoardCommon()" id="chkBoardComom_{{x.Code}}" ng-model="x.IsCheck">
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <span class="gray fs10 pl25">{{x.CreatedTime | fomartDateTime}}&nbsp; - &nbsp;{{'CJ_LBL_WORK' | translate}}: <span class="bold" ng-class="{'text-blue':x.CountWork>0}">{{x.CountWork}}</span></span><span></span>
+                                <hr class="mt5 mb5" style="border-top: 1px solid #d2cdcd;" ng-if="($index + 1) !=listBoardCommon.length" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="list-common" ng-if="show.project">
+                <div class="col-md-12 pt5">
+                    <div class="col-md-12 br4 border bg-white" style="overflow:hidden; height:660px">
+                        <div class="row board-header-commom">
+                            <span class="fs14 pl15"><i class="{{iconCommon}}"></i>&nbsp;&nbsp;{{tabCommon}} ({{listBoardCommon.length}}/{{totalBoardCommon}})</span>
+                            <span class="badge-customer badge-customer-success position-absolute bold r5" ng-if="totalSelectBoardCommon>0"><i class="fa fa-check-square-o inline"></i>&nbsp;{{totalSelectBoardCommon}}</span>
+                        </div>
+                        <div class="body row scroller-sm-fade" id="list-board-commom" scroll-to-end="scrollCommon">
+                            <div class="col-md-12" ng-repeat="x in listBoardCommon" context-menu="contextmenuOptionsCommon(x.Code)" ng-class="{'selected-item':x.IsCheck}">
+                                <div class="mt-checkbox-list pb-0 pt-0" role="button">
+                                    <label class="mt-checkbox mt-checkbox-outline bold mb-0" style="color:#337ab7">
+                                        {{$index + 1}}&nbsp;-&nbsp;{{x.Name}}
+                                        <div style="float:right;">
+                                            {{x.PercentObject}}%
+                                        </div>
+                                        <input type="checkbox" ng-change="selectBoardCommon()" id="chkBoardComom_{{x.Code}}" ng-model="x.IsCheck">
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <span class="gray fs10 pl25">{{x.CreatedTime | fomartDateTime}}&nbsp; - &nbsp;{{'CJ_LBL_WORK' | translate}}: <span class="bold" ng-class="{'text-blue':x.CountWork>0}">{{x.CountWork}}</span></span><span></span>
+                                <hr class="mt5 mb5" style="border-top: 1px solid #d2cdcd;" ng-if="($index + 1) !=listBoardCommon.length" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="list-common" ng-if="!show.groupUser && !show.board && !show.project && !show.contract">
+                <div class="col-md-12 pt5">
+                    <div class="col-md-12 br4 border bg-white" style="overflow:hidden; height:660px">
+                        <div class="row board-header-commom">
+                            <span class="fs14 pl15"><i class="{{iconCommon}}"></i>&nbsp;&nbsp;{{tabCommon}} ({{listBoardCommon.length}}/{{totalBoardCommon}})</span>
+                            <span class="badge-customer badge-customer-success position-absolute bold r5" ng-if="totalSelectBoardCommon>0"><i class="fa fa-check-square-o inline"></i>&nbsp;{{totalSelectBoardCommon}}</span>
+                        </div>
+                        <div class="body row scroller-sm-fade" id="list-board-commom" scroll-to-end="scrollCommon">
+                            <div class="col-md-12" ng-repeat="x in listBoardCommon" context-menu="contextmenuOptionsCommon(x.Code)" ng-class="{'selected-item':x.IsCheck}">
+                                <div class="mt-checkbox-list pb-0 pt-0" role="button">
+                                    <label class="mt-checkbox mt-checkbox-outline bold mb-0" style="color:#337ab7">
+                                        {{$index + 1}}&nbsp;-&nbsp;{{x.Name}}
+                                        <input type="checkbox" ng-change="selectBoardCommon()" id="chkBoardComom_{{x.Code}}" ng-model="x.IsCheck">
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <span class="gray fs10 pl25">{{x.CreatedTime | fomartDateTime}}&nbsp; - &nbsp;{{'CJ_LBL_WORK' | translate}}: <span class="bold" ng-class="{'text-blue':x.CountWork>0}">{{x.CountWork}}</span></span><span></span>
+                                <hr class="mt5 mb5" style="border-top: 1px solid #d2cdcd;" ng-if="($index + 1) !=listBoardCommon.length" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end left-->
+    <!--board detail right-->
+    <div class="col-md-12 h100" ng-class="{'search-advantage-mode' : SearchAdvMode}" style="padding-left:330px" id="BoardDetail" ng-include="'../views/admin/cardJob/board-detail.html'" />
+    <!--end board detail right-->
+</div>

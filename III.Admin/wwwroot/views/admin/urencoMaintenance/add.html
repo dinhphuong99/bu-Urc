@@ -1,0 +1,390 @@
+﻿<style>
+    .switchCustom {
+        /*background: #e76994;
+        font-size: 17px;
+        padding: 3px;
+        border-radius: 50%;*/
+        width: 30px;
+        height: 30px;
+        color: #ffffff;
+    }
+
+        .switchCustom input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+
+    .switchCustomActive {
+        color: #009432;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: -4px;
+        /*left: 0;
+        right: 0;
+        bottom: 0;*/
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #428bca;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+        width: 60px;
+        height: 27px;
+        margin-top: 7px;
+        background-color: #5d5c58;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+    .dataTables_wrapper .table-scrollable {
+        border: 1px solid #e7ecf1 !important;
+    }
+
+    /*.mBorder .ui-select-toggle {
+        border-top-right-radius: 5px !important;
+        border-bottom-right-radius: 5px !important;
+    }*/
+
+    .headerTab {
+        margin-top: -6px;
+        background: #cccccc;
+        padding-left: -8px;
+        margin-left: -21px;
+        margin-right: -21px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        padding-top: 5px;
+        padding-bottom: 2px;
+        font-size: 14px;
+        cursor: pointer
+    }
+
+    .openlog {
+        cursor: pointer
+    }
+
+    .btnSwitch {
+        width: 35px;
+        float: right;
+        /*padding-top: 2px;*/
+    }
+
+    @media (min-width: 992px) and (max-width:1200px) {
+        .modal-60 {
+            width: 80%;
+        }
+    }
+
+    @media (min-width: 1201px) and (max-width:1500px) {
+        .modal-60 {
+            width: 70%;
+        }
+    }
+
+    @media (min-width: 1600px) {
+        .modal-60 {
+            width: 60%;
+        }
+    }
+
+    .fullBorderCol {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .btn-custom-tab-color {
+        background: #cecbcb;
+    }
+
+    .green-custom {
+        border-color: #009432 !important;
+        color: #fff !important;
+        background: #009432 !important;
+    }
+
+    .tab-header {
+        border-bottom: #cecbcb 1px solid;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+</style>
+<div class="modal-header" style="position:relative">
+    <img class="close icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert"></i>
+    <span class="modal-title" id="modal-title">{{'UM_LBL_ADD_REQUEST_MAINTENANCE' | translate}} <label ng-show="isShowHeader!=true" class="text-warning bold">( {{'UM_CURD_TXT_CAR_INFO_DETAIL' | translate}} )</label></span>
+</div>
+<div class="zindex-3 position-right-0 mr30">
+    <div class="col-md-12">
+        <div class="btnSwitch">
+            <label class="switchCustom">
+                <input type="checkbox" ng-model="isTex" ng-click="ShowHeader()">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="modal-body mt35" id="modal-body">
+    <div class="portlet-body form " ng-show="isShowHeader==true">
+        <form class="form-horizontal userFormAreaHeader" name="forms.addform" method="post" ng-validate="validationOptions">
+            <!--<div class="form-body pt-0">
+                <div class="row headerTab">
+                    <div class="col-md-12"><label class="bold">{{'UM_LBL_INFO_REQUEST_MAINTENANCE' | translate}}</label></div>
+                </div>
+            </div>-->
+            <div class="form-body pt-0">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label text-left require"><i class="fa fa-barcode"></i>&nbsp{{'UM_CURD_LBL_CODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.MtnCode" name="MtnCode" type="text" placeholder="{{'UM_CURD_TXT_CODE' | translate}}..." readonly />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorCarPlate}">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label text-left require"><i class="fa fa-flag"></i>&nbsp{{'UM_CURD_LBL_CAR_PLATE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.CarPlate" theme="bootstrap" ng-change="changleSelect('CarPlate')" on-select="getInfo($item)">
+                                        <ui-select-match placeholder="{{'UM_CURD_CB_CAR_PLATE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in ListCar | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.CarPlate=''" class="btn btn-default no-shadow">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorCarPlate" class="label-color validation-message">
+                                    {{'UM_ERR_CAR_PLATE_REQUIRED' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label text-left"><i class="fa fa-info"></i>&nbsp{{'UM_CURD_LBL_REQ_TYPE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.Type" theme="bootstrap" ng-change="changleSelect('Type')">
+                                        <ui-select-match placeholder="{{'UM_CURD_TXT_REQ_TYPE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in ListType | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.Type=''" class="btn btn-default no-shadow">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <!--<span ng-show="errorCarPlate" class="label-color validation-message">
+                                    {{'UM_ERR_REQ_TYPE_REQUIRED' | translate}}
+                                </span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label text-left"><i class="fa fa-calendar"></i>&nbsp{{'UM_CURD_LBL_START_DATE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class='input-group date' id='StartDate'>
+                                    <input type='text' class="form-control input-date" ng-model="model.StartDate" placeholder="{{'UM_CURD_TXT_START_DATE' | translate}}..." />
+                                    <span class="input-group-addon start-date">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label text-left"><i class="fa fa-calendar"></i>&nbsp{{'UM_CURD_LBL_END_DATE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class='input-group date' id='EndDate'>
+                                    <input type='text' class="form-control input-date" ng-model="model.EndDate" placeholder="{{'UM_CURD_TXT_END_DATE' | translate}}..." />
+                                    <span class="input-group-addon end-date">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label text-left"><i class="fas fa-sticky-note"></i>&nbsp{{'UM_CURD_LBL_NOTE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea rows="3" class="form-control" ng-model="model.Note" type="text" placeholder="{{'UM_CURD_TXT_NOTE' | translate}}..." />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label text-left require"> <i class="fa fa-info"></i>&nbsp{{'UM_CURD_LBL_TITLE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control text-box-color-green" name="Title" ng-model="model.Title" type="text" placeholder="{{'UM_CURD_TXT_TITLE' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label text-left"> <i class="fa fa-car"></i>&nbsp{{'UM_CURD_LBL_GARA' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" name="Gara" ng-model="model.Gara" type="text" placeholder="{{'UM_CURD_TXT_GARA' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label text-left require"><i class="fa fa-user"></i>&nbsp{{'UM_CURD_LBL_CREATED_BY' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" name="Creator" ng-model="model.Creator" type="text" placeholder="{{'UM_CURD_TXT_CREATED_BY' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label text-left"><i class="fa fa-calendar"></i>&nbsp{{'UM_CURD_LBL_CREATED_TIME' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class='input-group date' id='CreatedDate'>
+                                    <input type='text' class="form-control input-date" ng-model="model.CreatedDate" placeholder="{{'UM_CURD_TXT_CREATED_TIME' | translate}}..." />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label text-left require"><i class="fa fa-user"></i>&nbsp{{'UM_CURD_LBL_APPROVED_BY' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" name="ApprovedBy" ng-model="model.ApprovedBy" type="text" placeholder="{{'UM_CURD_TXT_APPROVED_BY' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label text-left"><i class="fa fa-calendar"></i>&nbsp{{'UM_CURD_LBL_APPROVED_TIME' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class='input-group date' id='ApprovedTime'>
+                                    <input type='text' class="form-control input-date" ng-model="model.ApprovedTime" placeholder="{{'UM_CURD_TXT_APPROVED_TIME' | translate}}..." />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-4 pr-0">
+                                <label class="control-label bold text-left"> <i class="fa fa-info"></i>&nbsp{{'UM_CURD_LBL_CAR_INFO' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 mt5">
+                                <span class="text-green bold">{{CarInfo}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <!--<div class="text-center pull-right pr10" ng-show="isShowHeader==true">
+                                <a ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                    <span><i class="fa fa-save"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                            </div>-->
+                            <div class="text-center pull-right pr10">
+                                <button class="btn green-custom ng-binding" ng-click="submit()">
+                                    <i class="fa fa-save"></i>{{'COM_BTN_SAVE' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--<div class="portlet-body form mt5" ng-show="isShowDetail==true">
+        <form class="form-horizontal userFormAreaHeader" ng-validate="validationOptions">
+            <div class="form-body pt-0">
+                <div class="row headerTab">
+                    <div class="col-md-12">
+                        <div class="col-md-9 pl-0"><label class="bold">{{'UM_CURD_TXT_CAR_INFO_DETAIL' | translate}}</label></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>-->
+    <div class="row pl15 pr15 mt10" ng-show="isShowDetail==true">
+        <div class="tab-header">
+            <button class="btn btn-custom-tab-color" ng-click="idxViewTab=0" ng-class="{'green-custom': idxViewTab == 0 }">
+                <i class="fa fa-car"></i>
+                {{'UM_CURD_TAB_MAINTENANCE' | translate}}
+            </button>
+            <button class="btn btn-custom-tab-color ml5" ng-click="idxViewTab=1" ng-class="{'green-custom': idxViewTab == 1 }">
+                <i class="fa fa-list"></i>
+                {{'UM_CURD_TAB_SERVICE' | translate}}
+            </button>
+        </div>
+
+        <div class="tab-content mt10">
+            <div ng-if="idxViewTab===0" ng-include="'../views/admin/urencoMaintenance/detailMaterial.html'"></div>
+            <div ng-if="idxViewTab===1" ng-include="'../views/admin/urencoMaintenance/detailService.html'"></div>
+        </div>
+
+        <!--<uib-tabset active="active">
+            <uib-tab index="0" heading="{{'UM_CURD_TAB_MAINTENANCE' | translate}}">
+                <div ng-include="'../views/admin/urencoMaintenance/detailMaterial.html'"></div>
+            </uib-tab>
+            <uib-tab index="1" heading="{{'UM_CURD_TAB_SERVICE' | translate}}">
+                <div ng-include="'../views/admin/urencoMaintenance/detailService.html'"></div>
+            </uib-tab>
+        </uib-tabset>-->
+    </div>
+</div>

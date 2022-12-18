@@ -1,0 +1,255 @@
+﻿<style>
+    .dataTables_wrapper .table-scrollable {
+        border: 1px solid #e7ecf1 !important;
+    }
+
+    .h-60 {
+        height: 60px;
+    }
+
+    .pl0 {
+        padding-left: 10px;
+    }
+
+    .p25 {
+        padding-left: 25px;
+    }
+
+    .pt5 {
+        padding-top: 5px;
+    }
+
+    .pr15 {
+        padding-right: 10px;
+    }
+
+    .pr15 {
+        padding-right: 15px;
+    }
+
+    .pr20 {
+        padding-right: 20px;
+    }
+
+    .pr5 {
+        padding-right: 5px;
+    }
+
+    .mt5 {
+        margin-top: 5px;
+    }
+
+    .mt15 {
+        margin-top: 15px;
+    }
+
+    .ml15 {
+        margin-left: 20px;
+    }
+
+    .mt23 {
+        margin-right: 60px;
+    }
+
+    .mt25 {
+        margin-top: 25px;
+    }
+
+    .w-100-percent {
+        width: 100%;
+    }
+
+    .w-30-percent {
+        width: 30%;
+    }
+
+    .bgWhite {
+        background: #FFF;
+    }
+
+    .labelbodergroup {
+        margin-left: 24px;
+        margin-top: -12px;
+        position: absolute;
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border: 1px solid #e9dada;
+        border-radius: 4px;
+        font-size: 11px;
+        padding: 3px 10px !important;
+    }
+
+    .table_body {
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border-radius: 4px !important;
+        border: 1px solid #e9dada;
+        padding-top: 15px;
+        box-shadow: 0px 5px 10px 2px rgba(127, 143, 166,0.2) !important;
+        padding-bottom: 15px;
+    }
+</style>
+<div class="modal-header">
+    <img class="close icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert  "></i>
+    <span class="modal-title custom-title " id="modal-title"> Thiết lập danh mục hoạt động của đối tượng</span>
+</div>
+<div class="modal-body userFormAreaHeader" id="modal-body" style="padding-bottom: 0px;">
+    <div class="portlet-body form">
+        <form name="editform" class="form-horizontal " method="post" ng-validate="validationOptions">
+            <div class="form-body pt-0 pl-0 pr-0">
+                <div class="row ">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-barcode" aria-hidden="true"></i>
+                                        <label class="control-label require">Mã danh mục</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text" name="ObjActCode" class="form-control" data-ng-model="model.ObjActCode" placeholder="Mã danh mục..." />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 pr-0">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-comment"></i>
+                                        <label class="control-label require">Tiêu đề </label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" ng-model="model.Name" name="Name" placeholder="Nhập tiêu đề ..." />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-10 pr-0">
+                                <i class="fa fa-comment" aria-hidden="true"></i>
+                                <label class="control-label ">Lưu ý</label>
+                                <textarea name="Note" rows="3" class="form-control" ng-model="model.Note" type="text" placeholder="Lưu ý..."></textarea>
+                            </div>
+                            <div class="col-md-2 pr-2">
+                                <div class="btn-group actions pull-right d-flex mt25 ml15">
+                                    <div class="text-center">
+                                        <a ng-click="submit()" class="btn btn-icon-only  btn-circle btn-outline green-custom">
+                                            <span><i class="fa fa-save"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_SAVE' | translate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row pt5">
+        <div class="col-md-12">
+            <form name="activity" class="form-horizontal " method="post">
+                <div class="form-body pt-0 pl-0 pr-0">
+                    <div class="row pt5">
+                        <div class="col-md-12 pl-0 pr-0" id="box">
+                            <div class="table-toolbar table_body">
+                                <div class="col-md-12 pl-0 pr-0">
+                                    <div class="col-md-6 pl-0 pr-0">
+                                        <div class="col-md-12">
+                                            <div class="form-group" ng-class=" {'has-error': errorActCode}">
+                                                <div class="col-md-12">
+                                                    <i class="fa fa-th-list" aria-hidden="true"></i>
+                                                    <label class="control-label require">Hoạt động</label>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="input-group">
+                                                        <ui-select tagging ng-model="modelAct.ActCode" theme="bootstrap" on-select="changleSelect('ActCode')">
+                                                            <ui-select-match placeholder="Hoạt động...">{{$select.selected.Title}}</ui-select-match>
+                                                            <ui-select-choices repeat=" x.Code as x in modelAct.listAct | filter: $select.search">
+                                                                {{x.Title}}
+                                                            </ui-select-choices>
+                                                        </ui-select>
+                                                    </div>
+                                                    <span ng-show="errorActCode" class="label-color validation-message">
+                                                        Hoạt động được bỏ trống
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pr-0">
+                                        <div class="col-md-12 pr-0">
+                                            <div class="form-group" ng-class=" {'has-error': errorPriority}">
+                                                <div class="col-md-12 ">
+                                                    <i class="fa fa-flag" aria-hidden="true"></i>
+                                                    <label class="control-label require">Độ ưu tiên</label>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="input-group">
+                                                        <ui-select ng-model="modelAct.Priority" theme="bootstrap" on-select="changleSelect('Priority')">
+                                                            <ui-select-match placeholder="Độ ưu tiên...">{{$select.selected.Name}}</ui-select-match>
+                                                            <ui-select-choices repeat="x.Code as x in modelAct.listPrio  | filter: $select.search">
+                                                                {{x.Name}}
+                                                            </ui-select-choices>
+                                                        </ui-select>
+                                                    </div>
+                                                    <span ng-show="errorPriority" class="label-color validation-message">
+                                                        Độ ưu tiên không được bỏ trống
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pl-0 pr-0">
+                                    <div class="col-md-10 pr-0">
+                                        <div class="form-group">
+                                            <div class="col-md-9">
+                                                <i class="fa fa-comment" aria-hidden="true"></i>
+                                                <label class="control-label ">Ghi chú</label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <textarea type="text" class="form-control" ng-model="modelAct.Note" name="title" placeholder="Nhập ghi chú..." />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 pr-2">
+                                        <div class="btn-group pull-right actions d-flex mt20">
+                                            <div class="text-center ">
+                                                <a ng-click="addActiviy()" class="btn btn-icon-only pull-right btn-circle btn-outline green-custom">
+                                                    <span><i class="fa fa-plus"></i></span>
+                                                </a>
+                                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table dataTable table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-1 text-center fw600 text-underline">STT</th>
+                                    <th class="col-md-3 text-center fw600 text-underline">Hoạt động</th>
+                                    <th class="col-md-3 text-center fw600 text-underline">Ưu tiên</th>
+                                    <th class="col-md-3 text-center fw600 text-underline">Ghi chú</th>
+                                    <th class="col-md-2 text-center fw600 text-underline">Thao tác</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="x in modelAct.listObjAct">
+                                    <td class="text-center"><a>{{$index + 1}}</a></td>
+                                    <td class="text-center"><a>{{x.CatName}}</a></td>
+                                    <td class="text-center"><a>{{x.Prio}}</a></td>
+                                    <td class="text-center"><a>{{x.Note}}</a></td>
+                                    <td class="text-center">
+                                        <i role="button" class="fa fa-minus-circle" title="Xóa" ng-click="deleteActivity(x.ID)" style="color:red !important;font-size: 25px;padding-top:5px"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EDMSR_BTN_EDIT_FILE" xml:space="preserve">
+    <value>편집</value>
+    <comment>Chỉnh sửa</comment>
+  </data>
+  <data name="EDMSR_BTN_EXPORT_EXCEL" xml:space="preserve">
+    <value>엑셀 내보내기</value>
+    <comment>Xuất excel</comment>
+  </data>
+  <data name="EDMSR_BTN_UPLOAD_FILE" xml:space="preserve">
+    <value>파일 다운로드</value>
+    <comment>Tải tệp tin</comment>
+  </data>
+  <data name="EDMSR_CHK_DEL" xml:space="preserve">
+    <value>삭제 (D)</value>
+    <comment>Delete (D)</comment>
+  </data>
+  <data name="EDMSR_CHK_D_S" xml:space="preserve">
+    <value>다운로드 / 공유 (C)</value>
+    <comment>Download/Share (C)</comment>
+  </data>
+  <data name="EDMSR_CHK_FULL_CONTROL" xml:space="preserve">
+    <value>모든 권한 (F)</value>
+    <comment>Full Controll (F)</comment>
+  </data>
+  <data name="EDMSR_CHK_R_V" xml:space="preserve">
+    <value>읽기 /보기 (R)</value>
+    <comment>Read/View (R)</comment>
+  </data>
+  <data name="EDMSR_CHK_UPDATE" xml:space="preserve">
+    <value>업데이트 (W)</value>
+    <comment>Update (W)</comment>
+  </data>
+  <data name="EDMSR_COMBO_CATEGORY_PARENT" xml:space="preserve">
+    <value>부모 카테고리를 선택하십시오</value>
+    <comment>Chọn danh mục cha</comment>
+  </data>
+  <data name="EDMSR_COMBO_CONTRACT" xml:space="preserve">
+    <value>계약을 선택하십시오</value>
+    <comment>Chọn hợp đồng</comment>
+  </data>
+  <data name="EDMSR_COMBO_CUSTOMER" xml:space="preserve">
+    <value>고객을 선택하십시오</value>
+    <comment>Chọn khách hàng</comment>
+  </data>
+  <data name="EDMSR_COMBO_PROJECT" xml:space="preserve">
+    <value>프로젝트를 선택하십시오</value>
+    <comment>Chọn dự án</comment>
+  </data>
+  <data name="EDMSR_COMBO_SUPPLIER" xml:space="preserve">
+    <value>공급자를 선택하십시오</value>
+    <comment>Chọn nhà cung cấp</comment>
+  </data>
+  <data name="EDMSR_CURD_COMBO_SEARCH_CONTRACT" xml:space="preserve">
+    <value>계약을 선택하십시오</value>
+    <comment>Chọn hợp đồng</comment>
+  </data>
+  <data name="EDMSR_CURD_COMBO_SEARCH_CUSTOMER" xml:space="preserve">
+    <value>고객을 선택하십시오</value>
+    <comment>Chọn khách hàng</comment>
+  </data>
+  <data name="EDMSR_CURD_COMBO_SEARCH_PROJECT" xml:space="preserve">
+    <value>프로젝트를 선택하십시오</value>
+    <comment>Chọn dự án</comment>
+  </data>
+  <data name="EDMSR_CURD_COMBO_SEARCH_SUPPLIER" xml:space="preserve">
+    <value>공급자를 선택하십시오</value>
+    <comment>Chọn nhà cung cấp</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_ACCOUNT" xml:space="preserve">
+    <value>계정</value>
+    <comment>Tài khoản</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_BRANCH" xml:space="preserve">
+    <value>지사 소속</value>
+    <comment>Chi nhánh</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_CATEGORY_CODE" xml:space="preserve">
+    <value>카탈로그 코드</value>
+    <comment>Thuộc chi nhánh</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_CATEGORY_NAME" xml:space="preserve">
+    <value>카테고리 이름</value>
+    <comment>Tên danh mục</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_CATEGORY_PARENT" xml:space="preserve">
+    <value>아버지 목록</value>
+    <comment>Danh mục cha</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_CONTRACT" xml:space="preserve">
+    <value>계약</value>
+    <comment>Hợp đồng</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_CONTRACT_CODE" xml:space="preserve">
+    <value>계약 코드</value>
+    <comment>Mã hợp đồng</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_CUSTOMER" xml:space="preserve">
+    <value>고객</value>
+    <comment>Khách hàng</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_DESCRITION" xml:space="preserve">
+    <value>설명</value>
+    <comment>Mô tả</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_EDIT_FILE_CODE" xml:space="preserve">
+    <value>파일 코드 (*)</value>
+    <comment>Mã tệp (*)</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_EDIT_FILE_NAME" xml:space="preserve">
+    <value>파일 이름 (*)</value>
+    <comment>Tên tệp (*)</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_EDIT_FILE_TYPE" xml:space="preserve">
+    <value>파일 형식 (*)</value>
+    <comment>Kiểu tệp (*)</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_EDIT_TAG" xml:space="preserve">
+    <value>태그</value>
+    <comment>Tag</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_FILE" xml:space="preserve">
+    <value>파일</value>
+    <comment>Tệp tin</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_FILE_CODE" xml:space="preserve">
+    <value>파일 코드</value>
+    <comment>Mã tệp</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_FILE_NAME" xml:space="preserve">
+    <value>파일명</value>
+    <comment>Tên tệp</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_FILE_TYPE" xml:space="preserve">
+    <value>파일 타입</value>
+    <comment>Loại tệp</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_PASSWORD" xml:space="preserve">
+    <value>비밀번호</value>
+    <comment>Mật khẩu</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_PATH_PHYSIC" xml:space="preserve">
+    <value>경로</value>
+    <comment>Đường dẫn</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_PROJECT" xml:space="preserve">
+    <value>프로젝트</value>
+    <comment>Dự án</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_REPOSITORY_CODE" xml:space="preserve">
+    <value>데이터웨어 하우스 코드</value>
+    <comment>Mã kho dữ liệu</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_REPOSITORY_NAME" xml:space="preserve">
+    <value>데이터웨어 하우스 이름</value>
+    <comment>Tên kho dữ liệu</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SEARCH_CONTENT" xml:space="preserve">
+    <value>내용</value>
+    <comment>Nội dung</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SEARCH_CONTRACT" xml:space="preserve">
+    <value>계약</value>
+    <comment>Hợp đồng</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SEARCH_CUSTOMER" xml:space="preserve">
+    <value>고객</value>
+    <comment>Khách hàng</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SEARCH_FILE_NAME" xml:space="preserve">
+    <value>파일명</value>
+    <comment>Tên tệp</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SEARCH_FROM_DATE" xml:space="preserve">
+    <value>날짜부터</value>
+    <comment>Từ ngày</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SEARCH_PROJECT" xml:space="preserve">
+    <value>프로젝트</value>
+    <comment>Dự án</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SEARCH_SUPPLIER" xml:space="preserve">
+    <value>공급자</value>
+    <comment>Nhà cung cấp</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SEARCH_TAG" xml:space="preserve">
+    <value>키워드</value>
+    <comment>Từ khóa</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SEARCH_TO_DATE" xml:space="preserve">
+    <value>어서</value>
+    <comment>Đến ngày</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SEARCH_TYPE" xml:space="preserve">
+    <value>파일 타입</value>
+    <comment>Kiểu tệp</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SERVER" xml:space="preserve">
+    <value>호스트 이름</value>
+    <comment>Tên máy chủ</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_STORE" xml:space="preserve">
+    <value>리포지토리</value>
+    <comment>Kho lưu trữ</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SUPPLIER" xml:space="preserve">
+    <value>공급자</value>
+    <comment>Nhà cung cấp</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_TAG" xml:space="preserve">
+    <value>키워드</value>
+    <comment>Từ khóa</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_TOKEN" xml:space="preserve">
+    <value>토큰</value>
+    <comment>Token</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_ACCOUNT" xml:space="preserve">
+    <value>계정</value>
+    <comment>Tài khoản</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_BRANCH" xml:space="preserve">
+    <value>지점</value>
+    <comment>Chi nhánh</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_CATEGORY_CODE" xml:space="preserve">
+    <value>카탈로그 코드</value>
+    <comment>Mã danh mục</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_CATEGORY_NAME" xml:space="preserve">
+    <value>카테고리 이름</value>
+    <comment>Tên danh mục</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_CONTRACT_CODE" xml:space="preserve">
+    <value>계약 코드</value>
+    <comment>Mã hợp đồng</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_DESCRITION" xml:space="preserve">
+    <value>설명을 입력하십시오</value>
+    <comment>Nhập mô tả</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_EDIT_FILE_CODE" xml:space="preserve">
+    <value>파일 코드를 입력하십시오</value>
+    <comment>Nhập mã tệp</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_EDIT_FILE_NAME" xml:space="preserve">
+    <value>파일 이름을 입력하십시오 (*)</value>
+    <comment>Nhập tên tệp (*)</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_EDIT_FILE_TYPE" xml:space="preserve">
+    <value>파일 형식을 입력하십시오</value>
+    <comment>Nhập kiểu tệp</comment>
+  </data>
+  <data name="EDMSR_CURD_TXt_EDIT_TAG" xml:space="preserve">
+    <value>태그를 입력</value>
+    <comment>Nhập tag</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_FILE" xml:space="preserve">
+    <value>파일을 선택하십시오</value>
+    <comment>Chọn tệp tin</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_FILE_CODE" xml:space="preserve">
+    <value>파일 코드</value>
+    <comment>Mã file</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_FILE_NAME" xml:space="preserve">
+    <value>파일명</value>
+    <comment>Tên file</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_FILE_TYPE" xml:space="preserve">
+    <value>파일 타입</value>
+    <comment>Loại file</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_MEMBER" xml:space="preserve">
+    <value>멤버 선택</value>
+    <comment>Chọn thành viên</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_MEMBER_GROUP" xml:space="preserve">
+    <value>멤버십 그룹 선택</value>
+    <comment>Chọn nhóm thành viên</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_PATH_PHYSIC" xml:space="preserve">
+    <value>경로</value>
+    <comment>Đường dẫn</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_REPOSITORY_CODE" xml:space="preserve">
+    <value>데이터웨어 하우스 코드</value>
+    <comment>Mã kho dữ liệu</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_REPOSITORY_NAME" xml:space="preserve">
+    <value>데이터웨어 하우스 이름</value>
+    <comment>Tên kho dữ liệu</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_SEARCH" xml:space="preserve">
+    <value>검색</value>
+    <comment>Tìm kiếm</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_SEARCH_CONTENT" xml:space="preserve">
+    <value>내용</value>
+    <comment>Nội dung</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_SEARCH_FILE_NAME" xml:space="preserve">
+    <value>파일명</value>
+    <comment>Tên tệp</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_SEARCH_FROM_DATE" xml:space="preserve">
+    <value>날짜부터</value>
+    <comment>Từ ngày</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_SEARCH_TAG" xml:space="preserve">
+    <value>키워드</value>
+    <comment>Từ khóa</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_SEARCH_TO_DATE" xml:space="preserve">
+    <value>어서</value>
+    <comment>Đến ngày</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_SEARCH_TYPE" xml:space="preserve">
+    <value>모든 파일 형식</value>
+    <comment>Tất cả kiể tệp</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_TAG" xml:space="preserve">
+    <value>키워드를 입력하십시오</value>
+    <comment>Nhập từ khóa</comment>
+  </data>
+  <data name="EDMSR_CURD_TXT_TOKEN" xml:space="preserve">
+    <value>토큰</value>
+    <comment>Token</comment>
+  </data>
+  <data name="EDMSR_FILE_TITLE_ADD" xml:space="preserve">
+    <value>} 파일 확장자 추가</value>
+    <comment>}Thêm tệp tin mở rộng</comment>
+  </data>
+  <data name="EDMSR_FILE_TITLE_ADD1" xml:space="preserve">
+    <value>} 파일 확장자 추가</value>
+    <comment>}Thêm tệp tin mở rộng</comment>
+  </data>
+  <data name="EDMSR_LBL_ADD_SERVER" xml:space="preserve">
+    <value>서버 추가</value>
+    <comment>Thêm máy chủ</comment>
+  </data>
+  <data name="EDMSR_LBL_EDIT_SERVER" xml:space="preserve">
+    <value>서버 수정</value>
+    <comment>Sửa máy chủ</comment>
+  </data>
+  <data name="EDMSR_LBL_GROUP_MEMBER" xml:space="preserve">
+    <value>그룹 멤버</value>
+    <comment>Nhóm thành viên</comment>
+  </data>
+  <data name="EDMSR_LBL_IMG" xml:space="preserve">
+    <value>사진</value>
+    <comment>Ảnh</comment>
+  </data>
+  <data name="EDMSR_LBL_LINK_FTP" xml:space="preserve">
+    <value>경로 : 192.168.1.37:14147/1. 규정</value>
+    <comment>Đường dẫn: 192.168.1.37:14147/1. QUY ĐỊNH</comment>
+  </data>
+  <data name="EDMSR_LBL_LIST" xml:space="preserve">
+    <value>리스트</value>
+    <comment>Danh sách</comment>
+  </data>
+  <data name="EDMSR_LBL_MEMBER" xml:space="preserve">
+    <value>멤버십</value>
+    <comment>Thành viên</comment>
+  </data>
+  <data name="EDMSR_LBL_OBJ" xml:space="preserve">
+    <value>대상</value>
+    <comment>Đối tượng</comment>
+  </data>
+  <data name="EDMSR_LBL_PASS" xml:space="preserve">
+    <value>비밀번호</value>
+    <comment>Mật khẩu</comment>
+  </data>
+  <data name="EDMSR_LBL_PATH" xml:space="preserve">
+    <value>경로</value>
+    <comment>Đường dẫn</comment>
+  </data>
+  <data name="EDMSR_LBL_SERVER" xml:space="preserve">
+    <value>서버</value>
+    <comment>Server</comment>
+  </data>
+  <data name="EDMSR_LBL_SERVER_NAME" xml:space="preserve">
+    <value>호스트 이름</value>
+    <comment>Tên máy chủ</comment>
+  </data>
+  <data name="EDMSR_LBL_TOTAL_CAPICITY" xml:space="preserve">
+    <value>총 용량</value>
+    <comment>Tổng dung lượng</comment>
+  </data>
+  <data name="EDMSR_LBL_TOTAL_FILE" xml:space="preserve">
+    <value>총 파일 수</value>
+    <comment>Tổng số tệp</comment>
+  </data>
+  <data name="EDMSR_LBL_TREEVIEW_HEADER" xml:space="preserve">
+    <value>문서 카탈로그</value>
+    <comment>Danh mục tài liệu</comment>
+  </data>
+  <data name="EDMSR_LBL_USER_UPLOAD" xml:space="preserve">
+    <value>다운로더</value>
+    <comment>Người tải</comment>
+  </data>
+  <data name="EDMSR_LINK_HOME" xml:space="preserve">
+    <value>홈</value>
+    <comment>Trang chủ</comment>
+  </data>
+  <data name="EDMSR_LIST_COL_ACTION" xml:space="preserve">
+    <value>행동</value>
+    <comment>Tác vụ</comment>
+  </data>
+  <data name="EDMSR_LIST_COL_CREATED_TIME" xml:space="preserve">
+    <value>만든 날짜</value>
+    <comment>Ngày tạo</comment>
+  </data>
+  <data name="EDMSR_LIST_COL_FILE_NAME" xml:space="preserve">
+    <value>파일명</value>
+    <comment>Tên tệp</comment>
+  </data>
+  <data name="EDMSR_LIST_COL_FILE_TYPE_PHYSIC" xml:space="preserve">
+    <value>파일 타입</value>
+    <comment>Kiểu tệp</comment>
+  </data>
+  <data name="EDMSR_LIST_COL_MODIFIED_DATE" xml:space="preserve">
+    <value>날짜 수정</value>
+    <comment>Ngày chỉnh sửa</comment>
+  </data>
+  <data name="EDMSR_LIST_COL_SIZE" xml:space="preserve">
+    <value>사이즈</value>
+    <comment>Kích thước</comment>
+  </data>
+  <data name="EDMSR_LIST_COL_URL" xml:space="preserve">
+    <value>미리보기</value>
+    <comment>Xem trước</comment>
+  </data>
+  <data name="EDMSR_MSG_ADD_REPOSITORY_ERROR" xml:space="preserve">
+    <value>데이터 스토어를 추가하는 중에 오류가 발생했습니다!</value>
+    <comment>Có lỗi khi thêm kho dữ liệu!</comment>
+  </data>
+  <data name="EDMSR_MSG_ADD_REPOSITORY_FALSE" xml:space="preserve">
+    <value>잘못된 데이터웨어 하우스 추가!</value>
+    <comment>Thêm kho dữ liệu sai!</comment>
+  </data>
+  <data name="EDMSR_MSG_ALL_REPOSITORY" xml:space="preserve">
+    <value>모든 데이터웨어 하우스</value>
+    <comment>Tất cả kho dữ liệu</comment>
+  </data>
+  <data name="EDMSR_MSG_CATEGORY_CODE_EXIST" xml:space="preserve">
+    <value>카탈로그 코드가 이미 존재합니다</value>
+    <comment>Mã danh mục đã tồn tại</comment>
+  </data>
+  <data name="EDMSR_MSG_CHOOSE_DOC_SAVE" xml:space="preserve">
+    <value>아카이브 디렉토리를 선택하십시오!</value>
+    <comment>Vui lòng chọn thư mục lưu trữ!</comment>
+  </data>
+  <data name="EDMSR_MSG_CREATE_SUCCESS_REPOSITORY" xml:space="preserve">
+    <value>데이터웨어 하우스가 성공적으로 생성되었습니다</value>
+    <comment>Tạo kho dữ liệu thành công</comment>
+  </data>
+  <data name="EDMSR_MSG_DATA_NOT_EXIST" xml:space="preserve">
+    <value>데이터가 존재하지 않습니다!</value>
+    <comment>Dữ liệu không tồn tại!</comment>
+  </data>
+  <data name="EDMSR_MSG_DECENTRALIZE_REPOSITORY" xml:space="preserve">
+    <value>탈 중앙화 할 데이터 스토어를 선택하십시오</value>
+    <comment>Vui lòng chọn kho dữ liệu để phân quyền</comment>
+  </data>
+  <data name="EDMSR_MSG_DECENTRALIZE_REPOSITORY_ERROR" xml:space="preserve">
+    <value>데이터웨어 하우스 오류에 대한 분산</value>
+    <comment>Phân quyền cho kho dữ liệu lỗi</comment>
+  </data>
+  <data name="EDMSR_MSG_DECENTRALIZE_REPOSITORY_SUCCESS" xml:space="preserve">
+    <value>분산 데이터웨어 하우스 성공</value>
+    <comment>Phân quyền kho dữ liệu thành công</comment>
+  </data>
+  <data name="EDMSR_MSG_DELETE_CATEGORIES" xml:space="preserve">
+    <value>이 카테고리를 삭제 하시겠습니까?</value>
+    <comment>Bạn muốn xóa danh mục này?</comment>
+  </data>
+  <data name="EDMSR_MSG_DELETE_ERROR" xml:space="preserve">
+    <value>오류 파일 삭제</value>
+    <comment>Xóa file lỗi</comment>
+  </data>
+  <data name="EDMSR_MSG_DELETE_FILE" xml:space="preserve">
+    <value>파일을 삭제 하시겠습니까?</value>
+    <comment>Bạn muốn xóa tệp tin ?</comment>
+  </data>
+  <data name="EDMSR_MSG_DELETE_REPOSITORY_ERROR" xml:space="preserve">
+    <value>오류 데이터웨어 하우스 삭제</value>
+    <comment>Xóa kho dữ liệu lỗi</comment>
+  </data>
+  <data name="EDMSR_MSG_DELETE_REPOSITORY_FILE" xml:space="preserve">
+    <value>데이터웨어 하우스를 삭제 하시겠습니까?</value>
+    <comment>Bạn muốn xóa kho dữ liệu ?</comment>
+  </data>
+  <data name="EDMSR_MSG_DELETE_REPOSITORY_SUCCESS" xml:space="preserve">
+    <value>데이터웨어 하우스를 성공적으로 삭제했습니다</value>
+    <comment>Xóa thành công kho dữ liệu</comment>
+  </data>
+  <data name="EDMSR_MSG_DELETE_SUCCESS" xml:space="preserve">
+    <value>파일을 성공적으로 삭제</value>
+    <comment>Xóa file thành công</comment>
+  </data>
+  <data name="EDMSR_MSG_ERROR_REPOSITORY" xml:space="preserve">
+    <value>데이터웨어 하우스를 검색하는 중에 오류가 발생했습니다!</value>
+    <comment>Có lỗi khi lấy kho dữ liệu!</comment>
+  </data>
+  <data name="EDMSR_MSG_FILE_CODE_OBLIGATORY" xml:space="preserve">
+    <value>필요한 파일 코드</value>
+    <comment>Mã tệp tin yêu cầu bắt buộc</comment>
+  </data>
+  <data name="EDMSR_MSG_FILE_UPDATED" xml:space="preserve">
+    <value>파일이 업로드되었습니다!</value>
+    <comment>Tệp tin đã được tải lên!</comment>
+  </data>
+  <data name="EDMSR_MSG_FORMAT_FILE_NOT_ALLOWED" xml:space="preserve">
+    <value>허용되지 않는 파일 형식</value>
+    <comment>Định dạng tệp không cho phép</comment>
+  </data>
+  <data name="EDMSR_MSG_NOT_FIND_REPOSITORY" xml:space="preserve">
+    <value>아카이브를 찾을 수 없습니다</value>
+    <comment>Không tìm thấy kho lưu trữ</comment>
+  </data>
+  <data name="EDMSR_MSG_NO_EMPLOYEE_DECENTRALIZE" xml:space="preserve">
+    <value>분권 할 직원이 없음</value>
+    <comment>Không có nhân viên để phân quyền</comment>
+  </data>
+  <data name="EDMSR_MSG_NO_SUGGESST_FORDER" xml:space="preserve">
+    <value>스토리지 디렉토리 제안이 없습니다.</value>
+    <comment>Không có gợi ý thư mục lưu trữ</comment>
+  </data>
+  <data name="EDMSR_MSG_PLS_ONLY_CATE_ADD_FILE" xml:space="preserve">
+    <value>파일을 추가하려면 하나의 문서 카테고리 만 선택하십시오</value>
+    <comment>Vui lòng chỉ chọn 1 danh mục tài liệu để thêm tệp</comment>
+  </data>
+  <data name="EDMSR_MSG_PLS_SELECT_A_FORDER" xml:space="preserve">
+    <value>보관 폴더를 선택하십시오!</value>
+    <comment>Vui lòng chọn một thư mục lưu trữ!</comment>
+  </data>
+  <data name="EDMSR_MSG_PLS_SELECT_CATE_ADD_FILE" xml:space="preserve">
+    <value>파일을 추가 할 문서 카테고리를 선택하십시오</value>
+    <comment>Vui lòng chọn 1 danh mục tài liệu để thêm tệp</comment>
+  </data>
+  <data name="EDMSR_MSG_PLS_SELECT_SERVER" xml:space="preserve">
+    <value>서버를 선택하십시오!</value>
+    <comment>Vui lòng chọn máy chủ !</comment>
+  </data>
+  <data name="EDMSR_MSG_REPOSITORY_CODE_EXISTED" xml:space="preserve">
+    <value>데이터웨어 하우스 코드가 이미 존재합니다</value>
+    <comment>Mã kho dữ liệu đã tồn tại</comment>
+  </data>
+  <data name="EDMSR_MSG_REPOSITORY_NAME_EXISTED" xml:space="preserve">
+    <value>데이터웨어 하우스 이름이 이미 존재합니다</value>
+    <comment>Tên kho dữ liệu đã tồn tại</comment>
+  </data>
+  <data name="EDMSR_MSG_REPOSITORY_NOT_EXIST" xml:space="preserve">
+    <value>데이터웨어 하우스가 없습니다</value>
+    <comment>Kho dữ liệu không tồn tại</comment>
+  </data>
+  <data name="EDMSR_MSG_SELECT_A_REPOSITORY" xml:space="preserve">
+    <value>데이터웨어 하우스를 선택하십시오</value>
+    <comment>Vui lòng chọn một kho dữ liệu</comment>
+  </data>
+  <data name="EDMSR_MSG_SELECT_A_SERVER" xml:space="preserve">
+    <value>서버를 선택하십시오!</value>
+    <comment>Vui lòng chọn một máy chủ !</comment>
+  </data>
+  <data name="EDMSR_MSG_SELECT_CATEGORIES" xml:space="preserve">
+    <value>카테고리를 선택하십시오!</value>
+    <comment>Vui lòng chọn danh mục!</comment>
+  </data>
+  <data name="EDMSR_MSG_SELECT_FILE" xml:space="preserve">
+    <value>파일을 선택하십시오</value>
+    <comment>Vui lòng chọn tệp tin</comment>
+  </data>
+  <data name="EDMSR_MSG_SELECT_FORDER" xml:space="preserve">
+    <value>디렉토리를 선택하십시오!</value>
+    <comment>Vui lòng chọn thư mục !</comment>
+  </data>
+  <data name="EDMSR_MSG_SELECT_FORDER_ABSO" xml:space="preserve">
+    <value>해당 폴더를 선택하십시오!</value>
+    <comment>Vui lòng chọn thư mục tương ứng !</comment>
+  </data>
+  <data name="EDMSR_MSG_SELECT_REPOSITORY" xml:space="preserve">
+    <value>데이터웨어 하우스를 선택하십시오</value>
+    <comment>Vui lòng chọn kho dữ liệu</comment>
+  </data>
+  <data name="EDMSR_MSG_SERVER_NOT_EXIST" xml:space="preserve">
+    <value>서버가 존재하지 않습니다!</value>
+    <comment>Máy chủ không tồn tại !</comment>
+  </data>
+  <data name="EDMSR_MSG_SURE_DEL_SERVER" xml:space="preserve">
+    <value>이 서버를 삭제 하시겠습니까?</value>
+    <comment>Bạn muốn xóa máy chủ này ?</comment>
+  </data>
+  <data name="EDMSR_MSG_UPDATE_REPOSITORY_ERROR" xml:space="preserve">
+    <value>데이터웨어 하우스 오류!</value>
+    <comment>Cập nhập kho dữ liệu lỗi!</comment>
+  </data>
+  <data name="EDMSR_MSG_UPDATE_REPOSITORY_FALSE" xml:space="preserve">
+    <value>잘못된 데이터웨어 하우스를 업데이트하는 중입니다!</value>
+    <comment>Cập nhập kho dữ liệu sai!</comment>
+  </data>
+  <data name="EDMSR_MSG_UPDATE_REPOSITORY_SUCCESS" xml:space="preserve">
+    <value>데이터웨어 하우스 업데이트에 성공</value>
+    <comment>Cập nhập kho dữ liệu thành công</comment>
+  </data>
+  <data name="EDMSR_MSG_UPLOAD_FILE_ERROR" xml:space="preserve">
+    <value>오류 파일 다운로드</value>
+    <comment>Tải tệp tin lỗi</comment>
+  </data>
+  <data name="EDMSR_MSG_UPLOAD_FILE_SUCCESS" xml:space="preserve">
+    <value>파일을 성공적으로 다운로드</value>
+    <comment>Tải tệp tin thành công</comment>
+  </data>
+  <data name="EDMSR_TAB_FILE_CURD_LBL_CATEGORY" xml:space="preserve">
+    <value>카테고리</value>
+    <comment>Danh mục</comment>
+  </data>
+  <data name="EDMSR_TAB_FILE_CURD_LBL_TAG" xml:space="preserve">
+    <value>키워드</value>
+    <comment>Từ khóa</comment>
+  </data>
+  <data name="EDMSR_TAB_FILE_CURD_LBL_WHS_NOTE" xml:space="preserve">
+    <value>설명</value>
+    <comment>Mô tả</comment>
+  </data>
+  <data name="EDMSR_TAB_FILE_CURD_TXT_NUMBER_DOCUMENT" xml:space="preserve">
+    <value>VB 번호</value>
+    <comment>Số VB</comment>
+  </data>
+  <data name="EDMSR_TITLE_ADD_CATEGORY" xml:space="preserve">
+    <value>카테고리 추가</value>
+    <comment>Thêm danh mục</comment>
+  </data>
+  <data name="EDMSR_TITLE_ADD_FILE" xml:space="preserve">
+    <value>파일 추가 / 업데이트</value>
+    <comment>Thêm / Cập nhật file</comment>
+  </data>
+  <data name="EDMSR_TITLE_ADD_REPOSITORY" xml:space="preserve">
+    <value>데이터웨어 하우스 추가</value>
+    <comment>Thêm kho dữ liệu</comment>
+  </data>
+  <data name="EDMSR_TITLE_ADD_SERVER" xml:space="preserve">
+    <value>서버 추가</value>
+    <comment>Thêm máy chủ</comment>
+  </data>
+  <data name="EDMSR_TITLE_DECENTRALIZE_REPOSITORY" xml:space="preserve">
+    <value>분산 데이터웨어 하우스</value>
+    <comment>Phân quyền kho dữ liệu</comment>
+  </data>
+  <data name="EDMSR_TITLE_DELETE_SERVER" xml:space="preserve">
+    <value>서버 삭제</value>
+    <comment>Xóa máy chủ</comment>
+  </data>
+  <data name="EDMSR_TITLE_DOCUMENT_CATEGORY" xml:space="preserve">
+    <value>문서 카탈로그</value>
+    <comment>Danh mục tài liệu</comment>
+  </data>
+  <data name="EDMSR_TITLE_DOCUMENT_CATEGORY_EDIT" xml:space="preserve">
+    <value>문서 목록 편집</value>
+    <comment>Sửa danh mục tài liệu</comment>
+  </data>
+  <data name="EDMSR_TITLE_EDIT_FILE" xml:space="preserve">
+    <value>파일 편집</value>
+    <comment>Sửa tệp</comment>
+  </data>
+  <data name="EDMSR_TITLE_EDIT_REPOSITORY" xml:space="preserve">
+    <value>데이터웨어 하우스 편집</value>
+    <comment>Sửa kho dữ liệu</comment>
+  </data>
+  <data name="EDMSR_TITLE_EDMS_EDMSRR" xml:space="preserve">
+    <value>통계 보고서</value>
+    <comment>Báo cáo thống kê</comment>
+  </data>
+  <data name="EDMSR_TITLE_EDMS_FILE" xml:space="preserve">
+    <value>데이터웨어 하우스 번호</value>
+    <comment>Kho dữ liệu số</comment>
+  </data>
+  <data name="EDMSR_TITLE_FIXSERVER" xml:space="preserve">
+    <value>서버 수정</value>
+    <comment>Sửa máy chủ</comment>
+  </data>
+  <data name="EDMSR_TITLE_REGULATIONS" xml:space="preserve">
+    <value>규정</value>
+    <comment>QUY ĐỊNH</comment>
+  </data>
+  <data name="EDMSR_TITLE_REPOSITORY" xml:space="preserve">
+    <value>데이터웨어 하우스</value>
+    <comment>Kho dữ liệu</comment>
+  </data>
+  <data name="EDMSR_TITLE_SERVER" xml:space="preserve">
+    <value>호스트</value>
+    <comment>Máy chủ</comment>
+  </data>
+  <data name="EDMSR_TXT_PASS" xml:space="preserve">
+    <value>비밀번호</value>
+    <comment>Mật khẩu</comment>
+  </data>
+  <data name="EDMSR_VALIDATE_FILE_CODE" xml:space="preserve">
+    <value>필요한 파일 코드</value>
+    <comment>Mã tệp tin yêu cầu bắt buộc</comment>
+  </data>
+  <data name="EDMSR_VALIDATE_NAME_SERVER" xml:space="preserve">
+    <value>필수 서버 이름!</value>
+    <comment>Tên máy chủ yêu cầu bắt buộc !</comment>
+  </data>
+  <data name="EDMSR_VALIDATE_PASS" xml:space="preserve">
+    <value>비밀번호가 필요합니다!</value>
+    <comment>Mật khẩu yêu cầu bắt buộc !</comment>
+  </data>
+  <data name="EDMSR_VALIDATE_REPOSITORY_CODE" xml:space="preserve">
+    <value>필요한 데이터웨어 하우스 코드</value>
+    <comment>Mã kho dữ liệu yêu cầu bắt buộc</comment>
+  </data>
+  <data name="EDMSR_VALIDATE_REPOS_CODE" xml:space="preserve">
+    <value>데이터웨어 하우스 코드는 문자와 숫자로 구성됩니다</value>
+    <comment>Mã kho dữ liệu bao gồm chữ cái và số</comment>
+  </data>
+  <data name="EDMSR_VALIDATE_RQ_CAT_NAME" xml:space="preserve">
+    <value>필수 카테고리 이름이 필요합니다!</value>
+    <comment>Tên danh mục yêu cầu bắt buộc !</comment>
+  </data>
+  <data name="EDMSR_VALIDATE_RQ_CODE_CATE" xml:space="preserve">
+    <value>필수 카테고리 코드가 필요합니다!</value>
+    <comment>Mã danh mục yêu cầu bắt buộc !</comment>
+  </data>
+  <data name="EDMSR_VALIDATE_SERVER" xml:space="preserve">
+    <value>필요한 서버!</value>
+    <comment>Server yêu cầu bắt buộc !</comment>
+  </data>
+  <data name="EDMSR_VALIDATE_USER" xml:space="preserve">
+    <value>계정이 필요합니다!</value>
+    <comment>Tài khoản yêu cầu bắt buộc !</comment>
+  </data>
+  <data name="EDMS_BTN_WEARHOUSE_FILE" xml:space="preserve">
+    <value>파일 저장소</value>
+    <comment>Kho tệp tin</comment>
+  </data>
+  <data name="EDMSR_LIST_COL_FOLDER_SAVE" xml:space="preserve">
+    <value>보관 디렉토리</value>
+    <comment>Thư mục lưu trữ</comment>
+  </data>
+  <data name="EDMSR_LIST_COL_SERVER" xml:space="preserve">
+    <value>서버</value>
+    <comment>Server</comment>
+  </data>
+  <data name="EDMSR_CURD_LBL_SEARCH_GUIDE" xml:space="preserve">
+    <value>(구조별로 키워드 입력 : 키워드 1 키워드 2 *)</value>
+    <comment>(Nhập từ khóa theo cấu trúc: Từ khóa 1 Từ khóa 2 *)</comment>
+  </data>
+  <data name="EDMSR_BTN_FILE_RECENTLY" xml:space="preserve">
+    <value>최근 파일</value>
+    <comment>Tệp gần đây</comment>
+  </data>
+  <data name="EDMSR_LBL_ALL" xml:space="preserve">
+    <value>모두</value>
+    <comment>Tất cả</comment>
+  </data>
+  <data name="EDMSR_LBL_ALL_CATEGORY" xml:space="preserve">
+    <value>모든 파일</value>
+    <comment>Tất cả danh mục</comment>
+  </data>
+  <data name="EDMSR_MSG_FILE_IS_EDITING_BY" xml:space="preserve">
+    <value>파일이 {0}에 의해 편집되고 있습니다</value>
+    <comment>Tệp đang được chỉnh sửa bởi {0}</comment>
+  </data>
+  <data name="EDMSR_MSG_FILE_NOT_EXIST" xml:space="preserve">
+    <value>파일이 없습니다. 다시 확인 해주세요</value>
+    <comment>Tệp tin không tồn tại. Vui lòng kiểm tra lại</comment>
+  </data>
+  <data name="EDMSR_MSG_FILE_SIZE_LIMIT_EDIT" xml:space="preserve">
+    <value>20MB보다 작은 파일을 선택하십시오</value>
+    <comment>Vui lòng chọn tệp tin nhỏ hơn 20MB</comment>
+  </data>
+  <data name="EDMSR_MSG_FILE_SIZE_LIMIT_UPLOAD" xml:space="preserve">
+    <value>파일 크기가 1GB보다 큽니다. 업로드하려면 분할하십시오</value>
+    <comment>Dung lượng file lớn hơn 1GB. Vui lòng chia nhỏ để tải lên</comment>
+  </data>
+  <data name="EDMSR_MSG_NO_DELETE_CHILD" xml:space="preserve">
+    <value>먼저 하위 카테고리를 삭제하십시오</value>
+    <comment>Vui lòng xóa danh mục con trước</comment>
+  </data>
+  <data name="EDMSR_MSG_SELECT_A_CATEGORIES" xml:space="preserve">
+    <value>카테고리를 선택하십시오</value>
+  </data>
+</root>

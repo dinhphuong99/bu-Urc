@@ -1,0 +1,184 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home" style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_BREAD_CRUMB_ASSET_OPERATE' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/AssetAllocation">{{'ASSET_ALLO_LBL_INDEX_TITLE' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group actions pt5 pb-1 pull-right d-flex">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-12">
+                    <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-in-line" role="button" title="Ẩn tìm kiếm" style="margin-right: 20px !important;"></i>
+                </div>
+                <div class="col-md-3 pr-0">
+                    <div class="col-md-5 pl-0">
+                        <label class="fw600 text-underline">{{'ASSET_ALLO_LBL_TICKET_CODE' | translate}}</label>
+                        <div class="input-group">
+                            <input ng-model="modelsearch.TicketCode" class="form-control" type="text" placeholder="{{'ASSET_ALLO_LBL_TICKET_CODE' | translate}}..." ng-keydown="($event.keyCode == 13) && reloadTabTicket()" />
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelsearch.TicketCode=''" class="btn btn-default no-shadow" style="">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-7 pl-0">
+                        <label class="fw600 text-underline">{{'ASSET_ALLO_KEY_SEARCH' | translate}}</label>
+                        <div class="input-group">
+                            <input ng-model="modelsearch.Title" class="form-control" type="text" placeholder="{{'ASSET_ALLO_KEY_SEARCH' | translate}}..." ng-keydown="($event.keyCode == 13) && reloadTabTicket()" />
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelsearch.Title=''" class="btn btn-default no-shadow" style="">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 pl-0 pr-0">
+                    <div class="col-md-6 pl-0">
+                        <label class="fw600 text-underline">{{'ASSET_ALLO_LBL_DEPART_SEND' | translate}}</label>
+                        <div class="input-group">
+                            <ui-select tagging ng-model="modelsearch.DepartmentSend" theme="bootstrap" ng-change="changeSelect('DepartmentSend',model.DepartmentSend)">
+                                <ui-select-match placeholder="{{'ASSET_ALLO_LBL_DEPART_SEND' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="x.Code as x in listDepartment | filter:$select.Name| filter: $select.search">
+                                    {{x.Name}}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelsearch.DepartmentSend=''; initUserSend()" class="btn btn-default no-shadow" style="">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-0">
+                        <label class="fw600 text-underline">{{'ASSET_ALLO_LBL_USER_SEND' | translate}}</label>
+                        <div class="input-group">
+                            <ui-select tagging ng-model="modelsearch.UserAllocate" theme="bootstrap">
+                                <ui-select-match placeholder="{{'ASSET_ALLO_LBL_USER_SEND' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="x.Code as x in listUserSend | filter:$select.Name| filter: $select.search">
+                                    {{x.Name}}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelsearch.UserAllocate=''" class="btn btn-default no-shadow" style="">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 pl-0 pr-0">
+                    <div class="col-md-6 pl-0">
+                        <label class="fw600 text-underline">{{'ASSET_ALLO_LBL_DEPART_RECIEV' | translate}}</label>
+                        <div class="input-group">
+                            <ui-select tagging ng-model="modelsearch.DepartmentReceive" theme="bootstrap" ng-change="changeSelect('DepartmentReceive',model.DepartmentReceive)">
+                                <ui-select-match placeholder="{{'ASSET_ALLO_LBL_DEPART_RECIEV' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="x.Code as x in listDepartment | filter:$select.Name| filter: $select.search">
+                                    {{x.Name}}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelsearch.DepartmentReceive=''; initUserReceive()" class="btn btn-default no-shadow" style="">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-0">
+                        <label class="fw600 text-underline">{{'ASSET_ALLO_LBL_USER_RECIEV' | translate}}</label>
+                        <div class="input-group">
+                            <ui-select tagging ng-model="modelsearch.UserReceiver" theme="bootstrap">
+                                <ui-select-match placeholder="{{'ASSET_ALLO_LBL_USER_RECIEV' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="x.Code as x in listUserReceive | filter:$select.Name| filter: $select.search">
+                                    {{x.Name}}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelsearch.UserReceiver=''" class="btn btn-default no-shadow" style="">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 pl-0">
+                    <div class="col-md-6 pl-0">
+                        <label class="control-label fw600 text-underline">{{'ASSET_ALLO_LBL_FROMDATE' | translate}}</label>
+                        <div class="input-group">
+                            <div class='input-group date'>
+                                <input ng-model="modelsearch.FromDate" id='FromDate' class="form-control" type="text" placeholder="{{'ASSET_ALLO_LBL_FROMDATE' | translate}}..." ng-keydown="($event.keyCode == 13) && reloadTabTicket()" />
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="modelsearch.FromDate=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-0">
+                        <label class="control-label fw600 text-underline">{{'ASSET_ALLO_LBL_TODATE' | translate}}</label>
+                        <div class="input-group">
+                            <div class='input-group date'>
+                                <input ng-model="modelsearch.ToDate" id='ToDate' class="form-control" type="text" placeholder="{{'ASSET_ALLO_LBL_TODATE' | translate}}..." ng-keydown="($event.keyCode == 13) && reloadTabTicket()" />
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="modelsearch.ToDate=''" class="btn btn-default no-shadow" style="">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1 pt-1">
+                    <div class="btn-group actions  d-flex">
+                        <div class="text-center pr10 pull-right" ng-click="reloadTabTicket()">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="searchTicket()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 ">
+        <uib-tabset active="active">
+            <uib-tab index="0" heading="{{'ASSET_ALLO_LBL_TICKET' | translate}}">
+                <div disable="tests" ng-include="'../views/admin/assetAllocation/assetAllocateTicket.html'"></div>
+            </uib-tab>
+            <uib-tab index="1" heading="{{'ASSET_ALLO_LBL_TITLE_ASSET' | translate}}">
+                <div ng-include="'../views/admin/assetAllocation/assetAllocated.html'"></div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>
+
+
+

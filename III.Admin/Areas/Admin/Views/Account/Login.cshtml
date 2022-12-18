@@ -1,0 +1,99 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Log in";
+}
+<link href="~/lib/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/admin/site/login.css" rel="stylesheet" />
+<link href="~/css/admin/site/helper.css" rel="stylesheet" />
+<link href="~/lib/assets/global/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="shortcut icon" href="~/swork.ico" />
+<div class="col-md-12 login-text-app pt-2">
+    <p class="pull-right pt-3 pr-3" style="font-family: Stencil;color:white;font-size:25px;padding-right: 5px;padding-top: 20px;">Smart work</p>
+    @*<button class="btn btn-danger pt15 pb15 login-text-app pull-right" style="margin-top:10px;">Smart work</button>*@
+</div>
+<div class="wapter ">
+    <div id="login_panel" class="login_panel" role="form" style="display: block; box-shadow: 0 0 35px #0a2c40de">
+        <div class="login_inner_container" role="main">
+            <div id="true_inner" class="inner_container cred">
+                @*<div class="text-center" style="padding-right: 45px; padding-top: 10px;">
+                    <span class="login-text-app fs30">DSS</span>
+                </div>*@
+                <div class="text-center">
+                    <img src="~/images/logo/logo_smart_urenco.png" class="img-thumbnail logo_swork" style="margin-left:-35px;" />
+                </div>
+                <section>
+                    <form asp-controller="Admin/Account" asp-action="Login" asp-route-returnurl="@ViewData["returnUrl"]" method="post" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @if (ViewData?.ModelState[""]?.Errors?.Any() == true)
+                                {
+                                    <div asp-validation-summary="All" class="text-danger alert alert-danger" style="color: red !important;"></div>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-md-12">
+                                <i class="fa fa-user icon"></i>
+                                <input asp-for="Username" placeholder="Tài khoản" class="form-control login_textfield" autocomplete="off" />
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group mb5">
+                            <div class="col-md-12">
+                                <i class="fa fa-lock icon"></i>
+                                <input asp-for="Password" placeholder="Mật khẩu" class="form-control login_textfield" autocomplete="off" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-login fs11 col-md-11 mt0 ml15 border-radius-15 mt10">Đăng nhập</button>
+                        </div>
+                        <div class="form-group" style="display:flex">
+                            <div class="col-md-6 text-center">
+                                <div class="checkbox-default pt0 fs11 mb10 pull-right">
+                                    <input id="checkbox5" type="checkbox" style="display:none">
+                                    <label for="checkbox5">
+                                        Nhớ mật khẩu
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="/Admin/Account/ForgotPassword" id="forget-password" class="forget-password fs11">Quên mật khẩu ?</a>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 app-bottom pt10">
+        <div class="col-lg-4 pt10 text-center">
+            <span class="login-text-app">Ứng dụng điều hành công việc</span>
+            <div>
+                <a role="button" onclick="location.href ='@Url.Action("DowloadApp", "Admin/Account")'"><img src="~/images/logo/android.png" /></a>
+                <a class="pl15" role="button"><img src="~/images/logo/iphone.png" /></a>
+            </div>
+        </div>
+        <div class="col-lg-4 text-center pt10">
+            <span class="login-text-app">Phần mềm Magic Eye</span>
+            <div>
+                <a role="button"><img src="~/images/logo/windows.png" /></a>
+            </div>
+        </div>
+        <div class="col-lg-4 text-center pt10">
+            <span class="login-text-app">Ứng dụng Support Online</span>
+            <div>
+                <a role="button"><img src="~/images/logo/iphone.png" /></a>
+                <a class="pl15" role="button"><img src="~/images/logo/android.png" /></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="col-md-12" style="position:fixed; bottom:0px;">
+    <p class="clearfix text-muted text-sm-center mb-0 px-2 fs15 pull-right" style="color:white;padding-right: 5px;"><span class="float-md-left d-xs-block d-md-inline-block" style="font-size:13px; ">Copyright by 3i  &copy;  2020 </span><span class="float-md-right d-xs-block d-md-inline-block" style="font-size:13px;"></span></p>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

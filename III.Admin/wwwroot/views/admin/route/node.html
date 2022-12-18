@@ -1,0 +1,50 @@
+﻿<div ng-controller="node">
+    <div>
+        <div class="portlet light bordered input-search mb5">
+            <div class="portlet-body">
+                <div class="row pt5 mb5">
+                    <div class="col-md-6">
+                        <label class="fw600 text-underline">{{'ROUTE_LBL_NODE_NAME' | translate}}</label>
+                        <div class="input-group">
+                            <ui-select tagging ng-model="modelNode.NodeCode" theme="bootstrap" ng-change="reload()">
+                                <ui-select-match placeholder="{{'ROUTE_TXT_NODE_NAME' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="x.Code as x in ListNode | filter:$select.search">
+                                    {{x.Name}}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelNode.NodeCode=''; reload()" class="btn btn-default no-shadow" style="">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label class="fw600 text-underline">{{'ROUTE_LBL_STICK_NOTE' | translate}}</label>
+                        <textarea ng-model="modelNode.Note" style="width:100%; height:70px;"></textarea>
+                    </div>
+                    <div class="col-md-1 pl-0 pr-0">
+                        <div class="pull-left col-md-12 pl-0 pt15"  >
+                            <div class="btn-group pull-left" style="margin-top:5px">
+                                <div class="">
+                                    <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="addNode()">
+                                        <span><i class="fa fa-plus"></i></span>
+                                    </a>
+                                    <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table dataTable table-hover table-striped"
+           datatable
+           dt-options="dtOptions"
+           dt-columns="dtColumns"
+           dt-instance="dtInstance"
+           id="tblDataNode"></table>
+
+</div>

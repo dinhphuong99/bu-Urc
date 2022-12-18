@@ -1,0 +1,601 @@
+﻿@using ESEIM.Utils
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@inject IHttpContextAccessor HttpContextAccessor
+@inject ILanguageService LanguageService
+@inject IParameterService ParameterService
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+@{
+    string picture = await ParameterService.GetPicter(HttpContextAccessor.HttpContext.GetSessionUser().UserId);
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+    var listLanguage = LanguageService.GetListLanguages();
+    var curlLanguage = listLanguage.FirstOrDefault(x => x.Culture == requestCulture.RequestCulture.UICulture.Name);
+    var session = HttpContextAccessor.HttpContext.GetSessionUser();
+    int countWork = ParameterService.GetCountNotifiCardJob(session.UserId, session.UserName);
+    int countAsset = ParameterService.GetNotificationAssetAllocate(session.RoleCode, session.BranchId, session.ListDepartment);
+    int countCMSItem = ParameterService.GetCMSItemToday();
+    int countProject = ParameterService.GetCountNotificationProject(session.UserId);
+    int countContract = ParameterService.GetCountNotificationContract(session.UserId);
+    int countContractPO = ParameterService.GetCountNotificationContractPO(session.UserId);
+    int countSupplier = ParameterService.GetCountNotificationSupplier(session.UserId);
+    int countCustomer = ParameterService.GetCountNotificationCustomer(session.UserId);
+    int countAll = countWork + countAsset + countCMSItem + countProject + countContract + countContractPO + countSupplier + countCustomer;
+    var listRoom = ParameterService.GetListRoom(session);
+    var countInOutAndOnline = ParameterService.GetCountCheckInAndOnline();
+}
+<style>
+    .container-check-in-out {
+        position: relative;
+        text-align: center;
+    }
+
+    .bottom-right-check-in-out {
+        position: absolute;
+        bottom: 8px;
+        right: 16px;
+    }
+
+    .top-right-check-in-out {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+    }
+
+    .top-left-check-in-out {
+        position: absolute;
+        top: 10px;
+        /*left: 110px;*/
+    }
+
+    .bottom-left-check-in-out {
+        position: absolute;
+        bottom: -55px;
+    }
+
+    .img-hover-check-out:hover {
+        width: 60px;
+        box-shadow: 2px 2px 2px 2px #dcc2c2;
+        border-radius: 18px;
+    }
+
+    .img-hover-check-in:hover {
+        box-shadow: 2px 2px 2px 2px #dcc2c2;
+        border-radius: 6px;
+    }
+
+
+    .meeting-item {
+        height: 55px;
+        background: #323030;
+    }
+
+        .meeting-item:hover {
+            height: 55px;
+            background: #2196F3;
+        }
+
+        .meeting-item:active {
+            height: 55px;
+            background: #2196F3;
+        }
+
+        .meeting-item:not(:last-child) {
+            border-bottom: 1px solid #ffffff;
+        }
+
+    .meeting-primary {
+        background: #4caf50 !important;
+    }
+
+        .meeting-primary:hover {
+            height: 55px;
+            background: #2196F3 !important;
+        }
+
+        .meeting-primary:active {
+            height: 55px;
+            background: #2196F3 !important;
+        }
+
+    .meeting-add {
+        padding-left: 25px;
+        height: 35px;
+        background: #e91e63 !important;
+    }
+
+    .navbar-nav {
+        margin: 0;
+        float: none
+    }
+
+    .message-error:after {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: 0;
+        left: 10%;
+        display: none;
+        padding: 1em 2em;
+        color: white;
+    }
+
+    .message-error:hover:after {
+        display: block;
+        -webkit-animation: showTooltip 0.35s ease-in-out;
+        -moz-animation: showTooltip 0.35s ease-in-out;
+        animation: showTooltip 0.35s ease-in-out;
+    }
+
+    .message-error:after {
+        background: #c8fbfb;
+        border-radius: 5px;
+        color: #000000;
+        z-index: 999;
+        margin-top: 0px;
+        /*margin-left: 225px;*/
+        border: 1px solid #d4d4d4;
+        width: 400px;
+    }
+
+    .form-item {
+        position: relative;
+    }
+
+    .margin-right-in {
+        margin-right: 180px;
+    }
+
+    .margin-right-out {
+        margin-right: 115px;
+    }
+    .dropdown-menu > li:hover > a:hover {
+        text-decoration: none;
+        background-image: none;
+        background-color: #e1e5ec;
+        color: #555;
+        filter: none;
+    }
+</style>
+<nav class="header-navbar navbar navbar-with-menu navbar-fixed-top navbar-semi-dark navbar-shadow">
+    <div class="navbar-wrapper">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li class="nav-item hidden-sm-down" style="margin-left:43px;">
+                    <div class="pull-left fs11" id="statiscalUser" style="position:fixed; top:7px; left:97px;">
+                        <span class="pull-left bold green-custom" style="padding: 3px; border-radius: 4px; margin-bottom: 2px;">&bull; Online: @countInOutAndOnline.CountOnline/@countInOutAndOnline.CountAll</span><br />
+                        <span class="pull-left bold red-custom" style="padding: 3px; border-radius: 4px;">&bull; Check in: @countInOutAndOnline.CountIn/@countInOutAndOnline.CountAll</span><br />
+                    </div>
+                    @*<span class="fs11 text-white" style="position:fixed; top:30px; left:97px; font-family: Stencil;">SmartWork</span>*@
+                    <a class="nav-link nav-menu-main menu-toggle hidden-xs none-hover white" style="top: -14px;">
+                        <span class="fa fa-bars pt15 fs40">
+                        </span>
+                    </a>
+
+                </li>
+                <!-- Begin mobi home-->
+                <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a class="nav-link nav-menu-main menu-toggle hidden-xs none-hover"><i class="fas fa-home font-large-1"></i></a></li>
+                <li class="nav-item mobile-menu hidden-md-up float-xs-left" style="margin-left: -15px;"><a class="nav-link nav-menu-main  hidden-xs none-hover" id="btnOpenTrelloMobile" href="/Admin/CardJob"><i class="fa fa-trello font-large-1"></i></a></li>
+                <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-menu" class="nav-link open-navbar-container none-hover"><i class="icon-ellipsis pe-2x icon-icon-rotate-right-right"></i></a></li>
+                <!-- End mobi ...-->
+            </ul>
+            <!-- Begin logo mobi ...-->
+            <div class="mx-auto order-0 nav-item hidden-md-up">
+                <a class="navbar-brand mx-auto text-white" href="#">
+                    <span style="font-family: Stencil">
+                        <span style="font-size: 25px; padding-top:5px;">URENCO</span>
+                    </span>
+                </a>
+                @*<img src="~/images/logo/logo_vatco_blank.png" class="img-thumbnail" style="height: 47px;background: transparent;border: none;" />*@
+            </div>
+            <!-- End logo mobi ...-->
+        </div>
+        <div class="navbar-container content container-fluid ">
+            <div id="navbar-menu" class="collapse navbar-toggleable-sm text-center">
+                <div class="row text-center">
+                    @*<img class="hidden-sm-down" id="imgLogVatco" src="~/images/logo/logo_smart_vatco.png" style="margin-left: -40px;margin-top: 7px;" />*@
+                    <div class="pull-right pr-0" style="z-index: 10; position: fixed; right: 0;">
+                        <ul class="nav navbar-nav float-xs-right">
+                            @*<li class="nav-item fs12 text-white pr5 mt20"><span>Số người online </span><span class="bold">(2)</span></li>*@
+                            @*<li class="dropdown dropdown-language nav-item">
+                                <a id="dropdown-meeting" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link none-hover" style="padding-bottom:0px;">
+                                    <i class="fa fa-video-camera text-white fs25"></i>
+                                    <span class="tag tag-pill tag-default tag-danger pull-right fs11" style="margin-top: -12px;left: 30px;position: absolute;">@listRoom.Count()</span>
+                                </a>
+                                <p class="fs9 mb5 ml5 text-left text-white">Meeting</p>
+                                <div aria-labelledby="dropdown-meeting" class="dropdown-menu">
+                                    @{
+                                        foreach (var room in listRoom)
+                                        {
+                                            if (room.Group.Equals("PRIMARY"))
+                                            {
+                                                <a class="dropdown-item meeting-item meeting-primary">
+                                                    @if (room.IsEdit)
+                                                    {
+                                                        <div class="col-md-2 pl-0" onclick="common.EditMeeting(@room.RoomID)">
+                                                            <span class="fa fa-edit fs25 pt15" style="color:white;"></span>&nbsp;
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="col-md-2 pl-0">
+                                                            <span class="fa fa-video-camera fs25 pt15" style="color:white;"></span>&nbsp;
+                                                        </div>
+                                                    }
+
+                                                    <div class="col-md-10" onclick="joinMeeting(@room.RoomID)">
+                                                        <label class="text-white fs12">@room.RoomName</label><br />
+                                                        <span class="text-white fs12">@room.CreatedBy, @room.CreatedTime</span>
+                                                    </div>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="dropdown-item meeting-item">
+                                                    @if (room.IsEdit)
+                                                    {
+                                                        <div class="col-md-2 pl-0" onclick="common.EditMeeting(@room.RoomID)">
+                                                            <span class="fa fa-edit fs25 pt15" style="color:white;"></span>&nbsp;
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="col-md-2 pl-0">
+                                                            <span class="fa fa-video-camera fs25 pt15" style="color:white;"></span>&nbsp;
+                                                        </div>
+                                                    }
+
+                                                    <div class="col-md-10" onclick="joinMeeting(@room.RoomID)">
+                                                        <label class="text-white fs12">@room.RoomName</label><br />
+                                                        <span class="text-white fs12">@room.CreatedBy, @room.CreatedTime</span>
+                                                    </div>
+                                                </a>
+                                            }
+                                        }
+                                        if (session.IsAllData)
+                                        {
+                                            <div class="dropdown-item meeting-add" onclick="common.CreateMeeting()">
+                                                <div class="col-md-12 text-center">
+                                                    <span class="text-white fs12" typeof="button"><i class="fa fa-plus"></i>&nbsp;Thêm mới meeting</span>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </li>*@
+                            <li class="dropdown dropdown-language nav-item">
+                                <a id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle nav-link none-hover" style="padding-bottom:0px;">
+                                    <i class="flag-icon @curlLanguage.Icon fs16"></i>
+                                </a>
+                                <span class="selected-language text-white" style="margin-right:20px;">@curlLanguage.DisplayName</span>
+                                <div aria-labelledby="dropdown-flag" class="dropdown-menu">
+                                    @{
+                                        foreach (var lang in LanguageService.GetListLanguages())
+                                        {
+                                            <a class="dropdown-item" href="/Admin/Language/SetCulture?culture=@lang.Culture&returnUrl=@returnUrl">
+                                                <span class="flag-icon @lang.Icon"></span> @lang.DisplayName
+                                            </a>
+                                        }
+                                    }
+                                </div>
+                            </li>
+                            <li class="dropdown dropdown-notification nav-item">
+                                <a href="#" data-toggle="dropdown" class="nav-link nav-link-label none-hover"><i class="ficon icon-bell4 fs20"></i><span class="tag tag-pill tag-default tag-danger tag-default tag-up">@countAll </span></a>
+                                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+                                    <li class="dropdown-menu-header">
+                                        <h6 class="dropdown-header m-0"><span class="grey darken-2">Thông báo</span><span class="notification-tag tag tag-default tag-danger float-xs-right m-0">@countAll mới</span></h6>
+                                    </li>
+                                    <li class="list-group scrollable-container">
+                                        <a href="/Admin/NotifiManager" class="list-group-item">
+                                            @*<a class="list-group-item">*@
+                                            <div class="media">
+                                                <div class="media-left valign-middle"><i class="icon-check2 icon-bg-circle bg-green bg-accent-3"></i></div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading red darken-1">Công việc</h6>
+                                                    <p class="font-medium-3 text-muted">Bạn có @countWork công việc mới.</p>
+                                                </div>
+                                            </div>
+                                            @*</a>*@
+                                        </a>
+                                        <a class="list-group-item">
+                                            <div class="media">
+                                                <div class="media-left valign-middle"><i class="icon-check2 icon-bg-circle bg-green bg-accent-3"></i></div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading red darken-1">Tài sản</h6>
+                                                    <p class="font-medium-3 text-muted">Bạn có @countAsset phiếu tài sản.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item">
+                                            <div class="media">
+                                                <div class="media-left valign-middle"><i class="icon-check2 icon-bg-circle bg-green bg-accent-3"></i></div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading red darken-1">Bài viết</h6>
+                                                    <p class="font-medium-3 text-muted">Bạn có @countCMSItem bài viết hôm nay.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item">
+                                            <div class="media">
+                                                <div class="media-left valign-middle"><i class="icon-check2 icon-bg-circle bg-green bg-accent-3"></i></div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading red darken-1">Dự án/ đấu thầu</h6>
+                                                    <p class="font-medium-3 text-muted">Bạn có @countProject dự án.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item">
+                                            <div class="media">
+                                                <div class="media-left valign-middle"><i class="icon-check2 icon-bg-circle bg-green bg-accent-3"></i></div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading red darken-1">Hợp đồng bán</h6>
+                                                    <p class="font-medium-3 text-muted">Bạn có @countContract hợp đồng bán.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item">
+                                            <div class="media">
+                                                <div class="media-left valign-middle"><i class="icon-check2 icon-bg-circle bg-green bg-accent-3"></i></div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading red darken-1">Hợp đồng mua</h6>
+                                                    <p class="font-medium-3 text-muted">Bạn có @countContractPO hợp đồng mua.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item">
+                                            <div class="media">
+                                                <div class="media-left valign-middle"><i class="icon-check2 icon-bg-circle bg-green bg-accent-3"></i></div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading red darken-1">Khách hàng</h6>
+                                                    <p class="font-medium-3 text-muted">Bạn có @countCustomer khách hàng.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item">
+                                            <div class="media">
+                                                <div class="media-left valign-middle"><i class="icon-check2 icon-bg-circle bg-green bg-accent-3"></i></div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading red darken-1">Nhà cung cấp</h6>
+                                                    <p class="font-medium-3 text-muted">Bạn có @countSupplier nhà cung cấp.</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    @*<li class="dropdown-menu-footer"><a href="javascript:void(0)" class="dropdown-item text-muted text-xs-center">Xem tất cả</a></li>*@
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-user nav-item">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link none-hover" style="padding-bottom:0px;">
+                                    <img class="img-circle" style="width:25px;height:25px" onerror="this.src='../../../images/default/no_user.png'" src="@picture" alt="avatar"><i></i>
+                                </a>
+                                <span class="user-name text-white" style=" margin-right:20px;">@ESEIM.AppContext.UserName</span>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="/Admin/AccountLogin" class="dropdown-item"><i class="icon-head"></i> Thông tin cá nhân</a>
+                                    <div class="dropdown-divider"></div><a href="/Admin/Account/Logout" class="dropdown-item"><i class="icon-power3"></i> Đăng xuất</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav navbar-nav" id="checkInOut" style="z-index: 20; text-align: center !important;">
+                        <div class="pr-2" style="margin-top: 0px; margin-bottom: 8px;">
+                            <div class="row pull-left">
+                                <span class="text-white bold">In: </span><span id="inTime" class="bold" style="color:white;">&nbsp;</span><span id="inDate" class="bold mr15" style="color:white;"></span>
+                            </div><br />
+                            <div class="row pr-2 pull-left">
+                                @*<span class="text-white fs12">Địa điểm vào: </span><span data-tooltip="Địa điểm vào" id="locIn" class="fs12 message-error form-item" style="color:white;"></span>*@
+                            </div>
+                        </div>
+                        <div class="" style="max-width:53px; margin-top: -14px;">
+                            <img id="imgIn" class="text-center img-hover-check-in" src="../../../images/default/icon_checkin.png" onclick="checkInOut()" alt="Check In" style="width: 45px;height:45px;box-shadow: 2px 2px 2px #4e4d4d;" />
+                            <img id="imgOut" class="text-center img-hover-check-out" src="../../../images/default/checkout_vn.png" onclick="checkInOut()" alt="Check In" style="width: 45px;height:45px;box-shadow: 2px 2px 2px #4e4d4d;" />
+                        </div>
+                        <div class="pl-2" style="margin-top: 0px;">
+                            <div class="row pull-left" style="padding-left:20px;">
+                                <span class="text-white bold">Out: </span><span id="outTime" class="bold" style="color: white">&nbsp;</span><span id="outDate" class="bold" style="color:white"></span>
+                            </div><br />
+                            <div class="row pull-left" style="padding-left:20px;">
+                                @*<span class="text-white fs12">Địa điểm ra: </span><span data-tooltip="Địa điểm ra" id="locOut" class="fs12 message-error form-item" style="color:white;"></span>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<script>
+    var shiftCode = "";
+    var isCheckIn = false;
+    getLastShift();
+    function checkInOut() {
+        initGeolocation();
+    }
+    function initGeolocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(successLoc, fail);
+        }
+        else {
+            alert("Trình duyệt không hỗ trợ");
+        }
+    }
+    function successLoc(position) {
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+        if (isCheckIn == false) {
+            var data = {
+                ShiftCode: '',
+                Lat: lat,
+                Lon: lon
+            }
+            if (lat != null && lon != null)
+                jQuery.ajax({
+                    beforeSend: function (jqXHR, settings) {
+                        App.blockUI({
+                            target: "html",
+                            boxed: true,
+                            message: 'loading...'
+                        });
+                    },
+                    type: "POST",
+                    url: "/Admin/StaffTimeKeeping/CheckIn",
+                    contentType: "application/json",
+                    dataType: "JSON",
+                    data: JSON.stringify(data),
+                    success: function (rs) {
+                        App.unblockUI("html");
+                        App.toastrSuccess(rs.Title);
+                        getLastShift();
+                    },
+                    failure: function (errMsg) {
+                        App.toastrSuccess(errMsg);
+                    }
+                });
+        } else {
+            var data = {
+                ShiftCode: shiftCode,
+                Lat: lat,
+                Lon: lon
+            }
+            if (lat != null && lon != null)
+                jQuery.ajax({
+                    beforeSend: function (jqXHR, settings) {
+                        App.blockUI({
+                            target: "html",
+                            boxed: true,
+                            message: 'loading...'
+                        });
+                    },
+                    type: "POST",
+                    url: "/Admin/StaffTimeKeeping/CheckOut",
+                    contentType: "application/json",
+                    dataType: "JSON",
+                    data: JSON.stringify(data),
+                    success: function (rs) {
+                        App.unblockUI("html");
+                        App.toastrSuccess(rs.Title);
+                        getLastShift();
+                    },
+                    failure: function (errMsg) {
+                        App.toastrSuccess(errMsg);
+                    }
+                });
+        }
+    }
+    function fail() {
+
+    }
+    function getLastShift() {
+        jQuery.ajax({
+            type: "POST",
+            url: "/Admin/StaffTimeKeeping/GetLastShiftLog",
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function (rs) {
+                shiftCode = rs.ShiftCode;
+                isCheckIn = rs.IsCheckIn;
+                if (rs.ChkinLocationTxt != null) {
+                    var locIn = rs.ChkinLocationTxt.length > 50 ? (rs.ChkinLocationTxt.substr(0, 50) + "...") : rs.ChkinLocationTxt;
+                    //document.getElementById('locIn').setAttribute('data-tooltip', rs.ChkinLocationTxt);
+                    $('#locIn').text(locIn);
+                }
+                if (rs.ChkoutLocationTxt != null) {
+                    var locOut = rs.ChkoutLocationTxt.length > 50 ? (rs.ChkoutLocationTxt.substr(0, 50) + "...") : rs.ChkoutLocationTxt;
+                    //document.getElementById('locOut').setAttribute('data-tooltip', rs.ChkoutLocationTxt);
+                    $('#locOut').text(locOut);
+                } else {
+                    $('#locOut').text(rs.ChkoutLocationTxt);
+                }
+                if (rs.ChkinTime != null) {
+                    var inDate = getDateInOut(rs.ChkinTime);
+                    $('#inDate').text(inDate);
+                    var inTime = getTimeInOut(rs.ChkinTime);
+                    $('#inTime').text(inTime + " ");
+                } else {
+                    $('#inDate').text("");
+                    $('#inTime').text("");
+                }
+                if (rs.ChkoutTime != null) {
+                    var outDate = getDateInOut(rs.ChkoutTime);
+                    var outTime = getTimeInOut(rs.ChkoutTime);
+                    $('#outTime').text(outTime + " ");
+                    $('#outDate').text(outDate);
+                } else {
+
+                    $('#outTime').text("");
+                    $('#outDate').text("");
+                }
+                if (rs.IsCheckIn == false) {
+                    if ($('#imgIn').hasClass('hidden'))
+                        $('#imgIn').removeClass('hidden');
+                    $('#imgOut').addClass('hidden');
+                    $("#shiftBefore").addClass('hidden');
+                    $("#checkInOut").addClass('margin-right-out');
+                } else {
+                    if ($('#imgOut').hasClass('hidden'))
+                        $('#imgOut').removeClass('hidden');
+                    $('#imgIn').addClass('hidden');
+                    $("#shiftBefore").removeClass('hidden');
+                    $("#shiftBefore").text(rs.ShiftCodeBefore);
+                    $("#checkInOut").addClass('margin-right-in');
+                }
+            },
+            failure: function (errMsg) {
+                App.toastrSuccess(errMsg);
+            }
+        });
+    }
+    function getDateInOut(inOutDateTime) {
+        var dateTimeInOut = new Date(inOutDateTime);
+        var dd = dateTimeInOut.getDate();
+
+        var mm = dateTimeInOut.getMonth() + 1;
+        var yyyy = dateTimeInOut.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        dateTimeInOut = dd + '/' + mm + '/' + yyyy;
+        return dateTimeInOut;
+    }
+    function getTimeInOut(inOutDateTime) {
+        var timeInOut = new Date(inOutDateTime);
+        var hour = timeInOut.getHours();
+        if (hour < 10) {
+            hour = '0' + hour
+        }
+        var minute = timeInOut.getMinutes();
+        if (minute < 10) {
+            minute = '0' + minute
+        }
+        var second = timeInOut.getSeconds();
+        if (second < 10) {
+            second = '0' + second
+        }
+        timeInOut = hour + ":" + minute + ":" + second;
+        return timeInOut;
+    }
+    function joinMeeting(meetingId) {
+        jQuery.ajax({
+            type: "POST",
+            url: "/Admin/Meeting/JoinMeeting?meetingID=" + meetingId,
+            contentType: "application/json",
+            dataType: "JSON",
+            success: function (rs) {
+                if (rs.Error) {
+                    App.toastrError(rs.Title);
+                } else {
+                    window.open('/Admin/Meeting', '_blank');
+                }
+            },
+            failure: function (errMsg) {
+                App.toastrSuccess(errMsg);
+            }
+        });
+    }
+</script>

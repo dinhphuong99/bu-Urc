@@ -1,0 +1,195 @@
+﻿<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-edit icon-edit "></i>
+    <span class="modal-title" id="modal-title"> {{'UA_TITLE_EDIT' | translate}}</span>
+</div>
+<div class="modal-body pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="editform" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptions">
+            <div class="form-body pb-0">
+                <!--header-->
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-barcode" aria-hidden="true"></i>
+                                <label class="control-label require">{{'UA_CURD_LBL_CODE_AREA' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="model.AreaCode" name="AreaCode" placeholder="{{'UA_CURD_TXT_CODE_AREA' | translate}}..." readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                <label class="control-label require">{{'UA_CURD_LBL_AREA_NAME' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control" ng-model="model.AreaName" name="AreaName" placeholder="{{'UA_CURD_TXT_AREA_NAME' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <label class="control-label">{{'UA_CURD_LBL_LOC_GPS' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="text" disabled class="form-control" name="GisData" ng-model="model.GisData" placeholder="{{'UA_CURD_TXT_LOC_GPS' | translate}}..." />
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="openMap()" class="btn btn-default no-shadow green-custom" style="">
+                                            <span class="fa fa-map-marker"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <label class="control-label">{{'UA_CURD_LBL_TEAM_MANAGER' | translate}}</label>
+                            </div>
+                            <div class="col-md-8">
+                                <ui-select ng-model="model.ListTeam" multiple theme="bootstrap" class="" style="width: 100%;">
+                                    <ui-select-match placeholder="{{'UA_CURD_TXT_TEAM_MANAGER' | translate}}...">{{$item.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in listTeam | filter:$select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label class="control-label">
+                                    <i class="far fa-comment-alt"></i>&nbsp;{{'UA_CURD_LBL_DESCRIPTION' | translate}}
+                                </label>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea class="form-control" ng-model="model.Description" placeholder="{{'UA_CURD_TXT_DESCRIPTION' | translate}}" rows="6"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <img ng-if="model.AreaCode==''" class="opacityQrCode" src="/images/default/qrCode.png" width="100" height="100" style="margin-top:-10px" />
+                            <qrcode ng-if="model.AreaCode!=''" data="{{model.AreaCode}}" download size="75"></qrcode>
+                            <p class="fw600 text-underline">{{'UA_CURD_LBL_QR_CODE' | translate}}</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="input-unstyled">
+                                <input id="file" accept=".png,.jpg,.jpeg,.gif,.tif" type="file" style="display:none" />
+                                <img id="picture" style="cursor: pointer" ng-click="loadImage()" class=" h-100 w100 br-n" onerror="this.src='/images/default/uploadimg.png'" ng-src="{{model.Picture==null ? '/images/default/uploadimg.png' : model.Picture}}" role="button" />
+                            </div>
+                            <p class="fw600 text-underline pt10">{{'UA_CURD_IMG_DETAIL' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--end header-->
+                <!--start detail-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="text-underline bold">{{'UA_CURD_LBL_ROUTE_MANAGE' | translate}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label class="control-label">
+                                    <i class="fas fa-project-diagram"></i>&nbsp;{{'UA_CURD_LBL_ROUTE' | translate}}
+                                </label>
+                            </div>
+                            <div class="col-md-8">
+                                <ui-select class="ui-select-bootstrap-right-radius" ng-model="RouteCode" theme="bootstrap" on-select="addRoute($item)">
+                                    <ui-select-match placeholder="{{'UA_CURD_TXT_ROUTE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in listRoute | filter: $select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive" ng-show="model.ListRoute.length>0">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-1 text-center ">{{'UA_LIST_COL_INDEX' | translate}}</th>
+                                        <th class="col-md-10 text-center ">{{'UA_LIST_COL_ROUTE_NAME' | translate}}</th>
+                                        <th class="col-md-1 text-center nowrap">{{'UA_LIST_COL_ACTION' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in model.ListRoute">
+                                        <td class="text-center">{{$index+1}}</td>
+                                        <td class="text-center">
+                                            {{x.Name}}
+                                        </td>
+                                        <td class="text-center">
+                                            <i role="button" class="fa fa-minus-circle" ng-click="removeRoute($index,x.Id)" title="Xóa" style="color:red !important;font-size: 25px;padding-top:5px"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-responsive" ng-if="model.ListRoute.length==0">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-1 text-center ">{{'UA_LIST_COL_INDEX' | translate}}</th>
+                                        <th class="col-md-10 text-center ">{{'UA_LIST_COL_ROUTE_NAME' | translate}}</th>
+                                        <th class="col-md-1 text-center nowrap">{{'UA_LIST_COL_ACTION' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="h-30">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="h-30">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="h-30">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="h-30">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end detail-->
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer pr15" >
+    <div class="btn-group actions d-flex pull-right">
+        <div class="text-center pl20">
+            <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="submit()" href="javascript:;">
+                <span><i class="fa fa-save"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+        </div>
+        <div class="text-center pl20">
+            <a class="btn btn-icon-only btn-circle btn-outline red-custom" ng-click="cancel()">
+                <span><i class="fa fa-close"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+        </div>
+    </div>
+</div>

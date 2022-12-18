@@ -1,0 +1,356 @@
+﻿<style>
+    @media (min-width:992px) and (max-width:1200px) {
+        .modal-70 {
+            width: 75%;
+        }
+    }
+
+    @media (min-width:1201px) and (max-width:1500px) {
+        .modal-70 {
+            width: 70%;
+        }
+    }
+
+    @media (min-width:1501px) {
+        .modal-70 {
+            width: 60%;
+        }
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title">{{'CUS_CURD_TITLE_ADD_CUS' | translate}}</span>
+</div>
+<div class="modal-body" id="modal-body" style="padding-bottom: 0px;">
+    <div class="portlet-body form">
+        <form name="addForm" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptionsCustomer">
+            <div class="form-body pt-0">
+                <div class="row mt-action-5">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fa fa-barcode"></i>
+                                <label class="control-label require custom-title-code-bold">{{'CUS_CURD_LBL_CUS_CUSCODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <input class="form-control custom-title-code-bold" name="CusCode" ng-model="model.CusCode" type="text" placeholder="{{'CUS_CURD_TXT_CUS_CUSCODE' | translate}}..." ng-readonly="ObjectCustomer.CustomerId !=''  && ObjectCustomer.CustomerId!=undefined" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fa fa-user"></i>
+                                <label class="control-label require custom-title-code-bold">{{'CUS_CURD_LBL_CUS_CUSNAME' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <input class="form-control custom-title-code-bold" name="CusName" ng-model="model.CusName" type="text" placeholder="{{'CUS_CURD_TXT_CUS_CUSNAME' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fa fa-user"></i>
+                                <label class="control-label ">{{'CUS_CURD_LBL_CUS_PERSONINCHARGE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <input class="form-control" ng-model="model.PersonInCharge" type="text" placeholder="{{'CUS_CURD_TXT_CUS_PERSONINCHARGE' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fa fa-map-marker"></i>
+                                <label class="control-label">{{'CUS_CURD_LBL_CUS_GOOGLEMAP' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <div class="input-icon" style="margin-bottom: 0px">
+                                    <i ng-click="openMap()" class="cursor fa fa-map-marker"></i>
+                                    <input ng-click="openMap()" id="locationGPS" class="form-control" ng-model="model.GoogleMap" name="key" type="text" style="padding-left: 30px; width: 100%" onkeypress="return false;" onkeydown="return false;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fa fa-home"></i>
+                                <label class="control-label require">{{'CUS_CURD_LBL_CUS_ADDRESS' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <textarea style="height: 73px" name="Address" id="textAreaAddress" class="form-control" ng-model="model.Address" type="text" placeholder="{{'CUS_CURD_TXT_CUS_ADDRESS' | translate}}..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error': errorTaxCode}">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fa fa-barcode"></i>
+                                <label class="control-label require">{{'CUS_CURD_LBL_CUS_TAXCODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <input class="form-control" ng-model="model.TaxCode" name="TaxCode" type="text" placeholder="{{'CUS_CURD_TXT_CUS_TAXCODE' | translate}}..." ng-blur="taxCodeChange(model.TaxCode)" ng-keydown="($event.keyCode == 13) && taxCodeChange(model.TaxCode)" ng-change="changleSelect('TaxCode')" />
+                                <span ng-show="errorTaxCode" class="label-color validation-message">
+                                    {{'CUS_CURD_VALIDATE_TAXCODE' | translate}}!
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorIdentification}">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="far fa-credit-card"></i>
+                                <label class="control-label">{{'CUS_CURD_LBL_CUS_IDENTIFICATION' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <input class="form-control" ng-model="model.Identification" name="Identification" type="text" placeholder="{{'CUS_CURD_TXT_CUS_IDENTIFICATION' | translate}}..." ng-change="changleSelect('Identification')" />
+                                <span ng-show="errorIdentification" class="label-color validation-message">
+                                    {{'CUS_CURD_VALIDATE_IDENTIFICATION' | translate}}!
+                                </span>
+                            </div>
+                        </div>
+                        <div class=" form-group" ng-class="{ 'has-error': errorFax}">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fa fa-fax"></i>
+                                <label class="control-label">{{'CUS_CURD_LBL_CUS_FAX' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <input class="form-control" ng-model="model.Fax" type="text" placeholder="{{'CUS_CURD_TXT_CUS_FAX' | translate}}..." ng-change="changleSelect('Fax')" />
+                                <span ng-show="errorFax" class="label-color validation-message">
+                                    {{'CUS_CURD_VALIDATE_FAX' | translate}}!
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fa fa-cube"></i>
+                                <label class="control-label">{{'CUS_CURD_LBL_CUS_ICONLEVEL' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select ng-model="model.IconLevel" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'CUS_CURD_COMBO_CUS_ICONLEVEL' | translate}}..."><img class="h-20" ng-src="{{ $select.selected.Path }}" />&nbsp; {{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in iconLevels ">
+                                            <img ng-src="{{ x.Path }}" height="50" width="50" />
+                                            <div ng-bind-html="x.Name | highlight: $select.search" style="display: inline">{{x.Name}}</div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.IconLevel='';" class="btn btn-default no-shadow start-date">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group" ng-class="{ 'has-error': errorArea}">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fas fa-map-marker"></i>
+                                <label class="control-label require">{{'CUS_CURD_LBL_CUS_AREA' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.Area" theme="bootstrap" on-select="changleSelect('Area')">
+                                        <ui-select-match placeholder="{{'CUS_CURD_COMBO_CUS_AREA' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in CustomerAreas | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingArea()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorArea" class="label-color validation-message">
+                                    {{'CUS_CURD_VALIDATE_AREA' | translate}}!
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorCusGroup}">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fa fa-users"></i>
+                                <label class="control-label require">{{'CUS_CURD_LBL_CUS_CUSGROUP' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.CusGroup" theme="bootstrap" on-select="changleSelect('CusGroup')">
+                                        <ui-select-match placeholder="{{'CUS_CURD_COMBO_CUS_CUSGROUP' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in CustomerGroup | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingCustomerGroup()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorCusGroup" class="label-color validation-message">
+                                    {{'CUS_CURD_VALIDATE_CUSGROUP' | translate}}!
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorRole}">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fas fa-award"></i>
+                                <label class="control-label require">{{'CUS_CURD_LBL_CUS_CUSROLE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.Role" theme="bootstrap" on-select="changleSelect('Role')">
+                                        <ui-select-match placeholder="{{'CUS_CURD_COMBO_CUS_CUSROLE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in CustomerRoles | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.Role='';" class="btn green-custom no-shadow">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorRole" class="label-color validation-message">
+                                    {{'CUS_CURD_VALIDATE_CUSROLE' | translate}}!
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorCusType}">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fas fa-info-circle"></i>
+                                <label class="control-label require">{{'CUS_CURD_LBL_CUS_CUSTYPE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.CusType" theme="bootstrap" on-select="changleSelect('CusType')">
+                                        <ui-select-match placeholder="{{'CUS_CURD_COMBO_CUS_CUSTYPE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in CustomerTypes | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingCustomerTyle()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorCusType" class="label-color validation-message">
+                                    {{'CUS_CURD_VALIDATE_CUSTYPE' | translate}}!
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorActivityStatus}">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fa fa-flag"></i>
+                                <label class="control-label require">{{'CUS_CURD_LBL_CUS_STATUS' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.ActivityStatus" theme="bootstrap" on-select="changleSelect('ActivityStatus')">
+                                        <ui-select-match placeholder="{{'CUS_CURD_COMBO_CUS_STATUS' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in CustomerStatusData | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingCustomerStatus()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorActivityStatus" class="label-color validation-message">
+                                    {{'CUS_CURD_VALIDATE_STATUS' | translate}}!
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fas fa-envelope"></i>
+                                <label class="control-label ">{{'CUS_CURD_LBL_CUS_EMAIL' | translate}}</label>
+                            </div>
+                            <div class="col-md-7  ">
+                                <input class="form-control" type="text" name="Email" ng-model="model.Email" placeholder="{{'CUS_CURD_TXT_CUS_EMAIL' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorMobilePhone}">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fas fa-phone"></i>
+                                <label class="control-label require">{{'CUS_CURD_LBL_CUS_MOBIEPHONE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <input class="form-control" name="Mobile" ng-model="model.MobilePhone" type="text" placeholder="{{'CUS_CURD_TXT_CUS_MOBIEPHONE' | translate}}..." ng-change="changleSelect('MobilePhone')" />
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="fas fa-user-circle"></i>
+                                <label class="control-label">{{'CUS_CURD_LBL_CUS_ACCOUNTBANK' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <input class="form-control" ng-model="model.AccountBank" type="text" placeholder="{{'CUS_CURD_TXT_CUS_ACCOUNTBANK' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="far fa-address-book"></i>
+                                <label class="control-label">{{'CUS_CURD_LBL_CUS_ADDRESSBANK' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <input class="form-control" ng-model="model.AddressBank" type="text" placeholder="{{'CUS_CURD_TXT_CUS_ADDRESSBANK' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <div class="col-md-5 pr-0 ">
+                                <i class="far fa-address-book"></i>
+                                <label class="control-label">{{'CUS_CURD_LBL_CUS_ZIPCODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7 ">
+                                <input class="form-control" ng-model="model.ZipCode" type="text" placeholder="{{'CUS_CURD_TXT_CUS_ZIPCODE' | translate}}..." />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="row">
+                    <div class="pull-right mr15 user-mt">
+                        <a ng-click="submit()" class="btn btn-green " href="javascript:;">
+                            <i class="fas fa-save"></i>&nbsp;{{'COM_BTN_SAVE' | translate}}
+                        </a>
+                    </div>
+                </div>-->
+            </div>
+        </form>
+    </div>
+    <style>
+        .nav-tabs {
+            margin-bottom: 0px;
+        }
+    </style>
+    <div class="row ">
+        <div class="col-md-12">
+            <uib-tabset active="active">
+                <uib-tab class="mt15" index="0" heading="{{'CUS_CURD_TINYMCE_CUS_NOTE' | translate}}" disable="ObjectCustomer.CustomerId == ''" ng-click="chkSubTab()">
+                    <textarea ng-model="model.Description" ui-tinymce="tinymceOptions"></textarea>
+                </uib-tab>
+                <uib-tab class="mt15" index="1" heading="{{'CUS_CURD_TAB_CONTACT' | translate}}" disable="ObjectCustomer.CustomerId == ''" ng-click="chkSubTab()">
+                    <div ng-include="'../views/admin/customer/contact.html'" ng-class="{'disabled-element' : ObjectCustomer.CustomerId =='' }"></div>
+                </uib-tab>
+                <uib-tab class="mt15" index="2" heading="{{'CUS_CURD_TAB_FILE' | translate}}" disable="ObjectCustomer.CustomerId == ''" ng-click="chkSubTab()">
+                    <div ng-include="'../views/admin/customer/file.html'" ng-class="{'disabled-element' : ObjectCustomer.CustomerId =='' }"></div>
+                </uib-tab>
+                <!--<uib-tab index="3" heading="{{'CUS_CURD_TAB_MORE' | translate}}">
+                    <div ng-include="'../views/admin/customer/more.html'"></div>
+                </uib-tab>-->
+                <uib-tab class="mt15" index="3" heading="{{'CUS_CURD_TAB_CONTRACT' | translate}}" disable="ObjectCustomer.CustomerId == ''" ng-click="chkSubTab()">
+                    <div ng-include="'../views/admin/customer/contract.html'" ng-class="{'disabled-element' : ObjectCustomer.CustomerId =='' }"></div>
+                </uib-tab>
+                <uib-tab class="mt15" index="4" heading="{{'CUS_CURD_TAB_CARD_JOB' | translate}}" disable="ObjectCustomer.CustomerId == ''" ng-click="chkSubTab()">
+                    <div ng-include="'../views/admin/customer/work.html'" ng-class="{'disabled-element' : ObjectCustomer.CustomerId =='' }"></div>
+                </uib-tab>
+                <uib-tab class="mt15" index="5" heading="{{'CUS_CURD_TAB_REMINDER' | translate}}" disable="ObjectCustomer.CustomerId == ''" ng-click="chkSubTab()">
+                    <div ng-include="'../views/admin/customer/reminder.html'" ng-class="{'disabled-element' : ObjectCustomer.CustomerId =='' }"></div>
+                </uib-tab>
+                <div class="text-center pull-right" ng-click="submit()" href="javascript:;">
+                    <div class="btn btn-icon-only btn-circle btn-outline green-custom">
+                        <span><i class="fa fa-save"></i></span>
+                    </div>
+                    <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                </div>
+            </uib-tabset>
+        </div>
+    </div>
+</div>

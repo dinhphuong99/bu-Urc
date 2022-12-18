@@ -1,0 +1,108 @@
+﻿<style>
+    #parking .table-toolbar {
+        width: 100px;
+    }
+
+    .tab-content {
+        margin-top: 0px !important;
+    }
+
+    .btnRadio {
+        float: left;
+        width: 50%;
+        font-weight: bold;
+        color: black;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .btnSavePoint {
+        float: right;
+        width: 50%;
+        text-align: center;
+    }
+</style> 
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-map-marker icon-insert"></i>
+    <span class="modal-title" id="modal-title"> {{'GBP_MSG_LBL_MAP' | translate}}</span>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal" method="post" ng-validate="validationOptions">
+            <div class="form-body pt-0">
+                <div class="row">
+                    <div class="col-md-5 pl-0">
+                        <div class="col-md-10 p1">
+                            <input type="text" placeholder="{{'GBP_TXT_SEARCH' | translate}}..." id="autocomplete" class="form-control" autocapitalize="off" autocomplete="off">
+                        </div>
+                        <div class="col-md-2 p2">
+
+                            <div class="text-center">
+                                <button class="btn btn-icon-only btn-circle btn-outline purple-custom" id="TimKiem">
+                                    <span><i class="fa fa-search"></i></span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="rightPanel" id="pnSearch" style="z-index:999">
+                            <div class="col-md-12" style="padding:0">
+                                <ul class="nav nav-tabs pull-right">
+                                    <li class="mini-submenu pull-right">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <style>
+                                    #parking .table-toolbar {
+                                        width: 100px;
+                                    }
+                                </style>
+                                <!--Start_drag-->
+                                <div class="tab-pane active" id="parking">
+                                    <div class="table-toolbar">
+                                        <div id="divstyle">
+                                            <div class="form-bordered p-0">
+                                                <div class="form-group">
+                                                    <div class="col-md-12 pt10">
+                                                        <div class="col-md-12 p-0 pt15 text-center">
+                                                            <a><img src="../../../images/map/drawing.png" class="mw35 h-35" id="draw" /></a>
+                                                            <p class="text-underline fs9 mb5 pt3">{{'GBP_CURD_TAB_PARKING_LBL_START_PAINT' | translate}}</p>
+                                                        </div>
+                                                        <div class="col-md-12 p-0 pt15 text-center">
+                                                            <a><img src="../../../images/map/drawing.png" class="mw35 h-35" id="drawPoint" /></a>
+                                                            <p class="text-underline fs9 mb5 pt3"><!--Vẽ đa giác--> {{'GBP_MSG_LBL_PAINTING' | translate}}</p>
+                                                        </div>
+                                                        <div class="col-md-12 p-0 pt15 text-center">
+                                                            <a><img src="../../../images/map/Eraser.png" id="refresh" class="mw35 h-35" /></a>
+                                                            <p class="text-underline fs9 mb5 pt3">{{'GBP_CURD_TAB_PARKING_LBL_DELETE_PAINT' | translate}}</p>
+                                                        </div>
+                                                        <div class="text-center col-md-12 pt15 p-0">
+                                                            <button class="btn btn-icon-only btn-circle btn-outline green-custom" id="save">
+                                                                <span><i class="fa fa-save"></i></span>
+                                                            </button>
+                                                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End_drag-->
+                            </div>
+                        </div>
+                    </div>
+                    <div id="map" class="col-md-12 pl-0 pr-0"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

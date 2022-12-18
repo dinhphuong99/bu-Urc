@@ -1,0 +1,22 @@
+﻿<link href="../../css/message-box/style.css" rel="stylesheet" />
+<div class="message-header">
+    <!--<img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />-->
+    <div class="message-title" id="message-title"><i class="fa fa-save"></i>  {{'COM_LBL_SAVE_UPDATE' | translate}}</div>
+</div>
+<div class="message-body">
+    <div class="col-md-9">
+        <span class="fs14">{{message}}</span>
+    </div>
+</div>
+<div class="message-footer pt-0">
+    <div class="pr10">
+        <button class="btn green-custom mt-2 mb-1" ng-click="ok()">
+            <i class="fa fa-check"></i>
+            {{'COM_BTN_CONFIRM' | translate}}
+        </button>
+        <button class="btn btn-red ml-2 mt-2 mb-1" ng-click="cancel()">
+            <i class="fa fa-times"></i>
+            {{'COM_CONFIRM_CANCEL' | translate}}
+        </button>
+    </div>
+</div>

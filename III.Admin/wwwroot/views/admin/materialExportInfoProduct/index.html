@@ -1,0 +1,126 @@
+﻿<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home" style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_BREAD_CRUMB_STORE' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/MaterialExportInfoProduct">{{'MEXIP_LINK_MEXIP' | translate}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-8">
+                    <label class="fw600 text-underline">{{'MEXIP_LBL_ID'|translate}}</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.Id" theme="bootstrap" on-select="changleSelect('unit')" ng-change="getFloorInStore()">
+                            <ui-select-match placeholder="{{'MEXIP_TXT_ID'|translate}}...">{{$select.selected.ProductQrCode}}-{{$select.selected.RackName}}</ui-select-match>
+                            <ui-select-choices repeat="x.Id as x in products | filter:&nbsp;$select.search">
+                                {{x.ProductQrCode}}-{{x.RackName}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Id=''; reset()" class="btn btn-default no-shadow" style="">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                    <label class="text-danger fs11">* {{'MEXIP_LBL_NOTE_LE'|translate}}</label><br />
+                    <label class="text-danger fs11">* {{'MEXIP_LBL_NOTE_PO'|translate}}</label>
+                </div>
+                <div class="col-md-1">
+                    <div class="btn-group pull-left pt20 d-flex">
+                        <div class="text-center">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="search()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" ng-if="showInfo">
+        <div class="row text-center fs16">
+            <label class="bold text-primary">{{'MEXIP_LBL_INFO_PRODUCT'|translate}}</label>
+        </div>
+        <div class="row portlet light bordered">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="thumbnail input-unstyled text-center mb-0 p-0">
+                            <img ng-click="viewQrCode(productInfo.QrCode)" src="data:image/png;base64,{{productInfo.QrCode}}" class=" image-upload h-80" role="button">
+                            <label class="control-label bold">QrCode</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="thumbnail input-unstyled text-center mb-0">
+                            <img ng-click="viewBarCode(productInfo.BarCode)" src="data:image/png;base64, {{productInfo.BarCode}}" class=" image-upload h-50 w150" role="button">
+                            <label class="control-label bold">BarCode</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <i class="fa fa-barcode" aria-hidden="true"></i>
+                        <label class="control-label bold">{{'MEXIP_LBL_PRODUCT_QR_CODE'|translate}}:&nbsp;</label><label class="control-label text-success bold">{{productInfo.ProductQrCode}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        <label class="control-label bold">{{'MEXIP_LBL_PRODUCT_NAME'|translate}}:&nbsp;</label><label class="control-label text-success bold">{{productInfo.ProductName}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                        <label class="control-label bold">{{'MEXIP_LBL_PRODUCT_TYPE'|translate}}:&nbsp;</label><label class="control-label text-success bold">{{productInfo.ProductType}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                        <label class="control-label bold">{{'MEXIP_LBL_LOT_PRODUCT_CODE'|translate}}:&nbsp;</label><label class="control-label text-success bold">{{productInfo.LotProductCode}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                        <label class="control-label bold">{{'MEXIP_LBL_QUANTITY'|translate}}:&nbsp;</label> <label class="control-label text-success bold">{{productInfo.Quantity}}&nbsp;{{productInfo.Unit}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <i class="fa fa-barcode" aria-hidden="true"></i>
+                        <label class="control-label bold">{{'MEXIP_LBL_TICKET_IMP_CPDE'|translate}}:&nbsp;</label><label class="control-label text-success bold">{{productInfo.TicketImpCode}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <i class="fa fa-barcode" aria-hidden="true"></i>
+                        <label class="control-label bold">{{'MEXIP_LBL_TICKET_EXP_CODE'|translate}}:&nbsp;</label><label class="control-label text-success bold">{{productInfo.TicketExpCode}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <label class="control-label bold">{{'MEXIP_LBL_RACK_NAME'|translate}}:&nbsp;</label><label class="control-label text-success bold">{{productInfo.RackName}} - {{productInfo.LineName}} - {{productInfo.FloorName}} - {{productInfo.WHS_Name}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,707 @@
+﻿<style>
+    .width_90 {
+        width: 90px;
+    }
+    .tab-content {
+        width: 100%;
+        min-height: 235px;
+        /*overflow-y: scroll;
+        overflow-x: hidden;*/
+    }
+    .dataTables_wrapper .table-scrollable {
+        border: 1px solid #e7ecf1 !important;
+    }
+
+    .sizelable {
+        font-size: 15px;
+        margin-top: 10px;
+        color: red;
+        font-weight: bold;
+    }
+
+    .boxGreen {
+        width: 20px;
+        height: 20px;
+        background: #2ecc71;
+        margin-right: 5px;
+    }
+
+    .boxRed {
+        width: 20px;
+        height: 20px;
+        background: #e74c3c;
+        margin-right: 5px;
+    }
+
+    .boxYellow {
+        width: 20px;
+        height: 20px;
+        background: #f1c40f;
+    }
+
+    .h-60 {
+        height: 60px;
+    }
+
+    .pl0 {
+        padding-left: 0px;
+    }
+
+    .pt5 {
+        padding-top: 5px;
+    }
+
+    .pr15 {
+        padding-right: 15px;
+    }
+
+    .mt15 {
+        margin-top: 15px;
+    }
+
+    .mt23 {
+        margin-top: 23px;
+    }
+
+    .w-100-percent {
+        width: 100%;
+    }
+
+    .w-30-percent {
+        width: 30%;
+    }
+
+    .bgWhite {
+        background: #fff;
+    }
+
+    .labelbodergroup {
+        margin-left: 24px;
+        margin-top: -12px;
+        position: absolute;
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border: 1px solid #e9dada;
+        border-radius: 4px;
+        font-size: 11px;
+        padding: 3px 10px !important;
+    }
+
+    .table_body {
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border-radius: 4px !important;
+        border: 1px solid #e9dada;
+        padding-top: 15px;
+        box-shadow: 0px 5px 10px 2px rgba(127, 143, 166,0.2) !important;
+        padding-bottom: 15px;
+    }
+</style>
+<div class="modal-header">
+    <img class="close icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert  "></i>
+    <span class="modal-title custom-title " id="modal-title"> {{'ASMTNC_TITLE_UPDATE_TIKET_MAINTE' | translate}}</span>
+</div>
+<div class="modal-body userFormAreaHeader" id="modal-body" style="padding-bottom: 0px;">
+    <div class="portlet-body form">
+        <form name="editform" class="form-horizontal " method="post" ng-validate="validationOptions">
+            <div class="form-body pt10 pl-0 pr-0">
+                <div class="row ">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-barcode" aria-hidden="true"></i>
+                                <label class="control-label bold ">&nbsp;{{'ASMTNC_CURD_LBL_TICKET_CODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input type="text" name="Ticketcode" class="form-control text-box-asset" ng-model="model.TicketCode" placeholder="{{'ASMTNC_CURD_TXT_TICKET_CODE' | translate}}" ng-readonly="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-comment"></i>
+                                <label class="control-label require bold">&nbsp;{{'ASMTNC_CURD_LBL_TICKET_NAME' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input type="text" class="form-control text-box-asset" ng-model="model.Title" name="Title" placeholder="{{'ASMTNC_CURD_TXT_TICKET_NAME' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorBranch}">
+                            <div class="col-md-4">
+                                <i class="fa fa-building"></i>
+                                <label class="control-label require">&nbsp;{{'ASMTNC_CURD_LBL_BRANCH' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class="input-group">
+                                    <ui-select class="ui-select-bootstrap-right-radius" tagging ng-model="model.Branch" theme="bootstrap" on-select="changleSelect('Branch')">
+                                        <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_BRANCH' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in listOrganization | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorBranch" class="label-color validation-message">
+                                    {{'ASMTNC_MSG_ERR_BRANCH_NULL' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorDepartTransfer}">
+                            <div class="col-md-4">
+                                <i class="fa fa-th-list"></i>
+                                <label class="control-label require">&nbsp;{{'ASMTNC_CURD_LBL_UNIT_TRANSFER' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class="input-group">
+                                    <ui-select class="ui-select-bootstrap-right-radius" tagging ng-model="model.DepartTransfer" theme="bootstrap" on-select="changleSelect('DepartTransfer')">
+                                        <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_UNIT_TRANSFER' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in listDepartTransfer | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorDepartTransfer" class="label-color validation-message">
+                                    {{'ASMTNC_MSG_ERR_UNIT_MAIN_NULL' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <label class="control-label require">&nbsp;{{'ASMTNC_CURD_LBL_FROM_DATE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input type='text' id='StartTime' class="form-control" name="StartTime" ng-model="model.StartTime" placeholder="{{'ASMTNC_CURD_TXT_FROM_DATE' | translate}}..." autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorUserTransfer}">
+                            <div class="col-md-4">
+                                <i class="fa fa-user"></i>
+                                <label class="control-label require">&nbsp;{{'ASMTNC_CURD_LBL_USER_IMPROVEMENT' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class="input-group">
+                                    <ui-select class="ui-select-bootstrap-right-radius" tagging ng-model="model.UserTransfer" theme="bootstrap" on-select="changleSelect('UserTransfer')">
+                                        <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_USER_IMPROVEMENT' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listUserTransfer | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorUserTransfer" class="label-color validation-message">
+                                    {{'ASMTNC_MSG_ERR_USER_IMPROVEMENT_NULL' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <label class="control-label require">&nbsp;{{'ASMTNC_CURD_LBL_LOCATION_TRANSFER' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input class="form-control" name="LocationTransfer" ng-model="model.LocationTransfer" type="text" placeholder="{{'ASMTNC_CURD_TXT_LOCATION_TRANSFER' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <label class="control-label require">&nbsp;{{'ASMTNC_CURD_LBL_LOCATION_RECEIVED' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input class="form-control" name="LocationReceived" ng-model="model.LocationReceived" type="text" placeholder="{{'ASMTNC_CURD_TXT_LOCATION_RECEIVED' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: -5px !important;">
+                            <div class="col-md-4">
+                                <i class="fa fa-money"></i>
+                                <label class="control-label">{{'Tổng tiền' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class="col-md-9 p-0">
+                                    <input class="form-control text-danger" style="font-weight:bold;" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" type="text" name="TotalMoney" ng-model="model.TotalMoney" placeholder="{{'Tổng tiền' | translate}}..." num-thousand='true' awnum num-int='21' />
+                                </div>
+                                <div class="col-md-3 pull-right">
+                                    <div class="form-group" ng-class="{ 'has-error': errorCurrency}">
+                                        <div class="input-group">
+                                            <ui-select class="ui-select-bootstrap-right-radius" tagging ng-model="model.Currency" theme="bootstrap" on-select="changleSelect('Currency')">
+                                                <ui-select-match placeholder="{{'Tiền tệ' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                                <ui-select-choices repeat="x.Code as x in ListCurrency | filter: $select.search">
+                                                    {{x.Name}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <span ng-show="errorCurrency" class="label-color validation-message">
+                                            {{'Tiền tệ không được bỏ trống!' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="col-lg-12">
+                            <div class="row mt-1 table-toolbar table_body p10" style="background: #ddefff; margin-top: 0px !important;">
+                                <div class="form-group" ng-class="{ 'has-error': errorObjActCode}">
+                                    <div class="col-md-4">
+                                        <i class="fa fa-comment"></i>
+                                        <label class="control-label require">&nbsp;{{'COM_CURD_LBL_CAT_ACT' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-8 pl-0">
+                                        <div class="input-group">
+                                            <ui-select class="ui-select-bootstrap-right-radius" tagging ng-model="model.ObjActCode" theme="bootstrap" on-select="changleSelect('ObjActCode')">
+                                                <ui-select-match placeholder="{{'COM_CURD_LBL_CAT_ACT' | translate}}...">{{$select.selected.CatName}}</ui-select-match>
+                                                <ui-select-choices repeat=" x.Code as x in model.listObjActCode | filter: $select.search">
+                                                    {{x.CatName}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <span ng-show="errorObjActCode" class="label-color validation-message">
+                                            {{'ASMTNC_MSG_ERR_CATEGORY_ACTIVITY_NULL' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-class="{ 'has-error': errorActCode}">
+                                    <div class="col-md-4">
+                                        <i class="fa fa-flag"></i>
+                                        <label class="control-label require"> {{'COM_ACTIVITY' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-8 pl-0">
+                                        <div class="input-group">
+                                            <ui-select tagging ng-model="model.ActCode" theme="bootstrap" on-select="changleSelect('ActCode')" ng-click="checkRole()" ng-disabled="isDisabled">
+                                                <ui-select-match placeholder="{{'COM_ACTIVITY' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                                <ui-select-choices repeat=" x.Code as x in listCatActivity | filter: $select.search">
+                                                    {{x.Name}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <span ng-show="errorActCode" class="label-color validation-message">
+                                            {{'ASMTNC_MSG_ERR_ACTIVITY_NULL' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pr-0">
+                                    <div class="btn-group actions d-flex pull-right">
+                                        <div class="btn-group pull-right actions d-flex">
+                                            <div class="text-center pr10">
+                                                <p class="text-underline fs9 mb5 pt3" style="font-size: 12px !important;color: #1219ea;" ng-click="statusObjAct()"> {{'ASMTNC_BTN_FORLOW_STATUS' | translate}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group pull-right actions d-flex">
+                                            <div class="text-center pr10">
+                                                <p class="text-underline fs9 mb5 pt3" style="font-size: 12px !important;color: #1219ea;" ng-click="resultActivity()"> {{'COM_CURD_BTN_ADD_DATA' | translate}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group pull-right actions d-flex">
+                                            <div class="text-center">
+                                                <p class="text-underline fs9 mb5 pt3" style="font-size: 12px !important;color: #1219ea;" ng-click="tableActivity()"> {{'COM_CURD_BTN_HISTORY' | translate}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorStatus}">
+                            <div class="col-md-4 ">
+                                <i class="fa fa-flag"></i>
+                                <label class="control-label">&nbsp;{{'ASMTNC_CURD_LBL_STATUS' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class="input-group">
+                                    <ui-select class="ui-select-bootstrap-right-radius" tagging ng-model="model.Status" theme="bootstrap" on-select="changleSelect('Status')" disabled="true">
+                                        <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_STATUS' | translate}}..."><i class="{{$select.selected.Icon}}"></i>{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listStatus | filter: $select.search">
+                                            <i class="{{x.Icon}}"></i>{{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorUnitMaintenance}">
+                            <div class="col-md-4">
+                                <i class="fa fa-th-list"></i>
+                                <label class="control-label require">&nbsp;{{'ASMTNC_CURD_LBL_UNIT_MAINTENANCE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class="input-group">
+                                    <ui-select class="ui-select-bootstrap-right-radius" tagging ng-model="model.UnitMaintenance" theme="bootstrap" on-select="changleSelect('UnitMaintenance')">
+                                        <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_UNIT_MAINTENANCE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in listUnitMaintenance | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorUnitMaintenance" class="label-color validation-message">
+                                    {{'ASMTNC_MSG_ERR_INT_IMPROVEMENT_NULL' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <label class="control-label require">&nbsp;{{'ASMTNC_CURD_LBL_TO_DATE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input type='text' id='ReceivedTime' class="form-control" name="ReceivedTime" ng-model="model.ReceivedTime" placeholder="{{'ASMTNC_CURD_TXT_TO_DATE' | translate}}..." autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-comment"></i>
+                                <label class="control-label">&nbsp;{{'ASMTNC_CURD_LBL_NOTE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <textarea name="Note" rows="5" class="form-control" ng-model="model.Note" type="text" placeholder=" {{'ASMTNC_CURD_TXT_NOTE' | translate}}..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="row ">
+                    <div class="col-lg-9 col-md-8">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-barcode" aria-hidden="true"></i>
+                                        <label class="control-label require custom-title-code-bold">{{'ASMTNC_CURD_LBL_TICKET_CODE' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text" name="Ticketcode" class="form-control text-box-asset" data-ng-model="model.TicketCode" placeholder="{{'ASMTNC_CURD_TXT_TICKET_CODE' | translate}}..." ng-readonly="true" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-comment"></i>
+                                        <label class="control-label require custom-title-code-bold">{{'ASMTNC_CURD_LBL_TICKET_NAME' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input class="form-control text-box-asset" name="Title" ng-model="model.Title" type="text" placeholder="{{'ASMTNC_CURD_TXT_TICKET_NAME' | translate}}..." ng-disabled="isDisabled" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-class="{ 'has-error': errorBranch}">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-building"></i>
+                                        <label class="control-label require">{{'ASMTNC_CURD_LBL_BRANCH' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <ui-select tagging ng-model="model.Branch" theme="bootstrap" on-select="changleSelect('Branch')" ng-disabled="isDisabled">
+                                                <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_BRANCH' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                                <ui-select-choices repeat=" x.Code as x in listOrganization | filter: $select.search">
+                                                    {{x.Name}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <span ng-show="errorBranch" class="label-color validation-message">
+                                            {{'ASMTNC_MSG_ERR_BRANCH_NULL' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{ 'has-error': errorDepartTransfer}">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-th-list"></i>
+                                        <label class="control-label require">{{'ASMTNC_CURD_LBL_UNIT_TRANSFER' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <ui-select tagging ng-model="model.DepartTransfer" theme="bootstrap" on-select="changleSelect('DepartTransfer')" ng-disabled="isDisabled">
+                                                <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_UNIT_TRANSFER' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                                <ui-select-choices repeat=" x.Code as x in listDepartTransfer | filter: $select.search">
+                                                    {{x.Name}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <span ng-show="errorDepartTransfer" class="label-color validation-message">
+                                            {{'ASMTNC_MSG_ERR_UNIT_MAIN_NULL' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        <label class="control-label require">{{'ASMTNC_CURD_LBL_FROM_DATE' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class='input-group date'>
+                                            <input type='text' id='StartTime' class="form-control input-date" name="StartTime" ng-model="model.StartTime" placeholder="{{'ASMTNC_CURD_TXT_FROM_DATE' | translate}}..." autocomplete="off" ng-disabled="isDisabled" />
+                                            <span class="input-group-btn">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        <label class="control-label require">{{'ASMTNC_CURD_LBL_LOCATION_TRANSFER' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input class="form-control" name="LocationTransfer" ng-model="model.LocationTransfer" type="text" placeholder="{{'ASMTNC_CURD_TXT_LOCATION_TRANSFER' | translate}}..." ng-disabled="isDisabled" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{ 'has-error': errorUserTransfer}">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-user"></i>
+                                        <label class="control-label require">{{'ASMTNC_CURD_LBL_USER_IMPROVEMENT' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <ui-select tagging ng-model="model.UserTransfer" theme="bootstrap" on-select="changleSelect('UserTransfer')" ng-disabled="isDisabled">
+                                                <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_USER_IMPROVEMENT' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                                <ui-select-choices repeat="x.Code as x in listUserTransfer | filter: $select.search">
+                                                    {{x.Name}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <span ng-show="errorUserTransfer" class="label-color validation-message">
+                                            {{'ASMTNC_MSG_ERR_USER_IMPROVEMENT_NULL' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{ 'has-error': errorUnitMaintenance}">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-th-list"></i>
+                                        <label class="control-label require">{{'ASMTNC_CURD_LBL_UNIT_MAINTENANCE' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <ui-select tagging ng-model="model.UnitMaintenance" theme="bootstrap" on-select="changleSelect('UnitMaintenance')" ng-disabled="isDisabled">
+                                                <ui-select-match placeholder="{{'ASMTNC_CURD_LBL_UNIT_MAINTENANCE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                                <ui-select-choices repeat=" x.Code as x in listUnitMaintenance | filter: $select.search">
+                                                    {{x.Name}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <span ng-show="errorUnitMaintenance" class="label-color validation-message">
+                                            {{'ASMTNC_MSG_ERR_INT_IMPROVEMENT_NULL' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        <label class="control-label require">{{'ASMTNC_CURD_LBL_TO_DATE' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class='input-group date'>
+                                            <input type='text' id='ReceivedTime' class="form-control input-date" name="ReceivedTime" ng-model="model.ReceivedTime" placeholder="{{'ASMTNC_CURD_TXT_TO_DATE' | translate}}..." autocomplete="off" ng-disabled="isDisabled" />
+                                            <span class="input-group-btn">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        <label class="control-label require">{{'ASMTNC_CURD_LBL_LOCATION_RECEIVED' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input class="form-control" name="LocationReceived" ng-model="model.LocationReceived" type="text" placeholder="{{'ASMTNC_CURD_TXT_LOCATION_RECEIVED' | translate}}..." ng-disabled="isDisabled" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" ng-class="{ 'has-error': errorStatus}">
+                                    <div class="col-md-12 ">
+                                        <i class="fa fa-flag"></i>
+                                        <label class="control-label">&nbsp;{{'ASMTNC_CURD_LBL_STATUS' | translate}}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <ui-select tagging ng-model="model.Status" theme="bootstrap" on-select="changleSelect('Status')" disabled="true">
+                                                <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_STATUS' | translate}}..."><i class="{{$select.selected.Icon}}"></i>{{$select.selected.Name}}</ui-select-match>
+                                                <ui-select-choices repeat="x.Code as x in listStatus | filter: $select.search">
+                                                    <i class="{{x.Icon}}"></i>{{x.Name}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <i class="fa fa-comment" aria-hidden="true"></i>
+                                        <label class="control-label">{{'ASMTNC_CURD_LBL_NOTE' | translate}}</label>
+                                        <textarea name="Note" rows="5" class="form-control" ng-model="model.Note" type="text" placeholder="{{'ASMTNC_CURD_TXT_NOTE' | translate}}..." ng-disabled="isDisabled"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 pt-3">
+                                <div class="row pt-3">
+                                    <div class="col-md-12 pr10">
+                                        <div class="btn-group actions d-flex pull-right">
+                                            <div class="text-center pr10">
+                                                <button data-dismiss="modal" ng-click="deleteList()" class="btn btn-icon-only btn-circle btn-outline red-custom" ng-disabled="isDisabled">
+                                                    <span><i class="glyphicon glyphicon-remove"></i></span>
+                                                </button>
+                                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_DELETE' | translate}}</p>
+                                            </div>
+                                            <div class="text-center pr10">
+                                                <button class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="addFile()" ng-disabled="isDisabled">
+                                                    <span><i class="fa fa-upload"></i></span>
+                                                </button>
+                                                <p class="text-underline fs9 mb5 pt3">{{'ASMTNC_BTN_UPLOAD_FILE' | translate}}</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <a ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                                    <span><i class="fa fa-save"></i></span>
+                                                </a>
+                                                <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_SAVE' | translate}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="content" class="sizelable">
+                                    {{'ASMTNC_CURD_LBL_SUM_MONEY' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 pr-3">
+                        <div class="row">
+                            <div class="col-md-12 pr-0 pl-0" style="margin-top: 2%">
+                                <label class="">{{'ASMTNC_CURD_LBL_LIST_UPLOAD_FILE' | translate}}</label>
+                                <div class="col-md-12 boder-box h-100-srcoll">
+                                    <table class="table table-bordered" id="tblFileRequest">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-5 text-center fw600 text-underline">{{'ASMTNC_CURD_LBL_FILE_NAME' | translate}}</th>
+                                                <th class="col-md-1 text-center fw600 text-underline">{{'ASMTNC_CURD_LBL_DELETED' | translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in model.listFile">
+                                                <td class="text-center"><a>{{x.Name}}</a></td>
+                                                <td class="text-center">
+                                                    <i role="button" class="fa fa-minus-circle" title="{{'COM_BTN_DELETE' | translate}}" ng-click="deleteFile(x.Id)" style="color:red !important;font-size: 25px;padding-top:5px"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-1 table-toolbar table_body">
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{ 'has-error': errorObjActCode}">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <ui-select tagging ng-model="model.ObjActCode" theme="bootstrap" on-select="changleSelect('ObjActCode')">
+                                                <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_CATEGORY_ACTIVITY' | translate}}...">{{$select.selected.CatName}}</ui-select-match>
+                                                <ui-select-choices repeat=" x.Code as x in model.listObjActCode | filter: $select.search">
+                                                    {{x.CatName}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <span ng-show="errorObjActCode" class="label-color validation-message">
+                                            {{'ASMTNC_MSG_ERR_CATEGORY_ACTIVITY_NULL' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group" ng-class="{ 'has-error': errorActCode}">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <ui-select tagging ng-model="model.ActCode" theme="bootstrap" on-select="changleSelect('ActCode')" ng-click="checkRole()" ng-disabled="isDisabled">
+                                                <ui-select-match placeholder="{{'ASMTNC_CURD_TXT_ACTIVITY' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                                <ui-select-choices repeat=" x.Code as x in listCatActivity | filter: $select.search">
+                                                    {{x.Name}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <span ng-show="errorActCode" class="label-color validation-message">
+                                            {{'ASMTNC_MSG_ERR_ACTIVITY_NULL' | translate}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="btn-group actions pull-right d-flex pt-1">
+                                    <div class="text-center pr10">
+                                        <a ng-click="resultActivity()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                            <span><i class="fas fa-window-maximize"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3"> {{'ASMTNC_BTN_RESULT' | translate}}</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <a ng-click="tableActivity()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                            <span><i class="fas fa-book"></i></span>
+                                        </a>
+                                        <p class="text-underline fs9 mb5 pt3"> {{'ASMTNC_BTN_ACTIVITY' | translate}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>-->
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-lg-12" style="margin-top:-5px;">
+                <uib-tabset active="active">
+                    <uib-tab class="mt5" index="0" heading="{{'ASMTNC_CURD_LBL_ASSET' | translate}}">
+                        <div disable="tests" ng-include="'../views/admin/assetMaintenance/addAsset.html'"></div>
+                    </uib-tab>
+                    <uib-tab class="mt5" index="1" heading="{{'ASMTNC_TAB_CATEGORY_IMPROVEMENT_IN_ADD' | translate}}">
+                        <div disable="tests" ng-include="'../views/admin/assetMaintenance/assetcategory.html'"></div>
+                    </uib-tab>
+                    <uib-tab class="mt5" index="2" heading="{{'COM_FILE' | translate}}">
+                        <div disable="tests" ng-include="'../views/admin/assetMaintenance/file.html'"></div>
+                    </uib-tab>
+                    <div class="btn-group actions d-flex pull-right">
+                        <div class="text-center pr10">
+                            <a data-dismiss="modal" ng-click="deleteList()" class="btn btn-icon-only btn-circle btn-outline red-custom" style="border-radius: 30px !important;background: #e7505a;">
+                                <span><i class="glyphicon glyphicon-remove"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_DELETE' | translate}}</p>
+                        </div>
+                        <div class="btn-group pull-right actions d-flex">
+                            <div class="text-center pr-0">
+                                <a ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom" style="border-radius: 30px !important;background: #009432;">
+                                    <span><i class="fa fa-save"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_SAVE' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tabset>
+            </div>
+        </div>
+        <!--<div class="tabbable">
+            <uib-tabset active="active">
+                <uib-tab index="0" heading="{{'ASMTNC_CURD_TABLE_ASSET_IMPROVEMENT' | translate}}">
+                    <div ng-include="'../views/admin/assetMaintenance/addAsset.html'"></div>
+                </uib-tab>
+                <uib-tab index="1" heading="{{'ASMTNC_TAB_CATEGORY_IMPROVEMENT_IN_ADD' | translate}}">
+                    <div ng-include="'../views/admin/assetMaintenance/assetcategory.html'"></div>
+                </uib-tab>
+            </uib-tabset>
+        </div>-->
+    </div>
+</div>

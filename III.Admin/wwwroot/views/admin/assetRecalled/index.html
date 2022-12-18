@@ -1,0 +1,174 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12 ">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_BREAD_CRUMB_ASSET_OPERATE' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/AssetRecalled">{{'ASSET_RC_ADD' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group actions pt5 pb-1 pull-right d-flex mr5">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-12">
+                    <div class="col-md-2">
+                        <label class="fw600 text-underline">{{'ASSET_RC_LBL_VOUCHER_CODE' | translate}}</label>
+                        <div class='input-group '>
+                            <input ng-model="modelsearch.TicketCode" class="form-control" type="text" placeholder="{{'ASSET_RC_LBL_VOUCHER_CODE' | translate}}..." ng-keydown="($event.keyCode == 13) && reloadTabTicket()" />
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelsearch.TicketCode='';" class="btn btn-default no-shadow end-date">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 pl-0 pr-0">
+                        <label class="fw600 text-underline">{{'Từ khóa' | translate}}</label>
+                        <div class='input-group '>
+                            <input ng-model="modelsearch.Title" class="form-control" type="text" placeholder="{{'Từ khóa' | translate}}.." ng-keydown="($event.keyCode == 13) && reloadTabTicket()" />
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelsearch.Title='';" class="btn btn-default no-shadow end-date">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 pr-0">
+                        <div class="col-md-6 pl-0">
+                            <label class="fw600 text-underline">{{'ASSET_RC_FROMDATE' | translate}}</label>
+                            <div class='input-group '>
+                                <input ng-model="modelsearch.FromDate" class="form-control" id="fromDate" type="text" placeholder="{{'ASSET_RC_FROMDATE' | translate}}..." ng-keydown="($event.keyCode == 13) && reloadTabTicket()" />
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="modelsearch.FromDate='';" class="btn btn-default no-shadow end-date">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pl-0">
+                            <label class="fw600 text-underline">{{'ASSET_RC_TODATE' | translate}}</label>
+                            <div class='input-group '>
+                                <input ng-model="modelsearch.ToDate" id="toDate" class="form-control" type="text" placeholder="{{'ASSET_RC_TODATE' | translate}}..." ng-keydown="($event.keyCode == 13) && reloadTabTicket()" />
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="modelsearch.ToDate='';" class="btn btn-default no-shadow end-date">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 pl-0 pr-0" style="width: 14%;">
+                        <label class="fw600 text-underline">{{'ASSET_RC_TXT_BRANCH' | translate}}</label>
+                        <div class='input-group '>
+                            <ui-select tagging ng-model="modelsearch.BranchRecalled">
+                                <ui-select-match placeholder="{{'ASSET_RC_TXT_BRANCH' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="x.Code as x in listBranch | filter: $select.search">
+                                    {{x.Name}}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelsearch.BranchRecalled='';" class="btn btn-default no-shadow">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="fw600 text-underline">{{'ASSET_RC_LBL_PERSON_TH' | translate}}</label>
+                        <div class='input-group '>
+                            <ui-select tagging ng-model="modelsearch.UserRecalled">
+                                <ui-select-match placeholder="{{'ASSET_RC_LBL_PERSON_TH' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="x.Code as x in listEmp | filter: $select.search">
+                                    {{x.Name}}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="modelsearch.UserRecalled='';" class="btn btn-default no-shadow">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-1 pr-0 pl-0 pt10">
+                        <div class="btn-group actions d-flex mr5">
+                            <div class="text-center pr10 pl10">
+                                <a data-dismiss="modal" ng-click="searchTicket()" class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                    <span><i class="fa fa-search"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm" style="margin-right: 20px !important;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="portlet light bordered input-search mb5 ">
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-md-3">
+                    
+                </div>
+                <div class="col-md-3">
+                    
+                </div>
+                <div class="col-md-3">
+                    <div class="btn-group actions d-flex mr25 pt-2">
+                        <div class="pr10">
+                            <a data-dismiss="modal" ng-click="searchTicket()" class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                        <div class="text-center pr10">
+                            <a ng-click="add()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                <span><i class="fa fa-plus"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                        </div>
+                        <div class="text-center">
+                            <a ng-click="export()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                <span><i class="fa fa-file-excel-o"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_EXCEL' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</div>
+<div class="tabbable pt10">
+    <uib-tabset active="active">
+        <uib-tab index="0" heading="{{'ASSET_RC_ADD' | translate}}">
+            <div disable="tests" ng-include="'../views/admin/assetRecalled/tabTicket.html'"></div>
+        </uib-tab>
+        <uib-tab index="1" heading="{{'ASSET_RC_ASSET_RECALL' | translate}}">
+            <div disable="tests" ng-include="'../views/admin/assetRecalled/tabAsset.html'"></div>
+        </uib-tab>
+    </uib-tabset>
+</div>
+
+

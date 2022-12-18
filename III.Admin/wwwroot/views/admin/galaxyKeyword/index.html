@@ -1,0 +1,101 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12">
+            <!--<h1 class="bold mb-0">{{'GKW_TITLE_MANAGEMENT_KEYWORK' | translate}}</h1>-->
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_MENU_SETTING_SYSTEM' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/GalaxyKeyword">{{'GKW_LINK_MANAGEMENT_KEYWORK' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group actions pt5 pb-1 pull-right d-flex mr5">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="" ng-if="PERMISSION_GALAXY_KEYWORD.Insert">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'GKW_CURD_LBL_START_DAY' | translate}}</label>
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="{{'GKW_CURD_TXT_START_DAY' | translate}}..." ng-model="model.DateFrom" id="DateFrom">
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.DateFrom='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'GKW_CURD_LBL_END_DAY' | translate}}</label>
+                    <div class='input-group '>
+                        <input type='text' autocomplete="off" class="form-control " ng-model="model.DateTo" placeholder="{{'GKW_CURD_TXT_END_DAY' | translate}}..." id='DateTo' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.DateTo='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'GKW_CURD_LBL_KEYWORK' | translate}}</label>
+                    <div class='input-group '>
+                        <input type='text' autocomplete="off" class="form-control " ng-model="model.Keyword" placeholder="{{'GKW_CURD_TXT_KEYWORK' | translate}}..." ng-keydown="($event.keyCode == 13) && search()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Keyword='';" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'GKW_CURD_LBL_CREATOR' | translate}}</label>
+                    <div class='input-group '>
+                        <input type='text' autocomplete="off" class="form-control " ng-model="model.CreatedBy" placeholder="{{'GKW_CURD_TXT_CREATOR' | translate}}..." ng-keydown="($event.keyCode == 13) && search()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.CreatedBy='';" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="btn-group pt20 actions d-flex">
+                        <div class="text-center pr10">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="search()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+                <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12"> <label class="text-danger">{{'COM_MSG_LIST_GUIDE' | translate}}</label></div>
+</div>
+<table class="table dataTable table-hover table-striped" 
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblData"></table>

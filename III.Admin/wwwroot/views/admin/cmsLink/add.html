@@ -1,0 +1,108 @@
+﻿<style>
+    .dataTables_wrapper .table-scrollable {
+        border: 1px solid #e7ecf1 !important;
+    }
+
+    @media (min-width:992px) and (max-width:1200px) {
+        .modal-80 {
+            width: 80%;
+        }
+    }
+
+    @media (min-width:1201px) and (max-width:1400px) {
+        .modal-80 {
+            width: 70%;
+        }
+    }
+
+    @media (min-width:1400px) {
+        .modal-80 {
+            width: 60%;
+        }
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title">{{'CMS_LINK_CURD_ADD_TITLE' | translate}}</span>
+</div>
+<div class="modal-body pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptions">
+            <div class="form-body pt-0">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <i class="fa fa-barcode"></i>
+                            <label class="control-label require">{{'CMS_LINK_CURD_ADD_LBL_NAME' | translate}}</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input class="form-control" name="title" ng-model="model.Title" type="text" placeholder="{{'CMS_LINK_CURD_ADD_TXT_NAME' | translate}}..." />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <i class="fa fa-barcode"></i>
+                            <label class="control-label">{{'CMS_LINK_CURD_ADD_LBL_LINK' | translate}}</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input class="form-control" name="linkref" ng-model="model.LinkRef" type="text" placeholder="{{'CMS_LINK_CURD_ADD_TXT_LINK' | translate}}..." />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <i class="fa fa-barcode"></i>
+                            <label class="control-label">{{'CMS_LINK_CURD_ADD_LBL_ORDERING' | translate}}</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input class="form-control remove-zero" name="ordering" ng-model="model.ordering" type="text" placeholder="{{'CMS_LINK_CURD_ADD_TXT_ORDERING' |translate}}..." num-thousand='true' awnum num-int='21'/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 pr-0">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            <label class="control-label ">{{'CMS_LINK_CURD_ADD_LBL_SHOW' | translate}}</label>
+                        </div>
+                        <div class="col-md-8 d-flex pr-0">
+
+                            <div class="mt-checkbox-list pt5">
+                                <label class="mt-checkbox mt-checkbox-outline mb10">
+                                    <input type="checkbox" name="IsEnabled" ng-model="model.publish" ng-click="checkedImportLot(IsEnabledImportLot)" ng-checked="IsEnabledImportLot" class="ng-valid ng-dirty ng-valid-parse ng-touched ng-empty">
+                                    <span></span>
+                                </label>
+                            </div>
+                            <!--<label class="control-label text-left ng-binding">No</label>
+            <div class="mt-checkbox-list pt5 pl10">
+                <label class="mt-checkbox mt-checkbox-outline mb10">
+                    <input type="checkbox" name="IsEnabled" ng-model="IsEnabledImportLot" ng-click="checkedImportLot(IsEnabledImportLot)" ng-checked="IsEnabledImportLot" class="ng-valid ng-dirty ng-valid-parse ng-touched ng-empty">
+                    <span></span>
+                </label>
+            </div>-->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="pull-right">
+        <div class="btn-group actions d-flex">
+            <div class="pr10">
+                <a data-dismiss="modal" ng-click="cancel()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                    <span><i class="glyphicon glyphicon-remove"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+            </div>
+            <div class="text-center pl20" ng-click="submit()">
+                <a class="btn btn-icon-only btn-circle btn-outline green-custom">
+                    <span><i class="fa fa-plus"></i></span>
+                </a>
+                <p class="text-underline mb-0 fs9  pt3">{{'COM_BTN_ADD' | translate}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+
+</div>

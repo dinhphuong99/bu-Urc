@@ -1,0 +1,64 @@
+﻿@using ESEIM.Utils
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Quản lý cấu hình tham số";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+    var session = HttpContextAccessor.HttpContext.GetSessionUser();
+    bool hasPermissionMaterialProductsInsert = session.HasPermission(CommonUtil.Controller_MaterialProduct, CommonUtil.Action_Insert);
+    bool hasPermissionMaterialProductsUpdate = session.HasPermission(CommonUtil.Controller_MaterialProduct, CommonUtil.Action_Update);
+    bool hasPermissionMaterialProductDelete = session.HasPermission(CommonUtil.Controller_MaterialProduct, CommonUtil.Action_Delete);
+    bool hasPermissionMaterialProductsGroupInsert = session.HasPermission(CommonUtil.Controller_MaterialProductGroup, CommonUtil.Action_Insert);
+    bool hasPermissionMaterialProductsGroupUpdate = session.HasPermission(CommonUtil.Controller_MaterialProductGroup, CommonUtil.Action_Update);
+    bool hasPermissionMaterialProductsGroupDelete = session.HasPermission(CommonUtil.Controller_MaterialProductGroup, CommonUtil.Action_Delete);
+    bool hasPermissioServiceCategoryPriceInsert = session.HasPermission(CommonUtil.Controller_ServiceCategoryPrice, CommonUtil.Action_Insert);
+    bool hasPermissioServiceCategoryPriceUpdate = session.HasPermission(CommonUtil.Controller_ServiceCategoryPrice, CommonUtil.Action_Update);
+    bool hasPermissionServiceCategoryPriceDelete = session.HasPermission(CommonUtil.Controller_ServiceCategoryPrice, CommonUtil.Action_Delete);
+}
+@section plugin_script {
+    <script src="~/lib/assets/global/plugins/angulerjs-taginput/ng-tags-input.min.js"></script>
+    <script src="~/lib/assets/global/plugins/tinymce/tinymce.min.js"></script>
+    <script src="~/lib/assets/global/plugins/tinymce/config.tinymce.js"></script>
+}
+@section plugin_style{
+    <link href="~/lib/assets/global/plugins/angulerjs-taginput/ng-tags-input.min.css" rel="stylesheet" />
+}
+    <div id="contentMain" ng-app="App_ESEIM_URENCO_SETTING" ng-controller="Ctrl_ESEIM_URENCO_SETTING">
+        <div ng-controller="Ctrl_ESEIM_MATERIAL_PROD"></div>
+        <div ng-controller="Ctrl_ESEIM_MATERIAL_PROD_GROUP"></div>
+        <div ng-controller="Ctrl_ESEIM_MATERIAL_PROD_TYPE"></div>
+        <div ng-controller="Ctrl_ESEIM_SVC"></div>
+        <div ng-controller="Ctrl_ESEIM_SERVICE_CAT_GROUP"></div>
+        <div ng-controller="Ctrl_ESEIM_SERVICE_CAT_TYPE"></div>
+        <div ng-controller="Ctrl_ESEIM_URENCO_COST_CATEGORY"></div>
+        <div ng-controller="Ctrl_ESEIM_URENCO_COST_TYPE"></div>
+        <div ng-controller="Ctrl_ESEIM_URENCO_COST_GROUP"></div>
+        <div ng-view></div>
+    </div>
+<script>
+    var PERMISSION_MATERIAL_PRODUCT = {
+        Insert: @(hasPermissionMaterialProductsInsert ? "true" : "false"),
+        Update: @(hasPermissionMaterialProductsUpdate ? "true" : "false"),
+        Delete: @(hasPermissionMaterialProductDelete ? "true" : "false"),
+    };
+      var PERMISSION_MATERIAL_PRODUCT_GROUP = {
+        Insert: @(hasPermissionMaterialProductsGroupInsert ? "true" : "false"),
+        Update: @(hasPermissionMaterialProductsGroupUpdate ? "true" : "false"),
+        Delete: @(hasPermissionMaterialProductsGroupDelete ? "true" : "false"),
+    };
+     var PERMISSION_SERVICE_CATEGORY_PRICE = {
+        Insert: @(hasPermissioServiceCategoryPriceInsert ? "true" : "false"),
+        Update: @(hasPermissioServiceCategoryPriceUpdate ? "true" : "false"),
+        Delete: @(hasPermissionServiceCategoryPriceDelete ? "true" : "false"),
+    };
+</script>
+<script src="~/views/admin/materialProduct/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/materialProductGroup/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/materialsType/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/serviceCategory/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/serviceCategoryGroup/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/serviceCategoryType/controller.js" type="text/javascript"></script>
+@*<script src="~/views/admin/serviceCategoryPrice/controller.js" type="text/javascript"></script>*@
+<script src="~/views/admin/urencoCostGroup/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/urencoCostType/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/urencoCostCategory/controller.js" type="text/javascript"></script>
+<script src="~/views/admin/urencoSetting/controller.js" type="text/javascript"></script>

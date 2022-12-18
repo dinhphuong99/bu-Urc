@@ -1,0 +1,73 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12">
+            <!--<h1 class="bold mb-0">{{'UCT_LBL_UCT' | translate}}</h1>-->
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text-underline" style="color:black;" href="#">{{'COM_MENU_URENCO_COST' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="#/EDMSMaterialsType">{{'UCT_LINK_UCT' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group actions d-flex pt5 pb-1 pull-right">
+                <div class="">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'UCT_CURD_LBL_CODE' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.TypeCode" class="form-control" type="text" placeholder="{{'UCT_CURD_TXT_CODE' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.TypeCode=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'UCT_CURD_LBL_NAME' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.TypeName" class="form-control" type="text" placeholder="{{'UCT_CURD_TXT_NAME' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.TypeName=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="btn-group actions d-flex pt20">
+                        <div class="text-center pr10" >
+                            <a ng-click="reload()" class=" btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12"> <label class="text-danger">{{'COM_MSG_LIST_GUIDE' | translate}}</label></div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptionsUrencoCostType"
+       dt-columns="dtColumnsUrencoCostType"
+       dt-instance="dt.dtInstanceUrencoCostType"
+       id="tblDataUrencoCostType"></table>

@@ -1,0 +1,84 @@
+﻿<style>
+    @media(max-width:992px) {
+        .modal-50 {
+            width: 75% !important;
+        }
+    }
+
+    @media (min-width:992px) and (max-width:1200px) {
+        .modal-50 {
+            width: 70% !important;
+        }
+    }
+
+    @media (min-width:1201px) and (max-width:1500px) {
+        .modal-50 {
+            width: 60% !important;
+        }
+    }
+
+    @media (min-width:1501px) {
+        .modal-50 {
+            width: 50% !important;
+        }
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title"> {{'Thêm mới bảng lương' | translate}}</span>
+</div>
+<div class="modal-body pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal" method="post" ng-validate="validationOptions">
+            <div class="form-body pt5">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group pr-1">
+                            <label class="control-label require custom-title-code-bold">{{'Mã bảng' | translate}}</label>
+                            <input type="text" class="form-control custom-title-code-bold" ng-model="model.ServiceCode" name="ServiceCode" id="ServiceCode" placeholder="{{'Mã bảng lương' | translate}}..." />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group pr-1">
+                            <label class="control-label require custom-title-code-bold">{{'Tiêu đề' | translate}}</label>
+                            <input type="text" class="form-control custom-title-code-bold" ng-model="model.ServiceName" name="ServiceName" placeholder="{{'Nhập tiêu đề' | translate}}..." />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="control-label">{{'Tháng' | translate}}</label>
+                            <input type="text" class="form-control" ng-model="model.ServiceCode" name="ServiceCode" id="ServiceCode" placeholder="{{'Nhập tháng' | translate}}..." />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group pr-1">
+                            <label class="control-label">{{'Người tạo' | translate}}</label>
+                            <input type="text" class="form-control" ng-model="model.ServiceCode" name="ServiceCode" id="ServiceCode" placeholder="{{'Người tạo' | translate}}..." />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group pr-1">
+                            <label class="control-label">{{'Thời gian tạo' | translate}}</label>
+                            <input type="text" class="form-control" ng-model="model.ServiceCode" name="ServiceCode" id="ServiceCode" placeholder="{{'Thời gian tạo' | translate}}..." />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group pr-1">
+                            <label class="control-label">{{'Người duyệt' | translate}}</label>
+                            <input type="text" class="form-control" ng-model="model.ServiceCode" name="ServiceCode" id="ServiceCode" placeholder="{{'Người duyệt' | translate}}..." />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="control-label">{{'Ngày duyệt' | translate}}</label>
+                            <input type="text" class="form-control" ng-model="model.ServiceCode" name="ServiceCode" id="ServiceCode" placeholder="{{'Ngày duyệt' | translate}}..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

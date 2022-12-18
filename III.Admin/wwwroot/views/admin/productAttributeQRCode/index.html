@@ -1,0 +1,105 @@
+﻿<style>
+    .close-input-search-box {
+        margin: -15px 0px;
+        z-index: 10;
+        position: relative;
+    }
+
+    .labelbodergroup {
+        margin-top: 5px;
+        position: absolute;
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border: 1px solid #e9dada;
+        border-radius: 4px;
+        padding: 3px 10px !important;
+    }
+</style>
+<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_BREAD_CRUMB_COMMON_CATE' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <div class=" bold text-underline" style="color:black;" href="/Admin/ProductAttributeQRCode">
+                        {{'PAQRC_TITLE_PAGE' | translate}}
+                    </div>
+            </ul>
+            <div class="btn-group pt5 pb-1 pull-right actions d-flex">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn red-custom br4" ng-click="print()">
+                        <i class="fa fa-print"></i>
+                        {{'PAQRC_BTN_PRINT_QR_CODE'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mt5 p10" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'PAQRC_CURD_LBL_PRODUCT' | translate}}</label>
+                    <div class='input-group date'>
+                        <input type='text' autocomplete="off" class="form-control " ng-model="model.Product" placeholder="{{'PAQRC_CURD_TXT_PRODUCT' | translate}}..." />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Product='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'PAQRC_CURD_LBL_FROM_DATE' | translate}}</label>
+                    <div class="input-group date">
+                        <input type="text" id='dateFrom' autocomplete="off" class="form-control" placeholder="{{'PAQRC_CURD_TXT_FROM_DATE' | translate}}..." ng-model="model.FromDate">
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.FromDate='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="fw600 text-underline">{{'PAQRC_CURD_LBL_TO_DATE' | translate}}</label>
+                    <div class='input-group date'>
+                        <input type='text' id='dateTo' autocomplete="off" class="form-control " ng-model="model.ToDate" placeholder="{{'PAQRC_CURD_TXT_TO_DATE' | translate}}..." />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ToDate='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="btn-group pt20  actions d-flex">
+                        <div class="text-center pr10 " ng-click="search()">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3 ">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+                <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-more-line" role="button" title="Ẩn tìm kiếm" style="margin-right: 20px !important;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table dataTable  table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblData"></table>
+
+

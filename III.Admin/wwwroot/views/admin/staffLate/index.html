@@ -1,0 +1,144 @@
+﻿<div class="table-toolbar" ng-show="IsTranslate">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text-underline" style="color:black;" href="#">{{'STL_TITLE_EMPLOYEE' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/StaffLate">{{'STL_LINK_LATE_LEAVE' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group pull-right pt5 pb-1 actions d-flex">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn green-custom br4" ng-click="add()">
+                        <i class="fa fa-plus"></i>
+                        {{'COM_BTN_ADD'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5" ng-show="isSearch">
+        <div class="portlet-body">
+            <div class="row pt5">
+                <div class="col-md-12" style="height:20px">
+                    <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-in-line" role="button" title="Ẩn tìm kiếm"></i>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <label class="fw600 text-underline">{{'STL_CURD_COMBO_USER_ID' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select ng-model="model.UserId" theme="bootstrap">
+                            <ui-select-match placeholder="{{'STL_CURD_COMBO_USER_ID' | translate}}..."><img class="img-circle h-20" ng-src="{{ $select.selected.Picture }}" onerror="this.src='../../../images/default/no_user.png'" />&nbsp; {{$select.selected.GivenName}}</ui-select-match>
+                            <ui-select-choices repeat="x.UserId as x in listUser | filter: $select.search">
+                                <img class="img-circle w25 h-25" ng-src="{{ x.Picture }}" onerror="this.src='../../../images/default/no_user.png'" />
+                                <div ng-bind-html="x.GivenName" style="display: inline"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.UserId='';" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <label class="fw600 text-underline">{{'STL_CURD_LBL_STATUS' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select ng-model="model.Status" theme="bootstrap">
+                            <ui-select-match placeholder="{{'STL_CURD_LBL_STATUS' | translate}}"><p>{{$select.selected.Name}}</p></ui-select-match>
+                            <ui-select-choices repeat="x.Code as x in ListStatus | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Status=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <!--<div class="col-lg-2">
+                    <label class="fw600 text-underline">Phòng ban</label>
+                    <div class="input-group">
+                        <ui-select tagging ng-model="model.Department" theme="bootstrap">
+                            <ui-select-match placeholder="Phòng ban...">{{$select.selected.Name}}</ui-select-match>
+                            <ui-select-choices repeat=" x.Value as x in StatusData | filter: $select.search">
+                                {{x.Name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.Department=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>-->
+                <div class="col-lg-2 col-md-3">
+                    <label class="fw600 text-underline">{{'STL_CURD_LBL_FROM_DAY' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.FromDate" class="form-control" type="text" placeholder="{{'STL_CURD_TXT_FROM_DAY' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" id="From" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.FromDate='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3">
+                    <label class="fw600 text-underline">{{'STL_CURD_LBL_TO_DAY' | translate}}</label>
+                    <div class="input-group">
+                        <input ng-model="model.ToDate" class="form-control" type="text" placeholder="{{'STL_CURD_TXT_TO_DAY' | translate}}..." ng-keydown="($event.keyCode == 13) && reload()" id="To" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ToDate='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="btn-group pt20 actions d-flex">
+                        <div class="">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="reload()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <span class="text-danger">{{'STL_LBL_DEFAULT' | translate}}</span>
+        </div>
+    </div>
+</div>
+<div class="col-md-6">
+    <table class="table dataTable table-hover table-striped"
+           datatable
+           dt-options="dtOptions"
+           dt-columns="dtColumns"
+           dt-instance="dtInstance"
+           id="tblData"></table>
+</div>
+<div class="col-md-6">
+    <style>
+        .fc-time {
+            display: none;
+        }
+    </style>
+    <div class="calendar-wrap" ng-if="IsTranslate">
+        <div id="calendar"></div>
+    </div>
+</div>
+

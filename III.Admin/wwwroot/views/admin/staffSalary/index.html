@@ -1,0 +1,115 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text-underline" style="color:black;" href="#">{{'STS_TITLE_EMPLOYEE' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <li>
+                    <a class=" bold text-underline" style="color:black;" href="/Admin/StaffSalary">{{'STS_LINK' | translate}}</a>
+                </li>
+            </ul>
+            <div class="btn-group pt5 pb-1 pull-right actions d-flex">
+                <div class="pr-2" ng-show="!isSearch" ng-click="showSearch()">
+                    <button class="btn btn-violet br4">
+                        <i class="fa fa-search"></i>
+                        {{'COM_BTN_SEARCH'| translate}}
+                    </button>
+                </div>
+                <div class="pr-2">
+                    <button class="btn green-custom br4" ng-click="export()">
+                        <i class="fa fa-file-excel-o"></i>
+                        {{'COM_BTN_EXCEL'| translate}}
+                    </button>
+                </div>
+                <div class="pr-2">
+                    <button class="btn gold-custom br4">
+                        <i class="fa fa-file-pdf-o"></i>
+                        {{'COM_BTN_PDF'| translate}}
+                    </button>
+                </div>
+                <div class="">
+                    <button class="btn blue-custom br4" ng-click="statistical()">
+                        <i class="fas fa-chart-line"></i>
+                        {{'COM_BTN_STATISTICAL'| translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        @media (min-width: 1200px) {
+            .col-lg-3 {
+                width: 22%;
+            }
+        }
+    </style>
+    <div class="portlet light bordered input-search mb5">
+        <div class="portlet-body" ng-show="isSearch">
+            <div class="row">
+                <div class="col-md-12" style="height:20px">
+                    <i ng-click="showSearch()" class="fas fa-angle-up pull-right h28 w28 close-input-search hide-search-in-line" role="button" title="Ẩn tìm kiếm"></i>
+                </div>
+                <div class="col-lg-3">
+                    <label>{{'STS_LBL_EMP' | translate}}</label>
+                    <div class="input-group">
+                        <ui-select ng-model="model.MemberId" theme="bootstrap">
+                            <ui-select-match placeholder="{{'STS_TXT_ALL' | translate}}..."><img class="img-circle h-20" ng-src="{{ $select.selected.Picture }}" onerror="this.src='../../../images/default/no_user.png'" />&nbsp; {{$select.selected.GivenName}}</ui-select-match>
+                            <ui-select-choices repeat="x.UserId as x in listUser | filter: $select.search">
+                                <img class="img-circle w25 h-25" ng-src="{{ x.Picture }}" onerror="this.src='../../../images/default/no_user.png'" />
+                                <div ng-bind-html="x.GivenName" style="display: inline"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.MemberId=''" class="btn btn-default no-shadow">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label>{{'STS_CURD_LBL_FROM_DATE' | translate}}</label>
+                    <div class="input-group">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="{{'STS_CURD_LBL_FROM_DATE' | translate}}..." ng-model="model.FromDate" id="FromTo">
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.FromDate='';" class="btn btn-default no-shadow start-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label>{{'STS_CURD_LBL_TO_DATE' | translate}}</label>
+                    <div class='input-group '>
+                        <input type='text' autocomplete="off" class="form-control " ng-model="model.ToDate" placeholder="{{'STS_CURD_LBL_TO_DATE' | translate}}..." id='DateTo' />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.ToDate='';" class="btn btn-default no-shadow end-date">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="btn-group pt20  actions d-flex">
+                        <div class="text-center pr10">
+                            <a class="btn btn-icon-only btn-circle btn-outline purple-custom" ng-click="search()">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .fc-time {
+        display: none;
+    }
+</style>
+<div class="calendar-wrap pt10" ng-if="IsTranslate">
+    <div id="calendar"></div>
+</div>

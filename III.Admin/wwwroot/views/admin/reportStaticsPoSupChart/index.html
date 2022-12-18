@@ -1,0 +1,153 @@
+﻿<style>
+    .app-content{
+        width:100%;
+    }
+</style>
+<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-12">
+            <!--<h1 class="bold mb-0">{{'RSPSC_LBL_RSPOSC' | translate}}</h1>-->
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home " style="color:black;"></i>
+                    <a class=" bold text text-underline" style="color:black;" href="/Admin/DashBoard">{{'COM_BREAD_CRUMB_STATISTICAL' | translate}}</a>
+                    <span class="" style="color:black;">&gt;</span>
+                </li>
+                <!--<li>
+                    <a class=" bold text-underline" style="color:green;">{{'COM_SUB_MENU_MATERIAL' | translate}}</a>
+                    <span class="" style="color:green;">&gt;</span>
+                </li>-->
+                <li>
+                    <a class=" bold text-underline" style="color:black;">{{'RSPSC_LBL_RSPOSC' | translate}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row pb40">
+    <div class="col-md-12">
+        <div class="card p10">
+            <div class="card-header pb20">
+                <h4 class="card-title">{{'RSPSC_LBL_VND' | translate}}</h4>
+                <a class="heading-elements-toggle"><i class="ft-more-horizontal font-medium-3"></i></a>
+                <div class="col-md-4 pull-right">
+                    <div class="btn-group actions d-flex pull-right">
+                        <div class="text-center">
+                            <a ng-click="searchPoSupTotal()" class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'RSPSC_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="card-body h-400 p15">
+                    <canvas id="lineWorkProgress" class="chart chart-line" chart-data="poSupTotal.data"
+                            chart-labels="poSupTotal.labels" chart-series="poSupTotal.series" chart-options="optionsPoSupTotal"
+                            chart-dataset-override="datasetOverride"></canvas>
+                    <div class="text-center">
+                        <h2><b>1. {{'RSPSC_LBL_TOTAL_NCC_BUY' | translate}}</b>&nbsp;<span ng-show="poSupTotal.product!=''" class="text-danger">{{'RSPSC_LBL_PRODUCT' | translate}} {{poSupTotal.product}}</span>&nbsp;<span ng-show="poSupTotal.dateSearch!=''" class="text-danger">{{poSupTotal.dateSearch}}</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card p10">
+            <div class="card-header pb20">
+                <h4 class="card-title">{{'RSPSC_LBL_VND' | translate}}</h4>
+                <a class="heading-elements-toggle"><i class="ft-more-horizontal font-medium-3"></i></a>
+                <div class="col-md-4 pull-right">
+                    <div class="btn-group actions d-flex pull-right">
+                        <div class="text-center">
+                            <a ng-click="searchPoSupPayment()" class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'RSPSC_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="card-body p15">
+                    <canvas class="chart chart-bar"
+                            chart-labels="poSupPayment.labels"
+                            chart-data="poSupPayment.data"
+                            chart-series="poSupPayment.series"
+                            chart-colors="poSupPayment.colors"
+                            chart-options="poSupPayment.option"></canvas>
+                    <div class="text-center">
+                        <h2>
+                            <b>2. {{'RSPSC_LBL_TOTAL_NCC_PAY' | translate}}</b>
+                            <label ng-show="poSupPayment.supName!=''" class="bold">{{'RSPSC_LBL_FOR_SUPPLIER: ' | translate}}</label>
+                            <label class="bold text-success">{{poSupPayment.supName}}</label>
+                            <span ng-show="poSupPayment.dateSearch!=''" class="text-danger">{{poSupPayment.dateSearch}}</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p10">
+            <div class="card-header pb20">
+                <h4 class="card-title">{{'RSPSC_LBL_VND' | translate}}</h4>
+                <a class="heading-elements-toggle"><i class="ft-more-horizontal font-medium-3"></i></a>
+                <div class="col-md-4 pull-right">
+                    <div class="btn-group actions d-flex pull-right">
+                        <div class="text-center">
+                            <a ng-click="searchPoCusTotal()" class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'RSPSC_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="card-body h-400 p15">
+                    <canvas class="chart chart-line" chart-data="poCusTotal.data"
+                            chart-labels="poCusTotal.labels" chart-series="poCusTotal.series" chart-options="optionsPoCusTotal"
+                            chart-dataset-override="datasetOverride"></canvas>
+                    <div class="text-center">
+                        <h2><b>3. {{'RSPSC_LBL_TOTAL_SALES' | translate}}</b>&nbsp;<span ng-show="poCusTotal.product!=''" class="text-danger">{{'RSPSC_LBL_PRODUCT' | translate}} {{poCusTotal.product}}</span><span ng-show="poCusTotal.dateSearch!=''" class="text-danger">{{poCusTotal.dateSearch}}</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card p10">
+            <div class="card-header pb20">
+                <h4 class="card-title">{{'RSPSC_LBL_VND' | translate}}</h4>
+                <a class="heading-elements-toggle"><i class="ft-more-horizontal font-medium-3"></i></a>
+                <div class="col-md-4 pull-right">
+                    <div class="btn-group actions d-flex pull-right">
+                        <div class="text-center">
+                            <a ng-click="searchPoCusPayment()" class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'RSPSC_BTN_SEARCH' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-content">
+                <div class="card-body p15">
+                    <canvas class="chart chart-bar"
+                            chart-labels="poCusPayment.labels"
+                            chart-data="poCusPayment.data"
+                            chart-series="poCusPayment.series"
+                            chart-colors="poCusPayment.colors"
+                            chart-options="poCusPayment.option"></canvas>
+                    <div class="text-center">
+                        <h2>
+                            <b>4. {{'RSPSC_LBL_TOTAL_PAY' | translate}}</b>
+                            <label ng-show="poCusPayment.cusName!=''" class="bold">{{'RSPSC_LBL_FOR_CUSTOMER: ' | translate}}</label>
+                            <label class="bold text-success">{{poCusPayment.cusName}}</label>
+                            <span ng-show="poCusPayment.dateSearch!=''" class="text-danger">{{poCusPayment.dateSearch}}</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

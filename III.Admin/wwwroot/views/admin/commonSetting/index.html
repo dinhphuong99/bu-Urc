@@ -1,0 +1,96 @@
+﻿<style>
+    /*.tab-content {
+        padding: 25px;
+        height: 500px;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+    }*/
+
+    .nav-pills, .nav-tabs {
+        margin-bottom: 0px !important;
+    }
+
+    .dataTables_wrapper .table-scrollable {
+        border: 1px solid #e7ecf1 !important;
+    }
+
+    .tabbable {
+        overflow: hidden;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .tab-content.panel {
+        border-top: none;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    .app-content {
+        width: 100%;
+    }
+</style>
+<div ng-show="IsTranslate">
+    <div class="table-toolbar">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb-title">
+                    <li>
+                        <i class="fa fa-home " style="color:black;"></i>
+                        <a class=" bold text text-underline" style="color:black;" href="#">{{'COM_MENU_SETTING_SYSTEM' | translate}}</a>
+                        <span class="" style="color:black;">&gt;</span>
+                    </li>
+                    <li>
+                        <a class=" bold text-underline" style="color:black;">{{'COM_SET_LINK_COM_SET' | translate}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="tabbable pt10">
+        <uib-tabset active="active">
+            <uib-tab index="0" heading="{{'COM_SET_CURD_TAB_EMPLOYEE' | translate}}" ng-if="isEmployee">
+                <div ng-include="'../views/admin/CommonSetting/employee.html'"></div>
+            </uib-tab>
+            <uib-tab index="1" heading="{{'COM_SET_CURD_TAB_CONTRACT' | translate}}" ng-if="isContract">
+                <div ng-include="'../views/admin/CommonSetting/contract.html'"></div>
+            </uib-tab>
+            <uib-tab index="2" heading="{{'COM_SET_CURD_TAB_PRỌJECT' | translate}}" ng-if="isProject">
+                <div ng-include="'../views/admin/CommonSetting/project.html'"></div>
+            </uib-tab>
+            <uib-tab index="3" heading="{{'COM_SET_CURD_TAB_SUPPLIER' | translate}}" ng-if="isSupplier">
+                <div ng-include="'../views/admin/CommonSetting/supplier.html'"></div>
+            </uib-tab>
+            <uib-tab index="4" heading="{{'COM_SET_CURD_TAB_CUSTOMER' | translate}}" ng-if="isCustomer">
+                <div ng-include="'../views/admin/CommonSetting/customer.html'"></div>
+            </uib-tab>
+            <uib-tab index="5" heading="{{'COM_SET_CURD_TAB_SERVICE' | translate}}" ng-if="isService">
+                <div ng-include="'../views/admin/CommonSetting/service.html'"></div>
+            </uib-tab>
+            <uib-tab index="6" heading="{{'COM_SET_CURD_TAB_ASSET' | translate}}" ng-if="isAsset">
+                <div ng-include="'../views/admin/CommonSetting/asset.html'"></div>
+            </uib-tab>
+            <uib-tab index="7" heading="{{'COM_SET_CURD_TAB_PAYMENT' | translate}}" ng-if="isPayment">
+                <div ng-include="'../views/admin/CommonSetting/payment.html'"></div>
+            </uib-tab>
+            <uib-tab index="8" heading="{{'COM_SET_CURD_TAB_CARD_JOB' | translate}}" ng-if="isCardJob">
+                <div ng-include="'../views/admin/CommonSetting/cardjob.html'"></div>
+            </uib-tab>
+            <uib-tab index="9" heading="{{'COM_SET_CURD_TAB_PUBLISH' | translate}}" ng-if="isPublish">
+                <div ng-include="'../views/admin/CommonSetting/publish.html'"></div>
+            </uib-tab>
+            <uib-tab index="10" heading="{{'COM_SET_CURD_TAP_WAREHOUSE' | translate}}" ng-if="isWarehouse">
+                <div ng-include="'../views/admin/CommonSetting/warehouse.html'"></div>
+            </uib-tab>
+            <uib-tab index="11" heading="{{'COM_SET_CURD_TAB_FUND' | translate}}" ng-if="isFund">
+                <div ng-include="'../views/admin/CommonSetting/fund.html'"></div>
+            </uib-tab>
+            <uib-tab index="12" heading="{{'COM_SET_CURD_TAB_CONTENT_MAN' | translate}}" ng-if="isCMS">
+                <div ng-include="'../views/admin/CommonSetting/cms.html'"></div>
+            </uib-tab>
+            <uib-tab index="13" heading="{{'Thông báo' | translate}}" ng-if="isNotification">
+                <div ng-include="'../views/admin/CommonSetting/notificationCard.html'"></div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>
+

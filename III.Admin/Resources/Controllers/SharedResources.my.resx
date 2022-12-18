@@ -1,0 +1,955 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="COM_ACTIVITY" xml:space="preserve">
+    <value>တက်ကြွ</value>
+    <comment>Hoạt động</comment>
+  </data>
+  <data name="COM_ADD_FILE" xml:space="preserve">
+    <value>ဖိုင်ထည့်ပါ</value>
+    <comment>Thêm tệp tin</comment>
+  </data>
+  <data name="COM_ADD_FILE_SUCCESS" xml:space="preserve">
+    <value>ဖိုင်အသစ်ကိုအောင်မြင်စွာထည့်ပါ</value>
+    <comment>Thêm mới tệp tin thành công</comment>
+  </data>
+  <data name="COM_ADD_SUCCESS" xml:space="preserve">
+    <value>ပိုမိုအောင်မြင်မှုရ</value>
+    <comment>Thêm thành công</comment>
+  </data>
+  <data name="COM_ATTACHED_FILE" xml:space="preserve">
+    <value>ဖိုင်တွဲ</value>
+    <comment>Tệp đính kèm</comment>
+  </data>
+  <data name="COM_BODY_EDIT" xml:space="preserve">
+    <value>ပြုပြင်ထားသောအကြောင်းအရာ</value>
+    <comment>Nội dung sửa đổi</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_ASSET_MAINTENANCE" xml:space="preserve">
+    <value>ပြုပြင်ထိန်းသိမ်းခြင်းနှင့်ပြုပြင်ခြင်း</value>
+    <comment>Bảo dưỡng sửa chữa</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_ASSET_OPERATE" xml:space="preserve">
+    <value>ဝယ်ယူရေးပြေး</value>
+    <comment>Mua sắm vận hành</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_COMMON_CATE" xml:space="preserve">
+    <value>အထွေထွေ catalog</value>
+    <comment>Danh mục chung</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_STATISTICAL" xml:space="preserve">
+    <value>စာရင်းအင်းအစီရင်ခံစာ</value>
+    <comment>Báo cáo thống kê</comment>
+  </data>
+  <data name="COM_BREAD_CRUMB_STORE" xml:space="preserve">
+    <value>အရောင်း</value>
+    <comment>Bán hàng</comment>
+  </data>
+  <data name="COM_BREAD_CRUMD_FINANCE_FUND" xml:space="preserve">
+    <value>ရန်ပုံငွေသတိပေးချက်</value>
+    <comment>Cảnh báo quỹ</comment>
+  </data>
+  <data name="COM_BTN_ADD" xml:space="preserve">
+    <value>အသစ်ထည့်ပါ</value>
+    <comment>Thêm mới</comment>
+  </data>
+  <data name="COM_BTN_ADD_BOARD" xml:space="preserve">
+    <value>စားပွဲပေါ်မှာဖန်တီးပါ</value>
+    <comment>Tạo bảng</comment>
+  </data>
+  <data name="COM_BTN_ADD_CALENDAR" xml:space="preserve">
+    <value>ပြက္ခဒိန်ထည့်ပါ</value>
+    <comment>Thêm lịch</comment>
+  </data>
+  <data name="COM_BTN_ADD_CAR" xml:space="preserve">
+    <value>Assigned</value>
+    <comment>Giao việc</comment>
+  </data>
+  <data name="COM_BTN_ADD_TEAM" xml:space="preserve">
+    <value>အုပ်စုတစ်ခုဖန်တီးပါ</value>
+    <comment>Tạo nhóm</comment>
+  </data>
+  <data name="COM_BTN_ADVANCE_SEARCH" xml:space="preserve">
+    <value>အသေးစိတ်ရှာဖွေရန်</value>
+    <comment>Tìm kiếm nâng cao</comment>
+  </data>
+  <data name="COM_BTN_BACK" xml:space="preserve">
+    <value>လှည့်ပါ</value>
+    <comment>Quay lại</comment>
+  </data>
+  <data name="COM_BTN_CANCEL" xml:space="preserve">
+    <value>ဖျက်သိမ်း</value>
+    <comment>Hủy bỏ</comment>
+  </data>
+  <data name="COM_BTN_CARD_JOB" xml:space="preserve">
+    <value>tag ထည့်ပါ</value>
+    <comment>Thêm thẻ</comment>
+  </data>
+  <data name="COM_BTN_CHECK" xml:space="preserve">
+    <value>ထွက်စစ်ဆေးပါ</value>
+    <comment>Kiểm tra</comment>
+  </data>
+  <data name="COM_BTN_CLOSE" xml:space="preserve">
+    <value>ပိတ်လိုက်</value>
+    <comment>Đóng</comment>
+  </data>
+  <data name="COM_BTN_CONFIRM" xml:space="preserve">
+    <value>အတည်ပြုပါ</value>
+    <comment>Xác nhận</comment>
+  </data>
+  <data name="COM_BTN_CONTINUE" xml:space="preserve">
+    <value>ဆက်လုပ်ပါ</value>
+    <comment>Tiếp tục</comment>
+  </data>
+  <data name="COM_BTN_DELETE" xml:space="preserve">
+    <value>ဖျက်ပါ</value>
+    <comment>Xóa</comment>
+  </data>
+  <data name="COM_BTN_DESCRIBE" xml:space="preserve">
+    <value>ဖော်ပြပါ</value>
+    <comment>Mô tả</comment>
+  </data>
+  <data name="COM_BTN_DOWLOAD" xml:space="preserve">
+    <value>Download လုပ်ပါ</value>
+    <comment>Tải xuống</comment>
+  </data>
+  <data name="COM_BTN_EDIT" xml:space="preserve">
+    <value>နောက်ဆုံးပေါ်</value>
+    <comment>Cập nhật</comment>
+  </data>
+  <data name="COM_BTN_EDIT_BOARD" xml:space="preserve">
+    <value>စားပွဲပေါ်မှာတည်းဖြတ်ပါ</value>
+    <comment>Sửa bảng</comment>
+  </data>
+  <data name="COM_BTN_EXCEL" xml:space="preserve">
+    <value>Exel တင်ပို့ပါ</value>
+    <comment>Xuất Excel</comment>
+  </data>
+  <data name="COM_BTN_FILE" xml:space="preserve">
+    <value>ဖိုင်</value>
+    <comment>Tệp tin</comment>
+  </data>
+  <data name="COM_BTN_IMPORT" xml:space="preserve">
+    <value>တင်သွင်းသည်</value>
+    <comment>Nhập khẩu</comment>
+  </data>
+  <data name="COM_BTN_INHERITANCE" xml:space="preserve">
+    <value>အမွေဆက်ခံ</value>
+    <comment>Kế thừa</comment>
+  </data>
+  <data name="COM_BTN_PDF" xml:space="preserve">
+    <value>PDF ဖိုင်များကိုတင်ပို့ပါ</value>
+    <comment>Xuất file PDF</comment>
+  </data>
+  <data name="COM_BTN_PROPERTIES" xml:space="preserve">
+    <value>Properties ကို</value>
+    <comment>Thuộc tính</comment>
+  </data>
+  <data name="COM_BTN_REATTACHED" xml:space="preserve">
+    <value>ပြန်လည်ထည့်သွင်း</value>
+    <comment>Gắn lại</comment>
+  </data>
+  <data name="COM_BTN_RECALL" xml:space="preserve">
+    <value>ပြန်လည်ရုပ်သိမ်းသည်</value>
+    <comment>Thu hồi</comment>
+  </data>
+  <data name="COM_BTN_REFRESH" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>Làm mới</comment>
+  </data>
+  <data name="COM_BTN_REPOSITORY" xml:space="preserve">
+    <value>ဖိုင် repository ကို</value>
+    <comment>Kho tệp tin</comment>
+  </data>
+  <data name="COM_BTN_SAVE" xml:space="preserve">
+    <value>သိမ်းပါ</value>
+    <comment>Lưu lại</comment>
+  </data>
+  <data name="COM_BTN_SEARCH" xml:space="preserve">
+    <value>ရှာပါ</value>
+    <comment>Tìm kiếm</comment>
+  </data>
+  <data name="COM_BTN_SET_SIGN" xml:space="preserve">
+    <value>မှတ်ပုံတင်မယ်</value>
+    <comment>Đăng ký</comment>
+  </data>
+  <data name="COM_BTN_SHARE" xml:space="preserve">
+    <value>ဖိုင်မျှဝေခြင်း</value>
+    <comment>Chia sẻ tệp</comment>
+  </data>
+  <data name="COM_BTN_SIGN_UP" xml:space="preserve">
+    <value>မှတ်ပုံတင်မယ်</value>
+    <comment>Đăng kí</comment>
+  </data>
+  <data name="COM_BTN_STATISTICAL" xml:space="preserve">
+    <value>စာရင်းအင်းများ</value>
+    <comment>Thống kê</comment>
+  </data>
+  <data name="COM_BTN_UP_FILE" xml:space="preserve">
+    <value>ဖိုင်ကို download လုပ်ပါ</value>
+    <comment>Tải tệp</comment>
+  </data>
+  <data name="COM_BTN_USE_DEFAULT_SETTING" xml:space="preserve">
+    <value>ပုံမှန်ချိန်ညှိချက်များကိုသုံးပါ</value>
+    <comment>Sử dụng cài đặt mặt định</comment>
+  </data>
+  <data name="COM_CONFIRM" xml:space="preserve">
+    <value>အတည်ပြုပါ</value>
+    <comment>Xác nhận</comment>
+  </data>
+  <data name="COM_CONFIRM_CANCEL" xml:space="preserve">
+    <value>ဖျက်သိမ်း</value>
+    <comment>Hủy</comment>
+  </data>
+  <data name="COM_CONFIRM_OK" xml:space="preserve">
+    <value>ကျိန်းသေ</value>
+    <comment>Chắc chắn</comment>
+  </data>
+  <data name="COM_CONNECT_FAILURE" xml:space="preserve">
+    <value>ဆာဗာဆက်သွယ်မှုမအောင်မြင်ပါ</value>
+    <comment>Kết nối server không thành công</comment>
+  </data>
+  <data name="COM_CRUMB_MANAGER_CONTENT" xml:space="preserve">
+    <value>အကြောင်းအရာစီမံခန့်ခွဲမှု</value>
+    <comment>Quản lý nội dung</comment>
+  </data>
+  <data name="COM_CURD_DETAIL_TITLE_SET" xml:space="preserve">
+    <value>ဂုဏ်သတ္တိများများစာရင်း</value>
+    <comment>Danh sách thuộc tính</comment>
+  </data>
+  <data name="COM_CURD_LBL_TYPE_SET" xml:space="preserve">
+    <value>ဒေတာအမျိုးအစား</value>
+    <comment>Kiểu dữ liệu</comment>
+  </data>
+  <data name="COM_CURD_LBL_VALUE_SET" xml:space="preserve">
+    <value>တန်ဖိုးသတ်မှတ်ခြင်း</value>
+    <comment>Giá trị cài đặt</comment>
+  </data>
+  <data name="COM_DELETE_FAIL" xml:space="preserve">
+    <value>ဖျက်သည်မအောင်မြင်ပါ</value>
+    <comment>Xóa thất bại</comment>
+  </data>
+  <data name="COM_DELETE_FILE_SUCCESS" xml:space="preserve">
+    <value>ဖိုင်ကိုအောင်မြင်စွာဖျက်ပစ်ပါ</value>
+    <comment>Xóa tệp tin thành công</comment>
+  </data>
+  <data name="COM_DELETE_SUCCESS" xml:space="preserve">
+    <value>အောင်မြင်စွာဖျက်ပါ</value>
+    <comment>Xóa thành công</comment>
+  </data>
+  <data name="COM_DEL_SUCCESS_LIST_ITEM_BUT_HAS_CHILD_OR_REF" xml:space="preserve">
+    <value>{0} ကိုအသုံးပြုပြီး {0} ဒါမှမဟုတ် {0} ကို {0} ကိုမရွေးနဲ့အောင်မြင်စွာဖျက်လိုက်သည်။</value>
+    <comment>Xóa thành công các {0} các {0} được sử dụng ở nơi khác hoặc {0} có {0} con không được chọn.</comment>
+  </data>
+  <data name="COM_EDIT_FILE" xml:space="preserve">
+    <value>ဖိုင်ကိုတည်းဖြတ်ပါ</value>
+    <comment>Sửa tệp tin</comment>
+  </data>
+  <data name="COM_EDIT_INFORMATION_SUCCESS" xml:space="preserve">
+    <value>ဖိုင်အချက်အလက်များကိုအောင်မြင်စွာတည်းဖြတ်ပါ</value>
+    <comment>Sửa thông tin tệp tin thành công</comment>
+  </data>
+  <data name="COM_ERR_ADD" xml:space="preserve">
+    <value>ဖြည့်စွက်အမှားတစ်ခုရှိခဲ့သည်</value>
+    <comment>Có lỗi khi thêm !</comment>
+  </data>
+  <data name="COM_ERR_CODE_CHANGE" xml:space="preserve">
+    <value>ကုဒ် {0} ကိုပြောင်းလဲခွင့်မရှိပါ။</value>
+    <comment>Mã {0} không được phép thay đổi.</comment>
+  </data>
+  <data name="COM_ERR_DELETE" xml:space="preserve">
+    <value>ဖယ်ရှားခြင်းအမှားတစ်ခုရှိခဲ့သည်</value>
+    <comment>Có lỗi khi xóa !</comment>
+  </data>
+  <data name="COM_ERR_EXCEED_CHARACTERS" xml:space="preserve">
+    <value>{0} သည် {1} အက္ခရာများထက်ပိုပြီးမရိုက်နိုင်ပါ။</value>
+    <comment>{0} không được nhập quá {1} ký tự.</comment>
+  </data>
+  <data name="COM_ERR_EXIST" xml:space="preserve">
+    <value>{0} ရှိပြီးသား!</value>
+    <comment>{0} đã tồn tại!</comment>
+  </data>
+  <data name="COM_ERR_FAIL_ADD" xml:space="preserve">
+    <value>{0} အမှားထည့်ပါ</value>
+    <comment>Thêm {0} lỗi</comment>
+  </data>
+  <data name="COM_ERR_FAIL_DOWLOAD" xml:space="preserve">
+    <value>{0} အမှားတင်နေသည်</value>
+    <comment>Tải {0} lỗi</comment>
+  </data>
+  <data name="COM_ERR_LIST_OBJ_HAS_CHILD_OR_REF" xml:space="preserve">
+    <value>{0} အခြားနေရာများတွင်အသုံးပြုသောသို့မဟုတ် {0} ကိုမရွေးရသေးကို ဖျက်၍ မရပါ။ {0} ကလေးအားလုံးကိုသင်အရင်ဖျက်ရမည်။</value>
+    <comment>Không thể xóa các {0} được sử dụng ở nơi khác hoặc có {0} con không được chọn. Bạn phải xóa hết {0} con trước.</comment>
+  </data>
+  <data name="COM_ERR_NOT_CHECKED" xml:space="preserve">
+    <value>{0} မရွေးရသေးပါ။</value>
+    <comment>Không có {0} nào được chọn!</comment>
+  </data>
+  <data name="COM_ERR_OBJ_REF" xml:space="preserve">
+    <value>တစ်ခြားနေရာများတွင်အသုံးပြုသော {0} ကိုမဖျက်နိုင်ပါ</value>
+    <comment>Không thể xóa {0} đang được sử dụng ở nơi khác</comment>
+  </data>
+  <data name="COM_ERR_OBJ_USER" xml:space="preserve">
+    <value>မလှုပ်မရှားအစီအစဉ် {0} ဒီအစီအစဉ်တွင်အသုံးပြုပြီးဖြစ်သည်</value>
+    <comment>Không Thể Ngừng Hoạt Động {0} Đã Được Sử Dụng trong Kế Hoạch</comment>
+  </data>
+  <data name="COM_ERR_OLD" xml:space="preserve">
+    <value>မင်းက ၁၈ နှစ်မပြည့်သေးဘူး !!!!</value>
+    <comment>Bạn chưa đủ 18 tuổi!!!!</comment>
+  </data>
+  <data name="COM_ERR_REQUIRED" xml:space="preserve">
+    <value>{0} ဟာကွက်လပ်မဖြစ်ရ</value>
+    <comment>{0} không được để trống</comment>
+  </data>
+  <data name="COM_ERR_SEARCH" xml:space="preserve">
+    <value>{0} အမှားအယွင်းရှာတွေ့မှုရှိခဲ့သည်</value>
+    <comment>Có lỗi khi tìm {0}</comment>
+  </data>
+  <data name="COM_ERR_SUCCESS_DOWLOAD" xml:space="preserve">
+    <value>{0} ကိုအောင်မြင်စွာ download လုပ်ပါ</value>
+    <comment>Tải {0} thành công</comment>
+  </data>
+  <data name="COM_ERR_UPLOAD_FILE" xml:space="preserve">
+    <value>ဖိုင်တင်နေစဉ်အမှားတစ်ခုဖြစ်ပွားခဲ့သည်။</value>
+    <comment>Có lỗi xảy ra khi upload file!</comment>
+  </data>
+  <data name="COM_ERR_UPLOAD_IMAGE" xml:space="preserve">
+    <value>ဓာတ်ပုံများတင်နေသည်ဆိုပါစို့။</value>
+    <comment>Có lỗi khi tải ảnh lên!</comment>
+  </data>
+  <data name="COM_ERR_VALIDATE_DAY" xml:space="preserve">
+    <value>အတိတ်ရက်စွဲကို ပြောင်းလဲ၍ မရပါ</value>
+    <comment>Không thể thay đổi ngày đã qua</comment>
+  </data>
+  <data name="COM_FILE" xml:space="preserve">
+    <value>ဖိုင်</value>
+    <comment>Tệp tin</comment>
+  </data>
+  <data name="COM_ITEM_VALIDATE" xml:space="preserve">
+    <value>ဆောင်းပါးများ</value>
+  </data>
+  <data name="COM_ITEM_VALIDATE_TITLE" xml:space="preserve">
+    <value>ခေါင်းစဉ်</value>
+  </data>
+  <data name="COM_LBL_PLS_CONFIRM" xml:space="preserve">
+    <value>ကျေးဇူးပြု၍ အတည်ပြုပါ</value>
+    <comment>Làm ơn xác nhận</comment>
+  </data>
+  <data name="COM_LBL_SAVE_UPDATE" xml:space="preserve">
+    <value>update ကိုသိမ်းပါ</value>
+    <comment>Lưu lại cập nhật</comment>
+  </data>
+  <data name="COM_LBL_SHARE_TITLE" xml:space="preserve">
+    <value>ဖိုင်မျှဝေခြင်း</value>
+    <comment>Chia sẻ tệp</comment>
+  </data>
+  <data name="COM_LINK_HOME" xml:space="preserve">
+    <value>နေအိမ်</value>
+    <comment>Trang chủ</comment>
+  </data>
+  <data name="COM_LIST_COL_ACTION" xml:space="preserve">
+    <value>ခြယ်လှယ်</value>
+    <comment>Thao tác</comment>
+  </data>
+  <data name="COM_LIST_USER" xml:space="preserve">
+    <value>အသုံးပြုသူစာရင်း</value>
+    <comment>Danh sách người dùng</comment>
+  </data>
+  <data name="COM_MENU_ASSET" xml:space="preserve">
+    <value>အိမ်ခြံမြေခြံ</value>
+    <comment>Tài sản</comment>
+  </data>
+  <data name="COM_MENU_CONTRACT" xml:space="preserve">
+    <value>စာချုပ် / အမိန့်</value>
+    <comment>Hợp đồng/Đơn hàng</comment>
+  </data>
+  <data name="COM_MENU_CUSTOMER" xml:space="preserve">
+    <value>ဖောက်သည်များ</value>
+    <comment>Khách hàng</comment>
+  </data>
+  <data name="COM_MENU_MANAGE_FUND" xml:space="preserve">
+    <value>ရန်ပုံငွေစီမံခန့်ခွဲမှု</value>
+    <comment>Quản lý quỹ</comment>
+  </data>
+  <data name="COM_MENU_MANAGE_SERVICE" xml:space="preserve">
+    <value>ဝန်ဆောင်မှုစီမံခန့်ခွဲမှု</value>
+    <comment>Quản trị dịch vụ</comment>
+  </data>
+  <data name="COM_MENU_MANAGE_USER" xml:space="preserve">
+    <value>အသုံးပြုသူများ၏အုပ်ချုပ်မှု</value>
+    <comment>Quản trị người dùng</comment>
+  </data>
+  <data name="COM_MENU_MATERIAL" xml:space="preserve">
+    <value>DM ပစ္စည်းကိရိယာများနှင့်ထောက်ပံ့ရေးပစ္စည်းများ</value>
+    <comment>DM thiết bị &amp; Vật tư</comment>
+  </data>
+  <data name="COM_MENU_PROJECT" xml:space="preserve">
+    <value>စီမံကိန်း</value>
+    <comment>Dự án</comment>
+  </data>
+  <data name="COM_MENU_SETTING_SYSTEM" xml:space="preserve">
+    <value>စနစ်ဆက်တင်များ</value>
+    <comment>Cài đặt hệ thống</comment>
+  </data>
+  <data name="COM_MENU_STORAGE_DIGITAL" xml:space="preserve">
+    <value>ဒေတာဂိုဒေါင် &amp; ဒီဂျစ်တယ်</value>
+    <comment>Kho dữ liệu &amp; số hóa</comment>
+  </data>
+  <data name="COM_MENU_SUPPLIER" xml:space="preserve">
+    <value>ပေးသူ</value>
+    <comment>Nhà cung cấp</comment>
+  </data>
+  <data name="COM_MSG_ADD_BEFORE" xml:space="preserve">
+    <value>သိမ်းဆည်းခြင်းမပြုမှီ {0} ထည့်ပါ</value>
+    <comment>Vui lòng thêm {0} trước khi lưu</comment>
+  </data>
+  <data name="COM_MSG_ADD_BEFORE_SAVE" xml:space="preserve">
+    <value>သိမ်းဆည်းခြင်းမပြုမှီ {0} ထည့်ပါ</value>
+    <comment>Vui lòng thêm {0} trước khi lưu</comment>
+  </data>
+  <data name="COM_MSG_ADD_FAILED" xml:space="preserve">
+    <value>{0} ထည့်သွင်းရန်မအောင်မြင်ပါ</value>
+    <comment>Thêm {0} thất bại</comment>
+  </data>
+  <data name="COM_MSG_ADD_PARENT_FIRST" xml:space="preserve">
+    <value>{0} ဖခင်ကိုအရင်ထည့်ရမည်။</value>
+    <comment>Bạn phải thêm {0} cha trước!</comment>
+  </data>
+  <data name="COM_MSG_ADD_SUCCESS" xml:space="preserve">
+    <value>{0} ကိုအောင်မြင်စွာထည့်ပါ</value>
+    <comment>Thêm {0} thành công</comment>
+  </data>
+  <data name="COM_MSG_APP_GUIDE" xml:space="preserve">
+    <value>ညွှန်ကြားချက်များ - Functional Management ကိုရွေးချယ်ရန်ညာဖက်နှိပ်ပါ</value>
+    <comment>Hướng dẫn: Nhấn chuột phải để lựa chọn Quản lý chức năng</comment>
+  </data>
+  <data name="COM_MSG_BRANCH_GUIDE" xml:space="preserve">
+    <value>ညွှန်ကြားချက်များ - Add / Edit / Delete branch ကိုရွေးရန်ညာဖက်နှိပ်ပါ</value>
+    <comment>Hướng dẫn: Nhấn chuột phải để lựa chọn Thêm / Sửa / Xóa chi nhánh</comment>
+  </data>
+  <data name="COM_MSG_CHOSE_FILE" xml:space="preserve">
+    <value>ကျေးဇူးပြုပြီးဖိုင်ရွေးပါ</value>
+    <comment>Vui lòng chọn tệp tin</comment>
+  </data>
+  <data name="COM_MSG_CREAT_DOCUMENT_COM" xml:space="preserve">
+    <value>စာသားဖန်တီးချင်ပါသလား။</value>
+    <comment>Bạn muốn tạo văn bản hay không?</comment>
+  </data>
+  <data name="COM_MSG_DATA_FAIL" xml:space="preserve">
+    <value>ဒေတာပြန်လည်ရယူခြင်းအမှားတစ်ခုရှိသည် !!</value>
+    <comment>Có lỗi khi lấy dữ liệu!!</comment>
+  </data>
+  <data name="COM_MSG_DEACTIVE_COUNT_SUCCESS" xml:space="preserve">
+    <value>{1} / {2} {0} မလှုပ်မရှားဖြစ်နေသောအခြေအနေအားအောင်မြင်စွာချိန်ညှိနိုင်သည်။</value>
+    <comment>Có {1}/{2} {0} đặt trạng thái không hoạt động thành công!</comment>
+  </data>
+  <data name="COM_MSG_DEACTIVE_FAILED" xml:space="preserve">
+    <value>{0} အတွက်ပြည်နယ်အားမလှုပ်မရှားဖြစ်နေအောင်ပြုလုပ်ခြင်းမအောင်မြင်ပါ။</value>
+    <comment>Ðặt trạng thái không hoạt động cho các {0} thất bại!</comment>
+  </data>
+  <data name="COM_MSG_DEACTIVE_SUCCESS" xml:space="preserve">
+    <value>{0} အောင်မြင်မှုအတွက်မအောင်မြင်သောအခြေအနေကိုသတ်မှတ်ခြင်း။</value>
+    <comment>Đặt trạng thái không hoạt động cho các {0} thành công!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_CHILD" xml:space="preserve">
+    <value>{0} ကလေးများကိုသင်အရင်ဖျက်ရမည်။</value>
+    <comment>Bạn phải xóa {0} con trước!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_CONFIRM" xml:space="preserve">
+    <value>ရွေးချယ်ထားသည့်အရာ {0} ကိုသင်ဖျက်လိုသလား။</value>
+    <comment>Bạn có chắc chắn muốn xóa mục {0} đã chọn?</comment>
+  </data>
+  <data name="COM_MSG_DELETE_CONFIRM_COM" xml:space="preserve">
+    <value>ဖျက်ချင်တာသေချာလား</value>
+    <comment>Bạn có chắc chắn muốn xóa ?</comment>
+  </data>
+  <data name="COM_MSG_DELETE_FAIL" xml:space="preserve">
+    <value>{0} မအောင်မြင်ပါ။</value>
+    <comment>Xóa {0} thất bại!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_LIST_FAIL" xml:space="preserve">
+    <value>{0} မအောင်မြင်ပါ</value>
+    <comment>Xóa các {0} thất bại!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_LIST_SUCCESS" xml:space="preserve">
+    <value>{0} ကိုအောင်မြင်စွာဖျက်လိုက်သည်။</value>
+    <comment>Xóa các {0} thành công!</comment>
+  </data>
+  <data name="COM_MSG_DELETE_SUCCESS" xml:space="preserve">
+    <value>အောင်မြင်စွာဖျက်ပြီး {0}!</value>
+    <comment>Xóa {0} thành công!</comment>
+  </data>
+  <data name="COM_MSG_DOWLOAD_ERR" xml:space="preserve">
+    <value>အမှားဖိုင်ကို download လုပ်ပါ</value>
+    <comment>Tải tệp tin lỗi</comment>
+  </data>
+  <data name="COM_MSG_DOWLOAD_SUCCESS" xml:space="preserve">
+    <value>ဖိုင်ကိုအောင်မြင်စွာ download လုပ်ပါ</value>
+    <comment>Tải tệp tin thành công</comment>
+  </data>
+  <data name="COM_MSG_EDITED_FILE_SUCCESS" xml:space="preserve">
+    <value>ဖိုင်ကိုအောင်မြင်စွာသိမ်းဆည်းပြီး</value>
+    <comment>Lưu tệp thành công</comment>
+  </data>
+  <data name="COM_MSG_EDITED_PEOPLE_OTHER" xml:space="preserve">
+    <value>ဤဖိုင်သည်အခြားအသုံးပြုသူမှတည်းဖြတ်နေသည်။ ကျေးဇူးပြု၍ နောက်မှထပ်ကြိုးစားပါ</value>
+    <comment>Tệp đang được chỉnh sửa bởi một người dùng khác. Vui lòng thử lại sau</comment>
+  </data>
+  <data name="COM_MSG_EDIT_CONFIRM" xml:space="preserve">
+    <value>မင်းပြောင်းချင်လား</value>
+    <comment>Bạn có muốn thay đổi không</comment>
+  </data>
+  <data name="COM_MSG_ERR" xml:space="preserve">
+    <value>အမှားတစ်ခုဖြစ်ပွားခဲ့သည်</value>
+    <comment>Có lỗi xảy ra !</comment>
+  </data>
+  <data name="COM_MSG_ERR_ADD" xml:space="preserve">
+    <value>ဖြည့်စွက်အမှားတစ်ခုရှိခဲ့သည်</value>
+  </data>
+  <data name="COM_MSG_ERR_ADD_IMG" xml:space="preserve">
+    <value>{0} ဖြည့်စွက်သည့်အမှားတစ်ခုရှိသည်။</value>
+    <comment>Có lỗi khi thêm {0}</comment>
+  </data>
+  <data name="COM_MSG_ERR_RETRY" xml:space="preserve">
+    <value>ကျေးဇူးပြု၍ ထပ်မံကြိုးစားပါ</value>
+    <comment>Xảy ra lỗi, vui lòng thử lại.</comment>
+  </data>
+  <data name="COM_MSG_EXITS" xml:space="preserve">
+    <value>{0} ရှိပြီးသား</value>
+    <comment>{0} đã tồn tại</comment>
+  </data>
+  <data name="COM_MSG_FILE_EXISTS" xml:space="preserve">
+    <value>ဖိုင်ရှိပြီးသား</value>
+    <comment>Tệp tin đã tồn tại</comment>
+  </data>
+  <data name="COM_MSG_FILE_FAIL" xml:space="preserve">
+    <value>ဖိုင်တင်နေစဉ်အမှားတစ်ခုရှိခဲ့သည်</value>
+  </data>
+  <data name="COM_MSG_FILE_FAIL_FORMAT" xml:space="preserve">
+    <value>ဒီဖိုင်ကမှားနေတယ်</value>
+  </data>
+  <data name="COM_MSG_FILE_NOT_HISTORY" xml:space="preserve">
+    <value>ပုံစံမရှိပါ</value>
+    <comment>Định dạng không có lịch sử</comment>
+  </data>
+  <data name="COM_MSG_FILE_SUPPORT_PREVIEW" xml:space="preserve">
+    <value>ဖိုင်သည်ကြိုတင်ကြည့်ရှုခြင်းကိုမပံ့ပိုးပါ</value>
+    <comment>Tệp chưa hỗ trợ xem trước</comment>
+  </data>
+  <data name="COM_MSG_FINISH" xml:space="preserve">
+    <value>ပြီးစီးခဲ့သည်</value>
+    <comment>Hoàn thành</comment>
+  </data>
+  <data name="COM_MSG_FORMAT_DOCX_PDF" xml:space="preserve">
+    <value>လိုအပ်တဲ့ပုံစံကတော့ docx, pdf!</value>
+    <comment>Định dạng bắt buộc là: docx,pdf!</comment>
+  </data>
+  <data name="COM_MSG_FORMAT_EMAIL" xml:space="preserve">
+    <value>အီးမေးလ်ပုံစံမမှန်ကန်ပါ၊ ကျေးဇူးပြု၍ ထပ်မံထည့်သွင်းပါ</value>
+    <comment>Định dạng Email chưa đúng vui lòng nhập lại</comment>
+  </data>
+  <data name="COM_MSG_FORMAT_EXCEL" xml:space="preserve">
+    <value>အီးမေးလ်ပုံစံမမှန်ကန်ပါ၊ ကျေးဇူးပြု၍ ထပ်မံထည့်သွင်းပါ</value>
+  </data>
+  <data name="COM_MSG_FORMAT_IMAGE" xml:space="preserve">
+    <value>Excel ဖိုင်၏မှားယွင်းသောပုံစံ</value>
+  </data>
+  <data name="COM_MSG_FORMAT_PNG_JPG_JEG_GIF_BMP" xml:space="preserve">
+    <value>အောက်ပါအမျိုးအစားများသာ png, jpg, jpeg, gif, bmp!</value>
+    <comment>Chỉ nhận các định dạng sau: png, jpg, jpeg, gif, bmp!</comment>
+  </data>
+  <data name="COM_MSG_FUNC_GUIDE" xml:space="preserve">
+    <value>ညွှန်ကြားချက်များ - အရင်းအမြစ်စီမံခန့်ခွဲမှုကိုရွေးချယ်ရန်ညာဖက်နှိပ်ပါ</value>
+    <comment>Hướng dẫn: Nhấn chuột phải để lựa chọn Quản lý tài nguyên</comment>
+  </data>
+  <data name="COM_MSG_IMG" xml:space="preserve">
+    <value>ဓာတ်ပုံ</value>
+    <comment>ảnh</comment>
+  </data>
+  <data name="COM_MSG_INFOMATION" xml:space="preserve">
+    <value>သတင်းအချက်အလက်ဖြည့်ပါ</value>
+    <comment>Vui lòng điền đầy đủ thông tin!!</comment>
+  </data>
+  <data name="COM_MSG_INVALID_FORMAT" xml:space="preserve">
+    <value>မမှန်ကန်သောပုံစံ!</value>
+    <comment>Định dạng không hợp lệ !</comment>
+  </data>
+  <data name="COM_MSG_LIST_GUIDE" xml:space="preserve">
+    <value>ညွှန်ကြားချက်များ - မှတ်တမ်းတစ်ခုကိုတည်းဖြတ်ရန်နှစ်ချက်နှိပ်ပါ</value>
+    <comment>Hướng dẫn: Nhấn đúp chuột để chỉnh sửa bản ghi</comment>
+  </data>
+  <data name="COM_MSG_LIST_PRODUCT" xml:space="preserve">
+    <value>ကုန်ပစ္စည်းစာရင်း</value>
+  </data>
+  <data name="COM_MSG_MAXIMUM_FILE" xml:space="preserve">
+    <value>အများဆုံးဖိုင်အရွယ်အစားမှာ 1 MB ဖြစ်သည်</value>
+    <comment>Kích thước tệp tối đa được phép là 1 MB</comment>
+  </data>
+  <data name="COM_MSG_MAXIMUM_FILE_SIZE" xml:space="preserve">
+    <value>ခွင့်ပြုထားသောဖိုင်အရွယ်အစားသည်အများဆုံး (1000px x 1000px) ဖြစ်သည်။</value>
+    <comment>Kích thước tệp tối đa được phép là (1000px x 1000px)!</comment>
+  </data>
+  <data name="COM_MSG_NO _UNKNOWN" xml:space="preserve">
+    <value>မဖော်ပြထားပါ</value>
+    <comment>Không xác định</comment>
+  </data>
+  <data name="COM_MSG_NOREVIEW" xml:space="preserve">
+    <value>မမြင်ရ</value>
+    <comment>Chưa xem</comment>
+  </data>
+  <data name="COM_MSG_NOTIFY_SUCCES" xml:space="preserve">
+    <value>အောင်မြင်မှုကိုအသိပေးပါ။</value>
+    <comment>Đã Notify thành công!</comment>
+  </data>
+  <data name="COM_MSG_NOT_ACCOUNT" xml:space="preserve">
+    <value>အကောင့်ဝင်မရသေးပါ။</value>
+    <comment>Chưa có tài khoản nào đăng nhập!</comment>
+  </data>
+  <data name="COM_MSG_NOT_EDIT_FILE_HISTORY" xml:space="preserve">
+    <value>မှတ်တမ်းဖိုင်များကိုတည်းဖြတ်ရန်ခွင့်မပြုပါ</value>
+    <comment>Tệp tin lịch sử không được phép chỉnh sửa</comment>
+  </data>
+  <data name="COM_MSG_NOT_EXITS" xml:space="preserve">
+    <value>{0} စနစ်တွင်မရှိပါ။</value>
+    <comment>{0} không tồn tại trong hệ thống !</comment>
+  </data>
+  <data name="COM_MSG_NOT_EXITS_FILE" xml:space="preserve">
+    <value>အချက်အလက်မရှိပါ ကျေးဇူးပြုပြီးစာမျက်နှာကိုပြန်ဖွင့်ပါ</value>
+    <comment>Không tồn tại dữ liệu. Vui lòng tải lại trang.</comment>
+  </data>
+  <data name="COM_MSG_NOT_EXITS_RECORD" xml:space="preserve">
+    <value>မှတ်တမ်းမရှိပါ</value>
+  </data>
+  <data name="COM_MSG_NOT_FOUND" xml:space="preserve">
+    <value>မတွေ့ပါ</value>
+    <comment>Không tìm thấy</comment>
+  </data>
+  <data name="COM_MSG_NOT_FOUND_DATA" xml:space="preserve">
+    <value>အချက်အလက်မရှိပါ။</value>
+    <comment>Không tìm thấy dữ liệu!</comment>
+  </data>
+  <data name="COM_MSG_NOT_FOUND_RECORD" xml:space="preserve">
+    <value>မှတ်တမ်းမရှိပါ</value>
+    <comment>Không tìm thấy bản ghi này</comment>
+  </data>
+  <data name="COM_MSG_NOT_SUPPORT" xml:space="preserve">
+    <value>မထောက်ပံ့သောပုံစံ</value>
+    <comment>Định dạng không được hỗ trợ</comment>
+  </data>
+  <data name="COM_MSG_NO_CONFIRM" xml:space="preserve">
+    <value>အတည်ပြုမထားပါနဲ့</value>
+    <comment>Không xác nhận</comment>
+  </data>
+  <data name="COM_MSG_ON_LOCATION" xml:space="preserve">
+    <value>ကျေးဇူးပြု၍ တည်နေရာကိုဖွင့်ပါ</value>
+    <comment>Vui lòng bật vị trí</comment>
+  </data>
+  <data name="COM_MSG_PAINT_BEFORE_ADD" xml:space="preserve">
+    <value>ကျေးဇူးပြုပြီး {0} ကိုမထည့်ခင်ဆွဲပါ</value>
+    <comment>Vui lòng vẽ {0} trước khi thêm</comment>
+  </data>
+  <data name="COM_MSG_QUESTION_SAVE" xml:space="preserve">
+    <value>သင်အပြောင်းအလဲများကိုသိမ်းချင်ပါသလား။</value>
+    <comment>Bạn có muốn lưu lại thay đổi?</comment>
+  </data>
+  <data name="COM_MSG_RECORD_ADD" xml:space="preserve">
+    <value>အသစ်ထည့်ရန်မှတ်တမ်းကိုရွေးချယ်ပါ</value>
+  </data>
+  <data name="COM_MSG_RECORD_DELETE" xml:space="preserve">
+    <value>ဖျက်ရန်မှတ်တမ်းတစ်ခုရွေးပါ</value>
+  </data>
+  <data name="COM_MSG_REFRESH" xml:space="preserve">
+    <value>အချက်အလက်ရှာမတွေ့ပါ၊ ကျေးဇူးပြု၍ စာမျက်နှာကို refresh လုပ်ပါ</value>
+    <comment>Không tìm thấy thông tin, vui lòng làm mới trang</comment>
+  </data>
+  <data name="COM_MSG_RESOURCE_GUIDE" xml:space="preserve">
+    <value>ညွှန်ကြားချက်များ - Functional Management ကိုရွေးချယ်ရန်ညာဖက်နှိပ်ပါ</value>
+    <comment>Hướng dẫn: Nhấn chuột phải để lựa chọn Quản lý chức năng</comment>
+  </data>
+  <data name="COM_MSG_REVIEW" xml:space="preserve">
+    <value>စောင့်ကြည့်</value>
+    <comment>Đã xem</comment>
+  </data>
+  <data name="COM_MSG_SEND_FAIL" xml:space="preserve">
+    <value>ပို့ပေးပါ</value>
+    <comment>Send Fail!</comment>
+  </data>
+  <data name="COM_MSG_SOS" xml:space="preserve">
+    <value>အရေးပေါ်</value>
+    <comment>Khẩn cấp</comment>
+  </data>
+  <data name="COM_MSG_SUCCES" xml:space="preserve">
+    <value>{0} အောင်မြင်မှု !!!</value>
+    <comment>{0} thành công!!!</comment>
+  </data>
+  <data name="COM_MSG_SUCCES_SAVE" xml:space="preserve">
+    <value>အချက်အလက်များကိုအောင်မြင်စွာသိမ်းဆည်းပါ !!</value>
+    <comment>Lưu thông tin thành công!!</comment>
+  </data>
+  <data name="COM_MSG_SUCCES_SIGN" xml:space="preserve">
+    <value>မှတ်ပုံတင်ခြင်းအောင်မြင်ပါသည်</value>
+    <comment>Đăng kí thành công</comment>
+  </data>
+  <data name="COM_MSG_UNFINISH" xml:space="preserve">
+    <value>မပြီးသေးပါ</value>
+    <comment>Chưa hoàn thành</comment>
+  </data>
+  <data name="COM_MSG_UNSELECTED" xml:space="preserve">
+    <value>ပစ္စည်းမရွေးရသေးပါ</value>
+    <comment>Không có khoản mục nào được chọn</comment>
+  </data>
+  <data name="COM_MSG_UNSELECTED_FILE" xml:space="preserve">
+    <value>ဖိုင်များမရွေးရသေးပါ</value>
+    <comment>Không có tệp nào được chọn</comment>
+  </data>
+  <data name="COM_MSG_UNSELECTED_RECORD" xml:space="preserve">
+    <value>မှတ်တမ်းမရှိပါ</value>
+    <comment>Không có bản ghi nào được chọn</comment>
+  </data>
+  <data name="COM_MSG_UPDATE_FAILED" xml:space="preserve">
+    <value>အပ်ဒိတ် {0} မအောင်မြင်ပါ</value>
+    <comment>Cập nhật {0} thất bại</comment>
+  </data>
+  <data name="COM_MSG_UPDATE_SUCCESS" xml:space="preserve">
+    <value>Update ကို {0} အောင်မြင်ပါပြီ</value>
+    <comment>Cập nhật {0} thành công</comment>
+  </data>
+  <data name="COM_MSG_UPDATE_USER_DEPT_FAIL" xml:space="preserve">
+    <value>ဌာန / စင်တာအသုံးပြုသူကိုအဆင့်မြှင့်တင်ရန်မအောင်မြင်ပါ</value>
+    <comment>Cập nhật người dùng của bộ phận / trung tâm không thành công</comment>
+  </data>
+  <data name="COM_MSG_UPDATE_USER_DEPT_SUCCESS" xml:space="preserve">
+    <value>ဌာန / စင်တာကိုအသုံးပြုသူအဆင့်မြှင့်တင်ခြင်း</value>
+    <comment>Cập nhật người dùng của bộ phận / trung tâm thành công</comment>
+  </data>
+  <data name="COM_MSG_VALIDATE_SEARCH" xml:space="preserve">
+    <value>ရှာဖွေရန်ရိုက်ထည့်ပါ</value>
+    <comment>Nhập Để Tìm Kiếm</comment>
+  </data>
+  <data name="COM_NAME_FILE" xml:space="preserve">
+    <value>ဖိုင်နာမည်</value>
+    <comment>Tên tệp tin</comment>
+  </data>
+  <data name="COM_NEXT" xml:space="preserve">
+    <value>forwarding ကို</value>
+    <comment>Chuyển tiếp</comment>
+  </data>
+  <data name="COM_NOT_IMAGE" xml:space="preserve">
+    <value>ဓါတ်ပုံများမရှိပါ</value>
+    <comment>Không có ảnh</comment>
+  </data>
+  <data name="COM_PREVIEW" xml:space="preserve">
+    <value>Preview</value>
+    <comment>Xem trước</comment>
+  </data>
+  <data name="COM_RECEIVER" xml:space="preserve">
+    <value>လက်ခံသူ</value>
+    <comment>Người nhận</comment>
+  </data>
+  <data name="COM_SHARE_CURD_LBL_FILE_NAME" xml:space="preserve">
+    <value>ဖိုင်နာမည်</value>
+    <comment>Tên tệp</comment>
+  </data>
+  <data name="COM_SHARE_CURD_LBL_OBJECT_CODE" xml:space="preserve">
+    <value>အရာဝတ္ထု</value>
+    <comment>Đối tượng</comment>
+  </data>
+  <data name="COM_SHARE_CURD_LBL_OBJECT_TYPE" xml:space="preserve">
+    <value>အရာဝတ္ထုအမျိုးအစား</value>
+    <comment>Kiểu đối tượng</comment>
+  </data>
+  <data name="COM_STOP_WORKING" xml:space="preserve">
+    <value>ပိတ်ပြီး</value>
+    <comment>Ngừng hoạt động</comment>
+  </data>
+  <data name="COM_SUB_MENU_MATERIAL" xml:space="preserve">
+    <value>စာရင်းအင်းအစီရင်ခံစာ</value>
+    <comment>Báo cáo thống kê</comment>
+  </data>
+  <data name="COM_SUB_MENU_MATERIAL_CONTRACT" xml:space="preserve">
+    <value>အမိန့် / စာချုပ်များ</value>
+    <comment>Đơn hàng/ hợp đồng</comment>
+  </data>
+  <data name="COM_SUB_MENU_MATERIAL_SUPP" xml:space="preserve">
+    <value>အမိန့်ပေးသွင်း</value>
+    <comment>Đặt hàng NCC</comment>
+  </data>
+  <data name="COM_TIME" xml:space="preserve">
+    <value>အချိန်</value>
+    <comment>Thời gian</comment>
+  </data>
+  <data name="COM_TITLE_ADMIN_CATEGORY" xml:space="preserve">
+    <value>လမ်းညွှန်စီမံခန့်ခွဲမှု</value>
+    <comment>Quản trị danh mục</comment>
+  </data>
+  <data name="COM_TITLE_CODE" xml:space="preserve">
+    <value>ကုဒ်</value>
+    <comment>Mã</comment>
+  </data>
+  <data name="COM_TITLE_HISTORY_FILE" xml:space="preserve">
+    <value>ဖိုင်တည်းဖြတ်မှုမှတ်တမ်း</value>
+    <comment>Lịch sử sửa tệp</comment>
+  </data>
+  <data name="COM_UPDATE_FAIL" xml:space="preserve">
+    <value>အမှားမွမ်းမံမှုတစ်ခုရှိခဲ့သည်</value>
+    <comment>Có lỗi khi cập nhật</comment>
+  </data>
+  <data name="COM_UPDATE_SUCCESS" xml:space="preserve">
+    <value>Update ကိုအောင်မြင်စွာလုပ်ပါ</value>
+    <comment>Cập nhật thành công</comment>
+  </data>
+  <data name="COM_UPLOAD" xml:space="preserve">
+    <value>တင်ယူခဲ့သည်</value>
+    <comment>Tải lên</comment>
+  </data>
+  <data name="COM_USER" xml:space="preserve">
+    <value>အသုံးပြုသူ</value>
+    <comment>Người dùng</comment>
+  </data>
+  <data name="COM_VALIDATE_CHOOSE_DATA" xml:space="preserve">
+    <value>ကျေးဇူးပြု၍ အချက်အလက်ဂိုဒေါင်ကိုရွေးချယ်ပါ</value>
+  </data>
+  <data name="COM_VALIDATE_CHOOSE_DRAFTERS" xml:space="preserve">
+    <value>ကျေးဇူးပြု၍ စာရေးသူရွေးပါ</value>
+    <comment>Vui lòng chọn người soạn thảo</comment>
+  </data>
+  <data name="COM_VALIDATE_DELETE_RECORD" xml:space="preserve">
+    <value>ကျေးဇူးပြု၍ ဖျက်ရန်မှတ်တမ်းကိုရွေးချယ်ပါ။</value>
+    <comment>Vui lòng chọn bản ghi để xóa!</comment>
+  </data>
+  <data name="COM_VALIDATE_ITEM" xml:space="preserve">
+    <value>{0} အထူးအက္ခရာများမရှိပါ။</value>
+    <comment>{0} không cho phép có ký tự đặc biệt!</comment>
+  </data>
+  <data name="COM_VALIDATE_ITEM_CODE" xml:space="preserve">
+    <value>အနည်းဆုံးအက္ခရာတစ်လုံးသည်အက္ခရာများသို့မဟုတ်နံပါတ်များဖြစ်ရန်လိုအပ်ပြီးအထူးအက္ခရာများသို့မဟုတ်နေရာများမပါ ၀ င်ပါ။</value>
+    <comment>Yêu cầu {0} có ít nhất một ký tự là chữ cái hoặc số và không bao gồm ký tự đặc biệt, khoảng trống!</comment>
+  </data>
+  <data name="COM_VALIDATE_ITEM_NAME" xml:space="preserve">
+    <value>{0} မှာအနည်းဆုံးအက္ခရာတစ်ခုသို့မဟုတ်နံပါတ်တစ်ခုနှင့်အထူးအက္ခရာများမလိုအပ်ပါ။</value>
+    <comment>Yêu cầu {0} có ít nhất một ký tự là chữ cái hoặc số và không bao gồm ký tự đặc biệt!</comment>
+  </data>
+  <data name="COM_VALIDATE_NOT_FOUND_DATA" xml:space="preserve">
+    <value>ဒေတာကုန်လှောင်ရုံမရှိပါ</value>
+  </data>
+  <data name="COM_WORKING" xml:space="preserve">
+    <value>တက်ကြွ</value>
+    <comment>Hoạt động</comment>
+  </data>
+</root>

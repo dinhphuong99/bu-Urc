@@ -1,0 +1,157 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-3 ">
+            <h1 class="bold mb-0">Danh mục tài sản</h1>
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="#">{{'FCRE_LINK_HOME' | translate}}</a>
+                    <span>&gt;</span>
+                </li>
+                <li>
+                    <a href="#/FundCatReptExps">Danh mục tài sản</a>
+                </li>
+            </ul>
+        </div>
+        <div class="btn-group pull-right actions d-flex hidden">
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline green-custom">
+                    <span><i class="fa fa-plus"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Thêm mới</p>
+            </div>
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline green-custom">
+                    <span><i class="fa fa-save"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Lưu lại</p>
+            </div>
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline red-custom">
+                    <span><i class="fa fa-trash"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Xóa</p>
+            </div>
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline red-custom">
+                    <span><i class="fa fa-close"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Hủy bỏ</p>
+            </div>
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline blue-custom">
+                    <span><i class="fa fa-pencil"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Sửa</p>
+            </div>
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline purple-custom">
+                    <span><i class="fa fa-search"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Tìm kiếm</p>
+            </div>
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline gold-custom">
+                    <span><i class="fa fa-file-pdf-o"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Xuất PDF</p>
+            </div>
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline blue-custom">
+                    <span><i class="fa fa-file-word"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Xuất word</p>
+            </div>
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline green-custom">
+                    <span><i class="fa fa-file-excel-o"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Xuất excel</p>
+            </div>
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline yellow-custom">
+                    <span><i class="fa fa-download"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Tải xuống</p>
+            </div>
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline green-custom">
+                    <span><i class="fa fa-upload"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Tải lên</p>
+            </div>
+            <div class="text-center pr10">
+                <a class="btn btn-icon-only btn-circle btn-outline blue-custom">
+                    <span><i class="fa fa-refresh"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Làm mới</p>
+            </div>
+            <div class="text-center">
+                <a class="btn btn-icon-only btn-circle btn-outline red-custom">
+                    <span><i class="fa fa-warning"></i></span>
+                </a>
+                <p class="text-underline fs9 mb5 pt3">Cảnh báo</p>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered input-search mb5">
+        <div class="portlet-body">
+            <div class="row pt5 mb5">
+                <div class="col-md-3">
+                    <label class="fw600 text-underline">{{'FCRE_CURD_LBL_CAT_NAME' | translate }}</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="{{'FCRE_CURD_TXT_CAT_NAME' | translate }}..." ng-model="model.CatName" name="CatName" ng-keydown="($event.keyCode == 13) && reload()" />
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="model.CatName=''" class="btn btn-default no-shadow" style="border-bottom-left-radius: 0px;border-top-left-radius: 0px;height: 34px">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="col-md-12">
+                        <label class="fw600 text-underline">{{'FCRE_CURD_LBL_SEARCH_CAT_TYPE' | translate}}</label>
+                        <div class="input-group">
+                            <ui-select tagging ng-model="model.CatType" theme="bootstrap" on-select="changleSelect('CatType')">
+                                <ui-select-match placeholder="{{'FCRE_CURD_TXT_CAT_TYPE' | translate}}">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="x.Code as x in listTypeFund | filter: $select.search">
+                                    {{x.Name}}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="model.CatType=''" class="btn btn-default no-shadow" style="">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 pt5">
+                    <div class="btn-group actions d-flex">
+                        <div class="text-center pr10">
+                            <a ng-click="search()" class=" btn btn-icon-only btn-circle btn-outline purple-custom">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SEARCH' | translate}}</p>
+                        </div>
+                        <div class="text-center pr10">
+                            <a ng-click="add()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                <span><i class="fa fa-plus"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_ADD' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12"> <label class="text-danger">{{'FCRE_VALIDATE_GUIDE' | translate}}</label></div>
+</div>
+<table class="table dataTable table-hover table-striped"
+       datatable
+       dt-options="dtOptions"
+       dt-columns="dtColumns"
+       dt-instance="dtInstance"
+       id="tblData"></table>

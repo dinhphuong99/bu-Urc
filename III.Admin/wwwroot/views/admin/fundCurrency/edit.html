@@ -1,0 +1,107 @@
+﻿<style type="text/css">
+    .ui-select-match-close {
+        background-image: none;
+    }
+
+    @media(max-width:1200px) {
+        .modal-30 {
+            width: 45% !important;
+        }
+    }
+
+    @media(min-width:1201px) and (max-width:1500px) {
+        .modal-30 {
+            width: 35% !important;
+        }
+    }
+
+    @media(min-width:1501px) {
+        .modal-30 {
+            width: 30% !important;
+        }
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title custom-title " id="modal-title">{{'FCC_TITLE_EDIT' | translate}}</span>
+</div>
+<div class="modal-body pb-0" id="modal-body">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptions">
+            <div class="form-body" style="padding: 10px;">
+                <div class="form-group">
+                    <div class="col-md-5 pr-0">
+                        <i class="fa fa-barcode" aria-hidden="true"></i>
+                        <label class="control-label require">{{'FCC_CURD_LBL_FCC_CODE' | translate}}</label>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="input-group">
+                            <ui-select ng-model="model.CurrencyCode" theme="bootstrap" ng-disabled="true">
+                                <ui-select-match placeholder="{{'FCC_CURD_TXT_FCC_CODE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="x.Code as x in listCurrency | filter: $select.search">
+                                    {{x.Name}}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn" ng-hide="IsHide">
+                                <button type="button" ng-click="model.CurrencyCode=''" class="btn btn-default no-shadow">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5 pr-0">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                        <label class="control-label ">{{'FCC_CURD_LBL_DEFAULT_PAYMENT' | translate}}</label>
+                    </div>
+                    <div class="col-md-7 pt5 ">
+
+                        <label class="mt-checkbox mt-checkbox-outline ng-binding">
+                            <input type="checkbox" name="DefaultPayment" ng-model="model.DefaultPayment" ng-checked="model.DefaultPayment" class="ng-pristine ng-untouched ng-valid ng-empty">
+                            <span></span>
+                        </label>
+                        <!--<label class="control-label ">{{'FCC_CURD_LBL_CASH_TRANSFER' | translate}}</label>-->
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <div class="col-md-5 pr-0">
+                        Phương thức tt mặc định
+                        <div class=" col-md-7 mt-checkbox-list pt10">
+                            <label class="mt-checkbox mt-checkbox-outline ng-binding">
+                                <input type="checkbox" name="DefaultPayment" ng-model="model.DefaultPayment" ng-checked="model.DefaultPayment" class="ng-pristine ng-untouched ng-valid ng-empty">
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <div class="col-md-5 pr-0">
+                        <i class="fa fa-comment" aria-hidden="true"></i>
+                        <label class="control-label ">{{'FCC_CURD_LBL_NOTE' | translate}}</label>
+                    </div>
+                    <div class="col-md-7">
+                        <textarea type="text" class="form-control" ng-model="model.Note" rows="4" name="Mô tả" placeholder="{{'FCC_CURD_TXT_NOTE' | translate}}..." />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer pt-0">
+    <div class="btn-group pull-right actions d-flex">
+        <div class="text-center pr10">
+            <a data-dismiss="modal" ng-click="cancel()" class="btn btn-icon-only btn-circle btn-outline red-custom">
+                <span><i class="glyphicon glyphicon-remove"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_CANCEL' | translate}}</p>
+        </div>
+        <div class="text-center">
+            <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="submit()">
+                <span><i class="fa fa-save"></i></span>
+            </a>
+            <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+        </div>
+    </div>
+</div>

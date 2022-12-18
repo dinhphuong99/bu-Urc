@@ -1,0 +1,439 @@
+﻿<style>
+    .width_90 {
+        width: 90px;
+    }
+    .tab-content {
+        width: 100%;
+        min-height: 270px;
+        /*overflow-y: scroll;
+        overflow-x: hidden;*/
+    }
+    .text-box-important {
+        background-color: #27ae60 !important;
+        color: #fcfdfd !important;
+        font-weight: bold;
+    }
+    .labelbodergroup {
+        margin-left: 24px;
+        margin-top: -12px;
+        position: absolute;
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border: 1px solid #e9dada;
+        border-radius: 4px;
+        font-size: 11px;
+        padding: 3px 10px !important;
+    }
+
+    .table_body {
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border-radius: 4px !important;
+        border: 1px solid #e9dada;
+        padding-top: 15px;
+        box-shadow: 0px 5px 10px 2px rgba(127, 143, 166,0.2) !important;
+        padding-bottom: 15px;
+    }
+
+    .border-qrcode .box-file {
+        overflow: auto;
+        height: 130px;
+        border-radius: 4px !important;
+        border: 1px solid #e9dada;
+        padding-top: 15px;
+        background: #fffdfd;
+    }
+
+        .border-qrcode .box-file .header {
+            justify-content: center;
+            display: flex;
+        }
+
+            .border-qrcode .box-file .header label {
+                margin-top: -25px;
+                position: absolute;
+                background: linear-gradient(to bottom,#f1f1f1,#FBFCFC );
+                border: 1px solid #cccccc;
+                border-radius: 4px;
+                font-size: 11px;
+                padding: 3px 10px !important;
+            }
+
+
+    #tblFileRequest {
+        max-height: 60px;
+    }
+
+        #tblFileRequest tbody tr td {
+            max-width: 115px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+    @media(min-width:992px) and (max-width:1200px) {
+        .modal-60 {
+            width: 85% !important;
+        }
+    }
+
+    @media(min-width:1200px) and (max-width:1300px) {
+        .modal-60 {
+            width: 70% !important;
+        }
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title text-limit" id="modal-title">{{'ASSET_RC_TITLE_ADD_TICKET' | translate}}  <span>{{model.RcTicketCode}}</span></span>
+</div>
+<div class="modal-body userFormAreaHeader" id="modal-body" style="padding-bottom: 0px;">
+    <div class="portlet-body form">
+        <form name="addForm" class="form-horizontal " method="post" ng-validate="validationOptions">
+            <div class="form-body pt10 pl-0 pr-0">
+                <div class="row ">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-barcode" aria-hidden="true"></i>
+                                <label class="control-label bold ">{{'ASSET_RC_LBL_VOUCHER_CODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input type="text" name="TicketCode" class="form-control text-box-asset" ng-model="model.TicketCode" placeholder="{{'ASSET_RC_LBL_VOUCHER_CODE' | translate}}" ng-readonly="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-comment"></i>
+                                <label class="control-label require bold">{{'ASSET_RC_LBL_TITLE' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input type="text" class="form-control text-box-asset" ng-model="model.Title" name="Title" placeholder="{{'ASSET_RC_TXT_TITLE' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class=" {'has-error': errorBranchRecalled}">
+                            <div class="col-md-4">
+                                <i class="fa fa-user"></i>
+                                <label class="control-label require">&nbsp;{{'ASSET_RC_COL_BRANCH_TH' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class="input-group">
+                                    <ui-select class="ui-select-bootstrap-right-radius" tagging ng-model="model.BranchRecalled" theme="bootstrap" on-select="changeSelect('BranchRecalled')">
+                                        <ui-select-match placeholder="{{'ASSET_RC_TXT_CHANCH_ENTER' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in model.listBranch | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorBranchRecalled" class="label-color validation-message">
+                                    {{'ASSET_VALIDATE_BRANCH'| translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorUserRecalled}">
+                            <div class="col-md-4">
+                                <i class="fa fa-user"></i>
+                                <label class="control-label require">&nbsp;{{ 'ASSET_RC_LBL_PERSON_TH' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class="input-group">
+                                    <ui-select class="ui-select-bootstrap-right-radius" tagging ng-model="model.UserRecalled" theme="bootstrap" on-select="changeSelect('UserRecalled')">
+                                        <ui-select-match placeholder="{{'ASSET_RC_LBL_PERSON_TH1' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in model.listEmp | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+
+                                </div>
+                                <span ng-show="errorUserRecalled" class="label-color validation-message">
+                                    {{'ASSET_VALIDATE_PESON_TH' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <label class="control-label require">&nbsp;{{'ASSET_RC_LBL_DATE_TH' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class='input-group date' id='recalledTime'>
+                                    <input type='text' class="form-control input-date" name="sRecalledTime" ng-model="model.sRecalledTime" placeholder="{{'ASSET_RC_LBL_DATE_TH1' | translate}}..." />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <label class="control-label require"> &nbsp;{{'ASSET_RC_LBL_LOCAL' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input type="text" class="form-control" ng-model="model.LocationRecalled" name="LocationRecalled" placeholder="{{'ASSET_RC_LBL_LOACTION_ENTER' | translate}}..." />
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group" ng-class="{ 'has-error': errorObjActCode}">
+                            <div class="col-md-4">
+                                <i class="fa fa-flag"></i>
+                                <label class="control-label require">{{'COM_CURD_LBL_CAT_ACT' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <div class="input-group">
+                                    <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.ObjActCode" theme="bootstrap" ng-change="changeSelect('ObjActCode',model.ObjActCode)">
+                                        <ui-select-match placeholder="{{'COM_CURD_LBL_CAT_ACT' | translate}}">{{$select.selected.CatName}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listCatObjActivity  | filter: $select.search">
+                                            {{x.CatName}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                                <span ng-show="errorObjActCode" class="label-color validation-message">
+                                    {{'ASSET_VALIDATE_CATEGORY_ACTIVITY' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-flag" aria-hidden="true"></i>
+                                <label class="control-label">&nbsp;{{'ASSET_RC_LBL_STATUS' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0" ng-disable="true">
+                                <div class="input-group">
+                                    <ui-select ng-model="model.Status" theme="bootstrap" disabled="true" ng-change="changeSelect('Status', model.Status)">
+                                        <ui-select-match placeholder="{{'ASSET_RC_LBL_STATUS' | translate}}"><i class="{{$select.selected.Icon}}"></i>{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listStatus | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="model.Status=''" class="btn btn-default no-shadow" ng-disabled="true">
+                                            <span><img src="https://img.icons8.com/material/18/000000/log.png"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <label class="control-label require"> &nbsp;{{'ASSET_RC_LBL_PERSON_SUCCESS' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <input type="text" class="form-control" ng-model="model.UserConfirm" name="UserConfirm" placeholder="{{'ASSET_RC_LBL_PERSON_SUCCESS1' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <i class="fa fa-comment"></i>
+                                <label class="control-label">&nbsp;{{'ASSET_RC_LBL_NOTE1' | translate}}</label>
+                            </div>
+                            <div class="col-md-8 pl-0">
+                                <textarea name="Description" rows="5" class="form-control" ng-model="model.Description" type="text" placeholder=" {{'ASSET_RC_LBL_NOTE2' | translate}}..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="form-body pt10">
+            <div class="row pb15">
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group" ng-class="{ 'has-error': errorTicketCode}">
+                                <label class="require custom-title-code-bold">{{'ASSET_RC_LBL_VOUCHER_CODE' | translate}} </label>
+                                <input type="text" name="TicketCode" rows="1" class=" form-control text-box-asset" ng-model="model.TicketCode" placeholder="{{'ASSET_RC_LBL_VOUCHER_CODE' | translate}}..." ng-readonly="true" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="require custom-title-code-bold">{{'ASSET_RC_LBL_TITLE' | translate}}</label>
+                                <input ng-model="model.Title" rows="1" name="Title" class="form-control text-box-asset" placeholder="{{'ASSET_RC_TXT_TITLE' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="">{{'ASSET_RC_LBL_STATUS' | translate}}</label>
+                                <div class='input-group'>
+                                    <ui-select tagging ng-model="model.Status" theme="bootstrap" ng-change="changeSelect('Status', model.Status)" ng-disabled="true">
+                                        <ui-select-match placeholder="{{'ASSET_RC_LBL_STATUS' | translate}}..."><i class="{{$select.selected.Icon}}"></i>{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat="x.Code as x in listStatus| filter: $select.search">
+                                            <i class="{{x.Icon}}"></i>{{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="viewActivityStatus()" class="btn btn-default no-shadow" style="padding:3px 7px;">
+                                            <span><img src="https://img.icons8.com/material/24/000000/log.png"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group" ng-class="{ 'has-error': errorBranchRecalled}">
+                                <label class="require">{{'ASSET_RC_COL_BRANCH_TH' | translate}} </label>
+                                <ui-select class="ui-select-bootstrap-right-radius" rows="2" ng-model="model.BranchRecalled" theme="bootstrap" on-select="changeSelect('BranchRecalled')">
+                                    <ui-select-match placeholder="{{'ASSET_RC_TXT_CHANCH_ENTER' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in model.listBranch | filter:$select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span ng-show="errorBranchRecalled" class="label-color validation-message">
+                                    {{'ASSET_VALIDATE_BRANCH' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group" ng-class="{ 'has-error': errorUserRecalled}">
+                                <label class="require">{{'ASSET_RC_LBL_PERSON_TH' |translate}}</label>
+                                <ui-select class="ui-select-bootstrap-right-radius" rows="2" ng-model="model.UserRecalled" theme="bootstrap" on-select="changeSelect('UserRecalled')">
+                                    <ui-select-match placeholder="{{'ASSET_RC_LBL_PERSON_TH1' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in model.listEmp | filter:$select.search">
+                                        {{x.Name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span ng-show="errorUserRecalled" class="label-color validation-message">
+                                    {{'ASSET_VALIDATE_PESON_TH' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="require">{{'ASSET_RC_LBL_DATE_TH' | translate}}</label>
+                                <div class='input-group date' id='recalledTime'>
+                                    <input class="form-control" rows="2" ng-model="model.sRecalledTime" name="sRecalledTime" placeholder="{{'ASSET_RC_LBL_DATE_TH1' | translate}}..." />
+                                    <span class="input-group-addon">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="require">{{'ASSET_RC_LBL_PERSON_SUCCESS' | translate}}</label>
+                                <input type="text" rows="3" name="UserConfirm" class="form-control" ng-model="model.UserConfirm" placeholder="{{'ASSET_RC_LBL_PERSON_SUCCESS1' | translate}}..." />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="require">{{'ASSET_RC_LBL_LOCAL' |translate}}</label>
+                                <input class="form-control" rows="3" ng-model="model.LocationRecalled" name="LocationRecalled" placeholder="{{'ASSET_RC_LBL_LOACTION_ENTER' | translate}}..." />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="">{{'ASSET_RC_LBL_NOTE1' | translate}}</label>
+                                <textarea name="Description" class="form-control" rows="4" placeholder="{{'ASSET_RC_LBL_NOTE2' | translate}}..." ng-model="model.Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" ng-class="{ 'has-error': errorObjActCode}">
+                                <label class="">{{'ASSET_RC_LBL_CATEGORY_ACTIVITY' | translate}}</label>
+                                <ui-select class="ui-select-bootstrap-right-radius" ng-model="model.ObjActCode" theme="bootstrap" ng-change="changeSelect('ObjActCode',model.ObjActCode)">
+                                    <ui-select-match placeholder="{{'ASSET_RC_LBL_CATEGORY_ACTIVITY' | translate}}...">{{$select.selected.CatName}}</ui-select-match>
+                                    <ui-select-choices repeat="x.Code as x in listCatObjActivity  | filter: $select.search">
+                                        {{x.CatName}}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <span ng-show="errorObjActCode" class="label-color validation-message">
+                                {{'ASSET_VALIDATE_CATEGORY_ACTIVITY' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="border-qrcode">
+                            <div class="text-center hidden">
+                                <div class="img-thumbnail input-unstyled">
+                                    <qrcode id="qrCode" ng-if="model.RcTicketCode!=''" role="button" data={{model.TicketCode}} size="100" download></qrcode>
+                                    <img ng-if="model.RcTicketCode==''" class="opacityQrCode" src="/images/default/qrCode.png" width="100" height="100" />
+                                </div>
+                            </div>
+                            <div class="table-toolbar box-file">
+                                <div class="header">
+                                    <label><span>{{'ASSET_RC_LBL_UPLOAD_FILE' | translate}}</span></label>
+                                </div>
+                                <table class="table table-bordered" id="tblFileRequest">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-5 text-center fw600 text-underline">{{'ASSET_RC_LBL_NAME_FILE' | translate}}</th>
+                                            <th class="col-md-1 text-center fw600 text-underline">{{'COM_BTN_DELETE' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="x in model.listFile">
+                                            <td class="text-center"><a>{{x.Name}}</a></td>
+                                            <td class="text-center">
+                                                <i role="button" class="fa fa-minus-circle" title="{{'COM_BTN_DELETE' | translate}}" ng-click="deleteFile(x.Id)" style="color:red !important;font-size: 25px;padding-top:5px"></i>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="btn-group actions d-flex justify-content-center pt-2 col-md-offset-3">
+                                <div class="text-center pr15" ng-if="!isDisabled">
+                                    <a class="btn btn-icon-only btn-circle btn-outline green-custom" ng-click="addFile()">
+                                        <span><i class="fa fa-upload"></i></span>
+                                    </a>
+                                    <p class="text-underline fs9 mb5 pt3">{{'ASSET_RC_BTN_UPLOAD_FILE' | translate}}</p>
+                                </div>
+                                <div class="text-center pr15" ng-click="print()">
+                                    <a class="btn btn-icon-only btn-circle btn-outline blue-custom">
+                                        <span><i class="fa fa-print"></i></span>
+                                    </a>
+                                    <p class="text-underline fs9 mb5 pt3">{{'ASSET_RC_BTN_PRINT' | translate}}</p>
+                                </div>
+                                <div class="text-center pr15">
+                                    <a ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom">
+                                        <span><i class="fa fa-save"></i></span>
+                                    </a>
+                                    <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_SAVE' | translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        </form>
+        <div class="row">
+            <div class="col-lg-12" style="margin-top:-10px;">
+                <uib-tabset active="active">
+                    <uib-tab class="mt5" index="1" heading="{{'ASSET_RC_MSG_ASSET' | translate}}" disable="CheckCode == '' || CheckCode==undefined" ng-click="chkAdd()">
+                        <div disable="tests" ng-include="'../views/admin/assetRecalled/assetDetail.html'" ng-class="{'disabled-element' : CheckCode =='' || CheckCode==undefined }"></div>
+                    </uib-tab>
+                    <uib-tab class="mt5" index="2" heading="{{'COM_FILE' | translate}}" disable="CheckCode == '' || CheckCode==undefined" ng-click="chkAdd()">
+                        <div disable="tests" ng-include="'../views/admin/assetTransfer/file.html'"></div>
+                    </uib-tab>
+                    <div class="btn-group actions d-flex pull-right">
+                        <div class="text-center pr10">
+                            <a data-dismiss="modal" ng-click="refresh()" class="btn btn-icon-only btn-circle btn-outline red-custom" style="border-radius: 30px !important;background: #e7505a;">
+                                <span><i class="glyphicon glyphicon-remove"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_DELETE' | translate}}</p>
+                        </div>
+                        <div class="btn-group pull-right actions d-flex">
+                            <div class="text-center pr-0">
+                                <a ng-click="submit()" class="btn btn-icon-only btn-circle btn-outline green-custom" style="border-radius: 30px !important;background: #009432;">
+                                    <span><i class="fa fa-save"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_SAVE' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tabset>
+            </div>
+        </div>
+    </div>
+</div>

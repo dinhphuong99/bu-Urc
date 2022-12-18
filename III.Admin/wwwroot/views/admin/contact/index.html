@@ -1,0 +1,82 @@
+﻿<div class="table-toolbar">
+    <div class="row">
+        <div class="col-md-4">
+            <!--<h1 class="bold mb-0">Quản lý liên hệ</h1>-->
+            <ul class="breadcrumb-title">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="/Admin">Trang Chủ</a>
+                    <span>&gt;</span>
+                </li>
+                <li>
+                    <a href="/Contact">Quản lý liên hệ</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8 text-right">
+            <a ng-click="search()" class="btn btn-accent">
+                <i class="fa fa-search"></i>
+                Tìm kiếm
+            </a>
+            <a ng-click="add()" class="btn br4 btn-green">
+                <span class=""><i class="fa fa-plus"></i> Thêm mới</span>
+            </a>
+        </div>
+    </div>
+    <div class="row pt10 mb15">
+        <div class="col-md-3">
+            <label>Từ ngày</label>
+            <div class="input-group">
+                <input type="text" autocomplete="off" class="form-control" placeholder="Từ ngày..." ng-model="model.DateFrom" id="DateFrom">
+                <span class="input-group-btn">
+                    <button type="button" ng-click="model.DateFrom='';" class="btn btn-default no-shadow start-date">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label>Đến ngày</label>
+            <div class='input-group '>
+                <input type='text' autocomplete="off" class="form-control " ng-model="model.DateTo" placeholder="Đến ngày..." id='DateTo' />
+                <span class="input-group-btn">
+                    <button type="button" ng-click="model.DateTo='';" class="btn btn-default no-shadow end-date">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label>Số điện thoại</label>
+            <div class='input-group '>
+                <input type='text' autocomplete="off" class="form-control " ng-model="model.Phone" placeholder="Số điện thoại..." />
+                <span class="input-group-btn">
+                    <button type="button" ng-click="model.Phone='';" class="btn btn-default no-shadow">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label>Thư điện tử</label>
+            <div class='input-group '>
+                <input type='text' autocomplete="off" class="form-control " ng-model="model.Email" placeholder="Thư điện tử..." />
+                <span class="input-group-btn">
+                    <button type="button" ng-click="model.Email='';" class="btn btn-default no-shadow">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="portlet light bordered">
+    <div class="portlet-body">
+        <table class="table dataTable table-hover table-striped"
+               datatable
+               dt-options="dtOptions"
+               dt-columns="dtColumns"
+               dt-instance="dtInstance"
+               id="tblData"></table>
+    </div>
+</div>

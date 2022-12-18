@@ -1,0 +1,485 @@
+﻿<style>
+    .dataTables_wrapper .table-scrollable {
+        border: 1px solid #e7ecf1 !important;
+    }
+
+    .h-60 {
+        height: 60px;
+    }
+
+    .pl0 {
+        padding-left: 10px;
+    }
+
+    .p25 {
+        padding-left: 25px;
+    }
+
+    .pt5 {
+        padding-top: 5px;
+    }
+
+    .pr15 {
+        padding-right: 10px;
+    }
+
+    .pr15 {
+        padding-right: 15px;
+    }
+
+    .pr20 {
+        padding-right: 20px;
+    }
+
+    .pr5 {
+        padding-right: 5px;
+    }
+
+    .mt5 {
+        margin-top: 5px;
+    }
+
+    .mt15 {
+        margin-top: 15px;
+    }
+
+    .ml15 {
+        margin-left: 20px;
+    }
+
+    .mt23 {
+        margin-right: 60px;
+    }
+
+    .mt25 {
+        margin-top: 25px;
+    }
+
+    .w-100-percent {
+        width: 100%;
+    }
+
+    .w-30-percent {
+        width: 30%;
+    }
+
+    .bgWhite {
+        background: #FFF;
+    }
+
+    .labelbodergroup {
+        margin-left: 24px;
+        margin-top: -12px;
+        position: absolute;
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border: 1px solid #e9dada;
+        border-radius: 4px;
+        font-size: 11px;
+        padding: 3px 10px !important;
+    }
+
+    .table_body {
+        background: linear-gradient(to bottom,#f2eee6,#FBFCFC );
+        border-radius: 4px !important;
+        border: 1px solid #e9dada;
+        padding-top: 15px;
+        box-shadow: 0px 5px 10px 2px rgba(127, 143, 166,0.2) !important;
+        padding-bottom: 15px;
+    }
+
+    .text-box-important {
+        background-color: #27ae60 !important;
+        color: #fcfdfd !important;
+        font-weight: bold;
+    }
+</style>
+<div class="modal-header">
+    <img class="close icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert  "></i>
+    <span class="modal-title custom-title " id="modal-title"> {{'ACT_TITLE_CATEGORY_FORM_EDIT'|translate}}</span>
+</div>
+<div class="modal-body userFormAreaHeader" id="modal-body" style="padding-bottom: 0px;">
+    <div class="portlet-body form">
+        <form name="editform" class="form-horizontal " method="post" ng-validate="validationOptions">
+            <div class="form-body pt5 pl-0 pr-0">
+                <div class="col-md-4 pl-0">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label require bold"><i class="fa fa-barcode"></i> {{'ACT_LBL_CATEGORY_CODE'|translate}}</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" name="WorkFlowCode" class="form-control text-box-asset" data-ng-model="model.WorkFlowCode" placeholder="{{'ACT_LBL_CATEGORY_CODE'|translate}}..." ng-readonly="true" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 pl-0 pr-0">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <i class="fa fa-comment"></i>
+                            <label class="control-label require bold">{{'ACT_LBL_CATEGORY_TITLE'|translate}}</label>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control text-box-asset" ng-model="model.Name" name="Name" placeholder="{{'ACT_LBL_CATEGORY_TITLE'|translate}}..." />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-11 pl-0 pr-0">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <i class="fa fa-comment" aria-hidden="true"></i>
+                            <label class="control-label bold">{{'ACT_LBL_CATEGORY_NOTE'|translate}}</label>
+                        </div>
+                        <div class="col-md-12 pr-0">
+                            <textarea name="Note" rows="3" class="form-control" ng-model="model.Note" type="text" placeholder="{{'ACT_LBL_CATEGORY_NOTE'|translate}}..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1 pr-0 pull-right">
+                    <div class="btn-group actions pull-right d-flex mt35 ml15">
+                        <div class="text-center">
+                            <a ng-click="submit()" class="btn btn-icon-only  btn-circle btn-outline green-custom">
+                                <span><i class="fa fa-save"></i></span>
+                            </a>
+                            <p class="text-underline fs9 mb5 pt3"> {{'COM_BTN_SAVE' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!--<form name="activity" class="form-horizontal " method="post" ng-validate="validationOptionsAct">
+        <div class="tabbable">
+            <uib-tabset active="active">
+                <uib-tab index="0" heading="{{'Hoạt động' | translate}}">
+                    <div class="row pt5">
+                        <div class="col-md-12">
+                            <div class="form-body pt-0 pl-0 pr-0">
+                                <div class="row pt5">
+                                    <div class="col-md-12 pl-0 pr-0" id="box">
+                                        <div class="table-toolbar table_body">
+                                            <div class="form-body pt5 pl-0 pr-0">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-5 pr-0">
+                                                        <div class="form-group" ng-class=" {'has-error': errorActCode}">
+                                                            <div class="col-md-12">
+                                                                <label class="control-label require bold"><i class="fa fa-th-list"></i>&nbsp;{{'ACT_LBL_ACTIVITY'|translate}}</label>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="input-group">
+                                                                    <ui-select tagging ng-model="modelObj.ActCode" theme="bootstrap" on-select="changleSelect('ActCode')">
+                                                                        <ui-select-match placeholder="{{'ACT_LBL_ACTIVITY'|translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                                                        <ui-select-choices repeat=" x.Code as x in listAct | filter: $select.search">
+                                                                            {{x.Name}}
+                                                                        </ui-select-choices>
+                                                                    </ui-select>
+                                                                    <span class="input-group-btn">
+                                                                        <button type="button" ng-click="modelObj.ActCode=''" class="btn btn-default no-shadow">
+                                                                            <span class="glyphicon glyphicon-remove"></span>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                                <span ng-show="errorActCode" class="label-color validation-message">
+                                                                    {{'ACT_VALIDATE_ACTIVITY_NOT_NULL'|translate}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 pr-0">
+                                                        <div class="form-group" ng-class=" {'has-error': errorPriority}">
+                                                            <div class="col-md-12 ">
+                                                                <i class="fa fa-flag" aria-hidden="true"></i>
+                                                                <label class="control-label require bold">{{'ACT_LBL_PRIORITY'|translate}}</label>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <input type="text" class="form-control" ng-model="modelObj.Priority" name="Priority" placeholder="{{'ACT_LBL_PRIORITY'|translate}}..." />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <i class="fas fa-hourglass-half"></i>
+                                                                <label class="control-label require bold">{{'ACT_LBL_TIME_LIMIT'|translate}}</label>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <input type="text" class="form-control" ng-model="modelObj.LimitTime" name="LimitTime" placeholder="{{'ACT_LBL_TIME_LIMIT'|translate}}..." />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 pl-0">
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <i class="fas fa-calculator"></i>
+                                                                <label class="control-label require bold">{{'ACT_LBL_UNIT'|translate}}</label>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <input type="text" class="form-control" ng-model="modelObj.UnitTime" name="UnitTime" placeholder="{{'ACT_LBL_UNIT'|translate}}..." />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-11">
+                                                        <div class="form-group">
+                                                            <div class="col-md-9">
+                                                                <i class="fa fa-comment" aria-hidden="true"></i>
+                                                                <label class="control-label bold">{{'ACT_LBL_CATEGORY_GC'|translate}}</label>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <textarea type="text" class="form-control" ng-model="modelObj.Note" name="title" placeholder="{{'ACT_LBL_CATEGORY_GC'|translate}}..." />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1 pr-2">
+                                                        <div class="btn-group pull-right actions d-flex mt25" style="margin-left: -15px;margin-right: -10px;">
+                                                            <div class="text-center ">
+                                                                <a ng-click="addActiviy()" class="btn btn-icon-only pull-right btn-circle btn-outline green-custom">
+                                                                    <span><i class="fa fa-plus"></i></span>
+                                                                </a>
+                                                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <table class="table dataTable table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-1 text-center fw600 text-underline">{{'ACT_COL_CATEGORY_STT'|translate}}</th>
+                                                <th class="col-md-3 text-center fw600 text-underline">{{'ACT_LBL_ACTIVITY'|translate}}</th>
+                                                <th class="col-md-2 text-center fw600 text-underline">{{'ACT_LBL_PRIORITY'|translate}}</th>
+                                                <th class="col-md-1 text-center fw600 text-underline">{{'ACT_LBL_TIME_LIMIT'|translate}}</th>
+                                                <th class="col-md-1 text-center fw600 text-underline">{{'ACT_LBL_UNIT'|translate}}</th>
+                                                <th class="col-md-3 text-center fw600 text-underline">{{'ACT_LBL_CATEGORY_GC'|translate}}</th>
+                                                <th class="col-md-1 text-center fw600 text-underline">{{'ACT_COL_CATEGORY_ACTION'|translate}}</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in listObjAct">
+                                                <td class="text-center"><a>{{$index + 1}}</a></td>
+                                                <td class="text-center"><a>{{x.ActCode}}</a></td>
+                                                <td class="text-center"><a>{{x.Priority}}</a></td>
+                                                <td class="text-center"><a>{{x.LimitTime}}</a></td>
+                                                <td class="text-center"><a>{{x.UnitTime}}</a></td>
+                                                <td class="text-center"><a>{{x.Note}}</a></td>
+                                                <td class="text-center">
+                                                    <i role="button" class="fa fa-minus-circle" title="Xóa" ng-click="delete(x.ID)" style="color:red !important;font-size: 25px;padding-top:5px"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </uib-tab>
+                <uib-tab index="1" heading="{{'Cài đặt phân quyền' | translate}}">
+                    <div class="row pt5">
+                        <div class="col-md-12">
+                            <div class="form-body pt-0 pl-0 pr-0">
+                                <div class="row pt5">
+                                    <div class="col-md-12 pl-0 pr-0" id="box">
+                                        <div class="table-toolbar table_body">
+                                            <div class="form-body pt5 pl-0 pr-0">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group" ng-class=" {'has-error': errorActCodeFlow}">
+                                                            <div class="col-md-12">
+                                                                <label class="control-label require bold"><i class="fa fa-comment"></i>&nbsp;{{'Hoạt động'|translate}}</label>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="input-group">
+                                                                    <ui-select tagging ng-model="modelFolw.ActCode" theme="bootstrap" on-select="changeSelect('ActCodeFlow')">
+                                                                        <ui-select-match placeholder="{{'Chọn hoạt động'|translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                                                        <ui-select-choices repeat=" x.Code as x in listAct | filter: $select.search">
+                                                                            {{x.Name}}
+                                                                        </ui-select-choices>
+                                                                    </ui-select>
+                                                                    <span class="input-group-btn">
+                                                                        <button type="button" ng-click="modelFolw.ActCode=''" class="btn btn-default no-shadow">
+                                                                            <span class="glyphicon glyphicon-remove"></span>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                                <span ng-show="errorActCodeFlow" class="label-color validation-message">
+                                                                    {{'Hoạt động không được để trống!'|translate}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group" ng-class=" {'has-error': errorBranchCode}">
+                                                            <div class="col-md-12">
+                                                                <label class="control-label require bold"><i class="fa fa-building"></i>&nbsp;{{'Chi nhánh'|translate}}</label>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="input-group">
+                                                                    <ui-select tagging ng-model="modelFolw.BranchCode" theme="bootstrap" on-select="changeSelect('BranchCode')">
+                                                                        <ui-select-match placeholder="{{'Chọn chi nhánh'|translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                                                        <ui-select-choices repeat=" x.Code as x in listBranch | filter: $select.search">
+                                                                            {{x.Name}}
+                                                                        </ui-select-choices>
+                                                                    </ui-select>
+                                                                    <span class="input-group-btn">
+                                                                        <button type="button" ng-click="modelFolw.BranchCode=''" class="btn btn-default no-shadow">
+                                                                            <span class="glyphicon glyphicon-remove"></span>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                                <span ng-show="errorBranchCode" class="label-color validation-message">
+                                                                    {{'Chi nhánh không được để trống!'|translate}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group" ng-class=" {'has-error': errorDepartCode}">
+                                                            <div class="col-md-12">
+                                                                <label class="control-label require bold"><i class="far fa-building"></i>&nbsp;{{'Chọn phòng ban'|translate}}</label>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="input-group">
+                                                                    <ui-select tagging ng-model="modelFolw.DepartCode" theme="bootstrap" on-select="changeSelect('DepartCode')">
+                                                                        <ui-select-match placeholder="{{'Chọn phòng ban'|translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                                                        <ui-select-choices repeat=" x.Code as x in listDepartment | filter: $select.search">
+                                                                            {{x.Name}}
+                                                                        </ui-select-choices>
+                                                                    </ui-select>
+                                                                    <span class="input-group-btn">
+                                                                        <button type="button" ng-click="modelFolw.DepartCode=''" class="btn btn-default no-shadow">
+                                                                            <span class="glyphicon glyphicon-remove"></span>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                                <span ng-show="errorDepartCode" class="label-color validation-message">
+                                                                    {{'Phòng ban không được để trống!'|translate}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group" ng-class=" {'has-error': errorRole}">
+                                                            <div class="col-md-12">
+                                                                <label class="control-label require bold"><i class="fa fa-joomla"></i>&nbsp;{{'Vai trò'|translate}}</label>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="input-group">
+                                                                    <ui-select tagging ng-model="modelFolw.Role" theme="bootstrap" on-select="changeSelect('Role')">
+                                                                        <ui-select-match placeholder="{{'Chọn vai trò'|translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                                                        <ui-select-choices repeat=" x.Code as x in listRoles | filter: $select.search">
+                                                                            {{x.Name}}
+                                                                        </ui-select-choices>
+                                                                    </ui-select>
+                                                                    <span class="input-group-btn">
+                                                                        <button type="button" ng-click="modelFolw.Role=''" class="btn btn-default no-shadow">
+                                                                            <span class="glyphicon glyphicon-remove"></span>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                                <span ng-show="errorRole" class="label-color validation-message">
+                                                                    {{'Vai trò không được để trống!'|translate}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group" ng-class=" {'has-error': errorWorkFlowProperty}">
+                                                            <div class="col-md-12">
+                                                                <label class="control-label bold"><i class="fa fa-joomla"></i>&nbsp;{{'Thuộc tính'|translate}}</label>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="input-group">
+                                                                    <ui-select tagging ng-model="modelFolw.WorkFlowProperty" theme="bootstrap" on-select="changeSelect('WorkFlowProperty')">
+                                                                        <ui-select-match placeholder="{{'Chọn thuộc tính'|translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                                                        <ui-select-choices repeat=" x.Code as x in listWorkFlowProperty | filter: $select.search">
+                                                                            {{x.Name}}
+                                                                        </ui-select-choices>
+                                                                    </ui-select>
+                                                                    <span class="input-group-btn">
+                                                                        <button type="button" ng-click="modelFolw.WorkFlowProperty=''" class="btn btn-default no-shadow">
+                                                                            <span class="glyphicon glyphicon-remove"></span>
+                                                                        </button>
+                                                                    </span>
+                                                                </div>
+                                                                <span ng-show="errorWorkFlowProperty" class="label-color validation-message">
+                                                                    {{'Vai trò không được để trống!'|translate}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1 pr-2" style="float: right;">
+                                                        <div class="btn-group pull-right actions d-flex mt25" style="margin-left: -15px;margin-right: -10px;">
+                                                            <div class="text-center ">
+                                                                <a ng-click="addWorkFlow()" class="btn btn-icon-only pull-right btn-circle btn-outline green-custom">
+                                                                    <span><i class="fa fa-plus"></i></span>
+                                                                </a>
+                                                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <table class="table dataTable table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-1 text-center fw600 text-underline">{{'STT'|translate}}</th>
+                                                <th class="col-md-3 text-center fw600 text-underline">{{'ACT_LBL_ACTIVITY'|translate}}</th>
+                                                <th class="col-md-2 text-center fw600 text-underline">{{'Chi nhánh'|translate}}</th>
+                                                <th class="col-md-1 text-center fw600 text-underline">{{'Phòng ban'|translate}}</th>
+                                                <th class="col-md-1 text-center fw600 text-underline">{{'Vai trò'|translate}}</th>
+                                                <th class="col-md-3 text-center fw600 text-underline">{{'Thuộc tính'|translate}}</th>
+                                                <th class="col-md-1 text-center fw600 text-underline">{{'ACT_COL_CATEGORY_ACTION'|translate}}</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in listWorkFlow">
+                                                <td class="text-center"><a>{{$index + 1}}</a></td>
+                                                <td class="text-center"><a>{{x.ActCode}}</a></td>
+                                                <td class="text-center"><a>{{x.Branch}}</a></td>
+                                                <td class="text-center"><a>{{x.DepartCode}}</a></td>
+                                                <td class="text-center"><a>{{x.Role}}</a></td>
+                                                <td class="text-center"><a>{{x.Property}}</a></td>
+                                                <td class="text-center">
+                                                    <i role="button" class="fa fa-minus-circle" title="Xóa" ng-click="deleteWorkFlow(x.ID)" style="color:red !important;font-size: 25px;padding-top:5px"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </form>-->
+        <div class="row">
+            <div class="col-lg-12 ">
+                <uib-tabset active="active">
+                    <uib-tab class="mt5" index="0" heading="{{'Hoạt động' | translate}}">
+                        <div disable="tests" ng-include="'../views/admin/activity/activity.html'"></div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row pt3">
+        <div class="col-md-12 pl-0 pr-0">
+            <div class="tabbable">
+                <div ng-include="'../views/admin/activity/activity.html'"></div>
+            </div>
+        </div>
+    </div>-->
+</div>

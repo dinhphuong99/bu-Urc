@@ -1,0 +1,263 @@
+﻿<style>
+    .tab-content {
+        height: 230px;
+        margin-top:10px;
+    }
+
+    .modal-body {
+        padding-bottom: 45px;
+    }
+</style>
+<div class="modal-header">
+    <img class="icon-remove" title="Close" src="/images/default/close.png" ng-click="cancel()" />
+    <i class="fa fa-plus-circle icon-insert "></i>
+    <span class="modal-title" id="modal-title"> {{'ROUTE_TITLE_EDIT' | translate}}</span>
+</div>
+<div class="modal-body" id="modal-body" style="padding-bottom:0px !important">
+    <div class="portlet-body form">
+        <form name="addform" class="form-horizontal userFormAreaHeader" method="post" ng-validate="validationOptions">
+            <div class="form-body pl5 pr5 pt-0 pb-0">
+                <div class="row mt-action-5">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fas fa-file-signature"></i>
+                                <label class="control-label ">&nbsp;{{'ROUTE_CURD_LBL_ROUTE_CODE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" name="RouteCode" ng-disabled="!IsDisable" class="form-control" ng-model="model.RouteCode" placeholder="{{'ROUTE_CURD_TXT_ROUTE_CODE' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': errorRouteName}">
+                            <div class="col-md-5">
+                                <i class="fas fa-file-signature"></i>
+                                <label class="control-label ">&nbsp;{{'ROUTE_CURD_LBL_ROUTE_NAME' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" name="RouteName" ng-model="model.RouteName" placeholder="{{'ROUTE_CURD_TXT_ROUTE_NAME' | translate}}" ng-change="changeQRCode()" />
+                                <span ng-show="errorRouteName" class="label-color validation-message">
+                                    {{'ROUTE_MSG_ROUTE_NAME_NO_BLANK' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fa fa-exchange"></i>
+                                <label class="control-label ">&nbsp;{{'ROUTE_CURD_LBL_NUMLINE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.NumLine" theme="bootstrap" ng-change="changeQRCode()">
+                                        <ui-select-match placeholder="{{'ROUTE_CURD_TXT_NUMLINE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in numLines | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingCustomerGroup()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorNumLine" class="label-color validation-message">
+                                    {{'ROUTE_CURD_TXT_NUMLINE' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left "><i class="fas fa-ruler-vertical"></i>&nbsp;{{'ROUTE_CURD_LBL_NUMLENGTH' | translate}}(m)</label>
+                            <div class="col-md-7">
+                                <input type="number" min="0" name="NumLength" class="form-control" ng-model="model.NumLength" placeholder="{{'ROUTE_CURD_TXT_NUMLENGTH' | translate}}(m)" ng-change="changeQRCode()" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fas fa-user"></i>
+                                <label class="control-label ">&nbsp;{{'ROUTE_CURD_LBL_MANAGER' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.Manager" theme="bootstrap" ng-change="changeQRCode()">
+                                        <ui-select-match placeholder="{{'ROUTE_CURD_TXT_MANAGER' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in managers | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingCustomerGroup()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorManager" class="label-color validation-message">
+                                    {{'ROUTE_MSG_MANAGER_NO_BLANK' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fas fa-flag"></i>
+                                <label class="control-label ">&nbsp;{{'ROUTE_CURD_LBL_STATUS' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.Status" theme="bootstrap" ng-change="changeQRCode()">
+                                        <ui-select-match placeholder="{{'ROUTE_CURD_TXT_STATUS' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in statuss | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingCustomerGroup()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="errorStatus" class="label-color validation-message">
+                                    {{'ROUTE_MSG_STATUS_NO_BLANK' | translate}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fa fa-level-up"></i>
+                                <label class="control-label ">&nbsp;{{'ROUTE_CURD_LBL_ROUTE_LEVEL' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.RouteLevel" theme="bootstrap" ng-change="changeQRCode()">
+                                        <ui-select-match placeholder="{{'ROUTE_CURD_TXT_ROUTE_LEVEL' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in routeLevels | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingCustomerGroup()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fa fa-level-up"></i>
+                                <label class="control-label ">&nbsp;{{'ROUTE_CURD_LBL_ROUTE_TYPE' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.RouteLevel" theme="bootstrap" ng-change="changeQRCode()">
+                                        <ui-select-match placeholder="{{'ROUTE_CURD_TXT_ROUTE_TYPE' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in routeType | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingCustomerGroup()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <i class="fa fa-flag"></i>
+                                <label class="control-label ">&nbsp;{{'ROUTE_CURD_LBL_PRIORITY' | translate}}</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="input-group">
+                                    <ui-select tagging ng-model="model.RoutePriority" theme="bootstrap" ng-change="changeQRCode()">
+                                        <ui-select-match placeholder="{{'ROUTE_CURD_TXT_PRIORITY' | translate}}...">{{$select.selected.Name}}</ui-select-match>
+                                        <ui-select-choices repeat=" x.Code as x in routePrioritys | filter: $select.search">
+                                            {{x.Name}}
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="addCommonSettingCustomerGroup()" class="btn no-shadow  green-custom" style="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left "><i class="fa fa-calendar"></i>&nbsp;{{'ROUTE_CURD_LBL_TIME_ACTIVE' | translate}}</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" ng-model="model.TimeActive" placeholder="{{'ROUTE_CURD_TXT_TIME_ACTIVE' | translate}}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-5 text-left "><i class="fa fa-clipboard"></i>&nbsp;{{'ROUTE_CURD_LBL_NOTE' | translate}}</label>
+                            <div class="col-md-7">
+                                <textarea style="height:113px" class="form-control" ng-model="model.Note" placeholder="{{'ROUTE_CURD_TXT_NOTE' | translate}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <div class="form-group">
+                                <div class="fileupload-new thumbnail mt15 pb-0" style="border:0; box-shadow: none;background:none;">
+                                    <input id="file" accept=".png,.jpg,.jpeg,.gif,.tif" type="file" style="display:none" />
+                                    <img id="picture" style="cursor: pointer" ng-click="loadImage()" class="img-circle h-150 w150 br-n" onerror="this.src='/images/default/uploadimg.png'" ng-src="{{model.Images==null ? '/images/default/uploadimg.png' : model.Images}}" role="button" />
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center fs10 pl-0 pr-0 mb15">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                <label class="control-label ">&nbsp;{{'ROUTE_CURD_LBL_IMG_ROUTE' | translate}}</label>
+                            </div>
+                            <div class="form-group" style=" margin-left:60px; margin-top:20px;">
+                                <qrcode data="{{model.QrCode}}" download size="100"></qrcode>
+                            </div>
+                            <div class="col-md-12 text-center fs10 pl-0 pr-0">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                <label class="control-label ">&nbsp;{{'ROUTE_CURD_LBL_QR_CODE' | translate}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt20">
+                    <div class="col-md-11">
+                        <div class="form-group">
+                            <label class="control-label col-md-4 text-left "><i class="fas fa-database"></i>&nbsp;{{'ROUTE_CURD_LBL_MAP_DATA' | translate}}</label>
+                            <div class="col-md-8 pl-0">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="RouteDataGps" disabled ng-model="model.RouteDataGps" placeholder="{{'ROUTE_CURD_TXT_MAP_DATA' | translate}}" />
+                                    <span class="input-group-btn">
+                                        <button type="button" ng-click="openMap()" class="btn btn-default no-shadow green-custom" style="">
+                                            <span class="fa fa-map-marker"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right col-md-1 p-0">
+                        <div class="btn-group pull-left" >
+                            <div class="">
+                                <a class="btn btn-icon-only btn-circle btn-outline green-custom ml5" ng-click="submit()">
+                                    <span><i class="fa fa-plus"></i></span>
+                                </a>
+                                <p class="text-underline fs9 mb5 pt3">{{'COM_BTN_ADD' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 ">
+                        <uib-tabset active="active">
+                            <uib-tab class="mt5" index="0" heading="{{'ROUTE_TAB_DRIVER_CAR' | translate}}" disable="IsDisable == true" ng-click="chkDisable()">
+                                <div ng-include="'../views/admin/route/driver.html'"></div>
+                            </uib-tab>
+                            <uib-tab class="mt5" index="1" heading="{{'ROUTE_TAB_TRASH' | translate}}" disable="IsDisable == true" ng-click="chkDisable()">
+                                <div ng-include="'../views/admin/route/node.html'"></div>
+                            </uib-tab>
+                        </uib-tabset>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
